@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/07 12:58:29 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:03:58 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char *argv[])
 
 	printf("ft_strlen of libft working : %zu\n", ft_strlen(test));
 	printf("Test cub pash!\n");
+	printf("Test cub push again!\n");
 	
 	
 	return (EXIT_SUCCESS);
