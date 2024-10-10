@@ -3,7 +3,6 @@
 #include "ft_printf.h"
 
 
-
 int check_map_has_valid_extension(char *map_name)
 {
 	int		strlen_map;

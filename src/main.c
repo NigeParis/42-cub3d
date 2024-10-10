@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 10:49:57 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:00:19 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	main(int argc, char *argv[])
 
 	if (checkfile_exists("maps/good/square_map.cub", ""))
 
-	
-	
 	dprintf(STDERR_FILENO, "valid_map '%d'\n", map_data.valid_map);
-	check_map_has_valid_extension("/map/hello.cub");
+	check_map_has_valid_extension("/maps/good_maps/square_map.cub");
+	build_map("./maps/good_maps/square_map.cub", &map_data);
 	return (EXIT_SUCCESS);
 }

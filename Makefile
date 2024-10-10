@@ -18,7 +18,8 @@ OBJ_DIR=build/
 FOLDER=game_setup/
 
 SRC= main.c  get_next_line.c \
-	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c
+	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
+	 game_setup/create_directional_textures.c game_setup/find_beginning_map_line.c game_setup/create_floor_ceiling_textures.c 
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
