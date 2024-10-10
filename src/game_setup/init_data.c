@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 15:27:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:27:16 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	init_data(t_data *map_data, char *argv[])
 		return (0);
 	ft_memset(map_data, 0, sizeof(map_data));
 	
-	map_data->valid_map = 0;
+	map_data->valid_map = 1;
 	map_data->fd = -1;
 	map_data->file = argv[1]; 
 

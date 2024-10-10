@@ -18,15 +18,15 @@ int		check_if_map_texture(char *line, t_data *map_data)
 	int	i;
 
 	i = 0;
+	//printf("GET LINE IN CHECK IF MAP TEXTURE %s\n", line);
 	while (line[i] == 32 || line[i] == 11 || line[i] == 9)
 		i++;
-	if (line[i + 1])
-	{
-		build_map_textures(line, map_data, i);
-		if (line[i] == '0' || line[i] == '1')
-			return (0);
-		i++;
-	}
+	
+	
+	if (line[i] == '0' || line[i] == '1')
+		return (0);
+	build_map_textures(line, map_data, i);
+	i++;
 	return (1);
 }
 
@@ -47,7 +47,11 @@ void	build_map_textures(char *line, t_data *map_data, int i)
 		else if (line[i] == 'C' && line[i + 1] == 32)
 			create_ceiling_texture(map_data, line);
 		else 
+		{
 			map_data->valid_map = 0;
+			printf("GET LINE IN ELSE PHASE! %s\n", line);
+		}
+			
 	}
 	else 
 		map_data->valid_map = 0;
@@ -68,7 +72,7 @@ void	build_map_portion_of_map_data(char **split_raw_data, int start_point, t_dat
 		j++;
 		i++;
 	}
-	map_data->map[i] = NULL;
+	map_data->map[j] = NULL;
 }
 
 
@@ -76,7 +80,6 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 {
 	int i;
 	int j;
-	int difference;
 	int start_point;
 
 	i = 0;
@@ -84,17 +87,15 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 	start_point = -1;
 	while (split_raw_data[i])
 	{
-		while (check_if_map_texture(split_raw_data[i], map_data) && split_raw_data[i])
+		while ((check_if_map_texture(split_raw_data[i], map_data) && split_raw_data[i]))
 			i++;
 		if (start_point == -1)
 			start_point = i;
 		j++;
-		if (!map_data->map)
-			return ;
 		i++;
 	}
-	difference = i - j;
-	map_data->map = malloc(((difference) + 1) * sizeof(char *));
+	map_data->map = malloc((i + 1) * sizeof(char *));
+	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
 	if (!map_data->map)
 		return ;
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);
@@ -108,5 +109,4 @@ void build_map_data(t_data *map_data)
 
 	split_raw_data = ft_split(map_data->raw_map, '\n');
 	build_final_map_data(split_raw_data, map_data);
-	
 }
