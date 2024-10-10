@@ -18,7 +18,7 @@ OBJ_DIR=build/
 FOLDER=game_setup/
 
 SRC= main.c  get_next_line.c \
-	 get_next_line_utils.c game_setup/init_data.c
+	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

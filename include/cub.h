@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/10/10 10:13:47 by nrobinso         ###   ########.fr       */
+=======
+/*   Updated: 2024/10/10 10:45:36 by rchourak         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +48,7 @@ int	init_data(t_data *map_data);
 /// @param type_image message added if not succesful
 /// @return 0 on success and -1 if failed to open
 int	checkfile_exists(char *file, char *type_image);
+int	check_map_has_valid_extension(char *map_name);
 
 
 

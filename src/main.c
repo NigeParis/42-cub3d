@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 10:17:20 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:49:57 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(int argc, char *argv[])
 	
 	
 	dprintf(STDERR_FILENO, "valid_map '%d'\n", map_data.valid_map);
-
-	
+	check_map_has_valid_extension("/map/hello.cub");
 	return (EXIT_SUCCESS);
 }
