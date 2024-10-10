@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/07 12:20:18 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:09:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,15 @@
 # include <limits.h>
 # include <stdint.h>
 
+typedef struct s_data
+{
+	int		valid_map;
 
+	
+}	t_data;
+
+
+int	init_data(t_data *map_data);
 
 
 

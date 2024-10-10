@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 09:12:04 by nrobinso         ###   ########.fr       */
+/*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
+/*   Updated: 2024/10/10 09:10:06 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-
-int	main(int argc, char *argv[])
+int	init_data(t_data *map_data)
 {
-	(void)argc;
-	(void)argv;
-	t_data map_data;
-
-
-	init_data(&map_data);
-
-
-
-	dprintf(STDERR_FILENO, "map_valid_flag = '%d'\n", map_data.valid_map);
+	if (!map_data)
+		return (-1);
+	ft_memset(map_data, 0, sizeof(map_data));
 	
-	
-	return (EXIT_SUCCESS);
+	map_data->valid_map = 2;
+
+
+	return (0);
 }

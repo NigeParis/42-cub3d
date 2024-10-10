@@ -15,9 +15,10 @@ CC=cc
 
 SRC_DIR=src/
 OBJ_DIR=build/
+FOLDER=game_setup/
 
 SRC= main.c  get_next_line.c \
-	 get_next_line_utils.c 
+	 get_next_line_utils.c game_setup/init_data.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -37,6 +38,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/$(FOLDER)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:
