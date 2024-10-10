@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 09:09:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 09:53:20 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdint.h>
+# include <fcntl.h>
 
 typedef struct s_data
 {
@@ -34,8 +35,16 @@ typedef struct s_data
 	
 }	t_data;
 
-
+/// @brief initializes map_data to zero and adds any other value
+/// @param map_data 
+/// @return 0 on success -1 if fails
 int	init_data(t_data *map_data);
+/// @brief opens a file and closes it.
+/// @param file file to be opened
+/// @param type_image message added if not succesful
+/// @return 0 on success and -1 if failed to open
+int	checkfile_exists(char *file, char *type_image);
+
 
 
 
