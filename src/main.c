@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 15:34:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:09:56 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ int	main(int argc, char *argv[])
 	
 
 	get_map_one_line(&map_data);
+	build_map_data(&map_data);
+	printf("GET NORTH TEXTURE %s\n", map_data.north_texture);
+	printf("GET SOUTH TEXTURE %s\n", map_data.south_texture);
+	printf("GET WEST TEXTURE %s\n", map_data.west_texture);
+	printf("GET EAST TEXTURE %s\n", map_data.east_texture);
+	printf("GET FLOOR TEXTURE %s\n", map_data.floor_texture);
+	printf("GET CEILING TEXTURE %s\n", map_data.ceiling_texture);
+	int i = 0;
+	while (map_data.map[i])
+	{
+		printf("GET MAP DATA %s\n", map_data.map[i]);
+		i++;
+	}
+	
 	
 	dprintf(STDERR_FILENO,"%s\n", map_data.raw_map);
 	dprintf(STDERR_FILENO, "file: '%s'\n", map_data.file);
