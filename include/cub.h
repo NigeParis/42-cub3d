@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 15:02:58 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:33:01 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,16 @@ typedef struct s_data
 {
 	char	*file;
 	char	**map;
+	char	*raw_map;
 	int		valid_map;
 	int		fd;
+	char	*north_texture;
+	char	*south_texture;
+	char	*east_texture;
+	char	*west_texture;
+	char	*floor_texture;
+	char	*ceiling_texture;
 
-	
 }	t_data;
 
 /// 	@brief initializes map_data to zero and adds any other values needed
@@ -50,12 +56,25 @@ int		init_data(t_data *map_data, char *argv[]);
 int		checkfile_exists(char *file, char *type);
 int		check_map_has_valid_extension(char *map_name);
 
+/* FUNCTIONS WHICH WILL POTENTIALLY BE USED
+void	create_north_texture(t_data *map_data, char *line);
+void	create_south_texture(t_data *map_data, char *line);
+void	create_west_texture(t_data *map_data, char *line);
+void	create_east_texture(t_data *map_data, char *line);
+void	create_ceiling_texture(t_data *map_data, char *line);
+void	create_floor_texture(t_data *map_data, char *line);
+void	build_map_textures(char *line, t_data *map_data, int i);
+int		line_indicates_map_start(char *line, t_data *map_data);
+char	**ft_realloc_map(char *line, char **tmp, int *ptri);
+void	build_map(char *file, t_data *map_data);
+*/
 
 void	printmap(char **map);
 void	put_error(char *str);
 int		open_map_config(t_data *map_data);
 int		close_map_config(t_data *map_data);
-char	*get_map_one_line(t_data *map_data);
+void	get_map_one_line(t_data *map_data);
+
 
 
 #endif

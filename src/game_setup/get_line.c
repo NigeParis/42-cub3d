@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 14:58:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:39:41 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free_tableau(char *str)
 		free(str);
 }
 
-char	*get_map_one_line(t_data *map_data)
+void	get_map_one_line(t_data *map_data)
 {
 	char	*line_table;
 	char	*line;
@@ -44,5 +44,6 @@ char	*get_map_one_line(t_data *map_data)
 			line = get_next_line(map_data->fd);
 		}
 	}
-	return (line_table);
+	map_data->raw_map = ft_strdup(line_table);
+	ft_free_tableau(line_table);
 }
