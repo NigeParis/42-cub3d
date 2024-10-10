@@ -21,7 +21,8 @@ ERROR=game_errors/
 
 SRC= main.c  get_next_line.c \
 	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
-	 map_check_tools/map_tools.c game_errors/display_error.c game_setup/get_line.c
+	 map_check_tools/map_tools.c game_errors/display_error.c game_setup/get_line.c game_setup/build_map_values_from_raw.c \
+	 game_setup/create_directional_textures.c game_setup/create_floor_ceiling_textures.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

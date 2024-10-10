@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 15:33:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:20:10 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,16 @@ int		open_map_config(t_data *map_data);
 int		close_map_config(t_data *map_data);
 void	get_map_one_line(t_data *map_data);
 
-
+int		check_if_map_texture(char *line, t_data *map_data);
+void	build_map_textures(char *line, t_data *map_data, int i);
+char	**ft_realloc_map(char *line, char **tmp, int *ptrj);
+void	advance_and_build_map_data(char **split_raw_data, t_data *map_data);
+void	build_map_data(t_data *map_data);
+void	create_floor_texture(t_data *map_data, char *line);
+void	create_ceiling_texture(t_data *map_data, char *line);
+void	create_east_texture(t_data *map_data, char *line);
+void	create_west_texture(t_data *map_data, char *line);
+void	create_south_texture(t_data *map_data, char *line);
+void	create_north_texture(t_data *map_data, char *line);
 
 #endif
