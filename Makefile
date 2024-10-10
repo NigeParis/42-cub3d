@@ -35,9 +35,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "Creating FILE .......\n"
-	@make -C ./mlx/ all
-	@make -C ./libft/ all
-	@make -C ./ft_printf/ all
+	@make -C ./mlx/ all > /dev/null
+	@make -C ./libft/ all > /dev/null
+	@make -C ./ft_printf/ all > /dev/null
 	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF)  $(MLX_FLAGS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -48,25 +48,25 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:
-	@make -C ./ft_printf/ re
-	@make -C ./libft/ re
-	@make -C ./mlx/ re
+	@make -C ./ft_printf/ re > /dev/null
+	@make -C ./libft/ re > /dev/null
+	@make -C ./mlx/ re > /dev/null
 
 libclean:
-	@make -C ./ft_printf/ clean
-	@make -C ./libft/ clean
+	@make -C ./ft_printf/ clean > /dev/null
+	@make -C ./libft/ clean > /dev/null
 
 libfclean:
-	@make -C ./ft_printf/ fclean
-	@make -C ./libft/ fclean
-	@make -C ./mlx/ clean
+	@make -C ./ft_printf/ fclean > /dev/null
+	@make -C ./libft/ fclean > /dev/null
+	@make -C ./mlx/ clean > /dev/null
 
 clean: libclean
 	@rm -rf $(OBJ_DIR)
 
 fclean:clean libfclean	
 	@echo "FCLEAN all .o et .a files .......\n"
-	@rm -f $(NAME)
+	@rm -f $(NAME) > /dev/null
 
 re: fclean libfclean lib all
 	@echo "All erased and re-compiled .......\n"

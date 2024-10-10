@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 16:20:10 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:37:33 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ int		init_data(t_data *map_data, char *argv[]);
 /// 	@return 1 on success and 0 if failed to open
 int		checkfile_exists(char *file, char *type);
 int		check_map_has_valid_extension(char *map_name);
+
+/// @brief cleans empty lines with space only in raw+map data
+/// @param map_data 
+void	clean_space_lines_raw_map(t_data *map_data);
+
 
 /* FUNCTIONS WHICH WILL POTENTIALLY BE USED
 void	create_north_texture(t_data *map_data, char *line);
