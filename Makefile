@@ -1,7 +1,7 @@
 ###############################################################################
 ## ARGUMENTS
 
-NAME= cub
+NAME= cub3D
 CFLAGS=  -Wall -Wextra -Werror -g3
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 
 
@@ -15,10 +15,13 @@ CC=cc
 
 SRC_DIR=src/
 OBJ_DIR=build/
-FOLDER=game_setup/
+SETUP=game_setup/
+MAP=map_check_tools/
+ERROR=game_errors/
 
 SRC= main.c  get_next_line.c \
-	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c
+	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
+	 map_check_tools/map_tools.c game_errors/display_error.c game_setup/get_line.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -38,7 +41,9 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)/$(FOLDER)
+	@mkdir -p $(OBJ_DIR)/$(SETUP)
+	@mkdir -p $(OBJ_DIR)/$(MAP)
+	@mkdir -p $(OBJ_DIR)/$(ERROR)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:

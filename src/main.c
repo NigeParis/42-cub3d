@@ -6,11 +6,13 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 10:49:57 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:04:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+
 
 
 
@@ -21,13 +23,25 @@ int	main(int argc, char *argv[])
 
 	t_data map_data;
 
-	init_data(&map_data);
+	if (argc != 2)
+		return (put_error("Error : number of arguments\n"), 1);
 
-	if (checkfile_exists("maps/good/square_map.cub", ""))
+
+	init_data(&map_data, argv);
+
+	checkfile_exists(map_data.file, "gif image");
+	check_map_has_valid_extension(map_data.file);
+	open_map_config(&map_data);
+	
+
 
 	
+	dprintf(STDERR_FILENO,"%s\n", get_map_one_line(&map_data) );
+	dprintf(STDERR_FILENO, "file: '%s'\n", map_data.file);
 	
-	dprintf(STDERR_FILENO, "valid_map '%d'\n", map_data.valid_map);
-	check_map_has_valid_extension("/map/hello.cub");
+
+
+	
+	close_map_config(&map_data);
 	return (EXIT_SUCCESS);
 }

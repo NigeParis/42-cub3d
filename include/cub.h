@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/10 10:13:47 by nrobinso         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/10 10:45:36 by rchourak         ###   ########.fr       */
->>>>>>> refs/remotes/origin/master
+/*   Updated: 2024/10/10 15:02:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +30,32 @@
 
 typedef struct s_data
 {
+	char	*file;
+	char	**map;
 	int		valid_map;
+	int		fd;
 
 	
 }	t_data;
 
-/// @brief initializes map_data to zero and adds any other values needed
-/// @param map_data 
-/// @return 0 on success -1 if fails
-int	init_data(t_data *map_data);
-/// @brief opens a file and closes it.
-/// @param file file to be opened
-/// @param type_image message added if not succesful
-/// @return 0 on success and -1 if failed to open
-int	checkfile_exists(char *file, char *type_image);
-int	check_map_has_valid_extension(char *map_name);
+/// 	@brief initializes map_data to zero and adds any other values needed
+/// 	@param map_data 
+/// 	@param argv 
+/// 	@return 1 on success 0 if fails
+int		init_data(t_data *map_data, char *argv[]);
+/// 	@brief opens a file and closes it.
+/// 	@param file file to be opened
+/// 	@param type_image message added if not succesful
+/// 	@return 1 on success and 0 if failed to open
+int		checkfile_exists(char *file, char *type);
+int		check_map_has_valid_extension(char *map_name);
 
 
+void	printmap(char **map);
+void	put_error(char *str);
+int		open_map_config(t_data *map_data);
+int		close_map_config(t_data *map_data);
+char	*get_map_one_line(t_data *map_data);
 
 
 #endif
