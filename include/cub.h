@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 12:25:11 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:14:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 # include <stdint.h>
 # include <fcntl.h>
 
+typedef struct s_colors 
+{
+	int floor_r;
+	int floor_g;
+	int floor_b;
+	int ceiling_r;
+	int ceiling_b;
+	int ceiling_g;
+} t_colors;
+
 typedef struct s_data
 {
 	char	*file;
@@ -41,8 +51,11 @@ typedef struct s_data
 	char	*west_texture;
 	char	*floor_texture;
 	char	*ceiling_texture;
-
+	t_colors colors;
 }	t_data;
+
+
+
 
 /// 	@brief initializes map_data to zero and adds any other values needed
 /// 	@param map_data 
@@ -85,8 +98,6 @@ int		in_map(char *raw_map);
 
 int		check_if_map_texture(char *line, t_data *map_data);
 void	build_map_textures(char *line, t_data *map_data, int i);
-char	**ft_realloc_map(char *line, char **tmp, int *ptrj);
-void	advance_and_build_map_data(char **split_raw_data, t_data *map_data);
 void	build_map_data(t_data *map_data);
 void	create_floor_texture(t_data *map_data, char *line);
 void	create_ceiling_texture(t_data *map_data, char *line);
@@ -94,5 +105,17 @@ void	create_east_texture(t_data *map_data, char *line);
 void	create_west_texture(t_data *map_data, char *line);
 void	create_south_texture(t_data *map_data, char *line);
 void	create_north_texture(t_data *map_data, char *line);
-
+int		check_rgb_data_properly_configured(char **rgb_data);
+void	split_ceiling_colors(t_data *map_data);
+void	split_floor_colors(t_data *map_data);
+int		treat_first_last_line_properly_closed(t_data *map_data, int i, int *ptrj);
+int		check_first_last_line_only_walls_spaces(t_data *map_data);
+int		check_first_last_line_only_walls_spaces(t_data *map_data);
+int		check_map_line_valid(t_data *map_data, int i);
+int		check_map_properly_configured (t_data *map_data);
+int		check_map_char_valid(char *map_line);
+void	increment_directional_chars(char *line,  int *direction_counter_ptr);
+void	increment_wall_floor_chars(char *line, int *zero_char_ctr_ptr, int *one_char_ctr_ptr);
+int		map_has_only_valid_chars(t_data *map_data);
+int		check_map_has_sufficient_lines(t_data *map_data);
 #endif

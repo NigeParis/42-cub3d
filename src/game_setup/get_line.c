@@ -6,12 +6,11 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 18:05:18 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:25:21 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
 
 void	ft_free_tableau(char *str)
 {
@@ -70,6 +69,7 @@ void	get_map_one_line(t_data *map_data)
 			line = get_next_line(map_data->fd);
 		}
 	}
+	dprintf(STDERR_FILENO, "map raw :\n'%s'\n", line_table);
 	map_data->raw_map = ft_strdup(line_table);
 	ft_free_tableau(line_table);
 }
