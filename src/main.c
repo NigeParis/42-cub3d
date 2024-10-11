@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 10:53:46 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:54:56 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,24 @@ int	main(int argc, char *argv[])
 	get_map_one_line(&map_data);
 	clean_space_lines_raw_map(&map_data);
 	build_map_data(&map_data);
-	printf("GET FLOOR COLORS %d\n", map_data.colors.floor_r);
-	printf("GET FLOOR COLORS %d\n", map_data.colors.floor_g);
-	printf("GET FLOOR COLORS %d\n", map_data.colors.floor_b);
-	printf("GET CEILING COLORS %d\n", map_data.colors.ceiling_r);
-	printf("GET CEILING COLORS %d\n", map_data.colors.ceiling_g);
-	printf("GET CEILING COLORS %d\n", map_data.colors.ceiling_b);
-	
-	
 	if (map_data.valid_map == 0)
 		return (printf("error\n"), 1);
+	if (check_map_properly_configured(&map_data))
+	{
+		printf("MAP IS VALIDLY CONFIGURED!\n");
+	}
+	else 
+	{
+		printf("MAP IS NOT PROPERLY CONFIGURED!\n");
+	}
+	
+	
+
 
 	printf("CALLING PRINT MAP FUNCTION!\n");
 	printmap(map_data.map);
-	dprintf(STDERR_FILENO,"%s\n", map_data.raw_map);
-	dprintf(STDERR_FILENO, "file: '%s'\n", map_data.file);
+	//dprintf(STDERR_FILENO,"%s\n", map_data.raw_map);
+	//dprintf(STDERR_FILENO, "file: '%s'\n", map_data.file);
 	close_map_config(&map_data);
 	return (EXIT_SUCCESS);
 }

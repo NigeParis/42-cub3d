@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 10:50:30 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:20:49 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,14 @@ void	create_north_texture(t_data *map_data, char *line);
 int		check_rgb_data_properly_configured(char **rgb_data);
 void	split_ceiling_colors(t_data *map_data);
 void	split_floor_colors(t_data *map_data);
-
+int		treat_first_last_line_properly_closed(t_data *map_data, int i, int *ptrj);
+int		check_first_last_line_only_walls_spaces(t_data *map_data);
+int		check_first_last_line_only_walls_spaces(t_data *map_data);
+int		check_map_line_valid(t_data *map_data, int i);
+int		check_map_properly_configured (t_data *map_data);
+int		check_map_char_valid(char *map_line);
+void	increment_directional_chars(char *line,  int *direction_counter_ptr);
+void	increment_wall_floor_chars(char *line, int *zero_char_ctr_ptr, int *one_char_ctr_ptr);
+int		map_has_only_valid_chars(t_data *map_data);
+int		check_map_has_sufficient_lines(t_data *map_data);
 #endif
