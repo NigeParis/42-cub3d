@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 22:14:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/05/04 09:36:37 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/05/04 09:38:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /** #include <stdlib.h>
 *
-* atoi  -  int atoi(const char *str);
+* atol  -  long int atol(const char *str);
 *
 * DESCRIPTION
 * The atoi() function converts the initial portion of the string pointed to
@@ -28,7 +28,7 @@
 
 static int	ft_isspace(int c);
 
-int	ft_atoi(const char *str)
+long int	ft_atol(const char *str)
 {
 	char		*string;
 	int			i;
@@ -54,7 +54,7 @@ int	ft_atoi(const char *str)
 		result = result * 10;
 	}
 	result = result / 10;
-	return ((int)result * neg);
+	return (result * neg);
 }
 
 static int	ft_isspace(int c)

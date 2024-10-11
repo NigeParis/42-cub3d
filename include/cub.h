@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 18:37:33 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:25:11 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,14 @@ char	**ft_realloc_map(char *line, char **tmp, int *ptri);
 void	build_map(char *file, t_data *map_data);
 */
 
-void	printmap(char **map);
+void	printmap(t_data *map_data);
+void    printraw_map(t_data *map_data);
 void	put_error(char *str);
 int		open_map_config(t_data *map_data);
 int		close_map_config(t_data *map_data);
 void	get_map_one_line(t_data *map_data);
+int		in_map(char *raw_map);
+
 
 int		check_if_map_texture(char *line, t_data *map_data);
 void	build_map_textures(char *line, t_data *map_data, int i);

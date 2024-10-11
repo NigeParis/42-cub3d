@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_double_tab.c                               :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 09:35:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/04/01 16:54:56 by nrobinso         ###   ########.fr       */
+/*   Created: 2023/11/24 09:41:56 by nrobinso          #+#    #+#             */
+/*   Updated: 2024/04/12 08:54:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/** ft_lstsize
+*
+* int ft_lstsize(t_list *lst);
+*
+* Description: Counts the number of nodes in a list
+*
+* Parameters : lst: The beginning of the list.
+*
+* Note : while(lst) - work because lst -> next adresse exists 
+*                                         (no need to increment)
+**/
+
 #include "libft.h"
 
-void	ft_free_double_tab(char *tab[])
+int	ft_lstsize(t_list *lst)
 {
-	int	y;
+	int	size;
 
-	y = 0;
-	while (tab && tab[y])
+	if (lst == NULL)
+		return (0);
+	size = 0;
+	while (lst)
 	{
-		free(tab[y]);
-		y++;
+		lst = lst -> next;
+		size++;
 	}
-	if (tab)
-		return (free(tab));
+	return (size);
 }

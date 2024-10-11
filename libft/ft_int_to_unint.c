@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_int_to_unint.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 09:41:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2023/11/24 23:27:48 by nrobinso         ###   ########.fr       */
+/*   Created: 2024/04/24 17:33:27 by nrobinso          #+#    #+#             */
+/*   Updated: 2024/04/24 18:08:55 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 /**
-* ft_lstsize
+*	unsigned int ft_int_unint(int);
 *
-* int ft_lstsize(t_list *lst);
+*	Converts an int to unsigned int
+*	RETURNS : unsigned int
 *
-* Description: Counts the number of nodes in a list
-*
-* Parameters : lst: The beginning of the list.
-*
-* Note : while(lst) - work because lst -> next adresse exists 
-*                                         (no need to increment)
+*   example : -21474893648 -> 0
+*			:  21474893647 -> 4294967295 unsigned int max
+* 
 **/
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+unsigned int	ft_int_to_unint(int nbr)
 {
-	int	size;
+	unsigned int	result;
 
-	if (lst == NULL)
-		return (0);
-	size = 0;
-	while (lst)
-	{
-		lst = lst -> next;
-		size++;
-	}
-	return (size);
+	if (nbr < 0)
+		result = 2147483648 + nbr;
+	else
+		result = 2147483647 + nbr + 1;
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 17:27:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:20:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 int	init_data(t_data *map_data, char *argv[])
 {
 	if (!map_data)
+	{
+		ft_printf("Error: initialising map data structure\n");
 		return (0);
+	}
 	ft_memset(map_data, 0, sizeof(map_data));
 	
 	map_data->valid_map = 1;
 	map_data->fd = -1;
-	map_data->file = argv[1]; 
+	map_data->file = argv[1];
+	map_data->raw_map = NULL;
+	map_data->map = NULL;
 
 
 	return (1);
@@ -34,8 +39,7 @@ int	checkfile_exists(char *file, char *type)
 	fd = open(file, O_RDONLY);
 	if (!fd || fd == -1)
 	{
-		ft_printf("Error\n%s missing %s\n", type, file);
-		close(fd);
+		ft_printf("Error: %s missing %s\n", type, file);
 		return (0);
 	}
 	close (fd);

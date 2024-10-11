@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_unint_to_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:29:26 by nrobinso          #+#    #+#             */
-/*   Updated: 2023/11/24 23:29:56 by nrobinso         ###   ########.fr       */
+/*   Created: 2024/04/24 17:45:57 by nrobinso          #+#    #+#             */
+/*   Updated: 2024/04/24 21:32:35 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+*	int ft_unint_to_int(unsigned int )
+*
+*	Converts an unsigned int to int
+*	RETURNS : int
+*
+*   example : 0 -> -21474893648
+*			: 4294967295 -> 21474893647 int max
+* 
+**/
+
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+int	ft_unint_to_int(unsigned int nbr)
 {
-	t_list	*tmp;
-	t_list	*swap;
+	int	result;
 
-	if (!lst || !del)
-		return ;
-	tmp = *lst;
-	while (tmp)
-	{
-		swap = tmp -> next;
-		ft_lstdelone(tmp, del);
-		tmp = swap;
-	}
-	*lst = NULL;
+	if (nbr < 2147483648)
+		result = (2147483648 - nbr) * -1;
+	else
+	result = nbr - 1 - 2147483647;
+	return (result);
 }

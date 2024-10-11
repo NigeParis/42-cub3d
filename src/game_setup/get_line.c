@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 15:39:41 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:05:18 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,32 @@ void	ft_free_tableau(char *str)
 {
 	if (str)
 		free(str);
+}
+
+int		in_map(char *raw_map)
+{
+	int	end;
+	int	i;
+
+	end = 0;
+	i = 0;	
+	while (raw_map && raw_map[i])
+		i++;
+	end = i - 2;
+	i = end;
+	while (raw_map && raw_map[i] != '\n')
+		i--;
+	i++;
+	if (raw_map[end] == '1')
+	{	
+		while (raw_map[i] == ' ')
+			i++;
+		if (raw_map[i] == '1')
+		{
+			return (1);
+		}
+	}
+	return (0);
 }
 
 void	get_map_one_line(t_data *map_data)
@@ -31,7 +57,7 @@ void	get_map_one_line(t_data *map_data)
 	{
 		if (!line)
 			break ;
-		if (line[0] == '\n')
+		if (line && ((line[0] == '\n') && (!in_map(line_table))))
 		{
 			ft_free_tableau(line);
 			line = get_next_line(map_data->fd);
