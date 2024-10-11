@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:27:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:37:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	main(int argc, char *argv[])
 	if (map_data.valid_map == 0)
 		return (printf("error\n"), 1);
 
-	printmap(&map_data);
 
 	if (check_map_properly_configured(&map_data))
 	{
@@ -122,6 +121,7 @@ int	main(int argc, char *argv[])
 
 	printf("CALLING PRINT MAP FUNCTION!\n");
 
+	printmap(&map_data);
 	
 	
 	

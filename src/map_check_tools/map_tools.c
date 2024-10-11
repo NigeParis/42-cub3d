@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 18:41:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:37:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	printmap(t_data *map_data)
 		ft_printf("\n%s", map_data->map[index]);
 		index++;
 	}
+    ft_printf("\n");
 }
 
 void    printraw_map(t_data *map_data)
@@ -61,7 +62,7 @@ void clean_space_lines_raw_map(t_data *map_data)
 	int start;
     int end = ft_strlen(map_data->raw_map);
 
-    end--;
+    //end--;
     init_ints(&i, &j, &flag, &start);
     while (i < end && map_data->raw_map[i])
     {
@@ -73,7 +74,7 @@ void clean_space_lines_raw_map(t_data *map_data)
         }
         if (flag == 1)
         {
-            while ((start <= i) && (i < end))
+            while ((start <= i) && (j < end))
                 map_data->raw_map[j++] = map_data->raw_map[start++];
         }
         is_another_line(map_data, &i, &end);
