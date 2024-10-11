@@ -49,7 +49,7 @@ void	build_map_textures(char *line, t_data *map_data, int i)
 		else 
 		{
 			map_data->valid_map = 0;
-			printf("GET LINE IN ELSE PHASE! %s\n", line);
+
 		}
 			
 	}
@@ -109,4 +109,6 @@ void build_map_data(t_data *map_data)
 
 	split_raw_data = ft_split(map_data->raw_map, '\n');
 	build_final_map_data(split_raw_data, map_data);
+	split_ceiling_colors(map_data);
+	split_floor_colors(map_data);
 }

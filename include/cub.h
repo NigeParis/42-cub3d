@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/10 18:37:33 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/11 10:50:30 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 # include <stdint.h>
 # include <fcntl.h>
 
+typedef struct s_colors 
+{
+	int floor_r;
+	int floor_g;
+	int floor_b;
+	int ceiling_r;
+	int ceiling_b;
+	int ceiling_g;
+} t_colors;
+
 typedef struct s_data
 {
 	char	*file;
@@ -41,8 +51,11 @@ typedef struct s_data
 	char	*west_texture;
 	char	*floor_texture;
 	char	*ceiling_texture;
-
+	t_colors colors;
 }	t_data;
+
+
+
 
 /// 	@brief initializes map_data to zero and adds any other values needed
 /// 	@param map_data 
@@ -91,5 +104,8 @@ void	create_east_texture(t_data *map_data, char *line);
 void	create_west_texture(t_data *map_data, char *line);
 void	create_south_texture(t_data *map_data, char *line);
 void	create_north_texture(t_data *map_data, char *line);
+int		check_rgb_data_properly_configured(char **rgb_data);
+void	split_ceiling_colors(t_data *map_data);
+void	split_floor_colors(t_data *map_data);
 
 #endif
