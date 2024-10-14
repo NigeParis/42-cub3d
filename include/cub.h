@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:14:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:26:50 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,10 @@ void	increment_directional_chars(char *line,  int *direction_counter_ptr);
 void	increment_wall_floor_chars(char *line, int *zero_char_ctr_ptr, int *one_char_ctr_ptr);
 int		map_has_only_valid_chars(t_data *map_data);
 int		check_map_has_sufficient_lines(t_data *map_data);
+int		check_zero_char_properly_closed_floor_ceiling(int *current_pos_ptr, t_data *map_data, int j, int i);
+int		check_space_closed_top(t_data *map_data, char *line, int i);
+int		check_space_closed_bottom(t_data *map_data, char *line, int i);
+int		check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj);
+int		check_map_spaces_closed_off(t_data *map_data);
+
 #endif

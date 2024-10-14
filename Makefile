@@ -25,7 +25,7 @@ SRC= main.c  get_next_line.c \
 	 map_check_tools/map_tools.c game_errors/display_error.c game_setup/get_line.c game_setup/build_map_values_from_raw.c \
 	 game_setup/create_directional_textures.c game_setup/create_floor_ceiling_textures.c game_setup/floor_ceil_rgb.c \
 	 map_parser/parse_map.c map_parser/treat_first_last_line_properly_configured.c map_parser/check_map_char_validity.c \
-	 map_parser/check_map_lines.c
+	 map_parser/check_map_lines.c map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c 
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

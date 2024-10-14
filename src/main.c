@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:37:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:08:07 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,46 +87,18 @@ int	main(int argc, char *argv[])
 		exit (1);
 	if (!open_map_config(&map_data))
 		exit (1);
-
-
-
-
-	get_map_one_line(&map_data);
-		
-	in_map_line_error(&map_data);
-	if (map_data.valid_map == 0)
-		return (printf("error\n"), 1);
-			
+	get_map_one_line(&map_data);	
+	in_map_line_error(&map_data);		
 	clean_space_lines_raw_map(&map_data); ///TODO  raw_data truncated
 	
 	printraw_map(&map_data);
-	
-
 	build_map_data(&map_data);
+	if (!check_map_properly_configured(&map_data))
+		printf("MAP IS NOT VALID!\n");
 	if (map_data.valid_map == 0)
 		return (printf("error\n"), 1);
 
-
-	if (check_map_properly_configured(&map_data))
-	{
-		printf("MAP IS VALIDLY CONFIGURED!\n");
-	}
-	else 
-	{
-		printf("MAP IS NOT PROPERLY CONFIGURED!\n");
-	}
-	
-	
-
-
-	printf("CALLING PRINT MAP FUNCTION!\n");
-
 	printmap(&map_data);
-	
-	
-	
-	
-	
 	close_map_config(&map_data);
 	return (EXIT_SUCCESS);
 }
