@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:50 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 17:57:24 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:58:48 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	split_ceiling_colors(t_data *map_data)
 	if (ft_strlen(map_data->ceiling_texture) > 4)
 		split_ceiling_rgb= ft_split((map_data->ceiling_texture + 2), ',');
 	else 
-		split_ceiling_rgb= NULL;
+		split_ceiling_rgb = NULL;
 	if (!check_rgb_data_properly_configured(split_ceiling_rgb))
 	{
 		map_data->valid_map = 0;

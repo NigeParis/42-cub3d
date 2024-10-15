@@ -69,11 +69,13 @@ int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj
 			first_space_found = *ptrj;
 			while (map_data->map[i][first_space_found] != '1')
 			{
+				if (first_space_found == 0)
+					return (0);
 				if (map_data->map[i][first_space_found] == '0')
 					return (0);
 				first_space_found--;
 			}
-			while (map_data->map[i][*ptrj] != '1')
+			while (map_data->map[i][*ptrj] != '1' && map_data->map[i][*ptrj])
 			{
 				if (map_data->map[i][*ptrj] == '0')
 					return (0);
