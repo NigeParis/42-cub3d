@@ -55,10 +55,19 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 
 int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj)
 {
+	int	first_space_found;
+
 	while (map_data->map[i][*ptrj] != '\0')
 	{
 		if (map_data->map[i][*ptrj] == 32)
 		{
+			first_space_found = *ptrj;
+			while (map_data->map[i][first_space_found] != '1')
+			{
+				if (map_data->map[i][first_space_found] == '0')
+					return (0);
+				first_space_found--;
+			}
 			while (map_data->map[i][*ptrj] != '1')
 			{
 				if (map_data->map[i][*ptrj] == '0')
