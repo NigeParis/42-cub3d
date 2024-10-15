@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:25:21 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:49:45 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		in_map(char *raw_map)
 		i++;
 	end = i - 2;
 	i = end;
-	while (raw_map && raw_map[i] != '\n')
+	while (raw_map && raw_map[i] != '\n' && i > 0)
 		i--;
 	i++;
 	if (raw_map[end] == '1')

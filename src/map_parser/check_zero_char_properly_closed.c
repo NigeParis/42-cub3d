@@ -23,9 +23,8 @@ int		check_zero_char_stays_off_edge(int *current_pos_ptr, int *copy_j_value_ptr,
 
 int check_zero_char_properly_closed_ceiling(int *current_pos_ptr, t_data *map_data, int *copy_j_value, int j)
 {
-	
-	while (map_data->map[*current_pos_ptr][j] != '1'
-	&& (size_t) j > ft_strlen(map_data->map[*current_pos_ptr]))
+	while (map_data->map[*current_pos_ptr][j] != '1' 
+	&& (size_t) j > ft_strlen(map_data->map[*current_pos_ptr - 1]))
 	{
 		if (*current_pos_ptr == 0)
 			return (0);
@@ -33,15 +32,20 @@ int check_zero_char_properly_closed_ceiling(int *current_pos_ptr, t_data *map_da
 			return (0);
 		(*current_pos_ptr)--;
 	}
-	if ((size_t)j > ft_strlen(map_data->map[*current_pos_ptr]))
+
+	if (map_data->map[*current_pos_ptr] && (size_t) j > ft_strlen(map_data->map[*current_pos_ptr]))
+	{
+		printf("ZERO CHAR RUNNING OFF TOP MAP!\n");
 		return (0);
+	}
 	return (1);
 }
 
 int check_zero_char_properly_closed_floor(int *current_pos_ptr, t_data *map_data, int *copy_j_value, int j)
 {
 	while (map_data->map[*current_pos_ptr][j] != '1' 
-	&& (size_t) j > ft_strlen(map_data->map[*current_pos_ptr]))
+	&& (size_t) j > ft_strlen(map_data->map[*current_pos_ptr + 1])
+	&& map_data->map[*current_pos_ptr + 1] != NULL)
 	{
 		if (map_data->map[*current_pos_ptr + 1] == NULL)
 			return (0);
@@ -49,8 +53,11 @@ int check_zero_char_properly_closed_floor(int *current_pos_ptr, t_data *map_data
 			return (0);
 		(*current_pos_ptr)++;
 	}
-	if ((size_t)j > ft_strlen(map_data->map[*current_pos_ptr]))
+	if (map_data->map[*current_pos_ptr] && (size_t) j > ft_strlen(map_data->map[*current_pos_ptr]))
+	{
+		printf("ZERO CHAR RUNNING OFF BOTTOM MAP!\n");
 		return (0);
+	}
 	return (1);
 }
 
