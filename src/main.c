@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 17:16:32 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:26:00 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void in_map_line_error(t_data *map_data)
 	char	*map_raw;
 	int		index;
 	int		end;
-
+	
+	end = ft_strlen(map_data->raw_map);
 	if (map_data->raw_map[end -1] != '1')
 	{
 		map_data->valid_map = 0;
