@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 10:49:04 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:04:57 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->file = argv[1];
 	map_data->raw_map = NULL;
 	map_data->map = NULL;
+	map_data->north_texture = NULL;
+	map_data->south_texture = NULL;
+	map_data->west_texture = NULL;
+	map_data->east_texture = NULL;
+	map_data->ceiling_texture = NULL;
+	map_data->floor_texture = NULL;
 	if (!check_map_has_valid_extension(map_data->file))
 		map_data->valid_map = 0;
 	return (1);
