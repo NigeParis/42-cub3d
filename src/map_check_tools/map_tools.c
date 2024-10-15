@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 13:23:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:46:56 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void clean_space_lines_raw_map(t_data *map_data)
 	int start;
     int end = ft_strlen(map_data->raw_map);
 
-    //end--;
     init_ints(&i, &j, &flag, &start);
     while (i < end && map_data->raw_map[i])
     {
         start = i;
-        while (map_data->raw_map[i++] && map_data->raw_map[i] != '\n')
+        while (map_data->raw_map[i] && map_data->raw_map[i] != '\n')
         {
             if (map_data->raw_map[i] != ' ')
                 flag = 1;
+            i++;
         }
         if (flag == 1)
         {

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 15:22:58 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:31:11 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	map_start_index(char *raw_map)
 		else
 			i++;
 	}
+	dprintf(STDERR_FILENO,"map_start '%d'\n", end + 1);
 	return (i + 1);
 }
 
@@ -43,7 +44,7 @@ void in_map_line_error(t_data *map_data)
 	
 	map_raw = ft_strdup(map_data->raw_map);
 	index = map_start_index(map_raw);
-	while(index != 0 && map_raw && map_raw[index++])
+	while(map_raw && map_raw[index++])
 	{
 		if (map_raw && (map_raw[index] == '\n') && (map_raw[index +1] == '\n'))
 		{
