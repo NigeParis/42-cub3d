@@ -11,7 +11,9 @@ int check_space_closed_top(t_data *map_data, char *line, int i)
 	{
 		if (line[j] == 32)
 		{
-			while (i_reference > 0 && map_data->map[i_reference][j] != '1')
+			while (i_reference > 0 
+			&& (size_t) j > ft_strlen(map_data->map[i_reference])
+			&& map_data->map[i_reference][j] != '1')
 			{
 				if (map_data->map[i_reference][j] == '0')
 				{
@@ -37,9 +39,12 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 	{
 		if (line[j] == 32)
 		{
-			while (map_data->map[i_reference + 1] != NULL 
+			while (map_data->map[i_reference] 
+			&& (size_t) j > ft_strlen(map_data->map[i_reference])
 			&& map_data->map[i_reference][j] != '1')
 			{
+				if ( (size_t)j == ft_strlen(map_data->map[i_reference]))
+					return (0);
 				if (map_data->map[i_reference][j] == '0')
 				{
 					printf("ZERO VALUE FOUND ON BOTTOM!\n");
