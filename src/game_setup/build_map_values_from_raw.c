@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_map_values_from_raw.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 13:52:19 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:43:02 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,23 @@ void	build_map_textures(char *line, t_data *map_data, int i)
 		map_data->valid_map = 0;
 }
 
+int	check_all_textures_data_properly_filled(t_data *map_data)
+{
+	if (!map_data->north_texture)
+		return 0;
+	if (!map_data->south_texture)
+		return 0;
+	if (!map_data->east_texture)
+		return 0;
+	if (!map_data->west_texture)
+		return 0;
+	if (!map_data->ceiling_texture)
+		return 0;
+	if (!map_data->floor_texture)
+		return 0;
+	return 1;
+}
+
 
 
 void	build_map_portion_of_map_data(char **split_raw_data, int start_point, t_data *map_data)
@@ -96,9 +113,7 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 	j = 0;
 	start_point = -1;
 	if (!split_raw_data[i])
-	{
 		return ;
-	}
 	while (split_raw_data[i])
 	{
 		while ((check_if_map_texture(split_raw_data[i], map_data) && split_raw_data[i]))
@@ -114,6 +129,11 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
 	if (!map_data->map)
 		return ;
+	if (!check_all_textures_data_properly_filled(map_data))
+	{
+		printf("NOT ALL TEXTURES FILLED!");
+		return ;
+	}
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);
 }
 
