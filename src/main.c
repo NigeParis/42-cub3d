@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 15:31:11 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:16:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,15 @@ void in_map_line_error(t_data *map_data)
 {
 	char	*map_raw;
 	int		index;
-	
+	int		end;
+
+	if (map_data->raw_map[end -1] != '1')
+	{
+		map_data->valid_map = 0;
+		return ;
+	}	
 	map_raw = ft_strdup(map_data->raw_map);
+	
 	index = map_start_index(map_raw);
 	while(map_raw && map_raw[index++])
 	{
@@ -88,7 +95,9 @@ int	main(int argc, char *argv[])
 		exit (1);
 	if (!open_map_config(&map_data))
 		exit (1);
-	get_map_one_line(&map_data);	
+	get_map_one_line(&map_data);
+	if (map_data.raw_map == NULL)
+		exit (1);	
 	in_map_line_error(&map_data);		
 	clean_space_lines_raw_map(&map_data); ///TODO  raw_data truncated
 	
