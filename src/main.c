@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 15:07:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:22:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@ int	map_start_index(char *raw_map)
 
 	i = 0;
 	end = 0;
-	if (!raw_map)
-		return (-1);
 	while (raw_map[end])	
 		end++;
 	end--;
-	while (raw_map && raw_map[i])
+	while (raw_map && raw_map[i] && i < end)
 	{
-		while (raw_map && raw_map[i] != '\n')
+		while (raw_map && raw_map[i] != '\n' && i < end)
 			i++;	
-		while (raw_map && raw_map[i + 1] == ' ')
+		while (raw_map && raw_map[i + 1] == ' ' && i < end)
 			i++;
 		if (raw_map && raw_map[i + 1] == '1')
 			break ;
@@ -45,9 +43,9 @@ void in_map_line_error(t_data *map_data)
 	
 	map_raw = ft_strdup(map_data->raw_map);
 	index = map_start_index(map_raw);
-	while(map_raw && map_raw[index++])
+	while(index != 0 && map_raw && map_raw[index++])
 	{
-		if ((map_raw[index] == '\n') && (map_raw[index +1] == '\n'))
+		if (map_raw && (map_raw[index] == '\n') && (map_raw[index +1] == '\n'))
 		{
 			map_data->valid_map = 0;
 			break ;
