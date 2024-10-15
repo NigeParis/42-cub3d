@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 13:55:07 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/29 15:37:27 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:37:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static size_t	ft_nb_words(char const *str, char sep)
 
 	i = 0;
 	count = 0;
-	while (str[i] != '\0')
+	while (str && str[i] != '\0')
 	{
 		if ((str[i] != sep) && ((str[i + 1] == sep) || str[i + 1] == '\0'))
 			count++;
