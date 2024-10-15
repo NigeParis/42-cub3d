@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 18:58:55 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:52:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int		check_if_map_texture(char *line, t_data *map_data)
 	int	i;
 
 	i = 0;
-	while (line[i] == 32 || line[i] == 11 || line[i] == 9)
+	if (!line)
+		return (0);
+	while (line[i] == 32 || line[i] == 9)
 		i++;
 	if (line[i] == '0' || line[i] == '1')
 		return (0);
@@ -71,6 +73,9 @@ void	build_map_portion_of_map_data(char **split_raw_data, int start_point, t_dat
 
 	i = start_point;
 	j = 0;
+	//dprintf(STDERR_FILENO, "here ..... \n");
+	//dprintf(STDERR_FILENO, "here ..... '%d'\n", i);
+	
 	while (split_raw_data[i])
 	{
 		map_data->map[j] = ft_strdup(split_raw_data[i]);
@@ -90,12 +95,18 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 	i = 0;
 	j = 0;
 	start_point = -1;
+	if (!split_raw_data[i])
+	{
+		return ;
+	}
 	while (split_raw_data[i])
 	{
 		while ((check_if_map_texture(split_raw_data[i], map_data) && split_raw_data[i]))
 			i++;
 		if (start_point == -1)
 			start_point = i;
+		if (split_raw_data[i] == NULL)
+			break ;
 		j++;
 		i++;
 	}

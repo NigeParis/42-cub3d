@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:07:12 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/14 14:37:39 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:53:06 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		check_map_properly_configured (t_data *map_data)
 	{
 		if (!check_map_line_valid(map_data, i))
 		{
-			printf("MAP LINE IS NOT VALID!\n");
+			printf("MAP LINE IS NOT VALID! '%d'\n", i);
 			map_data->valid_map = 0;
 		}
 		i++;

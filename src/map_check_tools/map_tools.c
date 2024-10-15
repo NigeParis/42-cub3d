@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:37:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:23:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	printmap(t_data *map_data)
 void    printraw_map(t_data *map_data)
 {
     if (map_data && map_data->raw_map)    
-        printf("\n\nraw_data:\n\n%s\n", map_data->raw_map);   
+        printf("\n\nraw_data:\n\n'%s'\n", map_data->raw_map);   
 }
 
 static void init_ints(int *i, int *j, int *flag, int *start)
