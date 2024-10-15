@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_has_valid_extension.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 18:59:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 10:46:21 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
