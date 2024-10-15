@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 14:41:10 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:07:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	map_start_index(char *raw_map)
 	while (raw_map[end])	
 		end++;
 	end--;
-	while (raw_map[i])
+	while (raw_map && raw_map[i])
 	{
 		while (raw_map && raw_map[i] != '\n')
 			i++;	
-		while (raw_map[i + 1] == ' ')
+		while (raw_map && raw_map[i + 1] == ' ')
 			i++;
-		if (raw_map[i + 1] == '1')
+		if (raw_map && raw_map[i + 1] == '1')
 			break ;
 		else
 			i++;
