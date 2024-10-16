@@ -67,8 +67,7 @@ int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj
 		if (map_data->map[i][*ptrj] == 32)
 		{
 			first_space_found = *ptrj;
-			while (map_data->map[i][first_space_found] != '1'
-			&& first_space_found >= 0)
+			while (map_data->map[i][first_space_found] != '1')
 			{
 				if (first_space_found == 0 
 				&& map_data->map[i][first_space_found] == '0')
