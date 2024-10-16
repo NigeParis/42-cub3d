@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 09:07:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:54:46 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct s_colors
 	int ceiling_g;
 } t_colors;
 
+typedef struct s_texture_data
+{
+	char *north_texture;
+	char *south_texture;
+	char *east_texture;
+	char *west_texture;
+	char *floor_texture;
+	char *ceiling_texture;
+} t_texture_data;
+
 typedef struct s_data
 {
 	char	*file;
@@ -45,14 +55,15 @@ typedef struct s_data
 	char	*raw_map;
 	int		valid_map;
 	int		fd;
-	char	*north_texture;
-	char	*south_texture;
-	char	*east_texture;
-	char	*west_texture;
-	char	*floor_texture;
-	char	*ceiling_texture;
+	t_texture_data textures;
 	t_colors colors;
 }	t_data;
+
+typedef struct s_player_data 
+{
+	int	start_x;
+	int	start_y;
+} t_player_data;
 
 
 

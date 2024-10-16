@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 15:43:02 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:59:27 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,17 @@ void	build_map_textures(char *line, t_data *map_data, int i)
 
 int	check_all_textures_data_properly_filled(t_data *map_data)
 {
-	if (!map_data->north_texture)
+	if (!map_data->textures.north_texture)
 		return 0;
-	if (!map_data->south_texture)
+	if (!map_data->textures.south_texture)
 		return 0;
-	if (!map_data->east_texture)
+	if (!map_data->textures.east_texture)
 		return 0;
-	if (!map_data->west_texture)
+	if (!map_data->textures.west_texture)
 		return 0;
-	if (!map_data->ceiling_texture)
+	if (!map_data->textures.ceiling_texture)
 		return 0;
-	if (!map_data->floor_texture)
+	if (!map_data->textures.floor_texture)
 		return 0;
 	return 1;
 }
