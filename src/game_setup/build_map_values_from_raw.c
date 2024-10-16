@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_map_values_from_raw.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 09:59:27 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:50:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,6 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);
 }
 
-
-
 void build_map_data(t_data *map_data)
 {
 	char **split_raw_data;
@@ -147,4 +145,5 @@ void build_map_data(t_data *map_data)
 	build_final_map_data(split_raw_data, map_data);
 	split_ceiling_colors(map_data);
 	split_floor_colors(map_data);
+	ft_free_double_tab(split_raw_data);
 }

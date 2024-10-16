@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 09:57:59 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:32:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	init_data(t_data *map_data, char *argv[])
 	if (!map_data)
 	{
 		ft_printf("Error: initialising map data structure\n");
-		return (0);
+		exit(1);
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
-	
 	map_data->valid_map = 1;
 	map_data->fd = -1;
 	map_data->file = argv[1];
@@ -38,9 +37,7 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->colors.floor_r = 0;
 	map_data->colors.floor_g = 0;
 	map_data->colors.floor_b = 0;
-	if (!check_map_has_valid_extension(map_data->file))
-		map_data->valid_map = 0;
-	return (1);
+	return (0);
 }
 
 
@@ -52,10 +49,10 @@ int	checkfile_exists(char *file, char *type)
 	if (!fd || fd == -1)
 	{
 		ft_printf("Error: %s missing %s\n", type, file);
-		return (0);
+		exit (1);
 	}
 	close (fd);
-	return (1);
+	return (0);
 }
 
 int		open_map_config(t_data *map_data)
@@ -66,9 +63,9 @@ int		open_map_config(t_data *map_data)
 		ft_printf("Error : file %s\n", map_data->file);
 		close(map_data->fd);
 		map_data->fd = -1;
-		return (0);
+		exit (1);
 	}
-	return (1);
+	return (0);
 }
 
 

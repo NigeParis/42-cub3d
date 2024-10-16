@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceil_rgb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:50 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 10:00:08 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 11:47:48 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	split_ceiling_colors(t_data *map_data)
 	map_data->colors.ceiling_r = ft_atoi(split_ceiling_rgb[0]);
 	map_data->colors.ceiling_g = ft_atoi(split_ceiling_rgb[1]);
 	map_data->colors.ceiling_b = ft_atoi(split_ceiling_rgb[2]);
+	ft_free_double_tab(split_ceiling_rgb);
 }
 
 void	split_floor_colors(t_data *map_data)
@@ -69,4 +70,5 @@ void	split_floor_colors(t_data *map_data)
 	map_data->colors.floor_r = ft_atoi(split_floor_rgb[0]);
 	map_data->colors.floor_g = ft_atoi(split_floor_rgb[1]);
 	map_data->colors.floor_b = ft_atoi(split_floor_rgb[2]);
+	ft_free_double_tab(split_floor_rgb);
 }

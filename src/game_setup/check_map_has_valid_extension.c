@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_has_valid_extension.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 10:46:21 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:23:10 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int check_map_has_valid_extension(char *map_name)
 	{
 		ft_printf("Error: invalid map extension\n");
 		free(map_extension);
-		return (0);
+		exit (0);
 	}
 	free(map_extension);
 	return (1);
