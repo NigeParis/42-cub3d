@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 09:35:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:58:42 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ void    printraw_map(t_data *map_data)
 void    print_textures(t_data *map_data)
 {
     dprintf(STDERR_FILENO, "\nstucture - textures_data:\n\n");
-    dprintf(STDERR_FILENO, "North_texture : %s\n", map_data->north_texture);
-    dprintf(STDERR_FILENO, "South_texture : %s\n", map_data->south_texture);
-    dprintf(STDERR_FILENO, "East_texture : %s\n", map_data->east_texture);
-    dprintf(STDERR_FILENO, "West_texture : %s\n", map_data->west_texture);
-    dprintf(STDERR_FILENO, "Floor_texture : %s\n", map_data->floor_texture);
-    dprintf(STDERR_FILENO, "Ceiling_texture : %s\n", map_data->ceiling_texture);
+    dprintf(STDERR_FILENO, "North_texture : %s\n", map_data->textures.north_texture);
+    dprintf(STDERR_FILENO, "South_texture : %s\n", map_data->textures.south_texture);
+    dprintf(STDERR_FILENO, "East_texture : %s\n", map_data->textures.east_texture);
+    dprintf(STDERR_FILENO, "West_texture : %s\n", map_data->textures.west_texture);
+    dprintf(STDERR_FILENO, "Floor_texture : %s\n", map_data->textures.floor_texture);
+    dprintf(STDERR_FILENO, "Ceiling_texture : %s\n", map_data->textures.ceiling_texture);
         
 }
 void    print_map_rgb(t_data *map_data)
