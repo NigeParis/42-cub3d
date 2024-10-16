@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 12:13:20 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:46:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,18 @@ typedef struct s_texture_data
 	char *ceiling_texture;
 } t_texture_data;
 
+typedef struct s_cell_data
+{
+	int	cell_size;
+	
+} t_cell_data;
+
 typedef struct s_player_data 
 {
-	int	x_pos;
-	int	y_pos;
+	double	x_pos;
+	double	y_pos;
+	int		speed;
+	int		size;
 } t_player_data;
 
 typedef struct s_data
