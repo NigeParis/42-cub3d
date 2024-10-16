@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 12:55:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:05:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	init_data(t_data *map_data, char *argv[])
 {
 	if (!map_data)
 	{
-		ft_printf("Error: initialising map data structure\n");
+		put_error("Error: initialising map data structure\n");
 		exit(1);
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
@@ -54,7 +54,11 @@ int	checkfile_exists(char *file, char *type)
 	fd = open(file, O_RDONLY);
 	if (!fd || fd == -1)
 	{
-		ft_printf("Error: %s missing %s\n", type, file);
+		put_error("Error: ");
+		put_error(type);
+		put_error(" missing ");
+		put_error(file);
+		put_error("\n");
 		exit (1);
 	}
 	close (fd);
@@ -66,7 +70,9 @@ int		open_map_config(t_data *map_data)
 	map_data->fd = open(map_data->file, O_RDONLY);
 	if (!map_data->fd || map_data->fd == -1) 	
 	{
-		ft_printf("Error : file %s\n", map_data->file);
+		put_error("Error : file ");
+		put_error(*map_data->map);
+		put_error("\n");
 		close(map_data->fd);
 		map_data->fd = -1;
 		exit (1);

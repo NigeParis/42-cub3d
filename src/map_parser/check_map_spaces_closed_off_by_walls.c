@@ -17,7 +17,7 @@ int check_space_closed_top(t_data *map_data, char *line, int i)
 			{
 				if (map_data->map[i_reference][j] == '0')
 				{
-					printf("ZERO VALUE FOUND ON TOP!\n");
+					put_error("ZERO VALUE FOUND ON TOP!\n");
 					return (0);
 				}
 				i_reference--;
@@ -47,7 +47,7 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 					return (0);
 				if (map_data->map[i_reference][j] == '0')
 				{
-					printf("ZERO VALUE FOUND ON BOTTOM!\n");
+					put_error("ZERO VALUE FOUND ON BOTTOM!\n");
 					return (0);
 				}
 				i_reference++;
@@ -99,7 +99,7 @@ int check_map_spaces_closed_off(t_data *map_data)
 		if (!check_space_closed_top(map_data, map_data->map[i], i) || 
 		!check_space_closed_bottom(map_data, map_data->map[i], i))
 		{
-			printf("SPACES NOT CLOSED OFF ON TOP OR BOTTOM!\n");
+			put_error("SPACES NOT CLOSED OFF ON TOP OR BOTTOM!\n");
 			return (0);
 		}
 		i++;
@@ -112,7 +112,7 @@ int check_map_spaces_closed_off(t_data *map_data)
 		{
 			if (!check_spaces_properly_closed_horizontally(map_data, i, &j))
 			{
-				printf("SPACES NOT CLOSED OFF HORIZONTALLY!\n");
+				put_error("SPACES NOT CLOSED OFF HORIZONTALLY!\n");
 				return (0);
 			}
 		}

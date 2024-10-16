@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:08:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 12:13:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:59:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void is_valid_map(t_data *map_data)
 	if (map_data->valid_map == 0)
 	{
 		free_map(map_data);
-		printf("error: invalid map !\n");
+		put_error("error: invalid map !\n");
 		exit (1);
 	}
 }

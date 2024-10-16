@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 12:23:10 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:59:30 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int check_map_has_valid_extension(char *map_name)
 	map_extension = ft_substr(map_name, (strlen_map -4), strlen_map);
 	if (ft_strncmp(map_extension, ".cub", 4))
 	{
-		ft_printf("Error: invalid map extension\n");
+		put_error("Error: invalid map extension\n");
 		free(map_extension);
 		exit (0);
 	}

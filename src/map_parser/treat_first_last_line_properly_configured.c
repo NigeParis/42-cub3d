@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:09:45 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:20:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:15:45 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int		treat_first_last_line_properly_closed(t_data *map_data, int i, int *ptrj)
 					&& map_data->map[i][*ptrj] != 9 
 					&& map_data->map[i][*ptrj] != 11)
 				{
-					printf("\nGET IMPROPER CHAR! %d\n", map_data->map[i][*ptrj]);
+					put_error("\nGET IMPROPER CHAR! ");
+					put_error(&map_data->map[i][*ptrj]);
+					put_error("\n");
 					return (0);
 				}
 					

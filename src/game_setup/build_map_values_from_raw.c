@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 11:50:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:00:05 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,6 @@ void	build_map_portion_of_map_data(char **split_raw_data, int start_point, t_dat
 
 	i = start_point;
 	j = 0;
-	//dprintf(STDERR_FILENO, "here ..... \n");
-	//dprintf(STDERR_FILENO, "here ..... '%d'\n", i);
-	
 	while (split_raw_data[i])
 	{
 		map_data->map[j] = ft_strdup(split_raw_data[i]);
@@ -131,7 +128,7 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 		return ;
 	if (!check_all_textures_data_properly_filled(map_data))
 	{
-		printf("NOT ALL TEXTURES FILLED!");
+		put_error("NOT ALL TEXTURES FILLED!");
 		return ;
 	}
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);

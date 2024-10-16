@@ -31,7 +31,7 @@ int check_zero_char_properly_closed_ceiling(int *current_pos_ptr, t_data *map_da
 			return (0);
 		if ((size_t)j > ft_strlen(map_data->map[*current_pos_ptr - 1]))
 		{
-			printf("ZERO CHAR RUNNING OFF TOP OF MAP!\n");
+			put_error("ZERO CHAR RUNNING OFF TOP OF MAP!\n");
 			return (0);
 		}
 		(*current_pos_ptr)--;
@@ -50,7 +50,7 @@ int check_zero_char_properly_closed_floor(int *current_pos_ptr, t_data *map_data
 			return (0);
 		if (map_data->map[*current_pos_ptr + 1] && (size_t) j > ft_strlen(map_data->map[*current_pos_ptr + 1]))
 		{
-			printf("ZERO CHAR RUNNING OFF BOTTOM OF MAP");
+			put_error("ZERO CHAR RUNNING OFF BOTTOM OF MAP");
 			return (0);
 		}
 		(*current_pos_ptr)++;

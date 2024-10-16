@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:07:12 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 13:53:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:19:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,33 @@ int		check_map_properly_configured (t_data *map_data)
 	i = 0;
 	if (!check_map_has_sufficient_lines(map_data))
 	{
-		printf("MAP DOES NOT HAVE SUFFICIENT LINES!\n");
+		put_error("MAP DOES NOT HAVE SUFFICIENT LINES!\n");
 		map_data->valid_map = 0;
 	}
 		
 	if (!map_has_only_valid_chars(map_data))
 	{
-		printf("MAP DOES NOT HAVE ONLY VALID CHARS!\n");
+		put_error("MAP DOES NOT HAVE ONLY VALID CHARS!\n");
 		map_data->valid_map = 0;
 	}
 	if (!check_first_last_line_only_walls_spaces(map_data))
 	{
-		printf("MAP IS NOT CLOSED OFF BY WALLS!\n");
+		put_error("MAP IS NOT CLOSED OFF BY WALLS!\n");
 		map_data->valid_map = 0;
 	}
 		
 	if (!check_map_spaces_closed_off(map_data))
 	{
-		printf("MAP SPACES ARE NOT CLOSED OFF!\n");
+		put_error("MAP SPACES ARE NOT CLOSED OFF!\n");
 		map_data->valid_map = 0;
 	}
 	while(map_data->map[i])
 	{
 		if (!check_map_line_valid(map_data, i))
 		{
-			printf("MAP LINE IS NOT VALID! '%d'\n", i);
+			put_error("MAP LINE IS NOT VALID! ");
+			ft_putnbr_fd(i,2);
+			put_error("\n");
 			map_data->valid_map = 0;
 		}
 		i++;
