@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 10:01:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:18:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,26 @@ void in_map_line_error(t_data *map_data)
 
 void	format_texture_data(t_data *map_data)
 {
-	(void) map_data;
 	int i;
+	int y;
+	int end;
 
 	i = 0;
-
-	while (map_data->north_texture && map_data->north_texture[i] == ' ')
+	y = 0;
+	end = ft_strlen(map_data->textures.north_texture);
+	while (map_data->textures.north_texture && map_data->textures.north_texture[i] == ' ')
 		i++;
-
-	
-	dprintf(STDERR_FILENO, "modified str :'%s'\n", &map_data->north_texture[i]);	
+	i = i + 2;
+	while (map_data->textures.north_texture && map_data->textures.north_texture[i] == ' ')
+		i++;
+	while (i < end)
+	{
+		map_data->textures.north_texture[y] = map_data->textures.north_texture[i];
+		y++;
+		i++;
+	}	
+	map_data->textures.north_texture[y] = '\0';
+	dprintf(STDERR_FILENO, "modified str :'%s'\n", map_data->textures.north_texture);	
 }
 
 
