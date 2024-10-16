@@ -17,8 +17,8 @@ void	get_player_starting_pos(t_data *map_data)
 			|| map_data->map[i][j] == 'E'
 			|| map_data->map[i][j] == 'W')
 			{
-				map_data->player_data.x_pos = j;
-				map_data->player_data.y_pos = i;
+				map_data->player_data.x_pos = (double) j;
+				map_data->player_data.y_pos = (double) i;
 				return ;
 			}
 			j++;
