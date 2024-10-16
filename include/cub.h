@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 10:12:25 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:30:14 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		open_map_config(t_data *map_data);
 int		close_map_config(t_data *map_data);
 void	get_map_one_line(t_data *map_data);
 int		in_map(char *raw_map);
+void	trim_texture_data(t_data *map_data);
 
 
 int		check_if_map_texture(char *line, t_data *map_data);

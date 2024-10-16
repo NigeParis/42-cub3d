@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 10:20:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:41:56 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,31 +76,6 @@ void in_map_line_error(t_data *map_data)
 
 
 
-void	format_texture_data(t_data *map_data)
-{
-	int i;
-	int y;
-	int end;
-
-	i = 0;
-	y = 0;
-	end = ft_strlen(map_data->textures.north_texture);
-	while (map_data->textures.north_texture && map_data->textures.north_texture[i] == ' ')
-		i++;
-	i = i + 2;
-	while (map_data->textures.north_texture && map_data->textures.north_texture[i] == ' ')
-		i++;
-	while (i < end)
-	{
-		map_data->textures.north_texture[y] = map_data->textures.north_texture[i];
-		y++;
-		i++;
-	}	
-	map_data->textures.north_texture[y] = '\0';
-	dprintf(STDERR_FILENO, "modified str :'%s'\n", map_data->textures.north_texture);	
-}
-
-
 int	main(int argc, char *argv[])
 {
 	(void)argc;
@@ -124,9 +99,9 @@ int	main(int argc, char *argv[])
 	if (map_data.raw_map == NULL)
 		exit (1);	
 	in_map_line_error(&map_data);		
-	clean_space_lines_raw_map(&map_data); ///TODO  raw_data truncated
+	clean_space_lines_raw_map(&map_data);
 	
-	printraw_map(&map_data);
+	//printraw_map(&map_data);
 	build_map_data(&map_data);
 	
 	if (!check_map_properly_configured(&map_data))
@@ -135,9 +110,9 @@ int	main(int argc, char *argv[])
 		return (printf("error\n"), 1);
 	get_player_starting_pos(&map_data);
 	printmap(&map_data);
+	trim_texture_data(&map_data);
 	print_textures(&map_data);
 	print_map_rgb(&map_data);
-	format_texture_data(&map_data);
 
 	close_map_config(&map_data);
 	return (EXIT_SUCCESS);
