@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 09:54:46 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:12:25 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct s_texture_data
 	char *ceiling_texture;
 } t_texture_data;
 
+typedef struct s_player_data 
+{
+	int	x_pos;
+	int	y_pos;
+} t_player_data;
+
 typedef struct s_data
 {
 	char	*file;
@@ -57,13 +63,10 @@ typedef struct s_data
 	int		fd;
 	t_texture_data textures;
 	t_colors colors;
+	t_player_data player_data;
 }	t_data;
 
-typedef struct s_player_data 
-{
-	int	start_x;
-	int	start_y;
-} t_player_data;
+
 
 
 
@@ -137,5 +140,5 @@ int		check_space_closed_top(t_data *map_data, char *line, int i);
 int		check_space_closed_bottom(t_data *map_data, char *line, int i);
 int		check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj);
 int		check_map_spaces_closed_off(t_data *map_data);
-
+void	get_player_starting_pos(t_data *map_data);
 #endif

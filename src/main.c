@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 09:47:34 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:12:45 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,6 @@ void	format_texture_data(t_data *map_data)
 }
 
 
-
-
-
-
 int	main(int argc, char *argv[])
 {
 	(void)argc;
@@ -117,11 +113,12 @@ int	main(int argc, char *argv[])
 	
 	printraw_map(&map_data);
 	build_map_data(&map_data);
+	
 	if (!check_map_properly_configured(&map_data))
 		printf("MAP IS NOT VALID!\n");
 	if (map_data.valid_map == 0)
 		return (printf("error\n"), 1);
-
+	get_player_starting_pos(&map_data);
 	printmap(&map_data);
 	print_textures(&map_data);
 	print_map_rgb(&map_data);
