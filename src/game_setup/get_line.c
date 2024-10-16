@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 14:00:14 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:45:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,23 @@ int		in_map(char *raw_map)
 
 	end = 0;
 	i = 0;	
-	while (raw_map && raw_map[i])
-		i++;
-	end = i - 2;
+	end = ft_strlen(raw_map);
 	i = end;
-	while (raw_map && raw_map[i] != '\n' && i > 0)
+	if (!raw_map)
+		return (1);
+	while (raw_map && raw_map[i] != '\n' && i >= 0)
 		i--;
 	i++;
-	if (raw_map[end] == '1')
+	if (raw_map && raw_map[end] == '1')
 	{	
-		while (raw_map[i] == ' ')
+		while (raw_map && raw_map[i] == ' ')
 			i++;
-		if (raw_map[i] == '1')
+		if (raw_map && raw_map[i] == '1')
 		{
-			return (1);
+			return (0);
 		}
 	}
-	return (0);
+	return (1);
 }
 
 void	get_map_one_line(t_data *map_data)
@@ -56,7 +56,7 @@ void	get_map_one_line(t_data *map_data)
 	{
 		if (!line)
 			break ;
-		if (line && ((line[0] == '\n') && (!in_map(line_table))))
+		if (line && line[0] && ((line[0] == '\n') && (in_map(line_table))))
 		{
 			ft_free_tableau(line);
 			line = get_next_line(map_data->fd);
