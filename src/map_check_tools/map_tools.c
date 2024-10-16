@@ -6,16 +6,17 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 13:55:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:28:05 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void init_ints(int *i, int *j, int *flag, int *start)
+static void init_ints(int *i, int *flag, int *start, t_data *map_data)
 {
-	*i = 0;
-	*j = 0;
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = ft_strlen(map_data->raw_map);
 	*flag = 0;
 	*start = 0;
 }
@@ -32,31 +33,29 @@ static void is_another_line(t_data *map_data, int *i, int *end)
 
 void clean_space_lines_raw_map(t_data *map_data)
 {
-    int i;
-    int j;
+    int i[3];
     int flag;
 	int start;
-    int end = ft_strlen(map_data->raw_map);
 
-    init_ints(&i, &j, &flag, &start);
-    while (i < end && map_data->raw_map[i])
+    init_ints(i, &flag, &start, map_data);
+    while (i[0] < i[2] && map_data->raw_map[i[0]])
     {
-        start = i;
-        while (map_data->raw_map[i] && map_data->raw_map[i] != '\n')
+        start = i[0];
+        while (map_data->raw_map[i[0]] && map_data->raw_map[i[0]] != '\n')
         {
-            if (map_data->raw_map[i] != ' ')
+            if (map_data->raw_map[i[0]] != ' ')
                 flag = 1;
-            i++;
+            i[0]++;
         }
         if (flag == 1)
         {
-            while ((start <= i) && (j < end))
-                map_data->raw_map[j++] = map_data->raw_map[start++];
+            while ((start <= i[0]) && (i[1] < i[2]))
+                map_data->raw_map[i[1]++] = map_data->raw_map[start++];
         }
-        is_another_line(map_data, &i, &end);
+        is_another_line(map_data, &i[0], &i[2]);
         flag = 0;
     }
-    map_data->raw_map[j] = '\0';
+    map_data->raw_map[i[1]] = '\0';
 }
 
 void 	is_empty_raw_data(t_data *map_data)

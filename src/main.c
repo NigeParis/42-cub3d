@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 13:17:18 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 14:59:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	get_map_check_and_setup(int argc, char **argv, t_data *map_data)
 	is_valid_map(map_data);
 	trim_texture_data(map_data);
 	get_player_starting_pos(map_data);
-
 }
 
 
