@@ -21,6 +21,7 @@ ERROR=game_errors/
 MAP_PARSER= map_parser/
 PLAYER_SETUP = player_setup/
 CLEANUP = game_cleanup/
+DEBUG = game_debug/
 
 SRC= main.c  get_next_line.c \
 	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
@@ -29,7 +30,7 @@ SRC= main.c  get_next_line.c \
 	 map_parser/parse_map.c map_parser/treat_first_last_line_properly_configured.c map_parser/check_map_char_validity.c \
 	 map_parser/check_map_lines.c map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c \
 	 player_setup/player_starting_pos.c game_setup/trim_textures_data.c \
-	 game_cleanup/free_exit.c
+	 game_cleanup/free_exit.c game_debug/print_debug.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -55,6 +56,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(MAP_PARSER)
 	@mkdir -p $(OBJ_DIR)/$(PLAYER_SETUP)
 	@mkdir -p $(OBJ_DIR)/$(CLEANUP)
+	@mkdir -p $(OBJ_DIR)/$(DEBUG)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:

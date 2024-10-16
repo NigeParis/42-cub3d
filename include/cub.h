@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 12:46:37 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:11:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_data
 	t_texture_data textures;
 	t_colors colors;
 	t_player_data player_data;
+	t_cell_data cell_data;
 }	t_data;
 
 
@@ -109,9 +110,11 @@ char	**ft_realloc_map(char *line, char **tmp, int *ptri);
 void	build_map(char *file, t_data *map_data);
 */
 
+//DEDUG - functions
 void	printmap(t_data *map_data);
 void    print_textures(t_data *map_data);
 void    print_map_rgb(t_data *map_data);
+void 	print_player_data(t_data *map_data);
 
 void    printraw_map(t_data *map_data);
 void	put_error(char *str);
@@ -122,6 +125,9 @@ int		in_map(char *raw_map);
 void	trim_texture_data(t_data *map_data);
 void 	free_map(t_data *map_data);
 void 	is_valid_map(t_data *map_data);
+void 	is_empty_raw_data(t_data *map_data);
+void 	in_map_line_error(t_data *map_data);
+int		map_start_index(char *raw_map);
 
 
 int		check_if_map_texture(char *line, t_data *map_data);

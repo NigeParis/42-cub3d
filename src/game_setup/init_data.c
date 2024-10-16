@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 12:32:32 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:55:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->colors.floor_r = 0;
 	map_data->colors.floor_g = 0;
 	map_data->colors.floor_b = 0;
+	map_data->player_data.x_pos = 0;
+	map_data->player_data.y_pos = 0;
+	map_data->player_data.speed = 0;
+	map_data->player_data.size = 0;
+	map_data->cell_data.cell_size = 0;
+		
 	return (0);
 }
 
