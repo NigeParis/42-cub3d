@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 15:04:57 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:14:23 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->east_texture = NULL;
 	map_data->ceiling_texture = NULL;
 	map_data->floor_texture = NULL;
+	map_data->colors.ceiling_g = 0;
+	map_data->colors.ceiling_g = 0;
+	map_data->colors.ceiling_b = 0;
+	map_data->colors.floor_r = 0;
+	map_data->colors.floor_g = 0;
+	map_data->colors.floor_b = 0;
 	if (!check_map_has_valid_extension(map_data->file))
 		map_data->valid_map = 0;
 	return (1);

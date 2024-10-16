@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 17:26:00 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:47:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,19 @@ void in_map_line_error(t_data *map_data)
 
 
 
+void	format_texture_data(t_data *map_data)
+{
+	(void) map_data;
+	
+
+
+	
+}
+
+
+
+
+
 
 int	main(int argc, char *argv[])
 {
@@ -110,6 +123,8 @@ int	main(int argc, char *argv[])
 		return (printf("error\n"), 1);
 
 	printmap(&map_data);
+	print_textures(&map_data);
+	print_map_rgb(&map_data);
 	close_map_config(&map_data);
 	return (EXIT_SUCCESS);
 }

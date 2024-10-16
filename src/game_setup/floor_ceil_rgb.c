@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceil_rgb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:50 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 17:58:48 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:29:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	split_ceiling_colors(t_data *map_data)
 	}
 	map_data->colors.ceiling_r = ft_atoi(split_ceiling_rgb[0]);
 	map_data->colors.ceiling_g = ft_atoi(split_ceiling_rgb[1]);
-	map_data->colors.ceiling_g = ft_atoi(split_ceiling_rgb[2]);
+	map_data->colors.ceiling_b = ft_atoi(split_ceiling_rgb[2]);
 }
 
 void	split_floor_colors(t_data *map_data)
@@ -58,7 +58,7 @@ void	split_floor_colors(t_data *map_data)
 	char **split_floor_rgb;
 
 	if (ft_strlen(map_data->ceiling_texture) > 4)
-		split_floor_rgb= ft_split((map_data->ceiling_texture + 2), ',');
+		split_floor_rgb= ft_split((map_data->floor_texture + 2), ',');
 	else 
 		split_floor_rgb= NULL;
 	if (!check_rgb_data_properly_configured(split_floor_rgb))

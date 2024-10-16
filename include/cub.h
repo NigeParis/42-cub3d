@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/14 14:26:50 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:07:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void	build_map(char *file, t_data *map_data);
 */
 
 void	printmap(t_data *map_data);
+void    print_textures(t_data *map_data);
+void    print_map_rgb(t_data *map_data);
+
 void    printraw_map(t_data *map_data);
 void	put_error(char *str);
 int		open_map_config(t_data *map_data);
