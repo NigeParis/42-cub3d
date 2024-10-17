@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_map_values_from_raw.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 14:00:05 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:43:28 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_dbl_ptr(char **dbl_ptr)
 {
 	int		i;
-	
+
 	i = 0;
 	while (dbl_ptr[i])
 	{
@@ -25,7 +25,7 @@ void	free_dbl_ptr(char **dbl_ptr)
 	free(dbl_ptr);
 }
 
-int		check_if_map_texture(char *line, t_data *map_data)
+int	check_if_map_texture(char *line, t_data *map_data)
 {
 	int	i;
 
@@ -41,52 +41,11 @@ int		check_if_map_texture(char *line, t_data *map_data)
 	return (1);
 }
 
-void	build_map_textures(char *line, t_data *map_data, int i)
-{
-	if (ft_strlen(line) > 3)
-	{
-		if (line[i] == 'N' && line[i + 1] == 'O' && line[i + 2] == 32)
-			create_north_texture(map_data, line);
-		else if (line[i] == 'S' && line[i + 1] == 'O' && line[i + 2] == 32)
-			create_south_texture(map_data, line);
-		else if (line[i] == 'W' && line[i + 1] == 'E' && line[i + 2] == 32)
-			create_west_texture(map_data, line);
-		else if (line[i] == 'E' && line[i + 1] =='A' && line[i + 2] == 32)
-			create_east_texture(map_data, line);
-		else if (line[i] == 'F' && line[i + 1] == 32)
-			create_floor_texture(map_data,line);
-		else if (line[i] == 'C' && line[i + 1] == 32)
-			create_ceiling_texture(map_data, line);
-		else 
-			map_data->valid_map = 0;
-	}
-	else 
-		map_data->valid_map = 0;
-}
-
-int	check_all_textures_data_properly_filled(t_data *map_data)
-{
-	if (!map_data->textures.north_texture)
-		return 0;
-	if (!map_data->textures.south_texture)
-		return 0;
-	if (!map_data->textures.east_texture)
-		return 0;
-	if (!map_data->textures.west_texture)
-		return 0;
-	if (!map_data->textures.ceiling_texture)
-		return 0;
-	if (!map_data->textures.floor_texture)
-		return 0;
-	return 1;
-}
-
-
-
-void	build_map_portion_of_map_data(char **split_raw_data, int start_point, t_data *map_data)
+void	build_map_portion_of_map_data(char **split_raw_data,
+int start_point, t_data *map_data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = start_point;
 	j = 0;
@@ -99,21 +58,27 @@ void	build_map_portion_of_map_data(char **split_raw_data, int start_point, t_dat
 	map_data->map[j] = NULL;
 }
 
+void	init_values_build_final_map_data(int *ptri,
+int *ptrj, int *start_point_ptr)
+{
+	*ptri = 0;
+	*ptrj = 0;
+	*start_point_ptr = -1;
+}
 
 void	build_final_map_data(char **split_raw_data, t_data *map_data)
 {
-	int i;
-	int j;
-	int start_point;
+	int	i;
+	int	j;
+	int	start_point;
 
-	i = 0;
-	j = 0;
-	start_point = -1;
+	init_values_build_final_map_data(&i, &j, &start_point);
 	if (!split_raw_data[i])
 		return ;
 	while (split_raw_data[i])
 	{
-		while ((check_if_map_texture(split_raw_data[i], map_data) && split_raw_data[i]))
+		while ((check_if_map_texture(split_raw_data[i], map_data)
+				&& split_raw_data[i]))
 			i++;
 		if (start_point == -1)
 			start_point = i;
@@ -124,23 +89,7 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 	}
 	map_data->map = malloc((i + 1) * sizeof(char *));
 	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
-	if (!map_data->map)
+	if (!map_data->map || !check_all_textures_data_properly_filled(map_data))
 		return ;
-	if (!check_all_textures_data_properly_filled(map_data))
-	{
-		put_error("NOT ALL TEXTURES FILLED!");
-		return ;
-	}
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);
-}
-
-void build_map_data(t_data *map_data)
-{
-	char **split_raw_data;
-
-	split_raw_data = ft_split(map_data->raw_map, '\n');
-	build_final_map_data(split_raw_data, map_data);
-	split_ceiling_colors(map_data);
-	split_floor_colors(map_data);
-	ft_free_double_tab(split_raw_data);
 }

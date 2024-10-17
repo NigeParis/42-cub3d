@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_ceil_rgb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:50 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 11:47:48 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:56:03 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int	check_rgb_data_properly_configured(char **rgb_data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!rgb_data)
 		return (0);
-	while(rgb_data[i])
+	while (rgb_data[i])
 		i++;
 	if (i != 3)
 		return (0);
 	i = 0;
 	while (rgb_data[i])
 	{
-		if (ft_atoi(rgb_data[i]) == 0 || 
-			ft_atoi(rgb_data[i]) < 0 ||
-			ft_atoi(rgb_data[i]) > 255)
+		if (ft_atoi(rgb_data[i]) == 0 
+			|| ft_atoi(rgb_data[i]) < 0 
+			|| ft_atoi(rgb_data[i]) > 255)
 			 return(0);
 		i++;
 	}
