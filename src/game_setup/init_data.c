@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 15:06:14 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:17:35 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,14 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->file = argv[1];
 	map_data->raw_map = NULL;
 	map_data->map = NULL;
+	map_data->max_width = 0;
+	map_data->max_height = 0;
 	map_data->player_data.x_pos = 0;
 	map_data->player_data.y_pos = 0;
 	map_data->player_data.speed = 0;
 	map_data->player_data.size = 0;
 	map_data->cell_data.cell_size = 0;
+	map_data->nb_zeros_in_map = 0;
 	init_textures_and_colours(map_data);
 	return (0);
 }

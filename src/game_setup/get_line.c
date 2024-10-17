@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 16:45:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:45:24 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	get_map_one_line(t_data *map_data)
 			break ;
 		if (line && line[0] && ((line[0] == '\n') && (in_map(line_table))))
 		{
+
 			ft_free_tableau(line);
 			line = get_next_line(map_data->fd);
 		}

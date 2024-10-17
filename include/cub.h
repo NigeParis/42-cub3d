@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 13:11:02 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/16 20:14:54 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,12 @@ typedef struct s_data
 {
 	char	*file;
 	char	**map;
+	char	**square_map;
 	char	*raw_map;
+	int		max_width;
+	int		max_height;
 	int		valid_map;
+	int		nb_zeros_in_map;
 	int		fd;
 	t_texture_data textures;
 	t_colors colors;
@@ -75,7 +79,12 @@ typedef struct s_data
 	t_cell_data cell_data;
 }	t_data;
 
-
+typedef struct s_point
+{
+	int x;
+	int y;
+	
+}	t_point;
 
 
 
@@ -115,6 +124,8 @@ void	printmap(t_data *map_data);
 void    print_textures(t_data *map_data);
 void    print_map_rgb(t_data *map_data);
 void 	print_player_data(t_data *map_data);
+void	print_square_map(t_data *map_data);
+
 
 void    printraw_map(t_data *map_data);
 void	put_error(char *str);
@@ -124,10 +135,12 @@ void	get_map_one_line(t_data *map_data);
 int		in_map(char *raw_map);
 void	trim_texture_data(t_data *map_data);
 void 	free_map(t_data *map_data);
+void	free_map_at_end(t_data *map_data);
 void 	is_valid_map(t_data *map_data);
 void 	is_empty_raw_data(t_data *map_data);
 void 	in_map_line_error(t_data *map_data);
 int		map_start_index(char *raw_map);
+void	flood_fill(char **tab, t_point *begin, t_data *map_data);
 
 
 int		check_if_map_texture(char *line, t_data *map_data);
