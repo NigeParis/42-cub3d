@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 20:14:54 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 10:49:18 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,15 @@ void 	is_empty_raw_data(t_data *map_data);
 void 	in_map_line_error(t_data *map_data);
 int		map_start_index(char *raw_map);
 void	flood_fill(char **tab, t_point *begin, t_data *map_data);
+int		find_zeros_for_floodfill(t_data *map_data);
+int		count_dots(t_data *map_data);
+int		count_zeros(t_data *map_data);
+int		resize_map(t_data *map_data);
+void	get_map_check_and_setup(int argc, char **argv, t_data *map_data);
+
+
+
+
 
 
 int		check_if_map_texture(char *line, t_data *map_data);
