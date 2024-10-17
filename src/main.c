@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 13:29:07 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:52:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	t_data map_data;
+	t_data	map_data;
 
 	get_map_check_and_setup(argc, argv, &map_data);
-	
-	//DEBUG - print_outs
+	dprintf(STDERR_FILENO, "DEBUG - print_outs\n\n");
 	print_player_data(&map_data);
 	printmap(&map_data);
 	printraw_map(&map_data);

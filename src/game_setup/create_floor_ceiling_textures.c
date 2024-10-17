@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_floor_ceiling_textures.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:31 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:48:00 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:01:11 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

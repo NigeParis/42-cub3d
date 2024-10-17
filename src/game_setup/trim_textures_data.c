@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:28:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 10:40:41 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:57:09 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	trim_north_texture_data(t_data *map_data)
 {
-	int i;
-	int y;
-	int end;
+	int	i;
+	int	y;
+	int	end;
 
 	i = 0;
 	y = 0;
@@ -42,9 +42,9 @@ static void	trim_north_texture_data(t_data *map_data)
 
 static void	trim_south_texture_data(t_data *map_data)
 {
-	int i;
-	int y;
-	int end;
+	int	i;
+	int	y;
+	int	end;
 
 	i = 0;
 	y = 0;
@@ -68,12 +68,11 @@ static void	trim_south_texture_data(t_data *map_data)
 	map_data->textures.south_texture[y] = '\0';
 }
 
-
 static void	trim_east_texture_data(t_data *map_data)
 {
-	int i;
-	int y;
-	int end;
+	int	i;
+	int	y;
+	int	end;
 
 	i = 0;
 	y = 0;
@@ -99,9 +98,9 @@ static void	trim_east_texture_data(t_data *map_data)
 
 static void	trim_west_texture_data(t_data *map_data)
 {
-	int i;
-	int y;
-	int end;
+	int	i;
+	int	y;
+	int	end;
 
 	i = 0;
 	y = 0;

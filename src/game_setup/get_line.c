@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 11:10:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:54:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	ft_free_tableau(char *str)
 		free(str);
 }
 
-int		in_map(char *raw_map)
+int	in_map(char *raw_map)
 {
 	int	end;
 	int	i;
 
 	end = 0;
-	i = 0;	
+	i = 0;
 	end = ft_strlen(raw_map);
 	i = end;
 	if (!raw_map)
@@ -58,7 +58,6 @@ void	get_map_one_line(t_data *map_data)
 			break ;
 		if (line && line[0] && ((line[0] == '\n') && (!in_map(line_table))))
 		{
-
 			ft_free_tableau(line);
 			line = get_next_line(map_data->fd);
 		}

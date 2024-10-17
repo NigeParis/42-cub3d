@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 06:03:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 16:01:45 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:51:03 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	*ft_strchr(char *str, int find)
 	}
 	return (NULL);
 }
+
 char	*ft_strdup(char *s1)
 {
 	char	*str;
@@ -93,7 +94,6 @@ char	*ft_strdup(char *s1)
 	str[i] = 0;
 	return (str);
 }
-
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 {
