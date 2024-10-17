@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:18:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:18:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:40:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_map_check_and_setup(int argc, char **argv, t_data *map_data)
 	open_map_config(map_data);
 	get_map_one_line(map_data);
 	is_empty_raw_data(map_data);
-	in_map_line_error(map_data, NULL, 0, 0);
+	in_map_line_error(map_data);
 	clean_space_lines_raw_map(map_data);
 	build_map_data(map_data);
 	check_map_properly_configured(map_data);

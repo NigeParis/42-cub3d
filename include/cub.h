@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:18:31 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:40:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void 	free_map(t_data *map_data);
 void	free_map_at_end(t_data *map_data);
 void 	is_valid_map(t_data *map_data);
 void 	is_empty_raw_data(t_data *map_data);
-int		in_map_line_error(t_data *map_data, char *map_raw, int index, int end);
+void	in_map_line_error(t_data *map_data);
 int		map_start_index(char *raw_map);
 void	flood_fill(char **tab, t_point *begin, t_data *map_data);
 int		find_zeros_for_floodfill(t_data *map_data);
