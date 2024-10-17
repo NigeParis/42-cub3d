@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 11:35:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:29:07 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,14 @@ int	main(int argc, char *argv[])
 	t_data map_data;
 
 	get_map_check_and_setup(argc, argv, &map_data);
-
 	
-	
-
-
 	//DEBUG - print_outs
 	print_player_data(&map_data);
-	//printmap(&map_data);
+	printmap(&map_data);
 	printraw_map(&map_data);
 	print_textures(&map_data);
 	print_map_rgb(&map_data);
 	print_square_map(&map_data);
-	
-
-
 	free_map_at_end(&map_data);
 	return (EXIT_SUCCESS);
 }

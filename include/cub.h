@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:57:25 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:43:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	is_another_line(t_data *map_data, int *i, int *end);
 
 
 
-
+int		check_all_textures_data_properly_filled(t_data *map_data);
 int		check_if_map_texture(char *line, t_data *map_data);
 void	build_map_textures(char *line, t_data *map_data, int i);
 void	build_map_data(t_data *map_data);
@@ -183,4 +183,6 @@ void	get_player_starting_pos(t_data *map_data);
 int		go_backwards_in_line_space_found(t_data *map_data, int i, int *first_space_found_ptr);
 int		go_forward_in_line_space_found(t_data *map_data, int i, int *ptrj);
 void	build_map_data(t_data *map_data);
+void	build_final_map_data(char **split_raw_data, t_data *map_data);
+
 #endif
