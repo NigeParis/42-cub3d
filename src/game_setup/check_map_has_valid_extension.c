@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_has_valid_extension.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 13:59:30 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:44:38 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-
-int check_map_has_valid_extension(char *map_name)
+int	check_map_has_valid_extension(char *map_name)
 {
 	int		strlen_map;
 	char	*map_extension;
-	
-	if(!map_name)
+
+	if (!map_name)
 		return (0);
 	strlen_map = ft_strlen(map_name);
 	map_extension = ft_substr(map_name, (strlen_map -4), strlen_map);
