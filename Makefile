@@ -22,6 +22,7 @@ MAP_PARSER= map_parser/
 PLAYER_SETUP = player_setup/
 CLEANUP = game_cleanup/
 DEBUG = game_debug/
+MLX_OPEN_WINDOW_R = mlx_open_window_reuben/
 
 SRC= main.c  get_next_line.c \
 	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
@@ -33,7 +34,7 @@ SRC= main.c  get_next_line.c \
 	 game_debug/print_debug.c map_parser/horizontal_map_check.c \
 	 game_cleanup/free_exit.c game_map_setup/floodfill_map_check.c \
 	 game_map_setup/map_rezise_tool.c game_map_setup/map_setup.c game_setup/build_final_map_data.c  game_debug/print_debug_map.c \
-	 game_setup/build_map_textures.c
+	 game_setup/build_map_textures.c mlx_open_window_reuben/open_window.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -60,6 +61,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(PLAYER_SETUP)
 	@mkdir -p $(OBJ_DIR)/$(CLEANUP)
 	@mkdir -p $(OBJ_DIR)/$(DEBUG)
+	@mkdir -p $(OBJ_DIR)/$(MLX_OPEN_WINDOW_R)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:

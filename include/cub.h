@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 16:22:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:51:42 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # include <limits.h>
 # include <stdint.h>
 # include <fcntl.h>
+
+typedef struct s_game_window
+{
+	void	*mlx_ptr;
+	void	*mlx_window;
+	int		screen_height;
+	int		screen_width;
+}	t_game_window;
 
 typedef struct s_colors
 {
@@ -79,6 +87,7 @@ typedef struct s_data
 	t_colors		colors;
 	t_player_data	player_data;
 	t_cell_data		cell_data;
+	t_game_window	game_window;
 
 }	t_data;
 
@@ -189,6 +198,9 @@ void	free_map_abort(t_data *map_data);
 int		add_zeros_from_dots(t_data *map_data);
 void	free_setup_maps(t_data *map_data);
 
+
+//  WINDOW MANAGEMENT!
+void	mlx_open_window(t_data *map_data);
 
 
 #endif
