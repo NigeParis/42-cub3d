@@ -41,11 +41,14 @@ int check_zero_char_properly_closed_ceiling(int *current_pos_ptr, t_data *map_da
 
 int check_zero_char_properly_closed_floor(int *current_pos_ptr, t_data *map_data, int *copy_j_value, int j)
 {
-	while (map_data->map[*current_pos_ptr][j] != '1' 
-	&& map_data->map[*current_pos_ptr + 1] != NULL)
+	while (map_data->map[*current_pos_ptr][j] != '1')
 	{
 		if (map_data->map[*current_pos_ptr + 1] == NULL)
+		{
+			printf("WE HAVE ARRIVED TO NULL CHAR!\n");
 			return (0);
+		}
+			
 		if (!check_zero_char_stays_off_edge(current_pos_ptr, copy_j_value, map_data, j))
 			return (0);
 		if (map_data->map[*current_pos_ptr + 1] && (size_t) j > ft_strlen(map_data->map[*current_pos_ptr + 1]))
