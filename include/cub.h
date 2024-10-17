@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 11:24:32 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:18:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void 	free_map(t_data *map_data);
 void	free_map_at_end(t_data *map_data);
 void 	is_valid_map(t_data *map_data);
 void 	is_empty_raw_data(t_data *map_data);
-void 	in_map_line_error(t_data *map_data);
+int		in_map_line_error(t_data *map_data, char *map_raw, int index, int end);
 int		map_start_index(char *raw_map);
 void	flood_fill(char **tab, t_point *begin, t_data *map_data);
 int		find_zeros_for_floodfill(t_data *map_data);
@@ -146,7 +146,7 @@ int		count_dots(t_data *map_data);
 int		count_zeros(t_data *map_data);
 int		resize_map(t_data *map_data);
 void	get_map_check_and_setup(int argc, char **argv, t_data *map_data);
-
+void	is_another_line(t_data *map_data, int *i, int *end);
 
 
 
