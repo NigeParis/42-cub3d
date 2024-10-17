@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:50:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:49:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	in_map_line_error(t_data *map_data)
 	if (map_data->raw_map[end -1] != '1')
 	{
 		map_data->valid_map = 0;
+		free(map_raw);
 		return ;
 	}	
 	in_map_line_error_helper(map_data, index, map_raw);

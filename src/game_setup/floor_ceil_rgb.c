@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:50 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 14:00:57 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:53:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	split_floor_colors(t_data *map_data)
 	if (!check_rgb_data_properly_configured(split_floor_rgb))
 	{
 		map_data->valid_map = 0;
+		ft_free_double_tab(split_floor_rgb);
 		return ;
 	}
 	map_data->colors.floor_r = ft_atoi(split_floor_rgb[0]);
