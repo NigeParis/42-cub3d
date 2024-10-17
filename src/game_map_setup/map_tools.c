@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 15:25:44 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:48:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	is_empty_raw_data(t_data *map_data)
 	if (map_data->raw_map == NULL)
 	{
 		put_error("error: empty map !\n");
+		close_map_config(map_data);
 		exit (1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:19:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 13:25:03 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:55:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_square_map(t_data *map_data)
 		return ;
 	}
 	dprintf(STDERR_FILENO, "\nsquare map stucture - map_data:\n");
-	while (map_data->map && map_data->map[index] != NULL)
+	while (map_data->square_map && map_data->square_map[index] != NULL)
 	{
 		dprintf(STDERR_FILENO, "\n%s", map_data->square_map[index]);
 		index++;

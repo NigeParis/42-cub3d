@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 15:29:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:22:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void	print_textures(t_data *map_data);
 void	print_map_rgb(t_data *map_data);
 void	print_player_data(t_data *map_data);
 void	print_square_map(t_data *map_data);
+void	debug_print_setup_maps(t_data *map_data);
+
 // functions parsing
 void	printraw_map(t_data *map_data);
 void	put_error(char *str);
