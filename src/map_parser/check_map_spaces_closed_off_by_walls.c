@@ -12,14 +12,14 @@ int check_space_closed_top(t_data *map_data, char *line, int i)
 		if (line[j] == 32)
 		{
 			while (i_reference > 0 
-			&& (size_t) j > ft_strlen(map_data->map[i_reference])
 			&& map_data->map[i_reference][j] != '1')
 			{
 				if (map_data->map[i_reference][j] == '0')
-				{
-					put_error("ZERO VALUE FOUND ON TOP!\n");
 					return (0);
-				}
+				/*
+				if ((size_t) j > ft_strlen(map_data->map[i_reference - 1]))
+					return (0);
+				*/
 				i_reference--;
 			}
 		}
@@ -43,13 +43,12 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 			&& (size_t) j > ft_strlen(map_data->map[i_reference])
 			&& map_data->map[i_reference][j] != '1')
 			{
+				/*
 				if ( (size_t)j == ft_strlen(map_data->map[i_reference]))
-					return (0);
+					return (0)
+				*/
 				if (map_data->map[i_reference][j] == '0')
-				{
-					put_error("ZERO VALUE FOUND ON BOTTOM!\n");
 					return (0);
-				}
 				i_reference++;
 			}
 		}
@@ -57,6 +56,9 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 	}
 	return (1);
 }
+
+
+
 
 int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj)
 {
@@ -67,22 +69,10 @@ int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj
 		if (map_data->map[i][*ptrj] == 32)
 		{
 			first_space_found = *ptrj;
-			while (map_data->map[i][first_space_found] != '1'
-			&& first_space_found > 0)
-			{
-				if (first_space_found == 0 
-				&& map_data->map[i][first_space_found] == '0')
-					return (0);
-				if (map_data->map[i][first_space_found] == '0')
-					return (0);
-				first_space_found--;
-			}
-			while (map_data->map[i][*ptrj] != '1' && map_data->map[i][*ptrj])
-			{
-				if (map_data->map[i][*ptrj] == '0')
-					return (0);
-				(*ptrj)++;
-			}
+			if (!go_backwards_in_line_space_found(map_data, i, &first_space_found))
+				return (0);
+			if (!go_forward_in_line_space_found(map_data, i , ptrj))
+				return (0);
 		}
 		if (map_data->map[i][*ptrj] != '\0')
 			(*ptrj)++;

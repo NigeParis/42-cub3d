@@ -30,7 +30,7 @@ SRC= main.c  get_next_line.c \
 	 map_parser/parse_map.c map_parser/treat_first_last_line_properly_configured.c map_parser/check_map_char_validity.c \
 	 map_parser/check_map_lines.c map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c \
 	 player_setup/player_starting_pos.c game_setup/trim_textures_data.c \
-	 game_cleanup/free_exit.c game_debug/print_debug.c
+	 game_cleanup/free_exit.c game_debug/print_debug.c map_parser/horizontal_map_check.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

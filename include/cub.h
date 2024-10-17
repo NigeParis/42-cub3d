@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 20:14:54 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:06:52 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,4 +171,6 @@ int		check_space_closed_bottom(t_data *map_data, char *line, int i);
 int		check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj);
 int		check_map_spaces_closed_off(t_data *map_data);
 void	get_player_starting_pos(t_data *map_data);
+int		go_backwards_in_line_space_found(t_data *map_data, int i, int *first_space_found_ptr);
+int		go_forward_in_line_space_found(t_data *map_data, int i, int *ptrj);
 #endif
