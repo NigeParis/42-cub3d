@@ -32,7 +32,7 @@ SRC= main.c  get_next_line.c \
 	 player_setup/player_starting_pos.c game_setup/trim_textures_data.c \
 	 game_debug/print_debug.c map_parser/horizontal_map_check.c \
 	 game_cleanup/free_exit.c game_map_setup/floodfill_map_check.c \
-	 game_map_setup/map_rezise_tool.c game_map_setup/map_setup.c game_setup/build_final_map_data.c 
+	 game_map_setup/map_rezise_tool.c game_map_setup/map_setup.c game_setup/build_final_map_data.c  game_debug/print_debug_map.c
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
