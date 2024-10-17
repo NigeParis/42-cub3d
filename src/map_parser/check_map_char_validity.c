@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_char_validity.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:04:02 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/11 19:04:03 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:55:38 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ int	check_map_char_valid(char *map_line)
 	i = 0;
 	while (map_line[i])
 	{
-		if (map_line[i] != '1' 
-		&& map_line[i] != '0' 
-		&& map_line[i] != 'N' 
-		&& map_line[i] != 'S' 
-		&& map_line[i] != 'W' 
-		&& map_line[i] != 'E'
-		&& map_line[i] != 32)
+		if (map_line[i] != '1'
+			&& map_line[i] != '0'
+			&& map_line[i] != 'N'
+			&& map_line[i] != 'S'
+			&& map_line[i] != 'W'
+			&& map_line[i] != 'E'
+			&& map_line[i] != 32)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	increment_directional_chars(char *line,  int *direction_counter_ptr)
+void	increment_directional_chars(char *line, int *direction_counter_ptr)
 {
 	int	i;
 
@@ -49,10 +49,10 @@ void	increment_directional_chars(char *line,  int *direction_counter_ptr)
 			(*direction_counter_ptr)++;
 		i++;
 	}
-
 }
 
-void	increment_wall_floor_chars(char *line, int *zero_char_ctr_ptr, int *one_char_ctr_ptr)
+void	increment_wall_floor_chars(char *line, int *zero_char_ctr_ptr,
+int *one_char_ctr_ptr)
 {
 	int	i;
 
@@ -67,11 +67,10 @@ void	increment_wall_floor_chars(char *line, int *zero_char_ctr_ptr, int *one_cha
 	}
 }
 
-
 int	map_has_only_valid_chars(t_data *map_data)
 {
 	int	i;
-	int direction_counter;
+	int	direction_counter;
 	int	zero_char_ctr;
 	int	one_char_ctr;
 
@@ -85,8 +84,10 @@ int	map_has_only_valid_chars(t_data *map_data)
 	{
 		if (!check_map_char_valid(map_data->map[i]))
 			return (0);
-		increment_directional_chars(map_data->map[i], &direction_counter);
-		increment_wall_floor_chars(map_data->map[i], &zero_char_ctr, &one_char_ctr);
+		increment_directional_chars(map_data->map[i],
+			&direction_counter);
+		increment_wall_floor_chars(map_data->map[i],
+			&zero_char_ctr, &one_char_ctr);
 		i++;
 	}
 	if (direction_counter != 1 || zero_char_ctr == 0 || one_char_ctr == 0)

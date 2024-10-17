@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map_spaces_closed_off_by_walls.c             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/17 11:50:20 by rchourak          #+#    #+#             */
+/*   Updated: 2024/10/17 12:00:49 by rchourak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub.h"
 
-int check_space_closed_top(t_data *map_data, char *line, int i)
+int	check_space_closed_top(t_data *map_data, char *line, int i)
 {
 	int	j;
-	int i_reference;
+	int	i_reference;
 
 	j = 0;
 	i_reference = i;
@@ -11,16 +23,12 @@ int check_space_closed_top(t_data *map_data, char *line, int i)
 	{
 		if (line[j] == 32)
 		{
-			while (i_reference > 0 
-			&& (size_t) j < ft_strlen(map_data->map[i_reference])
-			&& map_data->map[i_reference][j] != '1')
+			while (i_reference > 0
+				&& (size_t) j < ft_strlen(map_data->map[i_reference])
+				&& map_data->map[i_reference][j] != '1')
 			{
 				if (map_data->map[i_reference][j] == '0')
 					return (0);
-				/*
-				if ((size_t) j > ft_strlen(map_data->map[i_reference - 1]))
-					return (0);
-				*/
 				i_reference--;
 			}
 		}
@@ -29,10 +37,10 @@ int check_space_closed_top(t_data *map_data, char *line, int i)
 	return (1);
 }
 
-int check_space_closed_bottom(t_data *map_data, char *line, int i)
+int	check_space_closed_bottom(t_data *map_data, char *line, int i)
 {
 	int	j;
-	int i_reference;
+	int	i_reference;
 
 	j = 0;
 	i_reference = i;
@@ -40,14 +48,10 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 	{
 		if (line[j] == 32)
 		{
-			while (map_data->map[i_reference] 
-			&& (size_t) j > ft_strlen(map_data->map[i_reference])
-			&& map_data->map[i_reference][j] != '1')
+			while (map_data->map[i_reference]
+				&& (size_t) j > ft_strlen(map_data->map[i_reference])
+				&& map_data->map[i_reference][j] != '1')
 			{
-				/*
-				if ( (size_t)j == ft_strlen(map_data->map[i_reference]))
-					return (0)
-				*/
 				if (map_data->map[i_reference][j] == '0')
 					return (0);
 				i_reference++;
@@ -58,10 +62,8 @@ int check_space_closed_bottom(t_data *map_data, char *line, int i)
 	return (1);
 }
 
-
-
-
-int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj)
+int	check_spaces_properly_closed_horizontally(t_data *map_data,
+int i, int *ptrj)
 {
 	int	first_space_found;
 
@@ -70,9 +72,11 @@ int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj
 		if (map_data->map[i][*ptrj] == 32)
 		{
 			first_space_found = *ptrj;
-			if (!go_backwards_in_line_space_found(map_data, i, &first_space_found))
+			if (!go_backwards_in_line_space_found(map_data,
+					i, &first_space_found))
 				return (0);
-			if (!go_forward_in_line_space_found(map_data, i , ptrj))
+			if (!go_forward_in_line_space_found(map_data,
+					i, ptrj))
 				return (0);
 		}
 		if (map_data->map[i][*ptrj] != '\0')
@@ -81,20 +85,17 @@ int	check_spaces_properly_closed_horizontally(t_data *map_data, int i, int *ptrj
 	return (1);
 }
 
-int check_map_spaces_closed_off(t_data *map_data)
+int	check_map_spaces_closed_off(t_data *map_data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map_data->map[i])
 	{
-		if (!check_space_closed_top(map_data, map_data->map[i], i) || 
-		!check_space_closed_bottom(map_data, map_data->map[i], i))
-		{
-			put_error("SPACES NOT CLOSED OFF ON TOP OR BOTTOM!\n");
+		if (!check_space_closed_top(map_data, map_data->map[i], i)
+			|| !check_space_closed_bottom(map_data, map_data->map[i], i))
 			return (0);
-		}
 		i++;
 	}
 	i = 0;
@@ -104,10 +105,7 @@ int check_map_spaces_closed_off(t_data *map_data)
 		while (map_data->map[i][j])
 		{
 			if (!check_spaces_properly_closed_horizontally(map_data, i, &j))
-			{
-				put_error("SPACES NOT CLOSED OFF HORIZONTALLY!\n");
 				return (0);
-			}
 		}
 		j = 0;
 		i++;
