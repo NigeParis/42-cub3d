@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 14:49:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:25:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,28 @@ void	in_map_line_error(t_data *map_data)
 	in_map_line_error_helper(map_data, index, map_raw);
 	free(map_raw);
 }	
+
+int	add_zeros_from_dots(t_data *map_data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!map_data || !map_data->square_map)
+		return (0);
+	while (map_data->square_map && map_data->square_map[i])
+	{
+		while (map_data->square_map && map_data->square_map[i][j])
+		{
+			if (map_data->square_map[i][j] == '.')
+				map_data->square_map[i][j] = '0';
+			if (map_data->square_map[i][j] == ' ')
+				map_data->square_map[i][j] = '1';
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	return (1);
+}

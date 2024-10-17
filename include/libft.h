@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:52:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/03/19 12:51:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:25:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *), void (*del)(void *));
+
 void	ft_free_double_tab(char *tab[]);
 #endif
 /* - definitions declaraed in get_next_line */

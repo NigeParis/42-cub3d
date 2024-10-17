@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 15:08:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:29:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,9 @@ int		go_forward_in_line_space_found(t_data *map_data, int i, int *ptrj);
 void	build_map_data(t_data *map_data);
 void	build_final_map_data(char **split_raw_data, t_data *map_data);
 void	free_map_abort(t_data *map_data);
+int		add_zeros_from_dots(t_data *map_data);
+void	free_setup_maps(t_data *map_data);
+
+
 
 #endif

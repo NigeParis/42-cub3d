@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 09:35:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/04/01 16:54:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/17 15:32:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,9 @@ void	ft_free_double_tab(char *tab[])
 		y++;
 	}
 	if (tab)
-		return (free(tab));
+	{
+		free(tab);
+		tab = NULL;
+	}
+	return ;
 }
