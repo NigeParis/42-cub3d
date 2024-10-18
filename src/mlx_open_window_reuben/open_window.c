@@ -30,11 +30,14 @@ void mlx_open_window(t_data *map_data)
 	map_data->form.dim = 200;
 	map_data->form.col = 16777215;
 	map_data->form.target_col = 0;
-	
+
+	int i = 0;
 	while (map_data->form.col > 0)
 	{
 		draw_dot(map_data);
-		map_data->form.col -= 80000;
+		map_data->form.col -= 1505000;
+		map_data->form.dim += (i * 10);
+		i++;
 	}
 
 
