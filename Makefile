@@ -3,7 +3,7 @@
 
 NAME= cub3D
 CFLAGS=  -Wall -Wextra -Werror -g3
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 
+MLX_FLAGS = -lm -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 
 
 SRCS=$(addprefix $(SRC_DIR), $(SRC))
 OBJ=$(SRC:.c=.o)
@@ -23,18 +23,28 @@ PLAYER_SETUP = player_setup/
 CLEANUP = game_cleanup/
 DEBUG = game_debug/
 MLX_OPEN_WINDOW_R = mlx_open_window_reuben/
+DRAW = pixel_tools/
 
-SRC= main.c  get_next_line.c \
-	 get_next_line_utils.c game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
-	 game_map_setup/map_tools.c game_errors/display_error.c game_setup/get_line.c game_setup/build_map_values_from_raw.c \
-	 game_setup/create_directional_textures.c game_setup/create_floor_ceiling_textures.c game_setup/floor_ceil_rgb.c \
-	 map_parser/parse_map.c map_parser/treat_first_last_line_properly_configured.c map_parser/check_map_char_validity.c \
-	 map_parser/check_map_lines.c map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c \
-	 player_setup/player_starting_pos.c game_setup/trim_textures_data.c \
-	 game_debug/print_debug.c map_parser/horizontal_map_check.c \
-	 game_cleanup/free_exit.c game_map_setup/floodfill_map_check.c \
-	 game_map_setup/map_rezise_tool.c game_map_setup/map_setup.c game_setup/build_final_map_data.c  game_debug/print_debug_map.c \
-	 game_setup/build_map_textures.c mlx_open_window_reuben/open_window.c
+SRC= main.c  \
+	get_next_line.c get_next_line_utils.c \
+	game_errors/display_error.c \
+	game_cleanup/free_exit.c \
+	game_setup/init_data.c game_setup/check_map_has_valid_extension.c \
+	game_setup/get_line.c game_setup/build_map_values_from_raw.c \
+	game_setup/create_directional_textures.c game_setup/build_map_textures.c \
+	game_setup/build_final_map_data.c game_setup/create_floor_ceiling_textures.c \
+	game_setup/floor_ceil_rgb.c game_setup/open_close_file_setup.c \
+	game_setup/trim_textures_data.c game_map_setup/map_setup.c \
+	game_map_setup/floodfill_map_check.c game_map_setup/map_rezise_tool.c \
+	game_map_setup/map_tools.c \
+	player_setup/player_starting_pos.c \
+	map_parser/parse_map.c map_parser/treat_first_last_line_properly_configured.c \
+	map_parser/check_map_char_validity.c map_parser/check_map_lines.c \
+	map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c \
+	map_parser/horizontal_map_check.c \
+	pixel_tools/draw_line.c pixel_tools/draw_circle.c \
+	game_debug/print_debug_map.c game_debug/print_debug.c \
+	mlx_open_window_reuben/open_window.c \
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -50,7 +60,7 @@ $(NAME): $(OBJS)
 	@make -C ./mlx/ all > /dev/null
 	@make -C ./libft/ all > /dev/null
 	@make -C ./ft_printf/ all > /dev/null
-	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF)  $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -62,6 +72,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(CLEANUP)
 	@mkdir -p $(OBJ_DIR)/$(DEBUG)
 	@mkdir -p $(OBJ_DIR)/$(MLX_OPEN_WINDOW_R)
+	@mkdir -p $(OBJ_DIR)/$(DRAW)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:

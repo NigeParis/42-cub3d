@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 16:51:42 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:59:39 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@
 # include <limits.h>
 # include <stdint.h>
 # include <fcntl.h>
+# include <math.h>
+
+typedef struct s_draw_forms
+{
+	int	start_ht;
+	int	start_wt;
+	int len;
+	int	col;
+	int target_col;
+	int	block;
+	int dim;
+		
+}	t_draw_forms;
+
 
 typedef struct s_game_window
 {
@@ -87,7 +101,8 @@ typedef struct s_data
 	t_colors		colors;
 	t_player_data	player_data;
 	t_cell_data		cell_data;
-	t_game_window	game_window;
+	t_game_window	gw;
+	t_draw_forms	form;
 
 }	t_data;
 
@@ -202,5 +217,58 @@ void	free_setup_maps(t_data *map_data);
 //  WINDOW MANAGEMENT!
 void	mlx_open_window(t_data *map_data);
 
+
+
+//Draw_pixel_tools
+
+///		@brief function draws a line with pixels from bottom to top 
+///		@param map_data needs structure type s_draw_forms for input
+///		@param start_ht vertical start point to start drawing
+///		@param start_wt horizontal start point to start drawing
+///		@param len the length of the line to draw in pixels
+///		@param block the thicknes of the line in pixels to draw
+///		@param col the color of the pixels to be drawn.
+/// 	@return 1 on success and 0 if failed to draw
+int		draw_vl_up(t_data *map_data);
+
+///		@brief function draws a line with pixels from top to bottom 
+///		@param map_data needs structure type s_draw_forms for input
+///		@param start_ht vertical start point to start drawing
+///		@param start_wt horizontal start point to start drawing
+///		@param len the length of the line to draw in pixels
+///		@param block the thicknes of the line in pixels to draw
+///		@param col the color of the pixels to be drawn.
+/// 	@return 1 on success and 0 if failed to draw
+int		draw_vl_down(t_data *map_data);
+
+///		@brief function draws a line with pixels from left to right 
+///		@param map_data needs structure type s_draw_forms for input
+///		@param start_ht vertical start point to start drawing
+///		@param start_wt horizontal start point to start drawing
+///		@param len the length of the line to draw in pixels
+///		@param block the thicknes of the line in pixels to draw
+///		@param col the color of the pixels to be drawn.
+/// 	@return 1 on success and 0 if failed to draw
+int		draw_hl_right(t_data *map_data);
+
+///		@brief function draws a line with pixels from left to right 
+///		@param map_data needs structure type s_draw_forms for input
+///		@param start_ht vertical start point to start drawing
+///		@param start_wt horizontal start point to start drawing
+///		@param len the length of the line to draw in pixels
+///		@param block the thicknes of the line in pixels to draw
+///		@param col the color of the pixels to be drawn.
+/// 	@return 1 on success and 0 if failed to draw
+int		draw_hl_left(t_data *map_data);
+
+
+///		@brief function draws a circle of a given diameter
+///		@param map_data needs structure type s_draw_forms for input
+///		@param start_ht vertical starting point from center of the circle
+///		@param start_wt horizontal starting point from center of the circle
+///		@param dim diameter in pixels to draw
+///		@param col the color of the pixels to be drawn.
+/// 	@return 1 on success and 0 if failed to draw
+int		draw_dot(t_data *map_data);
 
 #endif

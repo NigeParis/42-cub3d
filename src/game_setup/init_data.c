@@ -6,11 +6,23 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/16 19:17:35 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/18 16:01:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+static int	init_form_structure(t_data *map_data)
+{
+	map_data->form.block = 0;
+	map_data->form.col = 0;
+	map_data->form.target_col = 0;
+	map_data->form.dim = 0;
+	map_data->form.len = 0;
+	map_data->form.start_ht = 0;
+	map_data->form.start_wt = 0;
+	return (0);	
+}
 
 static int	init_textures_and_colours(t_data *map_data)
 {
@@ -51,51 +63,6 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->cell_data.cell_size = 0;
 	map_data->nb_zeros_in_map = 0;
 	init_textures_and_colours(map_data);
-	return (0);
-}
-
-int	checkfile_exists(char *file, char *type)
-{
-	int	fd;
-
-	fd = open(file, O_RDONLY);
-	if (!fd || fd == -1)
-	{
-		put_error("Error: ");
-		put_error(type);
-		put_error(" missing ");
-		put_error(file);
-		put_error("\n");
-		exit (1);
-	}
-	close (fd);
-	return (0);
-}
-
-int	open_map_config(t_data *map_data)
-{
-	map_data->fd = open(map_data->file, O_RDONLY);
-	if (!map_data->fd || map_data->fd == -1)
-	{
-		put_error("Error : file ");
-		put_error(*map_data->map);
-		put_error("\n");
-		close(map_data->fd);
-		map_data->fd = -1;
-		exit (1);
-	}
-	return (0);
-}
-
-int	close_map_config(t_data *map_data)
-{
-	if (!map_data)
-		return (0);
-	if (map_data->fd != -1)
-	{
-		close(map_data->fd);
-		map_data->fd = -1;
-		return (1);
-	}
+	init_form_structure(map_data);
 	return (0);
 }
