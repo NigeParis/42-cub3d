@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 11:03:30 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:19:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data);
 void	free_map_abort(t_data *map_data);
 int		add_zeros_from_dots(t_data *map_data);
 void	free_setup_maps(t_data *map_data);
-
+int		create_color(int color_1, int color_2, int color_3);
 
 //  WINDOW MANAGEMENT!
 void	mlx_open_window(t_data *map_data);
