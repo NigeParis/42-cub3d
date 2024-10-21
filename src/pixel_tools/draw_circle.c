@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/18 15:14:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:53:47 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	draw_dot(t_data *map_data)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
+				printf("GET HEIGHT POS! %d\n", ht_pos);
+				printf("GET WIDTH POS! %d\n", wt_pos);
 				mlx_pixel_put(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
 				wt_pos + start[HIEGHT], ht_pos + start[WIDTH], \
 				map_data->form.col);

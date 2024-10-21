@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 11:12:17 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:20:49 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,11 @@ int	init_data(t_data *map_data, char *argv[])
 	init_textures_and_colours(map_data);
 	init_form_structure(map_data);
 	return (0);
+}
+
+
+void	init_game_window_data(t_game_window *game_window)
+{
+	game_window->screen_height = 960;
+	game_window->screen_width = 1920;
 }

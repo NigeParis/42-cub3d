@@ -24,6 +24,7 @@ CLEANUP = game_cleanup/
 DEBUG = game_debug/
 MLX_OPEN_WINDOW_R = mlx_open_window_reuben/
 DRAW = pixel_tools/
+DRAW_MAP = draw_map/
 
 SRC= main.c  \
 	get_next_line.c get_next_line_utils.c \
@@ -44,7 +45,7 @@ SRC= main.c  \
 	map_parser/horizontal_map_check.c \
 	pixel_tools/draw_line.c pixel_tools/draw_circle.c \
 	game_debug/print_debug_map.c game_debug/print_debug.c \
-	mlx_open_window_reuben/open_window.c \
+	mlx_open_window_reuben/open_window.c draw_map/draw_2d_map.c  \
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -73,6 +74,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(DEBUG)
 	@mkdir -p $(OBJ_DIR)/$(MLX_OPEN_WINDOW_R)
 	@mkdir -p $(OBJ_DIR)/$(DRAW)
+	@mkdir -p $(OBJ_DIR)/$(DRAW_MAP)
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 lib:

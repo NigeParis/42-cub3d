@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 16:23:25 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:25:42 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	debug_print_setup_maps(t_data *map_data)
 		dprintf(STDERR_FILENO, "No - Map in memory\n");
 		return ;
 	}
+	/*
 	if (map_data->raw_map)
 		printraw_map(map_data);
 	if (map_data && *map_data->map)
@@ -59,6 +60,7 @@ void	debug_print_setup_maps(t_data *map_data)
 	{	
 		print_player_data(map_data);
 	}
+	*/
 	print_textures(map_data);
 	print_map_rgb(map_data);
 	print_square_map(map_data);		

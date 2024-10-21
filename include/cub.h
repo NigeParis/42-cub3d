@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 11:19:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:15:16 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,10 +216,11 @@ void	free_map_abort(t_data *map_data);
 int		add_zeros_from_dots(t_data *map_data);
 void	free_setup_maps(t_data *map_data);
 int		create_color(int color_1, int color_2, int color_3);
-
+int		calculate_line_height(t_data *map_data, t_game_window *game_window);
+int		calculate_col_with(t_data *map_data, t_game_window *game_window);
 //  WINDOW MANAGEMENT!
-void	mlx_open_window(t_data *map_data);
-
+void	mlx_open_window(t_data *map_data, t_game_window *game_window);
+void	init_game_window_data(t_game_window *game_window);
 
 
 //Draw_pixel_tools
