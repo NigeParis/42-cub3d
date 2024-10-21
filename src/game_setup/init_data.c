@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/18 16:01:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:12:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ static int	init_form_structure(t_data *map_data)
 {
 	map_data->form.block = 0;
 	map_data->form.col = 0;
-	map_data->form.target_col = 0;
 	map_data->form.dim = 0;
 	map_data->form.len = 0;
+	map_data->form.mlx_img = NULL;
+	map_data->form.addr = NULL;
+	map_data->form.endian = 0;
+	map_data->form.pixel_bits = 0;
 	map_data->form.start_ht = 0;
 	map_data->form.start_wt = 0;
 	return (0);	

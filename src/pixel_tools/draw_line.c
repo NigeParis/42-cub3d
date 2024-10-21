@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/18 16:24:02 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 10:58:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,6 @@ int	draw_hl_left(t_data *map_data)
 		}
 		block--;
 		ht_pos++;
-		if ((map_data->form.target_col > 0) && ((map_data->form.target_col / 2) > 0))
-			map_data->form.col += (map_data->form.target_col / 2);
 		wt_pos = map_data->form.start_wt;
 		i = 0;
 	}

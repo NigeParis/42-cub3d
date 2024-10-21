@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/18 15:59:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:03:30 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@
 
 typedef struct s_draw_forms
 {
-	int	start_ht;
-	int	start_wt;
-	int len;
-	int	col;
-	int target_col;
-	int	block;
-	int dim;
+	int		start_ht;
+	int		start_wt;
+	int		len;
+	int		col;
+	int		block;
+	int		dim;
+	void	*mlx_img;
+	char	*addr;
+	int 	pixel_bits;
+	int		endian;
 		
 }	t_draw_forms;
 
