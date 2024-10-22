@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 16:18:50 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:27:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,3 +72,4 @@ int	init_data(t_data *map_data, char *argv[])
 	init_form_structure(map_data);
 	return (0);
 }
+

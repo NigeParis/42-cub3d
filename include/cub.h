@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 17:46:33 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:29:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,10 +219,10 @@ void	free_map_abort(t_data *map_data);
 int		add_zeros_from_dots(t_data *map_data);
 void	free_setup_maps(t_data *map_data);
 int		create_color(int color_1, int color_2, int color_3);
-
+int		calculate_line_height(t_data *map_data);
+int		calculate_col_with(t_data *map_data);
 //  WINDOW MANAGEMENT!
 void	mlx_open_window(t_data *map_data);
-
 
 
 //Draw_pixel_tools
@@ -247,5 +247,9 @@ int		draw_rectangle(t_data *map_data);
 ///		@param col the color of the pixels to be drawn.
 /// 	@return 1 on success and 0 if failed to draw
 int		draw_dot(t_data *map_data);
+
+
+void	draw_map_dots(t_data *map_data);
+
 
 #endif

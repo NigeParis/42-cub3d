@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 09:52:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 10:27:24 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,27 +63,18 @@ int handle_keypress(int keysym, t_data *map_data)
 
 
 
+
+
 int	main(int argc, char *argv[])
 {
 	t_data	map_data;
 
 	get_map_check_and_setup(argc, argv, &map_data);
-	free_setup_maps(&map_data);
-	//debug_print_setup_maps(&map_data); //to use //->free_setup_maps
+	//free_setup_maps(&map_data);
+	debug_print_setup_maps(&map_data); //to use //->free_setup_maps
 	map_data.gw.mlx_ptr = mlx_init();
 	
-	
 	mlx_open_window(&map_data);
-	
-
-	
-		map_data.form.start_ht = 500;
-		map_data.form.start_wt = 975;
-		map_data.form.size_ht = 200;
-		map_data.form.size_wt = 200;
-		map_data.form.dim = 20;
-		map_data.form.col = 222;
-
 	
 
 
