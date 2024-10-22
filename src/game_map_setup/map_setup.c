@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:18:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 13:28:54 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:21:56 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_map_check_and_setup(int argc, char **argv, t_data *map_data)
 	find_zeros_for_floodfill(map_data);
 	count_dots(map_data);
 	add_zeros_from_dots(map_data);
-	get_player_starting_pos(map_data);
+	//get_player_starting_pos(map_data);
 	
 }
 
