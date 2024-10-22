@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 14:22:31 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/22 15:56:23 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ int handle_keypress(int keysym, t_data *map_data)
 	}
 	if(keysym == XK_1)
 	{
-		map_data->form.start_wt -= 15;
+		map_data->player_data.x_pos -= 15;
 	}
 	if(keysym == XK_2)
 	{
-		map_data->form.start_wt += 15;
+		map_data->player_data.x_pos += 15;
 	}
 	if(keysym == XK_8)
 	{
-		map_data->form.start_ht -= 15;
+		map_data->player_data.y_pos -= 15;
 	}
 	if(keysym == XK_9)
 	{
-		map_data->form.start_ht += 15;
+		map_data->player_data.y_pos += 15;
 	}
 	if(keysym == XK_0)
 	{
@@ -72,8 +72,13 @@ int	main(int argc, char *argv[])
 	get_map_check_and_setup(argc, argv, &map_data);
 	//free_setup_maps(&map_data);
 	debug_print_setup_maps(&map_data); //to use //->free_setup_maps
-	map_data.gw.mlx_ptr = mlx_init();
 	
+	map_data.gw.mlx_ptr = mlx_init();
+	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
+	get_player_starting_pos(&map_data);
+
+
+
 	mlx_open_window(&map_data);
 	
 
