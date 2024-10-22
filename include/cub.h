@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 16:30:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:56:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct s_data
 	int				nb_zeros_in_map;
 	int				fd;
 	int				minimap_scale;
+	int				char_pixel_height;
+	int				char_pixel_width;
 	t_texture_data	textures;
 	t_colors		colors;
 	t_player_data	player_data;
