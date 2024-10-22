@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 13:33:59 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:30:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_draw_forms
 	int		size_wt;
 	int		len;
 	int		col;
+	int		dot_col;
 	int		dim;
 		
 }	t_draw_forms;
@@ -105,6 +106,7 @@ typedef struct s_data
 	int				valid_map;
 	int				nb_zeros_in_map;
 	int				fd;
+	int				minimap_scale;
 	t_texture_data	textures;
 	t_colors		colors;
 	t_player_data	player_data;
@@ -251,7 +253,7 @@ int		draw_rectangle(t_data *map_data);
 int		draw_dot(t_data *map_data);
 
 
-void	draw_map_dots(t_data *map_data);
+void	draw_map(t_data *map_data);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:56:26 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 14:41:54 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:20:25 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	get_player_starting_pos(t_data *map_data)
 
 	i = 0;
 	j = 0;
-	col_width = calculate_col_width(map_data);
-	row_height = calculate_line_height(map_data);
+	col_width = (int)calculate_col_width(map_data) / map_data->minimap_scale;
+	row_height = (int)calculate_line_height(map_data) / map_data->minimap_scale;
 	while (map_data->square_map && map_data->square_map[i])
 	{
 		while (map_data->square_map[i][j])

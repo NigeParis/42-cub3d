@@ -14,8 +14,9 @@ int	draw_to_screen(t_data *map_data)
 	// get_player_starting_pos(map_data);
 
 	// dprintf(STDERR_FILENO, "player x %d \n", map_data->player_data.x_pos );
-	draw_map_dots(map_data);
+	draw_map(map_data);
 	draw_dot(map_data);
+	mlx_clear_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
 	mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 12:55:32 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:35:20 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
 
     while (color_shift >= 0)
     {
-        *pixel = (map_data->form.col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
+        *pixel = (map_data->form.dot_col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
         color_shift -= bits;
 		pixel++;
     }
@@ -51,8 +51,7 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	
 	*ht_pos = map_data->player_data.y_pos;
 	*wt_pos = map_data->player_data.x_pos;
-	map_data->form.col = create_color(255,0, 0);
-	*rad = 10 / 2;
+	*rad = map_data->form.dim;
 	return (1);
 }
 
@@ -76,7 +75,7 @@ int	draw_dot(t_data *map_data)
 			{
 				if (within_drawing_limits(map_data, wt_pos + start[HIEGHT], ht_pos + start[WIDTH]))
 				{
-					mlx_put_pixel(map_data, wt_pos + start[HIEGHT], ht_pos + start[WIDTH]);
+					mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]);
 				}
 					
 			}

@@ -56,10 +56,9 @@ void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 	int	char_ind;
 	int horizontal;
 	int	vertical;
-	int scale_map_window = 1;
 	
-	get_char_height = calculate_line_height(map_data) / scale_map_window;
-	get_char_width = calculate_col_width(map_data) / scale_map_window;
+	get_char_height = calculate_line_height(map_data) / map_data->minimap_scale;
+	get_char_width = calculate_col_width(map_data) / map_data->minimap_scale;
 	char_ind = 0;
 	horizontal = 0;
 	vertical = 0;
@@ -88,7 +87,7 @@ void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 	*offset_y+= get_char_height;
 }
 
-void	draw_map_dots(t_data *map_data)
+void	draw_map(t_data *map_data)
 {
 	int	i;
 	int offset_x;
