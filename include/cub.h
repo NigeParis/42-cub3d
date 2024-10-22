@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 17:33:28 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:31:10 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_player_data
 {
 	int	x_pos;
 	int	y_pos;
+	int	y_last_pos;
+	int	x_last_pos;
 	int x_pos_pixel;
 	int y_pos_pixel;
 	int		speed;
@@ -255,6 +257,7 @@ int		draw_background(t_data *map_data);
 ///		@param col the color of the pixels to be drawn.
 /// 	@return 1 on success and 0 if failed to draw
 int		draw_dot(t_data *map_data);
+int		check_dot(t_data *map_data);
 
 
 void	draw_map(t_data *map_data);
