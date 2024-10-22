@@ -13,7 +13,7 @@ int	draw_to_screen(t_data *map_data)
 	//draw_dot(map_data);
 
 	draw_map_dots(map_data);
-
+	draw_dot(map_data);
 	mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 
 
@@ -28,8 +28,6 @@ void mlx_open_window(t_data *map_data)
 
 	get_color = create_color(50, 100, 150);
 	mlx_get_screen_size(map_data->gw.mlx_ptr, &map_data->gw.screen_width, &map_data->gw.screen_height);
-	printf("GET WIDTH %d\n", map_data->gw.screen_width);
-	printf("GET HEIGht_pos %d\n", map_data->gw.screen_height);
 	map_data->gw.mlx_window = mlx_new_window(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height, "test");
 	
 	map_data->form.mlx_img = mlx_new_image(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height);

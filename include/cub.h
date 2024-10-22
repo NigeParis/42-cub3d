@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 10:29:02 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:33:59 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,10 @@ typedef struct s_cell_data
 
 typedef struct s_player_data
 {
-	double	x_pos;
-	double	y_pos;
+	int	x_pos;
+	int	y_pos;
+	int x_pos_pixel;
+	int y_pos_pixel;
 	int		speed;
 	int		size;
 
@@ -220,7 +222,7 @@ int		add_zeros_from_dots(t_data *map_data);
 void	free_setup_maps(t_data *map_data);
 int		create_color(int color_1, int color_2, int color_3);
 int		calculate_line_height(t_data *map_data);
-int		calculate_col_with(t_data *map_data);
+int		calculate_col_width(t_data *map_data);
 //  WINDOW MANAGEMENT!
 void	mlx_open_window(t_data *map_data);
 

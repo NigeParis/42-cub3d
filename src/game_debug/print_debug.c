@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 11:25:42 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:02:44 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	print_map_rgb(t_data *map_data)
 void	print_player_data(t_data *map_data)
 {
 	dprintf(STDERR_FILENO, "\nstucture - player_data:\n\n");
-	dprintf(STDERR_FILENO, "x_pos : %f\n", (map_data)->player_data.x_pos);
-	dprintf(STDERR_FILENO, "y_pos : %f\n", (map_data)->player_data.y_pos);
+	dprintf(STDERR_FILENO, "x_pos : %d\n", (map_data)->player_data.x_pos);
+	dprintf(STDERR_FILENO, "y_pos : %d\n", (map_data)->player_data.y_pos);
 	dprintf(STDERR_FILENO, "speed : %d\n", (map_data)->player_data.speed);
 	dprintf(STDERR_FILENO, "size : %d\n", (map_data)->player_data.size);
 	dprintf(STDERR_FILENO, "Cell size : %d\n", (map_data)->cell_data.cell_size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 10:27:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:35:00 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,12 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->file = argv[1];
 	map_data->raw_map = NULL;
 	map_data->map = NULL;
-	map_data->max_width = 0;
-	map_data->max_height = 0;
+	map_data->max_width = 1;
+	map_data->max_height = 1;
 	map_data->player_data.x_pos = 0;
 	map_data->player_data.y_pos = 0;
+	map_data->player_data.x_pos_pixel = 0;
+	map_data->player_data.y_pos_pixel = 0;
 	map_data->player_data.speed = 0;
 	map_data->player_data.size = 0;
 	map_data->cell_data.cell_size = 0;

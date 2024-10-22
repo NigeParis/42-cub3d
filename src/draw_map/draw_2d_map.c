@@ -2,27 +2,18 @@
 
 int	calculate_line_height(t_data *map_data)
 {
-	int	i;
+	float temp_float; 
 
-	i = 0;
-	while (map_data->square_map[i])
-		i++;
-	return (map_data->gw.screen_height / i);
+	temp_float = map_data->gw.screen_height/ map_data->max_height;
+	map_data->player_data.y_pos_pixel = (int) temp_float;
+	return (-1);
 } 
 
-int calculate_col_with(t_data *map_data)
+int calculate_col_width(t_data *map_data)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map_data->square_map[i])
-	{
-		while (map_data->square_map[i][j])
-			j++;
-		break;
-	}
-	return (map_data->gw.screen_width / j);
+	float temp_float;
+	temp_float = map_data->gw.screen_width / map_data->max_width;
+	map_data->player_data.x_pos_pixel = (int) temp_float;
+	return ( -1);
 }
 

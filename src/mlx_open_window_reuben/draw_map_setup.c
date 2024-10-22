@@ -59,7 +59,7 @@ void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 	int scale_map_window = 1;
 	
 	get_char_height = calculate_line_height(map_data) / scale_map_window;
-	get_char_width = calculate_col_with(map_data) / scale_map_window;
+	get_char_width = calculate_col_width(map_data) / scale_map_window;
 	char_ind = 0;
 	horizontal = 0;
 	vertical = 0;
@@ -69,10 +69,12 @@ void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 		{
 			while (horizontal < get_char_width)
 			{
-				
 				map_data->form.col = determine_color_to_draw(line[char_ind]);
 				if (within_drawing_limits(map_data, (horizontal + *offset_x), (vertical + *offset_y)))
+				{
 					mlx_put_pixel(map_data, horizontal + *offset_x, vertical + *offset_y);
+				}
+					
 				horizontal++;
 			}
 			horizontal = 0;
@@ -98,7 +100,6 @@ void	draw_map_dots(t_data *map_data)
 	offset_y = 1;
 	while (map_data->square_map[i])
 	{
-		draw_dot(map_data);
 		draw_lines(map_data, &offset_x, &offset_y, map_data->square_map[i]);
 		i++;
 	}

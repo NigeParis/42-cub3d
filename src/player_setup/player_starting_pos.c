@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_starting_pos.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:56:26 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:59:50 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:38:05 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,24 @@ void	get_player_starting_pos(t_data *map_data)
 
 	i = 0;
 	j = 0;
-	while (map_data->map[i])
+	while (map_data->square_map[i])
 	{
-		while (map_data->map[i][j])
+		while (map_data->square_map[i][j])
 		{
-			if (map_data->map[i][j] == 'S'
-			|| map_data->map[i][j] == 'N'
-			|| map_data->map[i][j] == 'E'
-			|| map_data->map[i][j] == 'W')
+			if (map_data->square_map[i][j] == 'S'
+			|| map_data->square_map[i][j] == 'N'
+			|| map_data->square_map[i][j] == 'E'
+			|| map_data->square_map[i][j] == 'W')
 			{
-				map_data->player_data.x_pos = (double) j;
-				map_data->player_data.y_pos = (double) i;
+				printf("GET J IN CALCULATION %d\n", j);
+				printf("GET I IN CALCULATION %d\n", i);
+				calculate_col_width(map_data);
+				calculate_line_height(map_data);
+				map_data->player_data.x_pos =   (j * map_data->player_data.x_pos_pixel);
+				map_data->player_data.y_pos =   (i * map_data->player_data.y_pos_pixel);
+				printf("GET PLAYER X POS %d\n", map_data->player_data.x_pos);
+				printf("GET PLAYER Y POS %d\n", map_data->player_data.y_pos);
+				
 				return ;
 			}
 			j++;
