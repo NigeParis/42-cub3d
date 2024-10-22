@@ -6,13 +6,42 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/18 15:14:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:25:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #define WIDTH 0
 #define HIEGHT 1
+
+static void mlx_put_pixel(t_data *map_data, int x, int y)
+{
+    char *pixel;
+    int color_shift;
+	int bits;
+
+	if (x < 0 || y < 0)
+		return ;
+	bits = 8;
+    color_shift = map_data->form.pixel_bits - bits;
+    pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / bits));
+
+    while (color_shift >= 0)
+    {
+        *pixel = (map_data->form.col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
+        color_shift -= bits;
+		pixel++;
+    }
+}
+
+static int	within_drawing_limits(t_data *map_data, int x, int y)
+{
+	if ((x > map_data->gw.screen_width) || (y > map_data->gw.screen_height))
+	{
+        return (0);
+	}
+	return (1);
+}
 
 static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	int *wt_pos, int *rad)
@@ -43,9 +72,8 @@ int	draw_dot(t_data *map_data)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
-				mlx_pixel_put(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-				wt_pos + start[HIEGHT], ht_pos + start[WIDTH], \
-				map_data->form.col);
+				if (within_drawing_limits(map_data, wt_pos + start[HIEGHT], ht_pos + start[WIDTH]))
+					mlx_put_pixel(map_data, wt_pos + start[HIEGHT], ht_pos + start[WIDTH]);
 			}
 			start[HIEGHT]++;
 		}
@@ -53,3 +81,4 @@ int	draw_dot(t_data *map_data)
 	}
 	return (1);
 }
+

@@ -6,14 +6,16 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 09:46:48 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 09:52:39 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 int destroy(t_data *map_data)
-{
+{	
+	if (map_data->form.mlx_img)
+		mlx_destroy_image(map_data->gw.mlx_ptr, map_data->form.mlx_img);
 	if (map_data->gw.mlx_window)
 		mlx_destroy_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
 	if (map_data->gw.mlx_ptr)
@@ -34,6 +36,28 @@ int handle_keypress(int keysym, t_data *map_data)
 		map_data->gw.mlx_window = NULL;
 		destroy(map_data);
 	}
+	if(keysym == XK_1)
+	{
+		map_data->form.start_wt -= 15;
+	}
+	if(keysym == XK_2)
+	{
+		map_data->form.start_wt += 15;
+	}
+	if(keysym == XK_8)
+	{
+		map_data->form.start_ht -= 15;
+	}
+	if(keysym == XK_9)
+	{
+		map_data->form.start_ht += 15;
+	}
+	if(keysym == XK_0)
+	{
+		map_data->form.start_ht = 500;
+		map_data->form.start_wt = 975;
+		map_data->form.col += 256 * 256;
+	}
 	return (0);
 }
 
@@ -51,8 +75,15 @@ int	main(int argc, char *argv[])
 	
 	mlx_open_window(&map_data);
 	
+
 	
-	
+		map_data.form.start_ht = 500;
+		map_data.form.start_wt = 975;
+		map_data.form.size_ht = 200;
+		map_data.form.size_wt = 200;
+		map_data.form.dim = 20;
+		map_data.form.col = 222;
+
 	
 
 

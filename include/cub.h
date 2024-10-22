@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 11:19:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:46:33 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@
 
 typedef struct s_draw_forms
 {
-	int		start_ht;
-	int		start_wt;
-	int		len;
-	int		col;
-	int		block;
-	int		dim;
 	void	*mlx_img;
 	char	*addr;
 	int 	pixel_bits;
 	int		endian;
+	int		start_ht;
+	int		start_wt;
+	int		end_ht;
+	int		end_wt;
+	int		size_ht;
+	int		size_wt;
+	int		len;
+	int		col;
+	int		dim;
 		
 }	t_draw_forms;
 
@@ -224,45 +227,16 @@ void	mlx_open_window(t_data *map_data);
 
 //Draw_pixel_tools
 
-///		@brief function draws a line with pixels from bottom to top 
-///		@param map_data needs structure type s_draw_forms for input
-///		@param start_ht vertical start point to start drawing
-///		@param start_wt horizontal start point to start drawing
-///		@param len the length of the line to draw in pixels
-///		@param block the thicknes of the line in pixels to draw
-///		@param col the color of the pixels to be drawn.
-/// 	@return 1 on success and 0 if failed to draw
-int		draw_vl_up(t_data *map_data);
-
-///		@brief function draws a line with pixels from top to bottom 
-///		@param map_data needs structure type s_draw_forms for input
-///		@param start_ht vertical start point to start drawing
-///		@param start_wt horizontal start point to start drawing
-///		@param len the length of the line to draw in pixels
-///		@param block the thicknes of the line in pixels to draw
-///		@param col the color of the pixels to be drawn.
-/// 	@return 1 on success and 0 if failed to draw
-int		draw_vl_down(t_data *map_data);
-
 ///		@brief function draws a line with pixels from left to right 
 ///		@param map_data needs structure type s_draw_forms for input
 ///		@param start_ht vertical start point to start drawing
 ///		@param start_wt horizontal start point to start drawing
-///		@param len the length of the line to draw in pixels
-///		@param block the thicknes of the line in pixels to draw
+///		@param size_ht the hieght of the line in pixels to draw
+///		@param size_wt the width of the line to draw in pixels
 ///		@param col the color of the pixels to be drawn.
 /// 	@return 1 on success and 0 if failed to draw
-int		draw_hl_right(t_data *map_data);
+int		draw_rectangle(t_data *map_data);
 
-///		@brief function draws a line with pixels from left to right 
-///		@param map_data needs structure type s_draw_forms for input
-///		@param start_ht vertical start point to start drawing
-///		@param start_wt horizontal start point to start drawing
-///		@param len the length of the line to draw in pixels
-///		@param block the thicknes of the line in pixels to draw
-///		@param col the color of the pixels to be drawn.
-/// 	@return 1 on success and 0 if failed to draw
-int		draw_hl_left(t_data *map_data);
 
 
 ///		@brief function draws a circle of a given diameter

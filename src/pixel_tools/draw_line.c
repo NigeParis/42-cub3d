@@ -6,133 +6,85 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 10:58:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 09:45:39 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static int	init_line_draw_data(t_data *map_data, int *ht_pos, \
-	int *wt_pos, int *block)
+static void mlx_put_pixel(t_data *map_data, int x, int y)
 {
-	if (!map_data || !ht_pos || !wt_pos || !block)
-		return (0);
-	*ht_pos = map_data->form.start_ht;
-	*wt_pos = map_data->form.start_wt;
-	*block = map_data->form.block;
-	return (1);
+    char *pixel;
+    int color_shift;
+	int bits;
+
+	bits = 8;
+    color_shift = map_data->form.pixel_bits - bits;
+    pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
+
+    while (color_shift >= 0)
+    {
+        *pixel = (map_data->form.col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
+        color_shift -= bits;
+		pixel++;
+    }
 }
 
-int	draw_vl_up(t_data *map_data)
+static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	int	ht_pos;
-	int	wt_pos;
-	int	block;
-	int	i;
-
-	i = 0;
-	if (!init_line_draw_data(map_data, &ht_pos, &wt_pos, &block))
-		return (0);
-	if ((wt_pos > map_data->gw.screen_width) || \
-		(ht_pos > map_data->gw.screen_height))
-		return (0);
-	while (block > 0)
+	if ((x + 1 > map_data->gw.screen_width) || (y + 1 > map_data->gw.screen_height))
 	{
-		while ((ht_pos > 0) && (i++ < map_data->form.len))
-		{	
-			mlx_pixel_put(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-			wt_pos, ht_pos, map_data->form.col);
-			ht_pos--;
-		}
-		block--;
-		wt_pos++;
-		ht_pos = map_data->form.start_ht;
-		i = 0;
+        return (0);
 	}
+	if (x < 0 || y < 0)
+		return (0);
 	return (1);
 }
 
-int	draw_vl_down(t_data *map_data)
+int draw_rectangle(t_data *map_data)
 {
-	int	ht_pos;
-	int	wt_pos;
-	int	block;
-	int	end;
+    int hieght_position;
+	int width_position;
 
-	if (!init_line_draw_data(map_data, &ht_pos, &wt_pos, &block))
-		return (0);
-	if ((wt_pos > map_data->gw.screen_width) || \
-		(ht_pos > map_data->gw.screen_height))
-		return (0);
-	end = map_data->form.len + ht_pos;
-	while (block > 0)
+    hieght_position = 0;
+	width_position = 0;
+	hieght_position = map_data->form.start_ht;
+	while (hieght_position < map_data->form.start_ht + map_data->form.size_ht)
 	{
-		while (ht_pos < end)
-		{	
-			mlx_pixel_put(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-			wt_pos, ht_pos, map_data->form.col);
-			ht_pos++;
+		width_position = map_data->form.start_wt;
+		while (width_position < map_data->form.start_wt + map_data->form.size_wt)
+		{
+			if (within_drawing_limits(map_data, width_position, hieght_position))
+				mlx_put_pixel(map_data, width_position, hieght_position);
+			width_position++;
 		}
-		block--;
-		wt_pos++;
-		ht_pos = map_data->form.start_ht;
+		hieght_position++;
 	}
-	return (1);
+    return (1);
 }
 
-int	draw_hl_right(t_data *map_data)
+
+
+int draw_background(t_data *map_data)
 {
-	int	ht_pos;
-	int	wt_pos;
-	int	block;
-	int	end;
+    int hieght_position;
+	int width_position;
 
-	if (!init_line_draw_data(map_data, &ht_pos, &wt_pos, &block))
-		return (0);
-	if ((wt_pos > map_data->gw.screen_width) || \
-		(ht_pos > map_data->gw.screen_height))
-		return (0);
-	end = map_data->form.len + wt_pos;
-	while (block > 0)
+    hieght_position = 0;
+	width_position = 0;
+	while (hieght_position < map_data->gw.screen_height)
 	{
-		while (wt_pos < end)
-		{	
-			mlx_pixel_put(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-			wt_pos, ht_pos, map_data->form.col);
-			wt_pos++;
+		width_position = 0;
+		while (width_position < map_data->gw.screen_width)
+		{
+			if (within_drawing_limits(map_data, width_position, hieght_position))
+				mlx_put_pixel(map_data, width_position, hieght_position);
+			width_position++;
 		}
-		block--;
-		ht_pos++;
-		wt_pos = map_data->form.start_wt;
+		hieght_position++;
 	}
-	return (1);
+    return (1);
 }
 
-int	draw_hl_left(t_data *map_data)
-{
-	int	ht_pos;
-	int	wt_pos;
-	int	block;
-	int	i;
 
-	i = 0;
-	if (!init_line_draw_data(map_data, &ht_pos, &wt_pos, &block))
-		return (0);
-	if ((wt_pos > map_data->gw.screen_width) || \
-		(ht_pos > map_data->gw.screen_height))
-		return (0);
-	while (block > 0)
-	{
-		while ((wt_pos > 0) && (i++ < map_data->form.len))
-		{	
-			mlx_pixel_put(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-			wt_pos, ht_pos, map_data->form.col);
-			wt_pos--;
-		}
-		block--;
-		ht_pos++;
-		wt_pos = map_data->form.start_wt;
-		i = 0;
-	}
-	return (1);
-}
+
