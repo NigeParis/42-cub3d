@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 09:45:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:32:16 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int draw_background(t_data *map_data)
 
     hieght_position = 0;
 	width_position = 0;
+	map_data->form.col = 222;
 	while (hieght_position < map_data->gw.screen_height)
 	{
 		width_position = 0;

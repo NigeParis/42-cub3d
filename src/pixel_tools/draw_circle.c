@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 17:00:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:02:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
-	*rad = map_data->form.dim;
+	*rad = (int)(map_data->form.dim / 2) / map_data->minimap_scale;
+	if (*rad < 1)
+		*rad = 1;
 	return (1);
 }
 

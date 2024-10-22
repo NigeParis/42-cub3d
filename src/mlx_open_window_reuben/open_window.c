@@ -9,17 +9,25 @@ int		create_color(int color_1, int color_2, int color_3)
 int	draw_to_screen(t_data *map_data)
 {
 	
-	//draw_rectangle(map_data);
 	//draw_dot(map_data);
 	// get_player_starting_pos(map_data);
 
 	// dprintf(STDERR_FILENO, "player x %d \n", map_data->player_data.x_pos );
-	draw_map(map_data);
-	draw_dot(map_data);
-	mlx_clear_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
-	mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 
+	if (map_data->minimap_show)
+	{
+		draw_background(map_data);
+		draw_map(map_data);
+		draw_dot(map_data);
+		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
+	}
+	else
+	{
+		mlx_clear_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
+		draw_background(map_data);
+		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 
+	}
 	return (0);
 }
 

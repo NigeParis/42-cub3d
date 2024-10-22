@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 16:05:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:06:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,31 @@ int handle_keypress(int keysym, t_data *map_data)
 		map_data->gw.mlx_window = NULL;
 		destroy(map_data);
 	}
-	if(keysym == XK_1)
+	if(keysym == XK_a)
 	{
-		map_data->player_data.x_pos -= 15;
+		map_data->player_data.x_pos -= map_data->player_data.speed;
 	}
-	if(keysym == XK_2)
+	if(keysym == XK_d)
 	{
-		map_data->player_data.x_pos += 15;
+		map_data->player_data.x_pos += map_data->player_data.speed;
 	}
-	if(keysym == XK_8)
+	if(keysym == XK_w)
 	{
-		map_data->player_data.y_pos -= 15;
+		map_data->player_data.y_pos -= map_data->player_data.speed;
 	}
-	if(keysym == XK_9)
+	if(keysym == XK_s)
 	{
-		map_data->player_data.y_pos += 15;
+		map_data->player_data.y_pos += map_data->player_data.speed;
 	}
-	if(keysym == XK_0)
+	if(keysym == XK_m)
 	{
-		map_data->form.start_ht = 500;
-		map_data->form.start_wt = 975;
-		map_data->form.col += 256 * 256;
+		if (map_data->minimap_show == 0)
+			map_data->minimap_show = 1;
+		else
+			map_data->minimap_show = 0;
 	}
 	return (0);
 }
-
 
 
 
