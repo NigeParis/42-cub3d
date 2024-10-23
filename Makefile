@@ -43,7 +43,7 @@ SRC= main.c  \
 	map_parser/check_map_char_validity.c map_parser/check_map_lines.c \
 	map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c \
 	map_parser/horizontal_map_check.c \
-	pixel_tools/draw_line.c pixel_tools/draw_circle.c \
+	pixel_tools/draw_line.c pixel_tools/draw_circle.c pixel_tools/check_pixel.c\
 	game_debug/print_debug_map.c game_debug/print_debug.c \
 	mlx_open_window_reuben/open_window.c draw_map/draw_2d_map.c mlx_open_window_reuben/draw_map_setup.c \
 	 

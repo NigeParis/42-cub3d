@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pixel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/22 23:33:14 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/23 08:37:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
-	*rad = (int)((map_data->form.dim / 2) / map_data->minimap_scale) + 5;
-	if (*rad < 1)
+	*rad = (int)((map_data->form.dim / 2) / map_data->minimap_scale);
+	map_data->player_data.speed /= map_data->minimap_scale; 
+	dprintf(STDERR_FILENO,"dim = %d\n", map_data->form.dim);
+	if (*rad < 10)
 		*rad = 1;
 	return (1);
 }
