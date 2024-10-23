@@ -46,6 +46,7 @@ SRC= main.c  \
 	pixel_tools/draw_line.c pixel_tools/draw_circle.c pixel_tools/check_pixel.c\
 	game_debug/print_debug_map.c game_debug/print_debug.c \
 	mlx_open_window_reuben/open_window.c draw_map/draw_2d_map.c mlx_open_window_reuben/draw_map_setup.c \
+	mlx_open_window_reuben/draw_lines_setup.c 
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

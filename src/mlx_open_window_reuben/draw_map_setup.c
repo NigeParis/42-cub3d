@@ -10,6 +10,26 @@ static int	within_drawing_limits(t_data *map_data, int x, int y)
 	return (1);
 }
 
+
+static void mlx_put_pixel(t_data *map_data, int x, int y)
+{
+    char *pixel;
+    int color_shift;
+	int bits;
+
+	bits = 8;
+	color_shift = map_data->form.pixel_bits - bits;
+    pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
+
+    while (color_shift >= 0)
+    {
+        *pixel = (map_data->form.col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
+        color_shift -= bits;
+		pixel++;
+    }
+}
+
+
 int		determine_color_to_draw(char line_char)
 {
 	if (line_char == '0')
@@ -31,47 +51,14 @@ int		determine_color_to_draw(char line_char)
 	}
 }
 
-static void mlx_put_pixel(t_data *map_data, int x, int y)
-{
-    char *pixel;
-    int color_shift;
-	int bits;
 
-	bits = 8;
-	color_shift = map_data->form.pixel_bits - bits;
-    pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
-
-    while (color_shift >= 0)
-    {
-        *pixel = (map_data->form.col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
-        color_shift -= bits;
-		pixel++;
-    }
-}
-
-int	check_pixel_chars_large_enough(t_data *map_data)
-{
-	int	char_pixel_height;
-	int	char_pixel_width;
-
-	char_pixel_height = calculate_line_height(map_data) / map_data->minimap_scale;
-	char_pixel_width = calculate_col_width(map_data) / map_data->minimap_scale;
-	if (char_pixel_height < 3 || char_pixel_width < 3)
-		return (0);
-	return (1);
-}
-
-void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
+void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 {
 	int	char_ind;
 	int horizontal;
 	int	vertical;
 	
-	map_data->char_pixel_height = calculate_line_height(map_data) / map_data->minimap_scale;
-	map_data->char_pixel_width = calculate_col_width(map_data) / map_data->minimap_scale;
-	char_ind = 0;
-	horizontal = 0;
-	vertical = 0;
+	setup_draw_lines_values(map_data, &char_ind, &horizontal, &vertical);
 	while (line[char_ind])
 	{
 		while (vertical < map_data->char_pixel_height)
@@ -80,22 +67,18 @@ void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 			{
 				map_data->form.col = determine_color_to_draw(line[char_ind]);
 				if (within_drawing_limits(map_data, (horizontal + *offset_x), (vertical + *offset_y)))
-				{
 					mlx_put_pixel(map_data, horizontal + *offset_x, vertical + *offset_y);
-				}
-					
 				horizontal++;
 			}
-			horizontal = 0;
-			vertical++;
+			reset_values_after_horizontal_loop(&horizontal, &vertical);
 		}
-		*offset_x += map_data->char_pixel_width;
-		vertical = 0;
-		char_ind++;
+		reset_values_after_vertical_loop(map_data, offset_x, &vertical, &char_ind);
 	}
 	*offset_x = 1;
 	*offset_y+= map_data->char_pixel_height;
 }
+
+
 
 void	draw_map(t_data *map_data)
 {
