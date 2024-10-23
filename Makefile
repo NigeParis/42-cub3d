@@ -38,7 +38,7 @@ SRC= main.c  \
 	game_setup/trim_textures_data.c game_map_setup/map_setup.c \
 	game_map_setup/floodfill_map_check.c game_map_setup/map_rezise_tool.c \
 	game_map_setup/map_tools.c \
-	player_setup/player_starting_pos.c \
+	player_setup/player_starting_pos.c player_setup/get_player_starting_angle.c \
 	map_parser/parse_map.c map_parser/treat_first_last_line_properly_configured.c \
 	map_parser/check_map_char_validity.c map_parser/check_map_lines.c \
 	map_parser/check_zero_char_properly_closed.c map_parser/check_map_spaces_closed_off_by_walls.c \

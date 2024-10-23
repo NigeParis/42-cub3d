@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:35:13 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:25:27 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	main(int argc, char *argv[])
 	map_data.gw.mlx_ptr = mlx_init();
 	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
 	get_player_starting_pos(&map_data);
+	get_player_starting_angle(&map_data);
 	if (!mlx_open_window(&map_data))
 		return (0);
 	mlx_hook(map_data.gw.mlx_window, KeyPress, KeyPressMask, &handle_keypress, &map_data);

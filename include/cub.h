@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:30:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:07:02 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,6 +251,10 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
 
+
+//player setup
+int		player_degree_found(t_data *map_data, char *line);
+void	get_player_starting_angle(t_data *map_data);
 
 
 ///		@brief function draws a circle of a given diameter

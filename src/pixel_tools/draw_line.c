@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:39:23 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:49:29 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int draw_rectangle(t_data *map_data)
 
     hieght_position = 0;
 	width_position = 0;
-	map_data->form.start_ht = map_data->player_data.y_pos;
-	map_data->form.start_wt = map_data->player_data.x_pos;
 	hieght_position = map_data->form.start_ht;
 	while (hieght_position < map_data->form.start_ht + map_data->form.size_ht)
 	{
