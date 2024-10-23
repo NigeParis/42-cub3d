@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:38:41 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:35:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	init_form_structure(t_data *map_data)
 	map_data->form.endian = 0;
 	map_data->form.col = 0;
 	map_data->form.dot_col = create_color(255,0, 0);
-	map_data->form.dim = 1;
 	map_data->form.len = 0;
 	map_data->form.start_ht = 0;
 	map_data->form.size_ht = map_data->player_data.y_pos + 10;
@@ -57,7 +56,7 @@ int	init_data(t_data *map_data, char *argv[])
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
 	map_data->valid_map = 1;
-	map_data->minimap_scale = 5;   //5; - change to reduce minimap size
+	map_data->minimap_scale = 2;   //5; - change to reduce minimap size
 	map_data->minimap_show = 0;   //5; - change to reduce minimap size
 	map_data->fd = -1;
 	map_data->file = argv[1];
@@ -71,7 +70,7 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->player_data.y_pos = 0;
 	map_data->player_data.x_pos_pixel = 0;
 	map_data->player_data.y_pos_pixel = 0;
-	map_data->player_data.speed = 1;
+	map_data->player_data.speed = 15;
 	map_data->player_data.size = 0;
 	map_data->player_data.rotation_speed = 15;
 	map_data->player_data.player_degrees = 0;

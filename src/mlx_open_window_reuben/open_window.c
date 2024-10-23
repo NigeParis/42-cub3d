@@ -44,7 +44,7 @@ int	mlx_open_window(t_data *map_data)
 {
 	if (!check_pixel_chars_large_enough(map_data))
 	{
-		ft_printf("Map too large\n");
+		ft_printf("Error: Map too large\n");
 		return (0);
 	}
 	map_data->gw.mlx_window = mlx_new_window(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height, "test");

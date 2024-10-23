@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 13:25:27 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:24:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,23 @@ int handle_keypress(int keysym, t_data *map_data)
 	return (0);
 }
 
+
+void	get_player_speed(t_data *map_data)
+{
+	float percentage;
+	int speed;
+	
+	speed = 1;
+	percentage = 0.8;
+	
+	speed = (int)map_data->char_pixel_height * percentage;
+	
+	if (speed < 1)
+		speed = 1;
+	map_data->player_data.speed = speed;	
+}
+
+
 int	main(int argc, char *argv[])
 {
 	t_data	map_data;
@@ -109,6 +126,7 @@ int	main(int argc, char *argv[])
 	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
 	get_player_starting_pos(&map_data);
 	get_player_starting_angle(&map_data);
+	get_player_speed(&map_data);
 	if (!mlx_open_window(&map_data))
 		return (0);
 	mlx_hook(map_data.gw.mlx_window, KeyPress, KeyPressMask, &handle_keypress, &map_data);

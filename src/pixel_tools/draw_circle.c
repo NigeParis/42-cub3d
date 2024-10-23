@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:37:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:34:50 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 int calculate_dot_size(t_data *map_data)
 {
  	int dot_size = 0;
-	float percentage = 0.1;
+	float percentage = 0.2;
 	
     dot_size = (int)(map_data->char_pixel_height  * percentage);
-
+	if (dot_size < 1)
+		dot_size = 1;
     return (dot_size);
 }
 
@@ -64,8 +65,7 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
 	*rad = calculate_dot_size(map_data);
-	if (*rad < 1)
-		*rad = 1;
+
 	return (1);
 }
 
@@ -91,7 +91,6 @@ int	draw_dot(t_data *map_data)
 				{
 					mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]);
 				}
-					
 			}
 			start[HIEGHT]++;
 		}
