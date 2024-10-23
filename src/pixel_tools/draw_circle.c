@@ -6,13 +6,28 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 18:02:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:24:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #define WIDTH 0
 #define HIEGHT 1
+
+int calculate_dot_size(t_data *map_data)
+{
+ 	int dot_size = 0;
+	float percentage = 0.6;
+
+	if ((map_data->minimap_scale == 1))
+		percentage = 0.1;
+	
+    dot_size = (int)(map_data->char_pixel_height / map_data->minimap_scale) * percentage;
+
+    return (dot_size);
+}
+
+
 
 static void mlx_put_pixel(t_data *map_data, int x, int y)
 {
@@ -51,7 +66,7 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
-	*rad = (int)(map_data->form.dim / 2) / map_data->minimap_scale;
+	*rad = calculate_dot_size(map_data);
 	if (*rad < 1)
 		*rad = 1;
 	return (1);

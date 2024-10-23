@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 10:38:28 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:58:57 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ int		draw_background(t_data *map_data);
 /// 	@return 1 on success and 0 if failed to draw
 int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
-
+int 	calculate_dot_size(t_data *map_data);
 
 void	draw_map(t_data *map_data);
 

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/23 09:03:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:58:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int mlx_put_pixel(t_data *map_data, int x, int y)
 	bits = 8;
     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / bits));
     color = *(int *)pixel;
-    dprintf(STDERR_FILENO, "color %d\n", color);
     if (color == 0)
         return (1);
 
@@ -43,11 +42,7 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
-	*rad = (int)((map_data->form.dim / 2) / map_data->minimap_scale);
-	// map_data->player_data.speed /= map_data->minimap_scale; 
-	dprintf(STDERR_FILENO,"dim = %d\n", map_data->form.dim);
-	if (*rad < 10)
-		*rad = 1;
+	*rad = calculate_dot_size(map_data);
 	return (1);
 }
 
