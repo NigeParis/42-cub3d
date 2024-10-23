@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:28:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:38:41 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	init_data(t_data *map_data, char *argv[])
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
 	map_data->valid_map = 1;
-	map_data->minimap_scale = 1;   //5; - change to reduce minimap size
+	map_data->minimap_scale = 5;   //5; - change to reduce minimap size
 	map_data->minimap_show = 0;   //5; - change to reduce minimap size
 	map_data->fd = -1;
 	map_data->file = argv[1];
