@@ -8,11 +8,11 @@ int		player_degree_found(t_data *map_data, char *line)
 	while (line[i])
 	{
 		if (line[i] == 'N')
-			return ((map_data->player_data.player_degrees = 0), 1);
+			return ((map_data->player_data.player_degrees = 270), 1);
 		if (line[i] == 'W')
-			return ((map_data->player_data.player_degrees = 90), 1);
-		if (line[i] == 'S')
 			return ((map_data->player_data.player_degrees = 180), 1);
+		if (line[i] == 'S')
+			return ((map_data->player_data.player_degrees = 0), 1);
 		if (line[i] == 'E')
 			return ((map_data->player_data.player_degrees = 270), 1);
 		i++;

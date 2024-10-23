@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 14:35:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:17:33 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ int	init_data(t_data *map_data, char *argv[])
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
 	map_data->valid_map = 1;
+	map_data->gw.n_keypressed_flag = 0;
+	map_data->gw.s_keypressed_flag = 0;
+	map_data->gw.e_keypressed_flag = 0;
+	map_data->gw.w_keypressed_flag = 0;
 	map_data->minimap_scale = 2;   //5; - change to reduce minimap size
-	map_data->minimap_show = 0;   //5; - change to reduce minimap size
+	map_data->minimap_show = 0;
 	map_data->fd = -1;
 	map_data->file = argv[1];
 	map_data->raw_map = NULL;
@@ -72,7 +76,7 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->player_data.y_pos_pixel = 0;
 	map_data->player_data.speed = 15;
 	map_data->player_data.size = 0;
-	map_data->player_data.rotation_speed = 15;
+	map_data->player_data.rotation_speed = 1;
 	map_data->player_data.player_degrees = 0;
 	map_data->cell_data.cell_size = 0;
 	map_data->nb_zeros_in_map = 0;

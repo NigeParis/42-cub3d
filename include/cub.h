@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 13:56:17 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 17:16:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct s_game_window
 	void	*mlx_window;
 	int		screen_height;
 	int		screen_width;
+	int		n_keypressed_flag;
+	int		s_keypressed_flag;
+	int		w_keypressed_flag;
+	int		e_keypressed_flag;
 }	t_game_window;
 
 typedef struct s_colors
@@ -85,16 +89,16 @@ typedef struct s_cell_data
 
 typedef struct s_player_data
 {
-	int	x_pos;
-	int	y_pos;
-	int	y_last_pos;
-	int	x_last_pos;
-	int x_pos_pixel;
-	int y_pos_pixel;
-	int	speed;
-	int	size;
-	int	player_degrees;
-	int	rotation_speed;	
+	int		x_pos;
+	int		y_pos;
+	int		y_last_pos;
+	int		x_last_pos;
+	int 	x_pos_pixel;
+	int 	y_pos_pixel;
+	int		speed;
+	int		size;
+	float	player_degrees;
+	float	rotation_speed;	
 
 }	t_player_data;
 
