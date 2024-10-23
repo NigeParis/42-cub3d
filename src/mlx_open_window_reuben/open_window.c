@@ -39,16 +39,20 @@ int	draw_to_screen(t_data *map_data)
 }
 
 	
-
-void mlx_open_window(t_data *map_data)
+int	mlx_open_window(t_data *map_data)
 {
-	
+	if (!check_pixel_chars_large_enough(map_data))
+	{
+		ft_printf("Map too large\n");
+		return (0);
+	}
 	map_data->gw.mlx_window = mlx_new_window(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height, "test");
 	
 	map_data->form.mlx_img = mlx_new_image(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height);
 	map_data->form.addr = mlx_get_data_addr(map_data->form.mlx_img, &map_data->form.pixel_bits, &map_data->form.len, &map_data->form.endian);
 
-	mlx_loop_hook(map_data->gw.mlx_ptr, &draw_to_screen, map_data);		
+	mlx_loop_hook(map_data->gw.mlx_ptr, &draw_to_screen, map_data);
+	return (1);
 
 
 }

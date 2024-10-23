@@ -49,6 +49,18 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
     }
 }
 
+int	check_pixel_chars_large_enough(t_data *map_data)
+{
+	int	char_pixel_height;
+	int	char_pixel_width;
+
+	char_pixel_height = calculate_line_height(map_data) / map_data->minimap_scale;
+	char_pixel_width = calculate_col_width(map_data) / map_data->minimap_scale;
+	if (char_pixel_height < 3 || char_pixel_width < 3)
+		return (0);
+	return (1);
+}
+
 void draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 {
 	int	char_ind;

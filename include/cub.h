@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 23:31:10 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/23 10:38:28 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,8 @@ int		create_color(int color_1, int color_2, int color_3);
 int		calculate_line_height(t_data *map_data);
 int		calculate_col_width(t_data *map_data);
 //  WINDOW MANAGEMENT!
-void	mlx_open_window(t_data *map_data);
+int		mlx_open_window(t_data *map_data);
+int		check_pixel_chars_large_enough(t_data *map_data);
 
 
 //Draw_pixel_tools
