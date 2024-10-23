@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 12:24:44 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:31:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int calculate_dot_size(t_data *map_data)
  	int dot_size = 0;
 	float percentage = 0.6;
 
-	if ((map_data->minimap_scale == 1))
+	if (map_data->minimap_scale == 1)
 		percentage = 0.1;
 	
     dot_size = (int)(map_data->char_pixel_height / map_data->minimap_scale) * percentage;

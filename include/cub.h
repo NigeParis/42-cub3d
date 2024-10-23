@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 11:58:57 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:30:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ typedef struct s_player_data
 	int	x_last_pos;
 	int x_pos_pixel;
 	int y_pos_pixel;
-	int		speed;
-	int		size;
+	int	speed;
+	int	size;
+	int	player_degrees;
+	int	rotation_speed;	
 
 }	t_player_data;
 
@@ -233,8 +235,9 @@ int		calculate_col_width(t_data *map_data);
 //  WINDOW MANAGEMENT!
 int		mlx_open_window(t_data *map_data);
 int		check_pixel_chars_large_enough(t_data *map_data);
-
-
+void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr, int *horizontal_ptr, int *vertical_ptr);
+void	reset_values_after_horizontal_loop(int *horizontal_ptr, int *vertical_ptr);
+void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vertical_ptr, int *char_ind_ptr);
 //Draw_pixel_tools
 
 ///		@brief function draws a line with pixels from left to right 
@@ -261,6 +264,8 @@ int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
 int 	calculate_dot_size(t_data *map_data);
 
+
+void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
 
 
