@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/22 14:30:40 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:03:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	debug_print_setup_maps(t_data *map_data)
 	
 	//print_textures(map_data);
 	//print_map_rgb(map_data);
-	print_square_map(map_data);		
+	// print_square_map(map_data);		
+	print_info(map_data);		
 }

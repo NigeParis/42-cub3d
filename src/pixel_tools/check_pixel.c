@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/23 12:28:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 08:39:20 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
 	*rad = calculate_dot_size(map_data);
+	if (*rad < 1)
+		*rad = 1;
 	return (1);
 }
 

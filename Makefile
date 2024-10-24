@@ -22,7 +22,7 @@ MAP_PARSER= map_parser/
 PLAYER_SETUP = player_setup/
 CLEANUP = game_cleanup/
 DEBUG = game_debug/
-MLX_OPEN_WINDOW_R = mlx_open_window_reuben/
+MLX_OPEN_WINDOW_R = game_window/
 DRAW = pixel_tools/
 DRAW_MAP = draw_map/
 
@@ -45,8 +45,8 @@ SRC= main.c  \
 	map_parser/horizontal_map_check.c \
 	pixel_tools/draw_line.c pixel_tools/draw_circle.c pixel_tools/check_pixel.c\
 	game_debug/print_debug_map.c game_debug/print_debug.c \
-	mlx_open_window_reuben/open_window.c draw_map/draw_2d_map.c mlx_open_window_reuben/draw_map_setup.c \
-	mlx_open_window_reuben/draw_lines_setup.c 
+	game_window/open_window.c draw_map/draw_2d_map.c game_window/draw_map_setup.c \
+	game_window/draw_lines_setup.c 
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

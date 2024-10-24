@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 17:29:11 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 10:00:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,13 +162,13 @@ int	main(int argc, char *argv[])
 
 	get_map_check_and_setup(argc, argv, &map_data);
 	//free_setup_maps(&map_data);
-	debug_print_setup_maps(&map_data); //to use //->free_setup_maps
 	
 	map_data.gw.mlx_ptr = mlx_init();
 	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
 	get_player_starting_pos(&map_data);
 	get_player_starting_angle(&map_data);
 	get_player_speed(&map_data);
+	debug_print_setup_maps(&map_data); //to use //->free_setup_maps
 	if (!mlx_open_window(&map_data))
 		return (0);
 	mlx_hook(map_data.gw.mlx_window, KeyPress, KeyPressMask, &handle_keypress, &map_data);

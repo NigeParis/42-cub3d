@@ -15,6 +15,20 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
 
 
 	bits = 8;
+	if (y < 0)
+		y = 0;
+	if (x < 0)
+		x = 0;
+	if (y > map_data->gw.screen_height)
+		y = map_data->gw.screen_height;
+
+
+	dprintf(STDERR_FILENO, "x= '%d' y = '%d'\n", x, y);
+	dprintf(STDERR_FILENO, "x= '%d'\n",(map_data->gw.screen_width / map_data->minimap_scale));
+
+
+	// if (x > ((map_data->gw.screen_width / map_data->char_pixel_width) / map_data->minimap_scale))
+	// 	x = (map_data->gw.screen_width / map_data->minimap_scale);
     color_shift = map_data->form.pixel_bits - bits;
     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
 
@@ -101,6 +115,7 @@ int	mlx_open_window(t_data *map_data)
 		ft_printf("Error: Map too large\n");
 		return (0);
 	}
+
 	map_data->gw.mlx_window = mlx_new_window(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height, "test");
 	
 	map_data->form.mlx_img = mlx_new_image(map_data->gw.mlx_ptr, map_data->gw.screen_width, map_data->gw.screen_height);

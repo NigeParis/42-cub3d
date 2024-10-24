@@ -7,8 +7,12 @@ int	check_pixel_chars_large_enough(t_data *map_data)
 
 	char_pixel_height = calculate_line_height(map_data) / map_data->minimap_scale;
 	char_pixel_width = calculate_col_width(map_data) / map_data->minimap_scale;
-	if (char_pixel_height < 3 || char_pixel_width < 3)
+	if (char_pixel_height <= 3 || char_pixel_width <= 3)
+	{
+		dprintf(STDERR_FILENO, "here returns 0 %d %d\n", char_pixel_height, char_pixel_width);
 		return (0);
+	}
+	dprintf(STDERR_FILENO, "here returns 1\n");
 	return (1);
 }
 
