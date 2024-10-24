@@ -46,7 +46,7 @@ SRC= main.c  \
 	pixel_tools/draw_line.c pixel_tools/draw_circle.c pixel_tools/check_pixel.c\
 	game_debug/print_debug_map.c game_debug/print_debug.c \
 	game_window/open_window.c draw_map/draw_2d_map.c game_window/draw_map_setup.c \
-	game_window/draw_lines_setup.c  pixel_tools/wall_detection_pixel.c
+	game_window/draw_lines_setup.c  pixel_tools/wall_detection_pixel.c game_window/draw_line_between_points.c 
 	 
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
