@@ -84,6 +84,55 @@ int put_line(t_data *map_data)
 }
 
 
+
+
+void	rotate_player_left(t_data *map_data)
+{
+	if (map_data->player_data.player_degrees == 0)
+	{
+		map_data->player_data.player_degrees = 360 - map_data->player_data.rotation_speed;
+	}
+	else 
+	{
+		map_data->player_data.player_degrees -= map_data->player_data.rotation_speed;
+	}
+	//printf("GET PLAYER ANGLE %d\n", map_data->player_data.player_degrees);
+}
+
+void	rotate_player_right(t_data *map_data)
+{
+	if (map_data->player_data.player_degrees + map_data->player_data.rotation_speed >= 360)
+	{
+		map_data->player_data.player_degrees = 0;
+	}
+	else 
+	{
+		map_data->player_data.player_degrees += map_data->player_data.rotation_speed;
+	}
+	//printf("GET PLAYER ANGLE %d\n", map_data->player_data.player_degrees);
+}
+
+
+void	move_player(t_data *map_data)
+{
+	if (map_data->gw.fl_keypressed_flag)
+		rotate_player_left(map_data);
+	if (map_data->gw.fr_keypressed_flag)
+		rotate_player_right(map_data);
+	if (map_data->gw.n_keypressed_flag)
+		map_data->player_data.y_pos -= map_data->player_data.speed;
+	if (map_data->gw.s_keypressed_flag)
+		map_data->player_data.y_pos += map_data->player_data.speed;
+	if (map_data->gw.e_keypressed_flag)
+		map_data->player_data.x_pos += map_data->player_data.speed;
+	if (map_data->gw.w_keypressed_flag)
+		map_data->player_data.x_pos -= map_data->player_data.speed;
+}
+
+
+
+
+
 int	draw_to_screen(t_data *map_data)
 {
 	
@@ -95,10 +144,14 @@ int	draw_to_screen(t_data *map_data)
 		{
 			map_data->player_data.x_pos = map_data->player_data.x_last_pos;
 			map_data->player_data.y_pos = map_data->player_data.y_last_pos;
+			move_player(map_data);
 			draw_dot(map_data);
 		}
 		else
+		{
+			move_player(map_data);
 			draw_dot(map_data);
+		}
 		put_line(map_data);
 		
 		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);

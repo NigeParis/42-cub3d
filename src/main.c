@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 16:01:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:32:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,6 @@ int destroy(t_data *map_data)
 }
 
 
-void	rotate_player_left(t_data *map_data)
-{
-	if (map_data->player_data.player_degrees == 0)
-	{
-		map_data->player_data.player_degrees = 360 - map_data->player_data.rotation_speed;
-	}
-	else 
-	{
-		map_data->player_data.player_degrees -= map_data->player_data.rotation_speed;
-	}
-	//printf("GET PLAYER ANGLE %d\n", map_data->player_data.player_degrees);
-}
-
-void	rotate_player_right(t_data *map_data)
-{
-	if (map_data->player_data.player_degrees + map_data->player_data.rotation_speed >= 360)
-	{
-		map_data->player_data.player_degrees = 0;
-	}
-	else 
-	{
-		map_data->player_data.player_degrees += map_data->player_data.rotation_speed;
-	}
-	//printf("GET PLAYER ANGLE %d\n", map_data->player_data.player_degrees);
-}
 
 int handle_keypress(int keysym, t_data *map_data)
 {
@@ -62,76 +37,26 @@ int handle_keypress(int keysym, t_data *map_data)
 		destroy(map_data);
 	}
 	if(keysym == XK_a)
-	{
-		map_data->player_data.x_pos -= map_data->player_data.speed;
-		if (map_data->gw.fl_keypressed_flag)
-			rotate_player_left(map_data);
-		if (map_data->gw.fr_keypressed_flag)
-			rotate_player_right(map_data);
 		map_data->gw.w_keypressed_flag = 1;
-	}
 	if(keysym == XK_d)
-	{
-		map_data->player_data.x_pos += map_data->player_data.speed;
-		if (map_data->gw.fl_keypressed_flag)
-			rotate_player_left(map_data);
-		if (map_data->gw.fr_keypressed_flag)
-			rotate_player_right(map_data);
 		map_data->gw.e_keypressed_flag = 1;
-	}
 	if(keysym == XK_w)
-	{
-		map_data->player_data.y_pos -= map_data->player_data.speed;
-		if (map_data->gw.fl_keypressed_flag)
-			rotate_player_left(map_data);
-		if (map_data->gw.fr_keypressed_flag)
-			rotate_player_right(map_data);
 		map_data->gw.n_keypressed_flag = 1;
-	}
 	if(keysym == XK_s)
-	{
 		map_data->gw.s_keypressed_flag = 1;
-		if (map_data->gw.fl_keypressed_flag)
-			rotate_player_left(map_data);
-		if (map_data->gw.fr_keypressed_flag)
-			rotate_player_right(map_data);
-		map_data->player_data.y_pos += map_data->player_data.speed;
-	}
 	if(keysym == XK_m)
 	{
-		if (map_data->minimap_show == 0)
-			map_data->minimap_show = 1;
-		else
+		if (map_data->minimap_show == 1)
 			map_data->minimap_show = 0;
+		else
+			map_data->minimap_show = 1;
 	}
 	// turn right
 	if (keysym == 65363)
-	{
-		if (map_data->gw.w_keypressed_flag)
-			map_data->player_data.x_pos -= map_data->player_data.speed;
-		if (map_data->gw.e_keypressed_flag)
-			map_data->player_data.x_pos += map_data->player_data.speed;
-		if (map_data->gw.n_keypressed_flag)
-			map_data->player_data.y_pos -= map_data->player_data.speed;
-		if (map_data->gw.s_keypressed_flag)
-			map_data->player_data.y_pos += map_data->player_data.speed;
-		rotate_player_right(map_data);
 		map_data->gw.fr_keypressed_flag = 1;
-	}
 	// turn left
 	if (keysym == 65361)
-	{
-		if (map_data->gw.w_keypressed_flag)
-			map_data->player_data.x_pos -= map_data->player_data.speed;
-		if (map_data->gw.e_keypressed_flag)
-			map_data->player_data.x_pos += map_data->player_data.speed;
-		if (map_data->gw.n_keypressed_flag)
-			map_data->player_data.y_pos -= map_data->player_data.speed;
-		if (map_data->gw.s_keypressed_flag)
-			map_data->player_data.y_pos += map_data->player_data.speed;
-		rotate_player_left(map_data);
-		map_data->gw.fr_keypressed_flag = 1;
-	}
+		map_data->gw.fl_keypressed_flag = 1;
 	return (0);
 }
 
@@ -139,73 +64,17 @@ int handle_keypress(int keysym, t_data *map_data)
 int handle_keyrelease(int keysym, t_data *map_data)
 {
 	if(keysym == XK_a)
-	{
 		map_data->gw.w_keypressed_flag = 0;
-	}
 	if(keysym == XK_d)
-	{
 		map_data->gw.e_keypressed_flag = 0;
-	}
 	if(keysym == XK_w)
-	{
 		map_data->gw.n_keypressed_flag = 0;
-	}
 	if(keysym == XK_s)
-	{
 		map_data->gw.s_keypressed_flag = 0;
-	}
 	if (keysym == 65361)
-	{
-		if (map_data->gw.w_keypressed_flag)
-		{
-			map_data->player_data.x_pos -= map_data->player_data.speed;
-			map_data->gw.w_keypressed_flag = 1;
-		}
-		if (map_data->gw.e_keypressed_flag)
-		{
-			map_data->player_data.x_pos += map_data->player_data.speed;
-			map_data->gw.e_keypressed_flag = 1;
-
-		}
-		if (map_data->gw.n_keypressed_flag)
-		{
-			map_data->player_data.y_pos -= map_data->player_data.speed;
-			map_data->gw.n_keypressed_flag = 1;
-
-		}
-		if (map_data->gw.s_keypressed_flag)
-		{
-			map_data->player_data.y_pos += map_data->player_data.speed;
-			map_data->gw.s_keypressed_flag = 1;
-		}
 		map_data->gw.fl_keypressed_flag = 0;
-	}
 	if (keysym == 65363)
-	{
-		if (map_data->gw.w_keypressed_flag)
-		{
-			map_data->player_data.x_pos -= map_data->player_data.speed;
-			map_data->gw.w_keypressed_flag = 1;
-		}
-		if (map_data->gw.e_keypressed_flag)
-		{
-			map_data->player_data.x_pos += map_data->player_data.speed;
-			map_data->gw.e_keypressed_flag = 1;
-
-		}
-		if (map_data->gw.n_keypressed_flag)
-		{
-			map_data->player_data.y_pos -= map_data->player_data.speed;
-			map_data->gw.n_keypressed_flag = 1;
-
-		}
-		if (map_data->gw.s_keypressed_flag)
-		{
-			map_data->player_data.y_pos += map_data->player_data.speed;
-			map_data->gw.s_keypressed_flag = 1;
-		}
 		map_data->gw.fr_keypressed_flag = 0;
-	}
 	return (0);
 }
 

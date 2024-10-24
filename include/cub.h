@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 15:35:19 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:00:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_game_window
 	int		e_keypressed_flag;
 	int		fl_keypressed_flag;
 	int		fr_keypressed_flag;
+	int		m_keypressed_flag;
+	int		esc_keypressed_flag;
 	
 }	t_game_window;
 

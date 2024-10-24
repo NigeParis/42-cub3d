@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 16:05:26 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 17:00:27 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->gw.w_keypressed_flag = 0;
 	map_data->gw.fl_keypressed_flag = 0;
 	map_data->gw.fr_keypressed_flag = 0;
+	map_data->gw.esc_keypressed_flag = 0;
+	map_data->gw.m_keypressed_flag = 0;
 	map_data->minimap_scale = 1;   //5; - change to reduce minimap size
 	map_data->minimap_show = 0;
 	map_data->fd = -1;
