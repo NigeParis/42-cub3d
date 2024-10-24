@@ -49,6 +49,9 @@ void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int 
 }
 
 
+
+
+
 int put_line(t_data *map_data)
 {
     float angle_radian;
@@ -68,8 +71,10 @@ int put_line(t_data *map_data)
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
 		length+= map_data->player_data.speed;
 	}
-	mlx_put_pixel(map_data, x0, y0);
-    mlx_put_pixel(map_data, x1, y1);
+	// mlx_put_pixel(map_data, x0, y0);
+    // mlx_put_pixel(map_data, x1, y1);
+
+	//draw_radar_line(map_data, x0, y0, x1, y1);
     return (0);
 }
 
