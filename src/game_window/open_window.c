@@ -7,6 +7,20 @@ int		create_color(int color_1, int color_2, int color_3)
 }
 
 
+static void set_mini_map_border(t_data *map_data, int *x, int *y)
+{
+	if (*y < 0)
+		*y = 0;
+	if (*x < 0)
+		*x = 0;
+	if (*y > map_data->max_height * map_data->char_pixel_height)
+		*y = map_data->max_height * map_data->char_pixel_height;
+	if (*x > map_data->max_width * map_data->char_pixel_width)
+		*x =  map_data->max_width * map_data->char_pixel_width;
+}
+
+
+
 static void mlx_put_pixel(t_data *map_data, int x, int y)
 {
     char *pixel;
@@ -15,20 +29,8 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
 
 
 	bits = 8;
-	if (y < 0)
-		y = 0;
-	if (x < 0)
-		x = 0;
-	if (y > map_data->gw.screen_height)
-		y = map_data->gw.screen_height;
-
-
-	dprintf(STDERR_FILENO, "x= '%d' y = '%d'\n", x, y);
-	dprintf(STDERR_FILENO, "x= '%d'\n",(map_data->gw.screen_width / map_data->minimap_scale));
-
-
-	// if (x > ((map_data->gw.screen_width / map_data->char_pixel_width) / map_data->minimap_scale))
-	// 	x = (map_data->gw.screen_width / map_data->minimap_scale);
+	set_mini_map_border(map_data, &x, &y);
+	
     color_shift = map_data->form.pixel_bits - bits;
     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
 

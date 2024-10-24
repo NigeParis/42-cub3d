@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 10:00:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:20:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ int	main(int argc, char *argv[])
 	
 	map_data.gw.mlx_ptr = mlx_init();
 	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
+	map_data.gw.screen_height -= 40;
 	get_player_starting_pos(&map_data);
 	get_player_starting_angle(&map_data);
 	get_player_speed(&map_data);
