@@ -61,8 +61,8 @@ int put_line(t_data *map_data)
     int x1, y1;
 	int	i;
 
-	y0 = (int)map_data->player_data.y_pos + map_data->char_pixel_height / 2;
-	x0 = (int)map_data->player_data.x_pos + map_data->char_pixel_width / 2;
+	y0 = (int)map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
+	x0 = (int)map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
     angle_radian = map_data->player_data.player_degrees * (M_PI / 180);
     length = map_data->player_data.speed;
 	i = 0;
@@ -71,18 +71,15 @@ int put_line(t_data *map_data)
 	while (!check_wall_limit_line(map_data, x1, y1))
 	{
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
-		
-		if (line_is_vertical_inclined(x0, x1, y0, y1))
-			draw_line_between_points_vertical(map_data, x0, x1, y0, y1);
-		else 
-			draw_line_between_points_horizontal(map_data, x0, x1, y0, y1);
 		length+= map_data->player_data.speed;
-		
 	}
-	// mlx_put_pixel(map_data, x0, y0);
-    // mlx_put_pixel(map_data, x1, y1);
-
-	//draw_radar_line(map_data, x0, y0, x1, y1);
+	
+	if (line_is_vertical_inclined(x0, x1, y0, y1))
+		draw_line_between_points_vertical(map_data, x0, x1, y0, y1);
+	else 
+		draw_line_between_points_horizontal(map_data, x0, x1, y0, y1);
+	mlx_put_pixel(map_data, x0, y0);
+    mlx_put_pixel(map_data, x1, y1);
     return (0);
 }
 
