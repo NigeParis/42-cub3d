@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_pixel.c                                      :+:      :+:    :+:   */
+/*   wall_detection_pixel.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/24 10:55:31 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:32:23 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int mlx_put_pixel(t_data *map_data, int x, int y)
     int color;
 
     color = 0;
-	if (x < 0 || y < 0)
+	if (x < 0 || y < 0 || x < 0 || y < 0)
 		return (1);
 	bits = 8;
     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / bits));
@@ -34,28 +34,24 @@ static int mlx_put_pixel(t_data *map_data, int x, int y)
 }
 
 
-static int	init_circle_data(t_data *map_data, int *ht_pos, \
-	int *wt_pos, int *rad)
+static int	init_circle_data(t_data *map_data, int x1, \
+	int y1, int *rad)
 {
-	if (!map_data || !ht_pos || !wt_pos || !rad)
+	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
 	
-	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
-	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
 	*rad = calculate_dot_size(map_data);
 	if (*rad < 1)
 		*rad = 1;
 	return (1);
 }
 
-int	check_dot(t_data *map_data)
+int	check_wall_limit_line(t_data *map_data, int x1, int y1)
 {
 	int	start[2];
-	int	ht_pos;
-	int	wt_pos;
 	int	rad;
 	
-	init_circle_data(map_data, &ht_pos, &wt_pos, &rad);
+	init_circle_data(map_data, x1, y1, &rad);
 	if (!map_data)
 		return (0);
 	start[WIDTH] = (0 - rad);
@@ -66,11 +62,8 @@ int	check_dot(t_data *map_data)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
-				
-				if (mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]))
-                    return (1);
-				
-					
+				if (mlx_put_pixel(map_data, (int)x1 + start[HIEGHT], (int)y1 + start[WIDTH]))
+                    return (1);		
 			}
 			start[HIEGHT]++;
 		}
