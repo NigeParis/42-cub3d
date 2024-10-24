@@ -60,12 +60,12 @@ void draw_line_between_points_horizontal(t_data *map_data, int x0, int x1, int y
 		direction = -1;
 	else 
 		direction = 1;
-	delta_y *= direction;
+	delta_y = direction * delta_y;
 	if (delta_x != 0)
 	{
 		y_value_dot = y0;
 		p_slope = (2 *delta_y) - delta_x;
-		while (i < (delta_x + 1) - 1)
+		while (i < (delta_x + 1))
 		{
 			mlx_put_pixel(map_data, (x0 + i), y_value_dot);
 			if (p_slope >= 0)
@@ -87,7 +87,7 @@ int	line_is_vertical_inclined(int x0, int x1, int y0, int y1)
 
 	delta_x = abs(x1 - x0);
 	delta_y = abs(y1 - y0);
-	if (delta_y >= delta_x)
+	if (delta_y > delta_x)
 		return (1);
 	else 
 		return (0);
@@ -119,12 +119,12 @@ void draw_line_between_points_vertical(t_data *map_data, int x0, int x1, int y0,
 		direction = -1;
 	else 
 		direction = 1;
-	delta_x *= direction;
+	delta_x = direction * delta_x;
 	if (delta_y != 0)
 	{
 		x_value_dot = x0;
 		p_slope = (2 *delta_x) - delta_y;
-		while (i < (delta_y + 1) - 1)
+		while (i < (delta_y + 1))
 		{
 			mlx_put_pixel(map_data, x_value_dot, (y0 + i));
 			if (p_slope >= 0)
@@ -132,7 +132,7 @@ void draw_line_between_points_vertical(t_data *map_data, int x0, int x1, int y0,
 				x_value_dot += direction;
 				p_slope = p_slope - (2 * delta_y);
 			}
-			p_slope = p_slope + (2 * delta_y);
+			p_slope = p_slope + (2 * delta_x);
 			(i)++;
 		}
 	}
