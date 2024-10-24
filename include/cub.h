@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 11:12:50 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:59:07 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,8 +257,9 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
 int		check_wall_limit_line(t_data *map_data, int x1, int y1);
-
-
+void	draw_line_between_points_horizontal(t_data *map_data, int x0, int x1, int y0, int y1);
+void	draw_line_between_points_vertical(t_data *map_data, int x0, int x1, int y0, int y1);
+int		line_is_vertical_inclined(int x0, int x1, int y0, int y1);
 //player setup
 int		player_degree_found(t_data *map_data, char *line);
 void	get_player_starting_angle(t_data *map_data);
