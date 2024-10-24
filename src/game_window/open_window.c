@@ -49,9 +49,6 @@ void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int 
 }
 
 
-
-
-
 int put_line(t_data *map_data)
 {
     float angle_radian;
