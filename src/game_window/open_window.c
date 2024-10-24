@@ -52,7 +52,7 @@ void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int 
 
 
 
-int put_line(t_data *map_data)
+int put_line(t_data *map_data, int sup_angle)
 {
     float angle_radian;
     int length;
@@ -63,7 +63,7 @@ int put_line(t_data *map_data)
 
 	y0 = (int)map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
 	x0 = (int)map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
-    angle_radian = map_data->player_data.player_degrees * (M_PI / 180);
+    angle_radian = (map_data->player_data.player_degrees + sup_angle) * (M_PI / 180);
     length = map_data->player_data.speed;
 	i = 0;
 	
@@ -72,8 +72,8 @@ int put_line(t_data *map_data)
 	{
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
 		length+= map_data->player_data.speed;
+		i++;
 	}
-	
 	if (line_is_vertical_inclined(x0, x1, y0, y1))
 		draw_line_between_points_vertical(map_data, x0, x1, y0, y1);
 	else 
@@ -99,7 +99,7 @@ int	draw_to_screen(t_data *map_data)
 		}
 		else
 			draw_dot(map_data);
-		put_line(map_data);
+		put_line_call(map_data);
 		
 		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 	}

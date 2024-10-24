@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 15:35:19 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:18:50 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,7 @@ int 	calculate_dot_size(t_data *map_data);
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
-
+int		put_line(t_data *map_data, int sup_angle);
+int		put_line_call(t_data *map_data);
 
 #endif
