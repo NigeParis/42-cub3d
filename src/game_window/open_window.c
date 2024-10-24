@@ -7,40 +7,40 @@ int		create_color(int color_1, int color_2, int color_3)
 }
 
 
-static void set_mini_map_border(t_data *map_data, int *x, int *y)
-{
-	if (*y < 0)
-		*y = 0;
-	if (*x < 0)
-		*x = 0;
-	if (*y > map_data->max_height * map_data->char_pixel_height)
-		*y = map_data->max_height * map_data->char_pixel_height;
-	if (*x > map_data->max_width * map_data->char_pixel_width)
-		*x =  map_data->max_width * map_data->char_pixel_width;
-}
+// static void set_mini_map_border(t_data *map_data, int *x, int *y)
+// {
+// 	if (*y < 0)
+// 		*y = 0;
+// 	if (*x < 0)
+// 		*x = 0;
+// 	if (*y > map_data->max_height * map_data->char_pixel_height)
+// 		*y = map_data->max_height * map_data->char_pixel_height;
+// 	if (*x > map_data->max_width * map_data->char_pixel_width)
+// 		*x =  map_data->max_width * map_data->char_pixel_width;
+// }
 
 
 
-static void mlx_put_pixel(t_data *map_data, int x, int y)
-{
-    char *pixel;
-    int color_shift;
-	int bits;
+// static void mlx_put_pixel(t_data *map_data, int x, int y)
+// {
+//     char *pixel;
+//     int color_shift;
+// 	int bits;
 
 
-	bits = 8;
-	set_mini_map_border(map_data, &x, &y);
+// 	bits = 8;
+// 	set_mini_map_border(map_data, &x, &y);
 	
-    color_shift = map_data->form.pixel_bits - bits;
-    pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
+//     color_shift = map_data->form.pixel_bits - bits;
+//     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / 8));
 
-    while (color_shift >= 0)
-    {
-        *pixel = (map_data->form.dot_col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
-        color_shift -= bits;
-		pixel++;
-    }
-}
+//     while (color_shift >= 0)
+//     {
+//         *pixel = (map_data->form.dot_col >> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
+//         color_shift -= bits;
+// 		pixel++;
+//     }
+// }
 
 void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int *x1, int *y1)
 {
@@ -78,8 +78,8 @@ int put_line(t_data *map_data)
 		draw_line_between_points_vertical(map_data, x0, x1, y0, y1);
 	else 
 		draw_line_between_points_horizontal(map_data, x0, x1, y0, y1);
-	mlx_put_pixel(map_data, x0, y0);
-    mlx_put_pixel(map_data, x1, y1);
+	// mlx_put_pixel(map_data, x0, y0);
+    // mlx_put_pixel(map_data, x1, y1);
     return (0);
 }
 

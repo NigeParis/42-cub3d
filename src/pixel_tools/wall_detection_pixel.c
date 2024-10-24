@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/24 11:32:23 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:23:55 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	init_circle_data(t_data *map_data, int x1, \
 	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
 	
-	*rad = calculate_dot_size(map_data);
+	*rad = 2;
 	if (*rad < 1)
 		*rad = 1;
 	return (1);
@@ -69,8 +69,8 @@ int	check_wall_limit_line(t_data *map_data, int x1, int y1)
 		}
 		start[WIDTH]++;
 	}
-    map_data->player_data.x_last_pos = map_data->player_data.x_pos;
-    map_data->player_data.y_last_pos = map_data->player_data.y_pos;
+    // map_data->player_data.x_last_pos = map_data->player_data.x_pos;
+    // map_data->player_data.y_last_pos = map_data->player_data.y_pos;
 	return (0);
 }
 
