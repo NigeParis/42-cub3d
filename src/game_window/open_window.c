@@ -50,6 +50,7 @@ void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int 
     *y1 = y0 + length * sin(angle_radian);
 }
 
+
 int put_line(t_data *map_data)
 {
     int x0; 
