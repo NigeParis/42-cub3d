@@ -7,7 +7,7 @@ int		create_color(int color_1, int color_2, int color_3)
 }
 
 
-static void mlx_put_pixel(t_data *map_data, int x, int y)
+static void  mlx_put_pixel(t_data *map_data, int x, int y)
 {
     char *pixel;
     int color_shift;
@@ -23,8 +23,8 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
 		y = map_data->gw.screen_height;
 
 
-	dprintf(STDERR_FILENO, "x= '%d' y = '%d'\n", x, y);
-	dprintf(STDERR_FILENO, "x= '%d'\n",(map_data->gw.screen_width / map_data->minimap_scale));
+	//dprintf(STDERR_FILENO, "x= '%d' y = '%d'\n", x, y);
+	//dprintf(STDERR_FILENO, "x= '%d'\n",(map_data->gw.screen_width / map_data->minimap_scale));
 
 
 	// if (x > ((map_data->gw.screen_width / map_data->char_pixel_width) / map_data->minimap_scale))
@@ -46,6 +46,8 @@ void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int 
 {
     *x1 = x0 + length * cos(angle_radian);
     *y1 = y0 + length * sin(angle_radian);
+	//printf("GET X1 %d\n", *x1);
+	//printf("GET Y1 %d\n", *y1);
 }
 
 int put_line(t_data *map_data)
@@ -59,21 +61,23 @@ int put_line(t_data *map_data)
 	float angle_degrees = map_data->player_data.player_degrees;
     float angle_radian = angle_degrees * (M_PI / 180);
     
-    int length = 100;
+    int length = map_data->player_data.speed;
     int x1, y1;
-
-    calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
-    
-   
-
-
-
+	
+	calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
 
     mlx_put_pixel(map_data, x0, y0);
     mlx_put_pixel(map_data, x1, y1);
+	while (!check_wall_limit_line(map_data, x1, y1))
+	{
+		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
+		length+= map_data->player_data.speed;
+	}
+	printf("GET X1 POS %d\n", x1);
+	printf("GET Y1 POS %d\n", y1);
+	mlx_put_pixel(map_data, x0, y0);
+    mlx_put_pixel(map_data, x1, y1);
   
-
-
     return 0;
 }
 

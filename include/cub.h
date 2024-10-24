@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 10:04:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/24 11:12:50 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,7 @@ int		check_pixel_chars_large_enough(t_data *map_data);
 void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr, int *horizontal_ptr, int *vertical_ptr);
 void	reset_values_after_horizontal_loop(int *horizontal_ptr, int *vertical_ptr);
 void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vertical_ptr, int *char_ind_ptr);
+
 //Draw_pixel_tools
 
 ///		@brief function draws a line with pixels from left to right 
@@ -255,6 +256,7 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 /// 	@return 1 on success and 0 if failed to draw
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
+int		check_wall_limit_line(t_data *map_data, int x1, int y1);
 
 
 //player setup
