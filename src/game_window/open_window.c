@@ -42,32 +42,30 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
     }
 }
 
-
-
 void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int *x1, int *y1)
 {
     *x1 = x0 + length * cos(angle_radian);
     *y1 = y0 + length * sin(angle_radian);
 }
 
+
+
+
+
 int put_line(t_data *map_data)
 {
-    int x0; 
+    float angle_radian;
+    int length;
+	int x0; 
 	int y0;
+    int x1, y1;
 
 	y0 = (int)map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	x0 = (int)map_data->player_data.x_pos + map_data->char_pixel_width / 2;
-
-	float angle_degrees = map_data->player_data.player_degrees;
-    float angle_radian = angle_degrees * (M_PI / 180);
-    
-    int length = map_data->player_data.speed;
-    int x1, y1;
+    angle_radian = map_data->player_data.player_degrees * (M_PI / 180);
+    length = map_data->player_data.speed;
 	
 	calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
-
-    mlx_put_pixel(map_data, x0, y0);
-    mlx_put_pixel(map_data, x1, y1);
 	while (!check_wall_limit_line(map_data, x1, y1))
 	{
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
@@ -75,8 +73,7 @@ int put_line(t_data *map_data)
 	}
 	mlx_put_pixel(map_data, x0, y0);
     mlx_put_pixel(map_data, x1, y1);
-  
-    return 0;
+    return (0);
 }
 
 
