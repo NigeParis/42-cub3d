@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/25 12:09:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:19:38 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #define WIDTH 0
 #define HIEGHT 1
 
-static int mlx_put_pixel(t_data *map_data, int x, int y)
+static int is_color_pixel(t_data *map_data, int x, int y, int color)
 {
     char *pixel;
 	int bits;
-    int color;
 
     color = 0;
 	if (x < 0 || y < 0 || x < 0 || y < 0)
@@ -39,7 +38,7 @@ static int	init_circle_data(t_data *map_data, float x1, \
 	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
 	
-	*rad = 2;
+	*rad = 0.2;
 	if (*rad < 1)
 		*rad = 1;
 	return (1);
@@ -61,7 +60,7 @@ int	check_wall_limit_line(t_data *map_data, float x1, float y1)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
-				if (mlx_put_pixel(map_data, (int)x1 + start[HIEGHT], (int)y1 + start[WIDTH]))
+				if (is_color_pixel(map_data, (int)x1 + start[HIEGHT], (int)y1 + start[WIDTH], 0))
                     return (1);		
 			}
 			start[HIEGHT]++;

@@ -111,7 +111,8 @@ int	draw_to_screen(t_data *map_data)
 			draw_dot(map_data);
 		}
 		put_line_call(map_data);
-		
+		//put_line(map_data, 0);
+
 		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 	}
 	else

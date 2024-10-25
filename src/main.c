@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 22:29:22 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/25 14:33:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,9 @@ int	main(int argc, char *argv[])
 	
 	map_data.gw.mlx_ptr = mlx_init();
 	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
-	map_data.gw.screen_height -= 40;
+	map_data.gw.screen_height /= 2;
+	map_data.gw.screen_width /= 2;
+
 	get_player_starting_pos(&map_data);
 	get_player_starting_angle(&map_data);
 	adjust_degree(&map_data);
