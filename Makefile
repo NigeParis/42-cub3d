@@ -54,7 +54,9 @@ SRC= main.c  \
 	game_debug/print_debug_map.c game_debug/print_debug.c \
 	game_window/open_window.c draw_map/draw_2d_map.c game_window/draw_map_setup.c \
 	game_window/draw_lines_setup.c  pixel_tools/wall_detection_pixel.c \
-	game_window/cast_several_rays.c pixel_tools/draw_line_two_points.c
+	game_window/cast_several_rays.c pixel_tools/draw_line_two_points.c \
+	game_window/draw_to_screen.c \
+	player_setup/move_player.c player_setup/rotate_player.c
 	
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

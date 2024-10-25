@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 15:33:28 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:34:36 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ int	draw_dot(t_data *map_data)
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
 				if (within_drawing_limits(map_data, wt_pos + start[HIEGHT], ht_pos + start[WIDTH]))
-				{
 					mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]);
-				}
 			}
 			start[HIEGHT]++;
 		}

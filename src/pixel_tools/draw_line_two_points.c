@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 12:16:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:12:04 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ static void set_mini_map_border(t_data *map_data, int *x, int *y)
 	if (*x > map_data->max_width * map_data->char_pixel_width)
 		*x =  map_data->max_width * map_data->char_pixel_width;
 }
-
-
-
 
 static void mlx_put_pixel(t_data *map_data, int x, int y)
 {
@@ -103,8 +100,6 @@ void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
             err += dx;
             y0 += sy;
         }
-    
-
 	}
 
 }

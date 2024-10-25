@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 12:16:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:11:14 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 # include <limits.h>
 # include <stdint.h>
 # include <fcntl.h>
+
+typedef struct s_draw_line_data
+{
+	int	length_from_origin;
+	int	x0;
+	int x1;
+	int	y0;
+	int	y1;
+} t_draw_line_data;
 
 typedef struct s_draw_forms
 {
@@ -130,7 +139,6 @@ typedef struct s_data
 	t_cell_data		cell_data;
 	t_game_window	gw;
 	t_draw_forms	form;
-
 }	t_data;
 
 typedef struct s_point
@@ -267,7 +275,9 @@ int		check_wall_limit_line(t_data *map_data, float x1, float y1);
 //player setup
 int		player_degree_found(t_data *map_data, char *line);
 void	get_player_starting_angle(t_data *map_data);
-
+void	rotate_player_left(t_data *map_data);
+void	rotate_player_right(t_data *map_data);
+void	move_player(t_data *map_data);
 
 ///		@brief function draws a circle of a given diameter
 ///		@param map_data needs structure type s_draw_forms for input
