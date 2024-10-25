@@ -1,10 +1,5 @@
 #include "cub.h"
 
-
-
-
-
-
 int put_line_call(t_data *map_data)
 {
 	put_line(map_data, 0);

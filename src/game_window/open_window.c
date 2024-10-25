@@ -94,7 +94,6 @@ void	move_player(t_data *map_data)
 
 int	draw_to_screen(t_data *map_data)
 {
-	
 	if (map_data->minimap_show)
 	{
 		draw_background(map_data);
@@ -111,7 +110,6 @@ int	draw_to_screen(t_data *map_data)
 			move_player(map_data);
 			draw_dot(map_data);
 		}
-		//put_line(map_data, 0);
 		put_line_call(map_data);
 		
 		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
@@ -126,7 +124,6 @@ int	draw_to_screen(t_data *map_data)
 	
 	return (0);
 }
-
 	
 int	mlx_open_window(t_data *map_data)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pixel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/24 10:55:31 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/25 09:42:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	
 	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
 	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
-	*rad = calculate_dot_size(map_data);
+	*rad = calculate_dot_size(map_data) + 1;
 	if (*rad < 1)
 		*rad = 1;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 08:52:57 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 09:44:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->player_data.y_pos = 0;
 	map_data->player_data.x_pos_pixel = 0;
 	map_data->player_data.y_pos_pixel = 0;
-	map_data->player_data.speed = 15;
+	map_data->player_data.speed = 1;
+	map_data->player_data.rotation_speed = 1;
 	map_data->player_data.size = 0;
 	map_data->player_data.player_direction = 0;
-	map_data->player_data.rotation_speed = 8;
 	map_data->player_data.player_degrees = 0;
 	map_data->player_data.field_of_view = 35;
 	map_data->cell_data.cell_size = 0;
