@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 09:13:31 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:33:03 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 # include <limits.h>
 # include <stdint.h>
 # include <fcntl.h>
+
+typedef struct s_draw_line_data
+{
+	int	length_from_origin;
+	int	x0;
+	int x1;
+	int	y0;
+	int	y1;
+} t_draw_line_data;
 
 typedef struct s_draw_forms
 {
@@ -130,7 +139,6 @@ typedef struct s_data
 	t_cell_data		cell_data;
 	t_game_window	gw;
 	t_draw_forms	form;
-
 }	t_data;
 
 typedef struct s_point
@@ -264,10 +272,13 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
 int		check_wall_limit_line(t_data *map_data, int x1, int y1);
-//player setup
+int		draw_to_screen(t_data *map_data);
+//player tools
 int		player_degree_found(t_data *map_data, char *line);
 void	get_player_starting_angle(t_data *map_data);
-
+void	rotate_player_left(t_data *map_data);
+void	rotate_player_right(t_data *map_data);
+void	move_player(t_data *map_data);
 
 ///		@brief function draws a circle of a given diameter
 ///		@param map_data needs structure type s_draw_forms for input
@@ -279,7 +290,7 @@ void	get_player_starting_angle(t_data *map_data);
 int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
 int 	calculate_dot_size(t_data *map_data);
-void 	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1);
+void 	draw_radar_line(t_data *map_data, t_draw_line_data *draw_line_data);
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);

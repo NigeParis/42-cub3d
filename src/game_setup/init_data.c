@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 09:44:34 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:09:17 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->player_data.size = 0;
 	map_data->player_data.player_direction = 0;
 	map_data->player_data.player_degrees = 0;
-	map_data->player_data.field_of_view = 35;
+	map_data->player_data.field_of_view = 60;
 	map_data->cell_data.cell_size = 0;
 	map_data->nb_zeros_in_map = 0;
 	map_data->char_pixel_height = 1;

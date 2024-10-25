@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pixel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/25 09:42:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:22:28 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,8 @@ int	check_dot(t_data *map_data)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
-				
 				if (mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]))
-                    return (1);
-				
-					
+                    return (1);		
 			}
 			start[HIEGHT]++;
 		}
