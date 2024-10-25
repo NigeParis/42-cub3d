@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 09:13:31 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:16:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 /// 	@return 1 on success and 0 if failed to draw
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
-int		check_wall_limit_line(t_data *map_data, int x1, int y1);
+int		check_wall_limit_line(t_data *map_data, float x1, float y1);
 //player setup
 int		player_degree_found(t_data *map_data, char *line);
 void	get_player_starting_angle(t_data *map_data);
@@ -279,11 +279,11 @@ void	get_player_starting_angle(t_data *map_data);
 int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
 int 	calculate_dot_size(t_data *map_data);
-void 	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1);
+void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1);
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
-int		put_line(t_data *map_data, int sup_angle);
+int		put_line(t_data *map_data, float sup_angle);
 int		put_line_call(t_data *map_data);
 
 #endif

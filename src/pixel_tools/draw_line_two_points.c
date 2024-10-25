@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_lince_two_points.c                            :+:      :+:    :+:   */
+/*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 14:08:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:16:09 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
 }
 
 void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
-{
-	int dx;
+{	int dx;
 	int dy;
 	int sx;
 	int sy;
@@ -88,10 +87,11 @@ void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
 
 	while (1)
 	{
-		mlx_put_pixel(map_data, x0, y0);
-		if (x0 == x1 && y0 == y1)
+		mlx_put_pixel(map_data, (int)x0, (int)y0);
+		if ((int)x0 == (int)x1 && (int)y0 == (int)y1)
+		{
 			break ;
-
+		}
 		e2 = 2 * err;
 		if (e2 > -dy)
         {

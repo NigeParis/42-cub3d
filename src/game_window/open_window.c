@@ -7,7 +7,7 @@ int		create_color(int color_1, int color_2, int color_3)
 }
 
 
-void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int *x1, int *y1)
+void calculate_rotated_line(float x0, float y0, float angle_radian, float length, float *x1, float *y1)
 {
     *x1 = x0 + length * cos(angle_radian);
     *y1 = y0 + length * sin(angle_radian);
@@ -17,16 +17,16 @@ void calculate_rotated_line(int x0, int y0, float angle_radian, int length, int 
 
 
 
-int put_line(t_data *map_data, int sup_angle)
+int put_line(t_data *map_data, float sup_angle)
 {
     float angle_radian;
-    int length;
-	int x0; 
-	int y0;
-    int x1, y1;
+    float length;
+	float x0; 
+	float y0;
+    float x1, y1;
 
-	y0 = (int)map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
-	x0 = (int)map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
+	y0 = map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
+	x0 = map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
     angle_radian = (map_data->player_data.player_degrees + sup_angle) * (M_PI / 180);
     length = map_data->player_data.speed;
 	
@@ -35,9 +35,9 @@ int put_line(t_data *map_data, int sup_angle)
 	{
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
 		length+= map_data->player_data.speed;
-		
+
 	}
-	draw_radar_line(map_data, x0, y0, x1, y1);
+	draw_radar_line(map_data, (int)x0, (int)y0, (int)x1, (int)y1);
 
     return (0);
 }
