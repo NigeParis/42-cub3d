@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 11:25:11 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:12:04 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,44 +61,44 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
     }
 }
 
-void	draw_radar_line(t_data *map_data, t_draw_line_data *draw_line_data)
-{
-	int dx;
+void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
+{	int dx;
 	int dy;
 	int sx;
 	int sy;
 	int err;
 	int e2;
 
-	dx = abs(draw_line_data->x1 - draw_line_data->x0);
-	dy = abs(draw_line_data->y1 - draw_line_data->y0);
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
 	err = dx - dy;
 
-	if (draw_line_data->x0 < draw_line_data->x1)
+	if (x0 < x1)
 		sx = 1;
 	else
 		sx = -1;
-	if (draw_line_data->y0 < draw_line_data->y1)
+	if (y0 < y1)
 		sy = 1;
 	else
 		sy = -1;
 
 	while (1)
 	{
-		mlx_put_pixel(map_data, draw_line_data->x0, draw_line_data->y0);
-		if (draw_line_data->x0 == draw_line_data->x1 && draw_line_data->y0 == draw_line_data->y1)
+		mlx_put_pixel(map_data, (int)x0, (int)y0);
+		if ((int)x0 == (int)x1 && (int)y0 == (int)y1)
+		{
 			break ;
-
+		}
 		e2 = 2 * err;
 		if (e2 > -dy)
         {
             err -= dy;
-            draw_line_data->x0 += sx;
+            x0 += sx;
         }
         if (e2 < dx)
         {
             err += dx;
-            draw_line_data->y0 += sy;
+            y0 += sy;
         }
 	}
 

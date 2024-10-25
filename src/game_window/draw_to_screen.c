@@ -6,12 +6,13 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:37:29 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/25 11:56:11 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:13:25 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+/*
 static void	treat_minimap_show(t_data *map_data)
 {
 	draw_background(map_data);
@@ -46,3 +47,4 @@ int	draw_to_screen(t_data *map_data)
 	}
 	return (0);
 }
+*/

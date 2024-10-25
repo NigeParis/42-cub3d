@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/25 08:58:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:09:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,17 @@ static int mlx_put_pixel(t_data *map_data, int x, int y)
 	if (x < 0 || y < 0 || x < 0 || y < 0)
 		return (1);
 	bits = 8;
+
     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / bits));
     color = *(int *)pixel;
     if (color == 0)
-        return (1);
-
-    
+        return (1);    
     return (0);
 }
 
 
-static int	init_circle_data(t_data *map_data, int x1, \
-	int y1, int *rad)
+static int	init_circle_data(t_data *map_data, float x1, \
+	float y1, float *rad)
 {
 	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
@@ -46,10 +45,10 @@ static int	init_circle_data(t_data *map_data, int x1, \
 	return (1);
 }
 
-int	check_wall_limit_line(t_data *map_data, int x1, int y1)
+int	check_wall_limit_line(t_data *map_data, float x1, float y1)
 {
-	int	start[2];
-	int	rad;
+	float	start[2];
+	float	rad;
 	
 	init_circle_data(map_data, x1, y1, &rad);
 	if (!map_data)
