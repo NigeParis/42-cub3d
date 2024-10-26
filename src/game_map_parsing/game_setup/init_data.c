@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 16:25:18 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/25 21:43:38 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	init_data(t_data *map_data, char *argv[])
 		exit(1);
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
-	map_data->valid_map = 1;
-	map_data->minimap_scale = 1;   //5; - change to reduce minimap size
+	map_data->valid_map = 3;
+	map_data->minimap_scale = 5;   //5; - change to reduce minimap size
 	map_data->gw.n_keypressed_flag = 0;
 	map_data->gw.s_keypressed_flag = 0;
 	map_data->gw.e_keypressed_flag = 0;

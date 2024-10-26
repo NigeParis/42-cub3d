@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_several_rays.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:24:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/25 16:25:02 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/26 13:01:35 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,39 @@ int put_line_call(t_data *map_data)
 		i -= LINESTEPS;
 	}
 	return (0);
+}
+
+
+void calculate_rotated_line(float x0, float y0, float angle_radian, float length, float *x1, float *y1)
+{
+    *x1 = x0 + length * cos(angle_radian);
+    *y1 = y0 + length * sin(angle_radian);
+}
+
+
+
+
+int put_line(t_data *map_data, float sup_angle)
+{
+    float angle_radian;
+    float length;
+	float x0; 
+	float y0;
+    float x1, y1;
+
+	y0 = map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
+	x0 = map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
+    angle_radian = (map_data->player_data.player_degrees + sup_angle) * (M_PI / 180);
+    length = map_data->player_data.speed;
+	
+	calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
+	while (!check_wall_limit_line(map_data, x1, y1))
+	{
+		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
+		length+= map_data->player_data.speed;
+
+	}
+	draw_radar_line(map_data, (int)x0, (int)y0, (int)x1, (int)y1);
+
+    return (0);
 }
