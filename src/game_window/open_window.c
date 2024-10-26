@@ -6,15 +6,14 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/26 13:06:08 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/26 13:52:10 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 
-
-int	draw_to_screen(t_data *map_data)
+int	put_minimap_to_screen(t_data *map_data)
 {
 	if (map_data->minimap_show)
 	{
@@ -37,16 +36,26 @@ int	draw_to_screen(t_data *map_data)
 
 		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 	}
-	else
+	return (0);
+}
+
+
+
+
+int	draw_to_screen(t_data *map_data)
+{
+	put_minimap_to_screen(map_data);
+	if (!map_data->minimap_show)
 	{
-		//mlx_clear_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
 		draw_background(map_data);
 		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window , map_data->form.mlx_img, 0, 0);
 
 	}
-	
 	return (0);
 }
+	
+
+
 	
 int	mlx_open_window(t_data *map_data)
 {

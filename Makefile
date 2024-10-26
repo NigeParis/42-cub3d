@@ -65,8 +65,8 @@ SRC= main.c  \
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
 
-MLX_DIR = ./mlx
-MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+# MLX_DIR = ./mlx
+# MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 
 ifeq ($(shell uname), Linux)
 	MLX_FLAGS = -lm -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
@@ -81,7 +81,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "Creating FILE .......\n"
-	@make -C ./mlx/ all > /dev/null
+	@make -C ./mlx/ all 2> /dev/null > /dev/null
 	@make -C ./libft/ all > /dev/null
 	@make -C ./ft_printf/ all > /dev/null
 	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) 2> /dev/null > /dev/null
@@ -104,9 +104,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) $(INCLUDES) 2> /dev/null > /dev/null
 
 lib:
+	@echo "Creating LIBS .......\n"
 	@make -C ./ft_printf/ re > /dev/null
 	@make -C ./libft/ re > /dev/null
-	@make -C ./mlx/ re 2> /dev/null > /dev/null
+	@make -C ./mlx/ 2> /dev/null > /dev/null
 
 libclean:
 	@make -C ./ft_printf/ clean > /dev/null
@@ -115,7 +116,7 @@ libclean:
 libfclean:
 	@make -C ./ft_printf/ fclean > /dev/null
 	@make -C ./libft/ fclean > /dev/null
-	@make -C ./mlx/ clean > /dev/null
+	@make -C ./mlx/ clean 2> /dev/null > /dev/null
 
 clean: libclean
 	@echo "CLEAN all .o files .......\n"
