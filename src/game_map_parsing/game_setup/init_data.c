@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 21:43:38 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/26 16:05:53 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->max_height = 1;
 	map_data->player_data.x_last_pos = 0;
 	map_data->player_data.y_last_pos = 0;
+	map_data->player_data.y_row_map = 0;
+	map_data->player_data.x_col_map = 0;
 	map_data->player_data.x_pos = 0;
 	map_data->player_data.y_pos = 0;
 	map_data->player_data.x_pos_pixel = 0;

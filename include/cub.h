@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 21:31:35 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/26 16:05:16 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,12 @@ typedef struct s_player_data
 {
 	int		x_pos;
 	int		y_pos;
+	int		x_col_map;
+	int		y_row_map;
 	int		y_last_pos;
 	int		x_last_pos;
-	int 	x_pos_pixel;
-	int 	y_pos_pixel;
+	float 	x_pos_pixel;
+	float 	y_pos_pixel;
 	int		speed;
 	int		size;
 	float	player_degrees;

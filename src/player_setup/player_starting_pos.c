@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_starting_pos.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:56:26 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/23 08:25:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:06:54 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	get_player_starting_pos(t_data *map_data)
 			{
 				map_data->player_data.x_pos = (j * col_width);
 				map_data->player_data.y_pos =  (i * row_height);
+				map_data->player_data.x_col_map = j;
+				map_data->player_data.y_row_map = i;
 				map_data->player_data.x_last_pos = map_data->player_data.x_pos;
 				map_data->player_data.y_last_pos = map_data->player_data.y_pos;
 				return ;

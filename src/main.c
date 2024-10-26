@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 14:33:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:24:19 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,10 @@ static void adjust_degree(t_data *map_data)
 		map_data->player_data.player_degrees = 180 + field_of_view / 2;
 }
 
+
+
+
+
 int	main(int argc, char *argv[])
 {
 	t_data	map_data;
@@ -120,8 +124,23 @@ int	main(int argc, char *argv[])
 	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
 	map_data.gw.screen_height /= 2;
 	map_data.gw.screen_width /= 2;
-
 	get_player_starting_pos(&map_data);
+
+	float player_x_pos = (float)map_data.player_data.x_col_map + 1; // case 2
+	float screen = (float)(map_data.gw.screen_width / 2);  // 448
+	float minimap = (float)(screen / map_data.minimap_scale); // 89,6
+	float char_pixel = (float)(minimap / map_data.max_width); // 7,46666667
+	float player_pos_x = (float)(player_x_pos * char_pixel); // 107,333334
+	float char_center_pos_x = (float)(char_pixel / 2); // 3,7333333
+	map_data.player_data.x_pos_pixel = player_pos_x - char_center_pos_x; // 
+	
+	
+
+	dprintf(STDERR_FILENO, " x pos in pixel    %f\n", map_data.player_data.x_pos_pixel);
+	
+	
+	
+	
 	get_player_starting_angle(&map_data);
 	adjust_degree(&map_data);
 	get_player_speed(&map_data);
