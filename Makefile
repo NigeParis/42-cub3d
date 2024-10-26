@@ -84,7 +84,7 @@ $(NAME): $(OBJS)
 	@make -C ./mlx/ all > /dev/null
 	@make -C ./libft/ all > /dev/null
 	@make -C ./ft_printf/ all > /dev/null
-	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) 
+	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) 2> /dev/null > /dev/null
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -101,12 +101,12 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(MLX_OPEN_WINDOW_R)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)/$(DRAW)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)/$(DRAW_MAP)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) $(INCLUDES) 
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) $(INCLUDES) 2> /dev/null > /dev/null
 
 lib:
 	@make -C ./ft_printf/ re > /dev/null
 	@make -C ./libft/ re > /dev/null
-	@make -C ./mlx/ re > /dev/null
+	@make -C ./mlx/ re 2> /dev/null > /dev/null
 
 libclean:
 	@make -C ./ft_printf/ clean > /dev/null
