@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/27 12:58:58 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/27 16:31:20 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->gw.fr_keypressed_flag = 0;
 	map_data->gw.esc_keypressed_flag = 0;
 	map_data->gw.m_keypressed_flag = 0;
+	map_data->gw.l_keypressed_flag = 0;
+	map_data->gw.k_keypressed_flag = 0;
 	map_data->minimap_show = 0;
 	map_data->fd = -1;
 	map_data->file = argv[1];

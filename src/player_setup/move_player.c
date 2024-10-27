@@ -32,6 +32,9 @@ void	move_player(t_data *map_data)
 	{
 		map_data->char_pixel_height +=1;
 		map_data->char_pixel_width +=1;
+		get_player_starting_pos(map_data);
+
+
 		map_data->gw.l_keypressed_flag = 0;
 	}
 	if (map_data->gw.k_keypressed_flag)
@@ -40,6 +43,7 @@ void	move_player(t_data *map_data)
 		{
 			map_data->char_pixel_height -=1;
 			map_data->char_pixel_width -=1;
+			get_player_starting_pos(map_data);
 		}
 		map_data->gw.k_keypressed_flag = 0;
 
@@ -47,5 +51,5 @@ void	move_player(t_data *map_data)
 
 
 
-}m
+}
 
