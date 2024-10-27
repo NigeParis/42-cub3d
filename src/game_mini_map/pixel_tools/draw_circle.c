@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 11:34:36 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/27 09:23:00 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,12 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
 		pixel++;
     }
 }
-
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	if ((x > map_data->gw.screen_width) || (y > map_data->gw.screen_height))
-	{
-        return (0);
-	}
+	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) || y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
+		return (0);
+	if (x < 0 || y < 0)
+		return (0);
 	return (1);
 }
 

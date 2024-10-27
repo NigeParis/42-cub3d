@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 11:19:18 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/27 07:08:35 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
     }
 }
 
-int	within_drawing_limits(t_data *map_data, int x, int y)
+static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	if ((x + 1 > map_data->gw.screen_width) || (y + 1 > map_data->gw.screen_height))
+	if ((x > map_data->gw.screen_width) || (y > map_data->gw.screen_height))
 	{
         return (0);
 	}
@@ -62,8 +62,6 @@ int draw_rectangle(t_data *map_data)
 	}
     return (1);
 }
-
-
 
 int draw_background(t_data *map_data)
 {

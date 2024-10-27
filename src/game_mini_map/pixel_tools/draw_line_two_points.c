@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/25 13:12:04 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/27 07:11:16 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ function Bresenham(x0, y0, x1, y1)
         if (e2 < dx) { err += dx; y0 += sy }
 
 */
+static int	within_drawing_limits(t_data *map_data, int x, int y)
+{
+	if ((x > map_data->gw.screen_width) || (y > map_data->gw.screen_height))
+		return (0);
+	if (x < 0 || y < 0)
+		return (0);
+	return (1);
+}
+
 
 static void set_mini_map_border(t_data *map_data, int *x, int *y)
 {
@@ -84,7 +93,8 @@ void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
 
 	while (1)
 	{
-		mlx_put_pixel(map_data, (int)x0, (int)y0);
+		if (within_drawing_limits(map_data, (int)x0, (int)y0))
+			mlx_put_pixel(map_data, (int)x0, (int)y0);
 		if ((int)x0 == (int)x1 && (int)y0 == (int)y1)
 		{
 			break ;

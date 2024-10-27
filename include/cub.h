@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/26 16:05:16 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/27 13:10:19 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_game_window
 	int		fl_keypressed_flag;
 	int		fr_keypressed_flag;
 	int		m_keypressed_flag;
+	int		l_keypressed_flag;
+	int		k_keypressed_flag;
 	int		esc_keypressed_flag;
 	
 }	t_game_window;
@@ -133,6 +135,8 @@ typedef struct s_data
 	int				fd;
 	int				minimap_scale;
 	int				minimap_show;
+	int				minimap_offset_x;
+	int				minimap_offset_y;
 	int				char_pixel_height;
 	int				char_pixel_width;
 	t_texture_data	textures;

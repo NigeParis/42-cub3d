@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   wall_detection_pixel.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/25 16:19:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/27 09:15:45 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #define WIDTH 0
 #define HIEGHT 1
+
+static int	within_drawing_limits(t_data *map_data, int x, int y)
+{
+	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) || y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
+		return (0);
+	if (x < 0 || y < 0)
+		return (0);
+	return (1);
+}
+
 
 static int is_color_pixel(t_data *map_data, int x, int y, int color)
 {
@@ -38,9 +48,9 @@ static int	init_circle_data(t_data *map_data, float x1, \
 	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
 	
-	*rad = 0.2;
-	if (*rad < 1)
-		*rad = 1;
+	*rad = 1;
+	// if (*rad < 0)
+	// 	*rad = 0.5;
 	return (1);
 }
 
@@ -60,8 +70,13 @@ int	check_wall_limit_line(t_data *map_data, float x1, float y1)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
-				if (is_color_pixel(map_data, (int)x1 + start[HIEGHT], (int)y1 + start[WIDTH], 0))
-                    return (1);		
+				if (within_drawing_limits(map_data, (int)x1 + start[HIEGHT], (int)y1 + start[WIDTH]))
+				{
+					if (is_color_pixel(map_data, (int)x1 + start[HIEGHT], (int)y1 + start[WIDTH], 0))
+                    	return (1);
+				}
+				else
+					return (1);		
 			}
 			start[HIEGHT]++;
 		}

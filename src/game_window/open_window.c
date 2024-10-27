@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/26 13:52:10 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/27 13:53:16 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ int	draw_to_screen(t_data *map_data)
 	
 int	mlx_open_window(t_data *map_data)
 {
-	if (!check_pixel_chars_large_enough(map_data))
-	{
-		ft_printf("Error: Map too large\n");
-		return (0);
-	}
+
 	map_data->gw.mlx_window = mlx_new_window(map_data->gw.mlx_ptr,
 			map_data->gw.screen_width, map_data->gw.screen_height, "test");
 	map_data->form.mlx_img = mlx_new_image(map_data->gw.mlx_ptr,

@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/26 16:05:53 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/27 12:58:58 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static int	init_form_structure(t_data *map_data)
 	map_data->form.dot_col = create_color(255,0, 0);
 	map_data->form.len = 0;
 	map_data->form.start_ht = 0;
-	map_data->form.size_ht = map_data->player_data.y_pos + 10;
+	map_data->form.size_ht = map_data->player_data.y_pos;
 	map_data->form.end_ht = 0;
-	map_data->form.start_wt =map_data->player_data.x_pos + 10;
+	map_data->form.start_wt =map_data->player_data.x_pos;
 	map_data->form.size_wt = 1;
 	map_data->form.end_wt = 0;
 	return (0);	
@@ -57,7 +57,9 @@ int	init_data(t_data *map_data, char *argv[])
 	}
 	ft_memset(map_data, 0, sizeof(map_data));
 	map_data->valid_map = 3;
-	map_data->minimap_scale = 5;   //5; - change to reduce minimap size
+	map_data->minimap_scale = 2;   //5; - change to reduce minimap size
+	map_data->minimap_offset_x = 0;
+	map_data->minimap_offset_y = 0;
 	map_data->gw.n_keypressed_flag = 0;
 	map_data->gw.s_keypressed_flag = 0;
 	map_data->gw.e_keypressed_flag = 0;
@@ -81,16 +83,16 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->player_data.y_pos = 0;
 	map_data->player_data.x_pos_pixel = 0;
 	map_data->player_data.y_pos_pixel = 0;
-	map_data->player_data.speed = 20;
-	map_data->player_data.rotation_speed = 10;
+	map_data->player_data.speed = 1;
+	map_data->player_data.rotation_speed = 0.2;
 	map_data->player_data.size = 0;
 	map_data->player_data.player_direction = 0;
 	map_data->player_data.player_degrees = 0;
 	map_data->player_data.field_of_view = 60;
 	map_data->cell_data.cell_size = 0;
 	map_data->nb_zeros_in_map = 0;
-	map_data->char_pixel_height = 1;
-	map_data->char_pixel_width = 1;
+	map_data->char_pixel_height = 10;
+	map_data->char_pixel_width = 10;
 	init_textures_and_colours(map_data);
 	init_form_structure(map_data);
 	return (0);

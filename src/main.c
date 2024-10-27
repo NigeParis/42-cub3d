@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/26 16:24:19 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/27 13:52:10 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int handle_keypress(int keysym, t_data *map_data)
 		map_data->gw.n_keypressed_flag = 1;
 	if(keysym == XK_s)
 		map_data->gw.s_keypressed_flag = 1;
+	if(keysym == XK_l)
+		map_data->gw.l_keypressed_flag = 1;
+	if(keysym == XK_k)
+		map_data->gw.k_keypressed_flag = 1;
 	if(keysym == XK_m)
 	{
 		if (map_data->minimap_show == 1)
@@ -75,6 +79,10 @@ int handle_keyrelease(int keysym, t_data *map_data)
 		map_data->gw.fl_keypressed_flag = 0;
 	if (keysym == 65363)
 		map_data->gw.fr_keypressed_flag = 0;
+	if(keysym == XK_l)
+		map_data->gw.l_keypressed_flag = 0;
+	if(keysym == XK_k) 
+		map_data->gw.k_keypressed_flag = 0;
 	return (0);
 }
 
@@ -85,7 +93,7 @@ void	get_player_speed(t_data *map_data)
 	int speed;
 	
 	speed = 1;
-	percentage = 0.8;
+	percentage = 0.02;
 	
 	speed = (int)map_data->char_pixel_height * percentage;
 	
@@ -126,6 +134,8 @@ int	main(int argc, char *argv[])
 	map_data.gw.screen_width /= 2;
 	get_player_starting_pos(&map_data);
 
+
+	
 	float player_x_pos = (float)map_data.player_data.x_col_map + 1; // case 2
 	float screen = (float)(map_data.gw.screen_width / 2);  // 448
 	float minimap = (float)(screen / map_data.minimap_scale); // 89,6

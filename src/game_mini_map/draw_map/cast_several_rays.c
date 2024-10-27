@@ -6,15 +6,19 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:24:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/26 13:01:35 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/27 12:28:55 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-#define LINESTEPS 0.06
-#define ITERATIONS_FOV 0.06
-#define ANGLE_OPENER 0.96    
+// #define LINESTEPS 0.06  // 60 deg 960 rayons
+// #define ITERATIONS_FOV 0.06
+// #define ANGLE_OPENER 0.96  
+
+#define LINESTEPS 1   // 60 deg 60 rayons
+#define ITERATIONS_FOV 2
+#define ANGLE_OPENER 2   
 
 int put_line_call(t_data *map_data)
 {
@@ -26,6 +30,7 @@ int put_line_call(t_data *map_data)
 	field_of_view = map_data->player_data.field_of_view * ANGLE_OPENER;
 
 	float degrees = (map_data->player_data.player_degrees / M_PI) * 360;
+
 
 	while (field_of_view > 0)
 	{
@@ -71,8 +76,7 @@ int put_line(t_data *map_data, float sup_angle)
 	while (!check_wall_limit_line(map_data, x1, y1))
 	{
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
-		length+= map_data->player_data.speed;
-
+		length+= 1;
 	}
 	draw_radar_line(map_data, (int)x0, (int)y0, (int)x1, (int)y1);
 
