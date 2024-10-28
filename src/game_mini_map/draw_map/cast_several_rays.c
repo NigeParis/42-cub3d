@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_several_rays.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:24:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 10:51:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:16:35 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ int put_line_call(t_data *map_data)
 
 	i = 0;
 	field_of_view = map_data->player_data.field_of_view * ANGLE_OPENER;
-
 	float degrees = (map_data->player_data.player_degrees / M_PI) * 360;
-
-
 	while (field_of_view > 0)
 	{
 		if ((degrees) - (field_of_view) > 0 )
@@ -56,9 +53,6 @@ void calculate_rotated_line(float x0, float y0, float angle_radian, float length
     *y1 = y0 + length * sin(angle_radian);
 }
 
-
-
-
 int put_line(t_data *map_data, float sup_angle)
 {
     float angle_radian;
@@ -78,7 +72,7 @@ int put_line(t_data *map_data, float sup_angle)
 		calculate_rotated_line(x0, y0, angle_radian, length, &x1, &y1);
 		length+= 1;
 	}
-	draw_radar_line(map_data, (int)x0, (int)y0, (int)x1, (int)y1);
+	draw_radar_line(map_data, (int)x0, (int)y0, (int)x1, (int)y1, angle_radian);
 
     return (0);
 }

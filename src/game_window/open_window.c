@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 10:41:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:17:57 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	put_minimap_to_screen(t_data *map_data)
 		draw_background(map_data);
 		update_minimap_variables(map_data);
 		debug_print_minimap_info(map_data);
-
-		
 		draw_map(map_data);
 		if (check_dot(map_data))
 		{
@@ -62,7 +60,7 @@ int	draw_to_screen(t_data *map_data)
 	if (!map_data->minimap_show)
 	{
 		draw_background(map_data);
-														//// CUB3D 		
+														/// CUB3D 		
 														/// position of player
 														/// calculate distance in floats
 														/// spearate structure with copy of all useful info

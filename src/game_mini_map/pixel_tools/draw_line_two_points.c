@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 09:02:44 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:24:12 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,36 @@ static void mlx_put_pixel(t_data *map_data, int x, int y)
     }
 }
 
-void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
+void calculate_distance_to_wall(float x0, float y0, float x1, float y1, float angle_radian, float *effective_distance_ptr)
+{
+	float dx;
+	float dy;
+	float straight_difference;
+	float angle_to_point;
+	float angle_difference;
+	
+	dx = x1 - x0;
+	dy = y1 - y0;
+	straight_difference = sqrt((dx * dx) + (dy * dy));
+	angle_to_point = atan2(dy, dx);
+	angle_difference = angle_to_point - angle_radian; 
+	*effective_distance_ptr = straight_difference *cos(angle_difference);
+	
+}
+
+void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1, float angle_radian)
 {	int dx;
 	int dy;
 	int sx;
 	int sy;
 	int err;
 	int e2;
+	float distance;
+	float x0_origin;
+	float y0_origin;
 
+	y0_origin = y0;
+	x0_origin = x0; 
 	dx = abs(x1 - x0);
 	dy = abs(y1 - y0);
 	err = dx - dy;
@@ -94,9 +116,12 @@ void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1)
 	while (1)
 	{
 		if (within_drawing_limits(map_data, (int)x0, (int)y0))
+		{
 			mlx_put_pixel(map_data, (int)x0, (int)y0);
+		}
 		if ((int)x0 == (int)x1 && (int)y0 == (int)y1)
 		{
+			calculate_distance_to_wall((float)x0_origin, (float)y0_origin, (float) x1, (float)y1, angle_radian, &distance);
 			break ;
 		}
 		e2 = 2 * err;

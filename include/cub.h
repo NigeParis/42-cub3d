@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 10:11:32 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:13:01 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ void	move_player(t_data *map_data);
 int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
 int 	calculate_dot_size(t_data *map_data);
-void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1);
+void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1, float angle_radian);
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);

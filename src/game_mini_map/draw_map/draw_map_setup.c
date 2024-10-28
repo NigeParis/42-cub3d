@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map_setup.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:30:35 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 09:58:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:25:03 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,15 @@ void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 	int	vertical;
 
 	setup_draw_lines_values(map_data, &char_ind, &horizontal, &vertical);
-	
 	while (line[char_ind])
 	{
 		while (vertical < map_data->char_pixel_height)
 		{
 			while (horizontal < map_data->char_pixel_width)
 			{
-				
 					map_data->form.col = determine_color_to_draw(line[char_ind]);
 					if (within_drawing_limits(map_data, (horizontal + *offset_x), (vertical + *offset_y)))
 						mlx_put_pixel(map_data, horizontal + *offset_x, vertical + *offset_y);
-				
 				horizontal++;
 			}
 			reset_values_after_horizontal_loop(&horizontal, &vertical);
@@ -78,7 +75,6 @@ void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 		reset_values_after_vertical_loop(map_data, offset_x,
 			&vertical, &char_ind);
 	}
-	
 	*offset_x = map_data->minimap_offset_x;
 	*offset_y += map_data->char_pixel_height;
 }
