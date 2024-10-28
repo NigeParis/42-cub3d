@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/28 13:20:17 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:12:42 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
+	
 	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) || y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)

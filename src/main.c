@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 17:33:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:40:54 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ int	main(int argc, char *argv[])
 	adjust_degree(&map_data);
 	get_player_speed(&map_data);
 	debug_print_setup_maps(&map_data); //to use //->free_setup_maps
-	printf("BLABLA %d\n", map_data.player_data.x_pos);
 	map_data.minimap_offset_x = ((map_data.gw.screen_width / 6) - map_data.player_data.x_pos) - (map_data.char_pixel_width / 2);        // x col_pos = 1152 / 25 = 46     (40 x 271 x 6675 ) - 12.5
  	map_data.minimap_offset_y = ((map_data.gw.screen_height / 6) - map_data.player_data.y_pos) - (map_data.char_pixel_height / 2);                        // y row_pos = 375 / 25 = 15
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 13:24:12 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/28 19:13:50 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ function Bresenham(x0, y0, x1, y1)
 */
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	if ((x > map_data->gw.screen_width) || (y > map_data->gw.screen_height))
+	if (map_data->minimap_max_width < 5)
+		return (1);	
+	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) || y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);
@@ -43,7 +45,7 @@ static void set_mini_map_border(t_data *map_data, int *x, int *y)
 		*y = 0;
 	if (*x < 0)
 		*x = 0;
-	if (*y > map_data->minimap_max_height * map_data->char_pixel_height)
+	if (*y > map_data->minimap_max_height * map_data->char_pixel_height)  ////TODO check that tjis does not mke a bug
 		*y = map_data->minimap_max_height * map_data->char_pixel_height;
 	if (*x > map_data->minimap_max_width * map_data->char_pixel_width)
 		*x =  map_data->minimap_max_width * map_data->char_pixel_width;

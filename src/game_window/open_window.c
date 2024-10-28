@@ -6,24 +6,11 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 16:19:24 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:37:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-void update_minimap_variables(t_data *map_data)
-{
-	map_data->minimap_x_pixel = map_data->minimap_max_width * map_data->char_pixel_width;
-	map_data->minimap_y_pixel = map_data->minimap_max_height * map_data->char_pixel_height;
-	map_data->player_data.x_col_map = (int) ((round(((map_data->player_data.x_pos) * map_data->char_pixel_width) - map_data->minimap_offset_x) / map_data->char_pixel_width) - map_data->char_pixel_width / 2);
-	map_data->player_data.y_row_map = (int) ((round(((map_data->player_data.y_pos) * map_data->char_pixel_height) - map_data->minimap_offset_y) / map_data->char_pixel_height) - map_data->char_pixel_height / 2);
-
-	
-
-	
-
-}
 
 
 
@@ -32,8 +19,7 @@ int	put_minimap_to_screen(t_data *map_data)
 	if (map_data->minimap_show)
 	{
 		draw_background(map_data);
-		update_minimap_variables(map_data);
-		debug_print_minimap_info(map_data);
+		//debug_print_minimap_info(map_data);
 		
 		draw_map(map_data);
 
@@ -45,6 +31,7 @@ int	put_minimap_to_screen(t_data *map_data)
 			//map_data->player_data.y_pos = map_data->player_data.y_last_pos;
 			move_player(map_data);
 			draw_dot(map_data);
+
 		}
 		else
 		{
