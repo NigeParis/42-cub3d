@@ -32,8 +32,14 @@ void	move_player(t_data *map_data)
 	{
 		map_data->char_pixel_height +=1;
 		map_data->char_pixel_width +=1;
-		get_player_starting_pos(map_data);
-
+		map_data->minimap_offset_x -= map_data->player_data.x_col_map;
+		map_data->minimap_offset_y -= map_data->player_data.y_row_map;
+		if (map_data->char_pixel_height %2 == 0)
+		{
+			map_data->minimap_offset_x -= 1;
+			map_data->minimap_offset_y -= 1;
+		}
+		//get_player_starting_pos(map_data);
 
 		map_data->gw.l_keypressed_flag = 0;
 	}
@@ -43,7 +49,14 @@ void	move_player(t_data *map_data)
 		{
 			map_data->char_pixel_height -=1;
 			map_data->char_pixel_width -=1;
-			get_player_starting_pos(map_data);
+			map_data->minimap_offset_x += map_data->player_data.x_col_map;
+			map_data->minimap_offset_y += map_data->player_data.y_row_map;
+			if (map_data->char_pixel_height %2 == 0)
+			{
+			map_data->minimap_offset_x += 1;
+			map_data->minimap_offset_y += 1;
+			}
+			//get_player_starting_pos(map_data);
 		}
 		map_data->gw.k_keypressed_flag = 0;
 

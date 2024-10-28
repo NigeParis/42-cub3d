@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 21:15:02 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 21:19:04 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void set_mini_map_border(t_data *map_data, int *x, int *y)
 		*y = 0;
 	if (*x < 0)
 		*x = 0;
-	if (*y > (int)(map_data->gw.screen_height / map_data->minimap_scale))  ////TODO check that tjis does not mke a bug
+	if (*y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
 		*y = (int)(map_data->gw.screen_height / map_data->minimap_scale);
 	if (*x > (int)(map_data->gw.screen_width / map_data->minimap_scale))
 		*x =  (int)(map_data->gw.screen_width / map_data->minimap_scale);

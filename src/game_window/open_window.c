@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 18:37:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:49:37 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	put_minimap_to_screen(t_data *map_data)
 	if (map_data->minimap_show)
 	{
 		draw_background(map_data);
-		//debug_print_minimap_info(map_data);
+		debug_print_minimap_info(map_data);
 		
 		draw_map(map_data);
 
