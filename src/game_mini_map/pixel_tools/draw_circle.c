@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/27 09:23:00 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 14:38:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 	if (!map_data || !ht_pos || !wt_pos || !rad)
 		return (0);
 	
-	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
-	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
+	*ht_pos = (map_data->char_pixel_height * (((map_data->gw.screen_height / map_data->minimap_scale) / map_data->char_pixel_height) / 2) + (map_data->char_pixel_height /2));
+	*wt_pos = (map_data->char_pixel_width * (((map_data->gw.screen_width / map_data->minimap_scale) / map_data->char_pixel_height) / 2)+ (map_data->char_pixel_height /2));
 	*rad = calculate_dot_size(map_data);
 
 	return (1);

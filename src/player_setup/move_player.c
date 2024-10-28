@@ -9,6 +9,7 @@ void	move_player(t_data *map_data)
 	if (map_data->gw.n_keypressed_flag)
 	{
 		map_data->minimap_offset_y += map_data->player_data.speed;
+	
 	}
 	if (map_data->gw.s_keypressed_flag)
 	{
@@ -20,7 +21,6 @@ void	move_player(t_data *map_data)
 	{
 		//map_data->player_data.x_pos += map_data->player_data.speed;
 		map_data->minimap_offset_x -= map_data->player_data.speed;
-
 	}
 	if (map_data->gw.w_keypressed_flag)
 	{
