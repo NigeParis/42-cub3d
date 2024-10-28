@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 08:55:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:18:10 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,8 @@ int	main(int argc, char *argv[])
 	map_data.gw.screen_width /= 2;
 	get_player_starting_pos(&map_data);
 
-
+ 	map_data.player_data.x_last_pos = map_data.minimap_offset_x;
+	map_data.player_data.y_last_pos = map_data.minimap_offset_y;
 	
 	float player_x_pos = (float)map_data.player_data.x_col_map + 1; // case 2
 	float screen = (float)(map_data.gw.screen_width / 2);  // 448
@@ -155,6 +156,7 @@ int	main(int argc, char *argv[])
 	adjust_degree(&map_data);
 	get_player_speed(&map_data);
 	debug_print_setup_maps(&map_data); //to use //->free_setup_maps
+	
 	if (!mlx_open_window(&map_data))
 		return (0);
 	mlx_hook(map_data.gw.mlx_window, KeyPress, KeyPressMask, &handle_keypress, &map_data);

@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:24:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 12:16:35 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:28:12 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,12 @@ int put_line(t_data *map_data, float sup_angle)
 	float y0;
     float x1, y1;
 
-	y0 = map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
-	x0 = map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
+	// y0 = map_data->player_data.y_pos + (map_data->char_pixel_height) / 2;
+	// x0 = map_data->player_data.x_pos + (map_data->char_pixel_width )/ 2;
+
+	y0 = (map_data->char_pixel_height * (((map_data->gw.screen_height / map_data->minimap_scale) / map_data->char_pixel_height) / 2) + (map_data->char_pixel_height /2));
+	x0 = (map_data->char_pixel_width * (((map_data->gw.screen_width / map_data->minimap_scale) / map_data->char_pixel_height) / 2)+ (map_data->char_pixel_height /2));
+
     angle_radian = (map_data->player_data.player_degrees + sup_angle) * (M_PI / 180);
     length = map_data->player_data.speed;
 	
