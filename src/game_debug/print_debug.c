@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 10:13:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:09:07 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void debug_print_minimap_info(t_data *map_data)
 	dprintf(STDERR_FILENO, "player y_row_map '%d'\n", map_data->player_data.y_row_map);
 	dprintf(STDERR_FILENO, "square_map_x_pos '%d'\n", map_data->player_data.map_x_pos);
 	dprintf(STDERR_FILENO, "square_map_y_pos '%d'\n", map_data->player_data.map_y_pos);
-	
+	dprintf(STDERR_FILENO, "x col_map '%d'\n", map_data->player_data.x_col_map);
+	get_player_starting_pos(map_data);
 
 
 

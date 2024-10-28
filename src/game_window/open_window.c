@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/28 15:28:30 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:19:24 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void update_minimap_variables(t_data *map_data)
 	map_data->player_data.x_col_map = (int) ((round(((map_data->player_data.x_pos) * map_data->char_pixel_width) - map_data->minimap_offset_x) / map_data->char_pixel_width) - map_data->char_pixel_width / 2);
 	map_data->player_data.y_row_map = (int) ((round(((map_data->player_data.y_pos) * map_data->char_pixel_height) - map_data->minimap_offset_y) / map_data->char_pixel_height) - map_data->char_pixel_height / 2);
 
-	map_data->minimap_offset_x = map_data->player_data.x_last_pos;
-	map_data->minimap_offset_y = map_data->player_data.y_last_pos;
+	
 
+	
 
 }
 
