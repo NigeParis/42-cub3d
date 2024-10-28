@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/27 13:10:19 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 10:11:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ typedef struct s_player_data
 	float	rotation_speed;	
 	char	player_direction;
 	int		field_of_view;
+	int		map_x_pos;
+	int		map_y_pos;
 
 }	t_player_data;
 
@@ -128,8 +130,8 @@ typedef struct s_data
 	char			**map;
 	char			**square_map;
 	char			*raw_map;
-	int				max_width;
-	int				max_height;
+	int				minimap_max_width;
+	int				minimap_max_height;
 	int				valid_map;
 	int				nb_zeros_in_map;
 	int				fd;
@@ -137,6 +139,8 @@ typedef struct s_data
 	int				minimap_show;
 	int				minimap_offset_x;
 	int				minimap_offset_y;
+	int				minimap_x_pixel;
+	int				minimap_y_pixel;
 	int				char_pixel_height;
 	int				char_pixel_width;
 	t_texture_data	textures;
@@ -191,6 +195,7 @@ void	print_player_data(t_data *map_data);
 void	print_square_map(t_data *map_data);
 void	debug_print_setup_maps(t_data *map_data);
 void	print_info(t_data *map_data);
+void	debug_print_minimap_info(t_data *map_data);
 
 
 // functions parsing

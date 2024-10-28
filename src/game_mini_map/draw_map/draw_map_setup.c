@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map_setup.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:30:35 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/27 11:17:53 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 09:58:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 			&vertical, &char_ind);
 	}
 	
-	*offset_x = 1 + map_data->minimap_offset_x;
+	*offset_x = map_data->minimap_offset_x;
 	*offset_y += map_data->char_pixel_height;
 }
 

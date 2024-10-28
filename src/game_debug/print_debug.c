@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 10:03:19 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:13:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,30 @@ void	debug_print_setup_maps(t_data *map_data)
 	//print_map_rgb(map_data);
 	// print_square_map(map_data);		
 	print_info(map_data);		
+}
+
+
+void debug_print_minimap_info(t_data *map_data)
+{
+
+	dprintf(STDERR_FILENO, "\nminimap_size_x '%d'\n", map_data->minimap_max_width);
+	dprintf(STDERR_FILENO, "minimap_size_y '%d'\n", map_data->minimap_max_height);
+	dprintf(STDERR_FILENO, "minimap_offset_x '%d'\n", map_data->minimap_offset_x);
+	dprintf(STDERR_FILENO, "minimap_offset_y '%d'\n", map_data->minimap_offset_y);
+	dprintf(STDERR_FILENO, "minimap_scale '%d'\n", map_data->minimap_scale);
+	dprintf(STDERR_FILENO, "minimap_pixel_x '%d'\n", map_data->minimap_x_pixel);
+	dprintf(STDERR_FILENO, "minimap_pixel_y '%d'\n", map_data->minimap_y_pixel);
+	dprintf(STDERR_FILENO, "minimap_char_pixel_width '%d'\n", map_data->char_pixel_width);
+	dprintf(STDERR_FILENO, "minimap_char_pixel_height '%d'\n", map_data->char_pixel_height);
+
+	dprintf(STDERR_FILENO, "player x position '%d'\n", map_data->player_data.x_pos);
+	dprintf(STDERR_FILENO, "player y position '%d'\n", map_data->player_data.y_pos);
+	dprintf(STDERR_FILENO, "player x_col_map '%d'\n", map_data->player_data.x_col_map);
+	dprintf(STDERR_FILENO, "player y_row_map '%d'\n", map_data->player_data.y_row_map);
+	dprintf(STDERR_FILENO, "square_map_x_pos '%d'\n", map_data->player_data.map_x_pos);
+	dprintf(STDERR_FILENO, "square_map_y_pos '%d'\n", map_data->player_data.map_y_pos);
+	
+
+
+
 }

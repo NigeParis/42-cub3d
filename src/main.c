@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/27 13:52:10 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 08:55:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	main(int argc, char *argv[])
 	float player_x_pos = (float)map_data.player_data.x_col_map + 1; // case 2
 	float screen = (float)(map_data.gw.screen_width / 2);  // 448
 	float minimap = (float)(screen / map_data.minimap_scale); // 89,6
-	float char_pixel = (float)(minimap / map_data.max_width); // 7,46666667
+	float char_pixel = (float)(minimap / map_data.minimap_max_width); // 7,46666667
 	float player_pos_x = (float)(player_x_pos * char_pixel); // 107,333334
 	float char_center_pos_x = (float)(char_pixel / 2); // 3,7333333
 	map_data.player_data.x_pos_pixel = player_pos_x - char_center_pos_x; // 

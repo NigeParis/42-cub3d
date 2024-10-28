@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/27 07:11:16 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 09:02:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static void set_mini_map_border(t_data *map_data, int *x, int *y)
 		*y = 0;
 	if (*x < 0)
 		*x = 0;
-	if (*y > map_data->max_height * map_data->char_pixel_height)
-		*y = map_data->max_height * map_data->char_pixel_height;
-	if (*x > map_data->max_width * map_data->char_pixel_width)
-		*x =  map_data->max_width * map_data->char_pixel_width;
+	if (*y > map_data->minimap_max_height * map_data->char_pixel_height)
+		*y = map_data->minimap_max_height * map_data->char_pixel_height;
+	if (*x > map_data->minimap_max_width * map_data->char_pixel_width)
+		*x =  map_data->minimap_max_width * map_data->char_pixel_width;
 }
 
 static void mlx_put_pixel(t_data *map_data, int x, int y)

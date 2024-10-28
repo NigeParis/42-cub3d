@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/27 16:31:20 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 10:12:09 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->minimap_scale = 2;   //5; - change to reduce minimap size
 	map_data->minimap_offset_x = 0;
 	map_data->minimap_offset_y = 0;
+	map_data->minimap_x_pixel = 0;
+	map_data->minimap_y_pixel = 0;
+	map_data->minimap_max_width = 1;
+	map_data->minimap_max_height = 1;
 	map_data->gw.n_keypressed_flag = 0;
 	map_data->gw.s_keypressed_flag = 0;
 	map_data->gw.e_keypressed_flag = 0;
@@ -75,8 +79,6 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->file = argv[1];
 	map_data->raw_map = NULL;
 	map_data->map = NULL;
-	map_data->max_width = 1;
-	map_data->max_height = 1;
 	map_data->player_data.x_last_pos = 0;
 	map_data->player_data.y_last_pos = 0;
 	map_data->player_data.y_row_map = 0;
@@ -95,6 +97,8 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->nb_zeros_in_map = 0;
 	map_data->char_pixel_height = 10;
 	map_data->char_pixel_width = 10;
+	map_data->player_data.map_x_pos = 0;
+	map_data->player_data.map_y_pos = 0;
 	init_textures_and_colours(map_data);
 	init_form_structure(map_data);
 	return (0);

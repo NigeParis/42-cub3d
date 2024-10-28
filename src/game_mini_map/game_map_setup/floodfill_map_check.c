@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:22:53 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:54:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:01:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	flood_fill(char **tab, t_point *begin, t_data *map_data)
 	if (tab[p.y][p.x] == '0')
 	{
 		tab[p.y][p.x] = '.';
-		if (p.y < map_data->max_height - 1)
+		if (p.y < map_data->minimap_max_height - 1)
 		{
 			if (tab[p.y + 1][p.x] == ' ')
 				tab[p.y + 1][p.x] = '.';

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:19:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/24 21:02:23 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/28 09:01:18 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	print_square_map(t_data *map_data)
 		index++;
 	}
 	dprintf(STDERR_FILENO, "\n");
-	dprintf(STDERR_FILENO, "\nmap max hieght = '%d'\n", map_data->max_height);
-	dprintf(STDERR_FILENO, "map max_width = '%d'\n", map_data->max_width);
+	dprintf(STDERR_FILENO, "\nmap max hieght = '%d'\n", map_data->minimap_max_height);
+	dprintf(STDERR_FILENO, "map max_width = '%d'\n", map_data->minimap_max_width);
 	dprintf(STDERR_FILENO, "map nbr zeros = '%d'\n", map_data->nb_zeros_in_map);
 	dprintf(STDERR_FILENO, "map max_screen width = '%d'\n", map_data->gw.screen_width);
 	dprintf(STDERR_FILENO, "map max_screen_height = '%d'\n", map_data->gw.screen_height);
@@ -39,8 +39,8 @@ void	printraw_map(t_data *map_data)
 {
 	if (map_data && map_data->raw_map)
 		printf("\n\nraw_data:\n\n'%s'\n", map_data->raw_map);
-	dprintf(STDERR_FILENO, "count map hieght = '%d'\n", map_data->max_height);
-	dprintf(STDERR_FILENO, "max_width = '%d'\n", map_data->max_width);
+	dprintf(STDERR_FILENO, "count map hieght = '%d'\n", map_data->minimap_max_height);
+	dprintf(STDERR_FILENO, "max_width = '%d'\n", map_data->minimap_max_width);
 }
 
 void	printmap(t_data *map_data)
@@ -59,8 +59,8 @@ void	printmap(t_data *map_data)
 		index++;
 	}
 	ft_printf("\n");
-	dprintf(STDERR_FILENO, "\nmap max hieght = '%d'\n", map_data->max_height);
-	dprintf(STDERR_FILENO, "map max_width = '%d'\n", map_data->max_width);
+	dprintf(STDERR_FILENO, "\nmap max hieght = '%d'\n", map_data->minimap_max_height);
+	dprintf(STDERR_FILENO, "map max_width = '%d'\n", map_data->minimap_max_width);
 	dprintf(STDERR_FILENO, "map max_screen width = '%d'\n", map_data->gw.screen_width);
 	dprintf(STDERR_FILENO, "map max_screen_height = '%d'\n", map_data->gw.screen_height);
 }
@@ -68,8 +68,8 @@ void	printmap(t_data *map_data)
 void	print_info(t_data *map_data)
 {
 	dprintf(STDERR_FILENO, "\n");
-	dprintf(STDERR_FILENO, "\nmap max hieght = '%d'\n", map_data->max_height);
-	dprintf(STDERR_FILENO, "map max_width = '%d'\n", map_data->max_width);
+	dprintf(STDERR_FILENO, "\nmap max hieght = '%d'\n", map_data->minimap_max_height);
+	dprintf(STDERR_FILENO, "map max_width = '%d'\n", map_data->minimap_max_width);
 	dprintf(STDERR_FILENO, "map nbr zeros = '%d'\n", map_data->nb_zeros_in_map);
 	dprintf(STDERR_FILENO, "map max_screen width = '%d'\n", map_data->gw.screen_width);
 	dprintf(STDERR_FILENO, "map max_screen_height = '%d'\n", map_data->gw.screen_height);

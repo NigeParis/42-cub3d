@@ -84,7 +84,7 @@ $(NAME): $(OBJS)
 	@make -C ./mlx/ all 2> /dev/null > /dev/null
 	@make -C ./libft/ all > /dev/null
 	@make -C ./ft_printf/ all > /dev/null
-	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) 2> /dev/null > /dev/null
+	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) > /dev/null
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -101,7 +101,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(MLX_OPEN_WINDOW_R)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)/$(DRAW)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)/$(DRAW_MAP)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) $(INCLUDES) 2> /dev/null > /dev/null
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) $(INCLUDES) > /dev/null
 
 lib:
 	@echo "Creating LIBS .......\n"
