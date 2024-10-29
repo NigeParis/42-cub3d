@@ -6,13 +6,13 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 14:10:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:05:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int destroy(t_data *map_data)
+int	destroy(t_data *map_data)
 {	
 	if (map_data->form.mlx_img)
 		mlx_destroy_image(map_data->gw.mlx_ptr, map_data->form.mlx_img);
@@ -27,15 +27,23 @@ int destroy(t_data *map_data)
 }
 
 
-
-int handle_keypress(int keysym, t_data *map_data)
+void	handle_special_keypress(int *keysym, t_data *map_data)
 {
-	if (keysym == XK_Escape)
+	if (*keysym == XK_Escape)
 	{
 		mlx_destroy_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
 		map_data->gw.mlx_window = NULL;
 		destroy(map_data);
 	}
+	if (*keysym == 65363)
+		map_data->gw.fr_keypressed_flag = 1;
+	if (*keysym == 65361)
+		map_data->gw.fl_keypressed_flag = 1;
+}
+
+int handle_keypress(int keysym, t_data *map_data)
+{
+	
 	if(keysym == XK_a)
 		map_data->gw.a_keypressed_flag = 1;
 	if(keysym == XK_d)
@@ -55,12 +63,7 @@ int handle_keypress(int keysym, t_data *map_data)
 		else
 			map_data->minimap_show = 1;
 	}
-	// turn right
-	if (keysym == 65363)
-		map_data->gw.fr_keypressed_flag = 1;
-	// turn left
-	if (keysym == 65361)
-		map_data->gw.fl_keypressed_flag = 1;
+	handle_special_keypress(&keysym, map_data);
 	return (0);
 }
 
@@ -86,22 +89,18 @@ int handle_keyrelease(int keysym, t_data *map_data)
 	return (0);
 }
 
-
 void	get_player_speed(t_data *map_data)
 {
-	float percentage;
-	int speed;
+	float	percentage;
+	int		speed;
 	
 	speed = 1;
 	percentage = 0.02;
-	
 	speed = (int)map_data->char_pixel_height * percentage;
-	
 	if (speed < 1)
 		speed = 1;
 	map_data->player_data.speed = speed;	
 }
-
 
 static void adjust_degree(t_data *map_data)
 {
@@ -118,32 +117,44 @@ static void adjust_degree(t_data *map_data)
 }
 
 
+void	set_map_offsets(t_data *map_data)
+{
+	map_data->minimap_offset_x = ((map_data->gw.screen_width / 6) \
+	- map_data->player_data.x_pos) - (map_data->char_pixel_width / 2);
+ 	map_data->minimap_offset_y = ((map_data->gw.screen_height / 6) \
+	- map_data->player_data.y_pos) - (map_data->char_pixel_height / 2);
+}
+
+
+
+void	setup_game(int argc, char *argv[], t_data *map_data)
+{
+	get_map_check_and_setup(argc, argv, map_data);
+	free_setup_maps(map_data);
+	map_data->gw.mlx_ptr = mlx_init();
+	mlx_get_screen_size(map_data->gw.mlx_ptr, &map_data->gw.screen_width, \
+	&map_data->gw.screen_height);
+	map_data->gw.screen_height /= 2;
+	map_data->gw.screen_width /= 2;
+	get_player_starting_pos(map_data);	
+	get_player_starting_angle(map_data);
+	adjust_degree(map_data);
+	get_player_speed(map_data);
+	set_map_offsets(map_data);
+	//debug_print_setup_maps(&map_data); //to use //->free_setup_maps
+}
+
+
+
+
+
 int	main(int argc, char *argv[])
 {
 	t_data	map_data;
 
-
-	get_map_check_and_setup(argc, argv, &map_data);
-	free_setup_maps(&map_data);
-	
-	map_data.gw.mlx_ptr = mlx_init();
-	mlx_get_screen_size(map_data.gw.mlx_ptr, &map_data.gw.screen_width, &map_data.gw.screen_height);
-	map_data.gw.screen_height /= 2;
-	map_data.gw.screen_width /= 2;
-	get_player_starting_pos(&map_data);
-
-	
-	
-	
-	get_player_starting_angle(&map_data);
-	adjust_degree(&map_data);
-	get_player_speed(&map_data);
-	//debug_print_setup_maps(&map_data); //to use //->free_setup_maps
-	map_data.minimap_offset_x = ((map_data.gw.screen_width / 6) - map_data.player_data.x_pos) - (map_data.char_pixel_width / 2);        // x col_pos = 1152 / 25 = 46     (40 x 271 x 6675 ) - 12.5
- 	map_data.minimap_offset_y = ((map_data.gw.screen_height / 6) - map_data.player_data.y_pos) - (map_data.char_pixel_height / 2);                        // y row_pos = 375 / 25 = 15
-
+	setup_game(argc, argv, &map_data);
 	if (!mlx_open_window(&map_data))
-		return (0);
+		return (EXIT_FAILURE);
 	mlx_hook(map_data.gw.mlx_window, KeyPress, KeyPressMask, &handle_keypress, &map_data);
 	mlx_hook(map_data.gw.mlx_window, KeyRelease, KeyReleaseMask, &handle_keyrelease, &map_data);
 	mlx_hook(map_data.gw.mlx_window, DestroyNotify, StructureNotifyMask, &destroy, &map_data);
