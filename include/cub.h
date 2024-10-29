@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 12:40:40 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:01:06 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_player_data
 	int		field_of_view;
 	int		map_x_pos;
 	int		map_y_pos;
+	int		prev_direction;
 
 }	t_player_data;
 
@@ -144,7 +145,6 @@ typedef struct s_data
 	int				lock_zoom;
 	int				char_pixel_height;
 	int				char_pixel_width;
-	int				prev_direction;
 	t_texture_data	textures;
 	t_colors		colors;
 	t_player_data	player_data;

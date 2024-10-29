@@ -14,11 +14,11 @@ void	move_player(t_data *map_data)
 	{
 		if (check_dot(map_data))
 		{
-			if (map_data->prev_direction == 2)
+			if (map_data->player_data.prev_direction == 2)
 				map_data->minimap_offset_y += map_data->player_data.speed ;
-			else if (map_data->prev_direction == 1)
+			else if (map_data->player_data.prev_direction == 1)
 				map_data->minimap_offset_x += map_data->player_data.speed;
-			else if (map_data->prev_direction == 3)
+			else if (map_data->player_data.prev_direction == 3)
 				map_data->minimap_offset_x -= map_data->player_data.speed;
 			else
 				map_data->minimap_offset_y -= map_data->player_data.speed ;
@@ -26,7 +26,7 @@ void	move_player(t_data *map_data)
 		else
 		{	
 			map_data->minimap_offset_y += map_data->player_data.speed;
-			map_data->prev_direction = 0;
+			map_data->player_data.prev_direction = 0;
 		}
 			
 		map_data->lock_zoom = 1;
@@ -36,11 +36,11 @@ void	move_player(t_data *map_data)
 	{
 		if (check_dot(map_data))
 		{
-			if (map_data->prev_direction == 0)
+			if (map_data->player_data.prev_direction == 0)
 				map_data->minimap_offset_y -= map_data->player_data.speed;
-			else if (map_data->prev_direction == 3)
+			else if (map_data->player_data.prev_direction == 3)
 				map_data->minimap_offset_x -= map_data->player_data.speed;
-			else if (map_data->prev_direction == 1)
+			else if (map_data->player_data.prev_direction == 1)
 				map_data->minimap_offset_x += map_data->player_data.speed;
 			else 
 				map_data->minimap_offset_y += map_data->player_data.speed;
@@ -48,7 +48,7 @@ void	move_player(t_data *map_data)
 		else 
 		{
 			map_data->minimap_offset_y -= map_data->player_data.speed;
-			map_data->prev_direction = 2;
+			map_data->player_data.prev_direction = 2;
 		}
 			
 		map_data->lock_zoom = 1;
@@ -57,15 +57,15 @@ void	move_player(t_data *map_data)
 	{
 		if (check_dot(map_data))
 		{
-			if (map_data->prev_direction == 0)
+			if (map_data->player_data.prev_direction == 0)
 			{
 				map_data->minimap_offset_y -= map_data->player_data.speed;
 			}
-			else if (map_data->prev_direction == 2)
+			else if (map_data->player_data.prev_direction == 2)
 			{
 				map_data->minimap_offset_y += map_data->player_data.speed;
 			}
-			else if (map_data->prev_direction == 3)
+			else if (map_data->player_data.prev_direction == 3)
 			{
 				map_data->minimap_offset_x -= map_data->player_data.speed;
 			}	
@@ -77,7 +77,7 @@ void	move_player(t_data *map_data)
 		else 
 		{
 			map_data->minimap_offset_x -= map_data->player_data.speed;
-			map_data->prev_direction = 1;
+			map_data->player_data.prev_direction = 1;
 		}
 			
 		map_data->lock_zoom = 1;
@@ -86,15 +86,15 @@ void	move_player(t_data *map_data)
 	{
 		if (check_dot(map_data))
 		{
-			if (map_data->prev_direction == 0)
+			if (map_data->player_data.prev_direction == 0)
 			{
 				map_data->minimap_offset_y -= map_data->player_data.speed;
 			}
-			else if (map_data->prev_direction == 2)
+			else if (map_data->player_data.prev_direction == 2)
 			{
 				map_data->minimap_offset_y += map_data->player_data.speed ;
 			}
-			else if (map_data->prev_direction == 1)
+			else if (map_data->player_data.prev_direction == 1)
 			{
 				map_data->minimap_offset_x += map_data->player_data.speed;
 			}
@@ -106,7 +106,7 @@ void	move_player(t_data *map_data)
 		else 
 		{
 			map_data->minimap_offset_x += map_data->player_data.speed;
-			map_data->prev_direction = 3;
+			map_data->player_data.prev_direction = 3;
 		}
 			
 		map_data->lock_zoom = 1;
