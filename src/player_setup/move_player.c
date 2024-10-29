@@ -2,6 +2,9 @@
 
 void	move_player(t_data *map_data)
 {
+	int prev_direction;
+
+	prev_direction = -1;
 	if (map_data->gw.fl_keypressed_flag)
 		rotate_player_left(map_data);
 	if (map_data->gw.fr_keypressed_flag)
@@ -9,38 +12,103 @@ void	move_player(t_data *map_data)
 	
 	if (map_data->gw.w_keypressed_flag)
 	{
-
 		if (check_dot(map_data))
 		{
-			map_data->minimap_offset_y -= map_data->player_data.speed;
-    		map_data->player_data.y_last_pos = map_data->minimap_offset_y - map_data->player_data.speed;
+			if (map_data->prev_direction == 2)
+				map_data->minimap_offset_y += map_data->player_data.speed ;
+			else if (map_data->prev_direction == 1)
+				map_data->minimap_offset_x += map_data->player_data.speed;
+			else if (map_data->prev_direction == 3)
+				map_data->minimap_offset_x -= map_data->player_data.speed;
+			else
+				map_data->minimap_offset_y -= map_data->player_data.speed ;
 		}
 		else
-		{
+		{	
 			map_data->minimap_offset_y += map_data->player_data.speed;
-
+			map_data->prev_direction = 0;
 		}
+			
 		map_data->lock_zoom = 1;
 	}
 
-
-
 	if (map_data->gw.s_keypressed_flag)
 	{
-		if (!check_dot(map_data))
+		if (check_dot(map_data))
+		{
+			if (map_data->prev_direction == 0)
+				map_data->minimap_offset_y -= map_data->player_data.speed;
+			else if (map_data->prev_direction == 3)
+				map_data->minimap_offset_x -= map_data->player_data.speed;
+			else if (map_data->prev_direction == 1)
+				map_data->minimap_offset_x += map_data->player_data.speed;
+			else 
+				map_data->minimap_offset_y += map_data->player_data.speed;
+		}
+		else 
+		{
 			map_data->minimap_offset_y -= map_data->player_data.speed;
+			map_data->prev_direction = 2;
+		}
+			
 		map_data->lock_zoom = 1;
 	}
 	if (map_data->gw.d_keypressed_flag)
 	{
-		if (!check_dot(map_data))
+		if (check_dot(map_data))
+		{
+			if (map_data->prev_direction == 0)
+			{
+				map_data->minimap_offset_y -= map_data->player_data.speed;
+			}
+			else if (map_data->prev_direction == 2)
+			{
+				map_data->minimap_offset_y += map_data->player_data.speed;
+			}
+			else if (map_data->prev_direction == 3)
+			{
+				map_data->minimap_offset_x -= map_data->player_data.speed;
+			}	
+			else
+			{
+				map_data->minimap_offset_x += map_data->player_data.speed;
+			}
+		}
+		else 
+		{
 			map_data->minimap_offset_x -= map_data->player_data.speed;
+			map_data->prev_direction = 1;
+		}
+			
 		map_data->lock_zoom = 1;
 	}
 	if (map_data->gw.a_keypressed_flag)
 	{
-		if (!check_dot(map_data))
+		if (check_dot(map_data))
+		{
+			if (map_data->prev_direction == 0)
+			{
+				map_data->minimap_offset_y -= map_data->player_data.speed;
+			}
+			else if (map_data->prev_direction == 2)
+			{
+				map_data->minimap_offset_y += map_data->player_data.speed ;
+			}
+			else if (map_data->prev_direction == 1)
+			{
+				map_data->minimap_offset_x += map_data->player_data.speed;
+			}
+			else 
+			{
+				map_data->minimap_offset_x -= map_data->player_data.speed;
+			}
+		}
+		else 
+		{
 			map_data->minimap_offset_x += map_data->player_data.speed;
+			map_data->prev_direction = 3;
+		}
+			
 		map_data->lock_zoom = 1;
 	}
 	if ((map_data->gw.l_keypressed_flag) && (map_data->char_pixel_height < 60)  && (!map_data->lock_zoom))
