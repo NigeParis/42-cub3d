@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 14:01:06 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:48:53 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,7 @@ void	get_player_starting_angle(t_data *map_data);
 void	rotate_player_left(t_data *map_data);
 void	rotate_player_right(t_data *map_data);
 void	move_player(t_data *map_data);
+void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
 
 ///		@brief function draws a circle of a given diameter
 ///		@param map_data needs structure type s_draw_forms for input
@@ -302,7 +303,7 @@ void	move_player(t_data *map_data);
 int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
 int 	calculate_dot_size(t_data *map_data);
-void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1, float angle_radian);
+void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, float angle_radian);
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
