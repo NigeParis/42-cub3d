@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/29 08:32:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:22:35 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int mlx_put_pixel(t_data *map_data, int x, int y)
     color = *(int *)pixel;
     if (color == 0)
 	{
-		dprintf(STDERR_FILENO, "found black\n");	
         return (1);
 	}
     
@@ -41,9 +40,9 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 {
 	if (!map_data || !ht_pos || !wt_pos || !rad)
 		return (0);
-	
-	*ht_pos = map_data->player_data.y_pos + map_data->char_pixel_height / 2;
-	*wt_pos = map_data->player_data.x_pos + map_data->char_pixel_width / 2;
+
+	*ht_pos = map_data->gw.screen_height / 6;
+	*wt_pos = map_data->gw.screen_width / 6;
 	*rad = calculate_dot_size(map_data) + 1;
 	if (*rad < 1)
 		*rad = 1;
@@ -69,7 +68,7 @@ int	check_dot(t_data *map_data)
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
 				if (mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]))
-                    return (1);		
+                    return (dprintf(STDERR_FILENO, "BLACK IS THE COLOR\n"), 1);		
 			}
 			start[HIEGHT]++;
 		}
@@ -77,6 +76,6 @@ int	check_dot(t_data *map_data)
 	}
     map_data->player_data.x_last_pos = map_data->player_data.x_pos;
     map_data->player_data.y_last_pos = map_data->player_data.y_pos;
-	return (0);
+	 return (dprintf(STDERR_FILENO, "no colour\n"), 0);		
 }
 
