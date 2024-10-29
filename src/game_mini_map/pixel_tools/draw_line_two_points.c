@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 21:19:04 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/29 14:26:05 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void calculate_distance_to_wall(float x0, float y0, float x1, float y1, float an
 	
 }
 
-void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1, float angle_radian)
+void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, float angle_radian)
 {	int dx;
 	int dy;
 	int sx;
@@ -100,42 +100,42 @@ void	draw_radar_line(t_data *map_data, int x0, int y0, int x1, int y1, float ang
 	float x0_origin;
 	float y0_origin;
 
-	y0_origin = y0;
-	x0_origin = x0; 
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
+	y0_origin = line_data->y0;
+	x0_origin = line_data->x0; 
+	dx = abs(line_data->x1 - line_data->x0);
+	dy = abs(line_data->y1 - line_data->y0);
 	err = dx - dy;
 
-	if (x0 < x1)
+	if (line_data->x0 < line_data->x1)
 		sx = 1;
 	else
 		sx = -1;
-	if (y0 < y1)
+	if (line_data->y0 < line_data->y1)
 		sy = 1;
 	else
 		sy = -1;
 
 	while (1)
 	{
-		if (within_drawing_limits(map_data, (int)x0, (int)y0))
+		if (within_drawing_limits(map_data, (int)line_data->x0, (int)line_data->y0))
 		{
-			mlx_put_pixel(map_data, (int)x0, (int)y0);
+			mlx_put_pixel(map_data, (int)line_data->x0, (int)line_data->y0);
 		}
-		if ((int)x0 == (int)x1 && (int)y0 == (int)y1)
+		if ((int)line_data->x0 == (int)line_data->x1 && (int)line_data->y0 == (int)line_data->y1)
 		{
-			calculate_distance_to_wall((float)x0_origin, (float)y0_origin, (float) x1, (float)y1, angle_radian, &distance);
+			calculate_distance_to_wall((float)x0_origin, (float)y0_origin, (float) line_data->x1, (float)line_data->y1, angle_radian, &distance);
 			break ;
 		}
 		e2 = 2 * err;
 		if (e2 > -dy)
         {
             err -= dy;
-            x0 += sx;
+            line_data->x0 += sx;
         }
         if (e2 < dx)
         {
             err += dx;
-            y0 += sy;
+            line_data->y0 += sy;
         }
 	}
 
