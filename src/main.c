@@ -6,159 +6,31 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 15:05:53 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:53:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-int	destroy(t_data *map_data)
-{	
-	if (map_data->form.mlx_img)
-		mlx_destroy_image(map_data->gw.mlx_ptr, map_data->form.mlx_img);
-	if (map_data->gw.mlx_window)
-		mlx_destroy_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
-	if (map_data->gw.mlx_ptr)
-		mlx_destroy_display(map_data->gw.mlx_ptr);
-	free_map_at_end(map_data);
-	free(map_data->gw.mlx_ptr);
-	exit (0);
-	return (1);
-}
-
-
-void	handle_special_keypress(int *keysym, t_data *map_data)
-{
-	if (*keysym == XK_Escape)
-	{
-		mlx_destroy_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window);
-		map_data->gw.mlx_window = NULL;
-		destroy(map_data);
-	}
-	if (*keysym == 65363)
-		map_data->gw.fr_keypressed_flag = 1;
-	if (*keysym == 65361)
-		map_data->gw.fl_keypressed_flag = 1;
-}
-
-int handle_keypress(int keysym, t_data *map_data)
-{
-	
-	if(keysym == XK_a)
-		map_data->gw.a_keypressed_flag = 1;
-	if(keysym == XK_d)
-		map_data->gw.d_keypressed_flag = 1;
-	if(keysym == XK_w)
-		map_data->gw.w_keypressed_flag = 1;
-	if(keysym == XK_s)
-		map_data->gw.s_keypressed_flag = 1;
-	if(keysym == XK_l)
-		map_data->gw.l_keypressed_flag = 1;
-	if(keysym == XK_k)
-		map_data->gw.k_keypressed_flag = 1;
-	if(keysym == XK_m)
-	{
-		if (map_data->minimap_show == 1)
-			map_data->minimap_show = 0;
-		else
-			map_data->minimap_show = 1;
-	}
-	handle_special_keypress(&keysym, map_data);
-	return (0);
-}
-
-
-int handle_keyrelease(int keysym, t_data *map_data)
-{
-	if(keysym == XK_a)
-		map_data->gw.a_keypressed_flag = 0;
-	if(keysym == XK_d)
-		map_data->gw.d_keypressed_flag = 0;
-	if(keysym == XK_w)
-		map_data->gw.w_keypressed_flag = 0;
-	if(keysym == XK_s)
-		map_data->gw.s_keypressed_flag = 0;
-	if (keysym == 65361)
-		map_data->gw.fl_keypressed_flag = 0;
-	if (keysym == 65363)
-		map_data->gw.fr_keypressed_flag = 0;
-	if(keysym == XK_l)
-		map_data->gw.l_keypressed_flag = 0;
-	if(keysym == XK_k) 
-		map_data->gw.k_keypressed_flag = 0;
-	return (0);
-}
-
-void	get_player_speed(t_data *map_data)
-{
-	float	percentage;
-	int		speed;
-	
-	speed = 1;
-	percentage = 0.02;
-	speed = (int)map_data->char_pixel_height * percentage;
-	if (speed < 1)
-		speed = 1;
-	map_data->player_data.speed = speed;	
-}
-
-static void adjust_degree(t_data *map_data)
-{
-	int field_of_view = map_data->player_data.field_of_view;
-
-	if (map_data->player_data.player_direction == 'N')
-			map_data->player_data.player_degrees = 270 + field_of_view / 2;
-	if (map_data->player_data.player_direction == 'S')
-			map_data->player_data.player_degrees = 90 + field_of_view / 2;
-	if (map_data->player_data.player_direction == 'E')
-			map_data->player_data.player_degrees = 0 + field_of_view / 2;
-	if (map_data->player_data.player_direction == 'W')
-		map_data->player_data.player_degrees = 180 + field_of_view / 2;
-}
-
-
-void	set_map_offsets(t_data *map_data)
-{
-	map_data->minimap_offset_x = ((map_data->gw.screen_width / 6) \
-	- map_data->player_data.x_pos) - (map_data->char_pixel_width / 2);
- 	map_data->minimap_offset_y = ((map_data->gw.screen_height / 6) \
-	- map_data->player_data.y_pos) - (map_data->char_pixel_height / 2);
-}
-
-
-
-void	setup_game(int argc, char *argv[], t_data *map_data)
-{
-	get_map_check_and_setup(argc, argv, map_data);
-	free_setup_maps(map_data);
-	map_data->gw.mlx_ptr = mlx_init();
-	mlx_get_screen_size(map_data->gw.mlx_ptr, &map_data->gw.screen_width, \
-	&map_data->gw.screen_height);
-	map_data->gw.screen_height /= 2;
-	map_data->gw.screen_width /= 2;
-	get_player_starting_pos(map_data);	
-	get_player_starting_angle(map_data);
-	adjust_degree(map_data);
-	get_player_speed(map_data);
-	set_map_offsets(map_data);
-	//debug_print_setup_maps(&map_data); //to use //->free_setup_maps
-}
-
-
-
-
 
 int	main(int argc, char *argv[])
 {
 	t_data	map_data;
 
 	setup_game(argc, argv, &map_data);
-	if (!mlx_open_window(&map_data))
+	if (!open_game_window(&map_data))
 		return (EXIT_FAILURE);
-	mlx_hook(map_data.gw.mlx_window, KeyPress, KeyPressMask, &handle_keypress, &map_data);
-	mlx_hook(map_data.gw.mlx_window, KeyRelease, KeyReleaseMask, &handle_keyrelease, &map_data);
-	mlx_hook(map_data.gw.mlx_window, DestroyNotify, StructureNotifyMask, &destroy, &map_data);
-	mlx_loop(map_data.gw.mlx_ptr);
+	game_mlx_hooks_and_loop(&map_data);
 	free_map_at_end(&map_data);
 	return (EXIT_SUCCESS);
+}
+
+void	game_mlx_hooks_and_loop(t_data *map_data)
+{
+	mlx_hook(map_data->gw.mlx_window, KeyPress, KeyPressMask, \
+	&handle_keypress, map_data);
+	mlx_hook(map_data->gw.mlx_window, KeyRelease, KeyReleaseMask, \
+	&handle_keyrelease, map_data);
+	mlx_hook(map_data->gw.mlx_window, DestroyNotify, StructureNotifyMask, \
+	&destroy, map_data);
+	mlx_loop(map_data->gw.mlx_ptr);
 }

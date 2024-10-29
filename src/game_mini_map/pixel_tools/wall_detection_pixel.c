@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/28 19:12:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:05:14 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@
 
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	
-	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) || y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
+	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) \
+	|| y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);
 	return (1);
 }
 
-
-static int is_color_pixel(t_data *map_data, int x, int y, int color)
+static int	is_color_pixel(t_data *map_data, int x, int y, int color)
 {
     char *pixel;
 	int bits;
@@ -34,24 +33,20 @@ static int is_color_pixel(t_data *map_data, int x, int y, int color)
 	if (x < 0 || y < 0 || x < 0 || y < 0)
 		return (1);
 	bits = 8;
-
-    pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / bits));
+    pixel = map_data->form.addr + (y * map_data->form.len \
+	+ x * (map_data->form.pixel_bits / bits));
     color = *(int *)pixel;
     if (color == 0)
         return (1);    
     return (0);
 }
 
-
 static int	init_circle_data(t_data *map_data, float x1, \
 	float y1, float *rad)
 {
 	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
-	
 	*rad = 1;
-	// if (*rad < 0)
-	// 	*rad = 0.5;
 	return (1);
 }
 

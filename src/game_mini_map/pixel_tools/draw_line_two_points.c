@@ -3,30 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_two_points.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 14:26:05 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:41:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-/*
-function Bresenham(x0, y0, x1, y1)
-    dx = abs(x1 - x0)
-    dy = abs(y1 - y0)
-    sx = x0 < x1 ? 1 : -1
-    sy = y0 < y1 ? 1 : -1
-    err = dx - dy
 
-    while (true)
-        plot(x0, y0)
-        if (x0 == x1 && y0 == y1) break
-        e2 = 2 * err
-        if (e2 > -dy) { err -= dy; x0 += sx }
-        if (e2 < dx) { err += dx; y0 += sy }
-
-*/
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
 	if (map_data->minimap_max_width < 5)
@@ -37,7 +22,6 @@ static int	within_drawing_limits(t_data *map_data, int x, int y)
 		return (0);
 	return (1);
 }
-
 
 static void set_mini_map_border(t_data *map_data, int *x, int *y)
 {
@@ -86,7 +70,6 @@ void calculate_distance_to_wall(float x0, float y0, float x1, float y1, float an
 	angle_to_point = atan2(dy, dx);
 	angle_difference = angle_to_point - angle_radian; 
 	*effective_distance_ptr = straight_difference *cos(angle_difference);
-	
 }
 
 void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, float angle_radian)

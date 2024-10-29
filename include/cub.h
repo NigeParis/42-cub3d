@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 14:48:53 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:15:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,9 +265,9 @@ void	free_setup_maps(t_data *map_data);
 int		create_color(int color_1, int color_2, int color_3);
 int		calculate_line_height(t_data *map_data);
 int		calculate_col_width(t_data *map_data);
+
 //  WINDOW MANAGEMENT!
-int		mlx_open_window(t_data *map_data);
-int		check_pixel_chars_large_enough(t_data *map_data);
+int		open_game_window(t_data *map_data);
 void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr, int *horizontal_ptr, int *vertical_ptr);
 void	reset_values_after_horizontal_loop(int *horizontal_ptr, int *vertical_ptr);
 void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vertical_ptr, int *char_ind_ptr);
@@ -286,7 +286,6 @@ int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
 int		check_wall_limit_line(t_data *map_data, float x1, float y1);
 //player setup
-int		player_degree_found(t_data *map_data, char *line);
 void	get_player_starting_angle(t_data *map_data);
 void	rotate_player_left(t_data *map_data);
 void	rotate_player_right(t_data *map_data);
@@ -309,5 +308,24 @@ void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
 int		put_line(t_data *map_data, float sup_angle);
 int		put_line_call(t_data *map_data);
+
+
+//mlx_main_game_functions
+void	setup_game(int argc, char *argv[], t_data *map_data);
+void	game_mlx_hooks_and_loop(t_data *map_data);
+void	set_map_offsets(t_data *map_data);
+void	get_player_speed(t_data *map_data);
+void	adjust_starting_point_degree(t_data *map_data);
+int		handle_keypress(int keysym, t_data *map_data);
+void	handle_special_keypress(int *keysym, t_data *map_data);
+int		handle_keyrelease(int keysym, t_data *map_data);
+int		destroy(t_data *map_data);
+void	game_mlx_hooks_and_loop(t_data *map_data);
+
+//keyboard input
+void	key_zoom_in(t_data *map_data);
+void	key_zoom_out(t_data *map_data);
+
+
 
 #endif
