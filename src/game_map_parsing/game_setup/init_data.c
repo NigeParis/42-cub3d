@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 17:55:40 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 09:00:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->char_pixel_width = 25;
 	map_data->player_data.map_x_pos = 0;
 	map_data->player_data.map_y_pos = 0;
+	map_data->lock_zoom = 0;
 	init_textures_and_colours(map_data);
 	init_form_structure(map_data);
 	return (0);

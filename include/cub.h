@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 12:13:01 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/29 08:59:50 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_data
 	int				minimap_offset_y;
 	int				minimap_x_pixel;
 	int				minimap_y_pixel;
+	int				lock_zoom;
 	int				char_pixel_height;
 	int				char_pixel_width;
 	t_texture_data	textures;

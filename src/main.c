@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 21:42:20 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/29 09:20:21 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ static void adjust_degree(t_data *map_data)
 int	main(int argc, char *argv[])
 {
 	t_data	map_data;
+
 
 	get_map_check_and_setup(argc, argv, &map_data);
 	//free_setup_maps(&map_data);

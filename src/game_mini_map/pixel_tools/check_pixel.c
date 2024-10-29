@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pixel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/25 10:22:28 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/29 08:32:01 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ static int mlx_put_pixel(t_data *map_data, int x, int y)
     pixel = map_data->form.addr + (y * map_data->form.len + x * (map_data->form.pixel_bits / bits));
     color = *(int *)pixel;
     if (color == 0)
+	{
+		dprintf(STDERR_FILENO, "found black\n");	
         return (1);
-
+	}
     
     return (0);
 }
