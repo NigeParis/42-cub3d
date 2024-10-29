@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/29 11:41:14 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:07:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	check_dot(t_data *map_data)
 				if (mlx_put_pixel(map_data, (int)wt_pos + start[HIEGHT], (int)ht_pos + start[WIDTH]))
 				{
 					flag = 1;
-                    return (dprintf(STDERR_FILENO, "BLACK IS THE COLOR\n"), 1);		
+                    return (1);		
 				}
 
 			}
@@ -85,6 +85,6 @@ int	check_dot(t_data *map_data)
 		start[WIDTH]++;
 	}
 	flag = 0;
-	 return (dprintf(STDERR_FILENO, "no colour\n"), 0);		
+	 return (0);		
 }
 
