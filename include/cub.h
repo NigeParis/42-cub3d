@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 08:59:50 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:09:20 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ typedef struct s_game_window
 	void	*mlx_window;
 	int		screen_height;
 	int		screen_width;
-	int		n_keypressed_flag;
-	int		s_keypressed_flag;
 	int		w_keypressed_flag;
-	int		e_keypressed_flag;
+	int		s_keypressed_flag;
+	int		a_keypressed_flag;
+	int		d_keypressed_flag;
 	int		fl_keypressed_flag;
 	int		fr_keypressed_flag;
 	int		m_keypressed_flag;

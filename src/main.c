@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 09:20:21 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:08:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int handle_keypress(int keysym, t_data *map_data)
 		destroy(map_data);
 	}
 	if(keysym == XK_a)
-		map_data->gw.w_keypressed_flag = 1;
+		map_data->gw.a_keypressed_flag = 1;
 	if(keysym == XK_d)
-		map_data->gw.e_keypressed_flag = 1;
+		map_data->gw.d_keypressed_flag = 1;
 	if(keysym == XK_w)
-		map_data->gw.n_keypressed_flag = 1;
+		map_data->gw.w_keypressed_flag = 1;
 	if(keysym == XK_s)
 		map_data->gw.s_keypressed_flag = 1;
 	if(keysym == XK_l)
@@ -68,11 +68,11 @@ int handle_keypress(int keysym, t_data *map_data)
 int handle_keyrelease(int keysym, t_data *map_data)
 {
 	if(keysym == XK_a)
-		map_data->gw.w_keypressed_flag = 0;
+		map_data->gw.a_keypressed_flag = 0;
 	if(keysym == XK_d)
-		map_data->gw.e_keypressed_flag = 0;
+		map_data->gw.d_keypressed_flag = 0;
 	if(keysym == XK_w)
-		map_data->gw.n_keypressed_flag = 0;
+		map_data->gw.w_keypressed_flag = 0;
 	if(keysym == XK_s)
 		map_data->gw.s_keypressed_flag = 0;
 	if (keysym == 65361)

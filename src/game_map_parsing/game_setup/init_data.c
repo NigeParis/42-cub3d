@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 09:00:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:08:41 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->minimap_y_pixel = 0;
 	map_data->minimap_max_width = 1;
 	map_data->minimap_max_height = 1;
-	map_data->gw.n_keypressed_flag = 0;
-	map_data->gw.s_keypressed_flag = 0;
-	map_data->gw.e_keypressed_flag = 0;
 	map_data->gw.w_keypressed_flag = 0;
+	map_data->gw.s_keypressed_flag = 0;
+	map_data->gw.a_keypressed_flag = 0;
+	map_data->gw.d_keypressed_flag = 0;
 	map_data->gw.fl_keypressed_flag = 0;
 	map_data->gw.fr_keypressed_flag = 0;
 	map_data->gw.esc_keypressed_flag = 0;

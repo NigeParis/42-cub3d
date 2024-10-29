@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/29 09:47:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:33:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int	put_minimap_to_screen(t_data *map_data)
 
 
 		
-		if (check_dot(map_data))
-		{
-			//map_data->player_data.x_pos = map_data->player_data.x_last_pos;
-			//map_data->player_data.y_pos = map_data->player_data.y_last_pos;
-			move_player(map_data);
-			draw_dot(map_data);
+		// if (check_dot(map_data))
+		// {
+		// 	//map_data->player_data.x_pos = map_data->player_data.x_last_pos;
+		// 	//map_data->player_data.y_pos = map_data->player_data.y_last_pos;
+		// 	move_player(map_data);
+		// 	draw_dot(map_data);
 
-		}
-		else
-		{
-			move_player(map_data);
-			draw_dot(map_data);
-		}
+		// }
+		// else
+		// {
+		move_player(map_data);
+		draw_dot(map_data);
+		// }
 		put_line_call(map_data);
 		//put_line(map_data, 0);
 
