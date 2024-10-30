@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 09:42:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:25:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ typedef struct s_player_data
 	float	rotation_speed;	
 	char	player_direction;
 	int		field_of_view;
-	int		map_x_pos;
-	int		map_y_pos;
 	int		prev_direction;
 
 }	t_player_data;
@@ -163,10 +161,11 @@ typedef struct s_point
 
 typedef struct s_player_cub
 {
+	char	facing;
 	int		map_pos_x;
 	int		map_pos_y;
-	float	pos_x_pixel;
-	float	pos_y_pixel;
+	float	pos_x_float;
+	float	pos_y_float;
 
 }	t_player_cub;
 
@@ -175,7 +174,11 @@ typedef struct s_cud_data
 	t_data			*map_data;
 	t_player_cub	player_cub;
 	int				tile_size;
-	
+	float  			tile_center;
+	int				map_width_chars;
+	int				map_height_chars;
+	int 			map_width_in_tiles;
+	int 			map_height_in_tiles;
 }	t_cub_data;
 
 

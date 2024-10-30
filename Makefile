@@ -37,6 +37,7 @@ DRAW_MAP = draw_map/
 PARSE_TOOLS = game_parsing_tools/
 TOOLS = game_tools/
 KEY_EVENTS = game_key_events/
+CUB_SETUP = cub_view_setup/
 
 SRC= main.c  \
 	game_map_parsing/game_parsing_tools/get_next_line.c game_map_parsing/game_parsing_tools/get_next_line_utils.c \
@@ -61,7 +62,8 @@ SRC= main.c  \
 	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
 	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_line_two_points.c \
 	player_setup/move_player.c player_setup/rotate_player.c \
-	game_tools/general_game_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c
+	game_tools/general_game_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
+	cub_view_setup/cub_init.c
 	
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
@@ -89,6 +91,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/$(CUB_SETUP)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)
 	@mkdir -p $(OBJ_DIR)/$(KEY_EVENTS)
 	@mkdir -p $(OBJ_DIR)/$(TOOLS)

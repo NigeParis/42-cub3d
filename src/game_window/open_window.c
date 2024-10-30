@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 09:51:11 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:13:42 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,7 @@ int	put_minimap_to_screen(t_data *map_data)
 
 
 
-void	get_start_pos_cub(t_cub_data *cub_data)
-{
-	int pos_x;
-	int pos_y;
-
-	pos_x = cub_data->map_data->player_data.x_pos;
-	pos_y = cub_data->map_data->player_data.y_pos;
-	cub_data->tile_size = cub_data->map_data->char_pixel_height;
-	cub_data->player_cub.map_pos_x = cub_data->map_data->player_data.x_pos \
-	/ cub_data->tile_size;
-	cub_data->player_cub.map_pos_y = cub_data->map_data->player_data.y_pos \
-	/ cub_data->tile_size;
 	
-
-	
-}
 
 
 
@@ -56,7 +41,7 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 int	draw_to_screen(t_cub_data *cub_data)
 {
 	put_minimap_to_screen(cub_data->map_data);
-	
+
 	get_start_pos_cub(cub_data);
 	debug_print_data_for_3D_view(cub_data);
 	

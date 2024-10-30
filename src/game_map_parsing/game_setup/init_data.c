@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 09:34:11 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:24:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->nb_zeros_in_map = 0;
 	map_data->char_pixel_height = 25;
 	map_data->char_pixel_width = 25;
-	map_data->player_data.map_x_pos = 0;
-	map_data->player_data.map_y_pos = 0;
 	map_data->lock_zoom = 0;
 	map_data->player_data.prev_direction = -1;
 	init_textures_and_colours(map_data);
@@ -108,11 +106,17 @@ int	init_data(t_data *map_data, char *argv[])
 void	init_cub(t_data *map_data, t_cub_data *cub_data)
 {
 	cub_data->map_data = map_data;
-	cub_data->player_cub.map_pox_x = 0;
-	cub_data->player_cub.map_pox_y = 0;
-	cub_data->player_cub.pos_x_pixel = 0;
-	cub_data->player_cub.pos_y_pixel = 0;
+	cub_data->player_cub.map_pos_x = 0;
+	cub_data->player_cub.map_pos_y = 0;
+	cub_data->player_cub.pos_x_float = 0;
+	cub_data->player_cub.pos_y_float = 0;
 	cub_data->tile_size = 0;
+	cub_data->map_height_in_tiles = 0;
+	cub_data->map_width_in_tiles = 0;
+	cub_data->map_height_chars = 0;
+	cub_data->map_width_chars = 0;
+	cub_data->tile_center = 0;
+	cub_data->player_cub.facing = 0;
 
 	
 }
