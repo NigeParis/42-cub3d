@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 09:42:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 11:57:21 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # include <stdint.h>
 # include <fcntl.h>
 
+typedef struct s_draw_dot_data
+{
+	int	start[2];
+	int	ht_pos;
+	int	wt_pos;
+	int	rad;
+	
+} t_draw_dot_data;
+
 typedef struct s_draw_line_data
 {
 	int	length_from_origin;
@@ -35,7 +44,18 @@ typedef struct s_draw_line_data
 	int x1;
 	int	y0;
 	int	y1;
+	int dx;
+	int dy;
+	int sx;
+	int sy;
+	int err;
+	int e2;
+	float x0_origin;
+	float y0_origin;
+	float distance_to_wall;	
+	
 } t_draw_line_data;
+
 
 typedef struct s_draw_forms
 {
@@ -306,12 +326,16 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
 int		check_wall_limit_line(t_data *map_data, float x1, float y1);
+void	calculate_distance_to_wall(t_draw_line_data *line_data, float angle_radian);
+void	define_line_data_sx_sy(t_draw_line_data *line_data);
+void	draw_line_loop(t_data *map_data, t_draw_line_data *line_data, float angle_radian);
 //player setup
 void	get_player_starting_angle(t_data *map_data);
 void	rotate_player_left(t_data *map_data);
 void	rotate_player_right(t_data *map_data);
 void	move_player(t_data *map_data);
 void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
+
 
 ///		@brief function draws a circle of a given diameter
 ///		@param map_data needs structure type s_draw_forms for input

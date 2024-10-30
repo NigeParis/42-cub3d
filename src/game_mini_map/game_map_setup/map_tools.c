@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/21 11:23:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:14:54 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int	add_zeros_from_dots(t_data *map_data)
 		{
 			if (map_data->square_map[i][j] == '.')
 				map_data->square_map[i][j] = '0';
-			// if (map_data->square_map[i][j] == ' ')
-			// 	map_data->square_map[i][j] = '1';
 			j++;
 		}
 		i++;
