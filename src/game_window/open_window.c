@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 12:13:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:08:22 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,6 @@ int	draw_to_screen(t_cub_data *cub_data)
 	if (!(cub_data)->map_data->minimap_show)
 	{
 		draw_background(cub_data->map_data);
-		
-		
-
-
-
-
-
 		mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window, \
 			cub_data->map_data->form.mlx_img, 0, 0);
 	}

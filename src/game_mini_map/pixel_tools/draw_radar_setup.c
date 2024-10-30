@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:22:53 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 12:28:25 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/30 12:47:08 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ t_draw_line_data *line_data, float angle_radian)
 		}
 		line_data->e2 = 2 * line_data->err;
 		if (line_data->e2 > -line_data->dy)
-        {
-            line_data->err -= line_data->dy;
-            line_data->x0 += line_data->sx;
-        }
-        if (line_data->e2 < line_data->dx)
-        {
-            line_data->err += line_data->dx;
-            line_data->y0 += line_data->sy;
-        }
+		{
+			line_data->err -= line_data->dy;
+			line_data->x0 += line_data->sx;
+		}
+		if (line_data->e2 < line_data->dx)
+		{
+			line_data->err += line_data->dx;
+			line_data->y0 += line_data->sy;
+		}
 	}
 }
