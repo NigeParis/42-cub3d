@@ -60,10 +60,12 @@ SRC= main.c  \
 	game_debug/print_debug_map.c game_debug/print_debug.c \
 	game_window/open_window.c game_mini_map/draw_map/draw_2d_map.c game_mini_map/draw_map/draw_map_setup.c \
 	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
-	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_line_two_points.c \
+	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_radar.c \
 	player_setup/move_player.c player_setup/rotate_player.c \
 	game_tools/general_game_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
 	cub_view_setup/cub_init.c
+	game_mini_map/pixel_tools/draw_radar_setup.c \
+	game_mini_map/pixel_tools/calculate_distance.c 
 	
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   map_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:18:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 08:48:34 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:15:28 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data *cub_data)
+void	get_map_check_and_setup(int argc, char **argv,
+t_data *map_data, t_cub_data *cub_data)
 {
 	if (argc != 2)
 	{
@@ -20,7 +21,6 @@ void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data
 		exit (1);
 	}
 	init_data(map_data, argv);
-
 	check_map_has_valid_extension(map_data->file);
 	checkfile_exists(map_data->file, "config file");
 	open_map_config(map_data);
@@ -38,9 +38,6 @@ void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data
 	count_dots(map_data);
 	add_zeros_from_dots(map_data);
 	init_cub(map_data, cub_data);
-
-	//get_player_starting_pos(map_data);
-	
 }
 
 int	map_start_index(char *raw_map)
