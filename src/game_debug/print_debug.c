@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/10/30 12:25:14 by nrobinso         ###   ########.fr       */
-=======
-/*   Updated: 2024/10/30 09:57:13 by rchourak         ###   ########.fr       */
->>>>>>> refs/remotes/origin/master
+/*   Updated: 2024/10/30 12:39:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
