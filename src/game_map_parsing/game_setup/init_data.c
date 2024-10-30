@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 12:36:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:50:07 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data)
 	cub_data->map_width_chars = 0;
 	cub_data->tile_center = 0;
 	cub_data->player_cub.facing = 0;
-
-	
+	cub_data->player_cub.walls_distance = 0;
+	cub_data->player_cub.half_wall_size = 0;	
 }
 

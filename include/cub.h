@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 14:26:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:25:11 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,8 @@ typedef struct s_player_cub
 	float	pos_x_float;
 	float	pos_y_float;
 	int		field_of_view;
+	float 	walls_distance;
+	float	half_wall_size;
 
 }	t_player_cub;
 
@@ -218,7 +220,6 @@ typedef struct s_cub_draw_line_data
 	float e2;
 	float x0_origin;
 	float y0_origin;
-	float distance_to_wall;	
 	
 } t_cub_draw_line_data;
 
@@ -396,6 +397,7 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data);
 
 //cub#D functions
 void	get_start_pos_cub(t_cub_data *cub_data);
+float	calculate_half_wall_height(float distance_from_the_wall, float angle_degrees);
 
 
 

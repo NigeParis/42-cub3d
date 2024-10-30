@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 15:24:37 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:29:01 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	put_minimap_to_screen(t_data *map_data)
 
 static int	within_drawing_limits(t_cub_data *cub_data, int x, int y)
 {
-	if (x > (int)(cub_data->map_data->gw.screen_width / 2) \
-	|| y > (int)(cub_data->map_data->gw.screen_height / 2))
+	if (x > (int)(cub_data->map_data->gw.screen_width) \
+	|| y > (int)(cub_data->map_data->gw.screen_height))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);
@@ -54,13 +54,29 @@ static int	is_wall_pixel(t_cub_data *cub_data, float x, float y, int color)
 	if (x < 0 || y < 0 || x < 0 || y < 0)
 		return (1);
 	
-	dprintf(STDERR_FILENO, "\n");
-								///// function to checkmap for 1 in pixels
-	if (x == 0 )
+
+
+	int tx = (int)(x / cub_data->tile_size);
+	int ty = (int)(y / cub_data->tile_size);
+	//dprintf(STDERR_FILENO, "--------y %d------x %d----------here \n", ty, tx);
+	
+
+	if (cub_data->map_data->square_map[ty][tx] == '1')
+	{
+		//dprintf(STDERR_FILENO, "--------------WALL DETECTED ------------------------x %f-------y %f----------here \n", x / 25, y / 25);
+		
+		// dprintf(STDERR_FILENO, "distance from the wall = '%f'\n", cub_data->player_cub.walls_distance);
+
+		// dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", calculate_half_wall_height(cub_data->player_cub.walls_distance, 20)); 
+
+
+		
+
 		return (1);
+	}
 	return (0);
 }
-
+ 
 
 
 
@@ -159,21 +175,22 @@ int	cub_find_wall(t_cub_data*cub_data, float sup_angle)
 	float					length;
 	t_cub_draw_line_data	line_data;
 
-	line_data.y0 = cub_data->player_cub.pos_x_float;
-	line_data.x0 = cub_data->player_cub.pos_y_float;
+	line_data.y0 = cub_data->player_cub.pos_y_float;
+	line_data.x0 = cub_data->player_cub.pos_x_float;
+	
 	angle_radian = (cub_data->map_data->player_data.player_degrees + sup_angle)
 		* (M_PI / 180);
-	length = 0.5;
+	length = 0;
 	calculate_rotated_line(angle_radian, length, &line_data);
 	while (!check_wall_limit(cub_data, line_data.x1, line_data.y1))
 	{
+		//dprintf(STDERR_FILENO, "x1 = '%f' y1 = '%f' \n", line_data.x1, line_data.y1);
 		calculate_rotated_line(angle_radian, length, &line_data);
 		length += 0.5;
 	}
 	mlx_put_pixel(cub_data, (int)cub_data->map_data->gw.screen_width / 2, (int)cub_data->map_data->gw.screen_height / 2);
 	// draw_radar_line(map_data, &line_data, angle_radian);
-
-	dprintf(STDERR_FILENO, "length is '%f'\n", length);
+	cub_data->player_cub.walls_distance = length;
 	return (0);
 }
 
@@ -199,14 +216,13 @@ int	draw_to_screen(t_cub_data *cub_data)
 	put_minimap_to_screen(cub_data->map_data);
 
 	get_start_pos_cub(cub_data);
-	//debug_print_data_for_3D_view(cub_data);
+	debug_print_data_for_3D_view(cub_data);
+	cub_find_wall(cub_data, -30);
 	
 	if (!(cub_data)->map_data->minimap_show)
 	{
 		draw_background(cub_data->map_data);
 
-		if (cub_find_wall(cub_data, 30))
-			dprintf(STDERR_FILENO, "found wall\n");		
 
 
 

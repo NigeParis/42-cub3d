@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 14:01:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 20:31:11 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,14 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	dprintf(STDERR_FILENO, "map width size in tiles / pixel '%d'\n", cub_data->map_width_in_tiles);
 	dprintf(STDERR_FILENO, "map height size in tiles / pixel '%d'\n", cub_data->map_height_in_tiles);
 	
+	dprintf(STDERR_FILENO, "\ndistance from the wall = '%f'\n", cub_data->player_cub.walls_distance);
+	dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", calculate_half_wall_height(cub_data->player_cub.walls_distance, 20)); 
 
 	dprintf(STDERR_FILENO, "\ninfo GENERAL\n");
 	dprintf(STDERR_FILENO, "screen width in pixels '%d'\n", cub_data->map_data->gw.screen_width);
 	dprintf(STDERR_FILENO, "screen hieght in pixels '%d'\n", cub_data->map_data->gw.screen_height);
 	
 	
+
+
 }
