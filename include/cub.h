@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 17:15:22 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 09:42:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ typedef struct s_player_data
 	int		y_row_map;
 	int		y_last_pos;
 	int		x_last_pos;
-	float 	x_pos_pixel;
-	float 	y_pos_pixel;
 	int		speed;
 	int		size;
 	float	player_degrees;
@@ -160,6 +158,28 @@ typedef struct s_point
 
 }	t_point;
 
+
+/// cud3D values
+
+typedef struct s_player_cub
+{
+	int		map_pos_x;
+	int		map_pos_y;
+	float	pos_x_pixel;
+	float	pos_y_pixel;
+
+}	t_player_cub;
+
+typedef struct s_cud_data
+{
+	t_data			*map_data;
+	t_player_cub	player_cub;
+	int				tile_size;
+	
+}	t_cub_data;
+
+
+
 /// 	@brief initializes map_data to zero and adds any other values needed
 /// 	@param map_data 
 /// 	@param argv 
@@ -198,6 +218,7 @@ void	print_square_map(t_data *map_data);
 void	debug_print_setup_maps(t_data *map_data);
 void	print_info(t_data *map_data);
 void	debug_print_minimap_info(t_data *map_data);
+void	debug_print_data_for_3D_view(t_cub_data *t_cub_data);
 
 
 // functions parsing
@@ -219,7 +240,8 @@ int		find_zeros_for_floodfill(t_data *map_data);
 int		count_dots(t_data *map_data);
 int		count_zeros(t_data *map_data);
 int		resize_map(t_data *map_data);
-void	get_map_check_and_setup(int argc, char **argv, t_data *map_data);
+void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data *cub_map);
+
 void	is_another_line(t_data *map_data, int *i, int *end);
 int		check_all_textures_data_properly_filled(t_data *map_data);
 int		check_if_map_texture(char *line, t_data *map_data);
@@ -267,7 +289,6 @@ int		calculate_line_height(t_data *map_data);
 int		calculate_col_width(t_data *map_data);
 
 //  WINDOW MANAGEMENT!
-int		open_game_window(t_data *map_data);
 void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr, int *horizontal_ptr, int *vertical_ptr);
 void	reset_values_after_horizontal_loop(int *horizontal_ptr, int *vertical_ptr);
 void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vertical_ptr, int *char_ind_ptr);
@@ -311,7 +332,8 @@ int		put_line_call(t_data *map_data);
 
 
 //mlx_main_game_functions
-void	setup_game(int argc, char *argv[], t_data *map_data);
+void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data);
+int		open_game_window(t_cub_data *cub_data, t_data *map_data);
 void	game_mlx_hooks_and_loop(t_data *map_data);
 void	set_map_offsets(t_data *map_data);
 void	get_player_speed(t_data *map_data);
@@ -321,6 +343,14 @@ void	handle_special_keypress(int *keysym, t_data *map_data);
 int		handle_keyrelease(int keysym, t_data *map_data);
 int		destroy(t_data *map_data);
 void	game_mlx_hooks_and_loop(t_data *map_data);
+void	init_cub(t_data *map_data, t_cub_data *cub_data);
+
+
+//cub#D functions
+void	get_start_pos_cub(t_cub_data *cub_data);
+
+
+
 
 //keyboard input
 void	key_zoom_in(t_data *map_data);

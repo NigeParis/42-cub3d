@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 17:09:07 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 09:35:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,24 @@ void debug_print_minimap_info(t_data *map_data)
 	dprintf(STDERR_FILENO, "square_map_y_pos '%d'\n", map_data->player_data.map_y_pos);
 	dprintf(STDERR_FILENO, "x col_map '%d'\n", map_data->player_data.x_col_map);
 	get_player_starting_pos(map_data);
+}
 
 
 
+
+void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
+{
+	dprintf(STDERR_FILENO, "\n\ninfo (map_data)\n");
+	dprintf(STDERR_FILENO, "player x start pos in pixs not centered (map_data) '%d'\n", cub_data->map_data->player_data.x_pos);
+	dprintf(STDERR_FILENO, "player y start pos in pixs not centered (map_data) '%d'\n\n", cub_data->map_data->player_data.y_pos);
+	dprintf(STDERR_FILENO, "info (cub_data)\n");
+	dprintf(STDERR_FILENO, "player pos x on the tile '%d'\n", cub_data->player_cub.map_pox_x);
+	dprintf(STDERR_FILENO, "player pos y on the tile '%d'\n", cub_data->player_cub.map_pox_y);
+	dprintf(STDERR_FILENO, "player x in float centered on the tile '%f'\n", cub_data->player_cub.pos_x_pixel);
+	dprintf(STDERR_FILENO, "player x in float centered on the tile '%f'\n", cub_data->player_cub.pos_y_pixel);
+	dprintf(STDERR_FILENO, "tile size '%d'\n", cub_data->tile_size);
+	
+
+
+	
 }

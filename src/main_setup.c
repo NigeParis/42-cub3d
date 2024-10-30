@@ -6,16 +6,16 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 15:43:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 08:54:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 //debug_print_setup_maps(&map_data); //to use //->free_setup_maps
-void	setup_game(int argc, char *argv[], t_data *map_data)
+void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
 {
-	get_map_check_and_setup(argc, argv, map_data);
+	get_map_check_and_setup(argc, argv, map_data, cub_data);
 	free_setup_maps(map_data);
 	map_data->gw.mlx_ptr = mlx_init();
 	mlx_get_screen_size(map_data->gw.mlx_ptr, &map_data->gw.screen_width, \
