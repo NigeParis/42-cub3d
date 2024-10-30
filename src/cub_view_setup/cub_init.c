@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:13:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 12:28:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:33:39 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 		
 		cub_data->player_cub.facing = cub_data->map_data \
 		->player_data.player_direction;
+		cub_data->player_cub.field_of_view = \
+		cub_data->map_data->player_data.field_of_view;
 	}
 }

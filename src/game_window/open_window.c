@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 13:08:22 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:24:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,169 @@ int	put_minimap_to_screen(t_data *map_data)
 	}
 	return (0);
 }
+/////////////////////////////////////////////////////////  start
+
+
+#define WIDTH 0
+#define HIEGHT 1
+
+static int	within_drawing_limits(t_cub_data *cub_data, int x, int y)
+{
+	if (x > (int)(cub_data->map_data->gw.screen_width / 2) \
+	|| y > (int)(cub_data->map_data->gw.screen_height / 2))
+		return (0);
+	if (x < 0 || y < 0)
+		return (0);
+	return (1);
+}
 
 
 
+
+static int	is_wall_pixel(t_cub_data *cub_data, float x, float y, int color)
+{
+	(void)cub_data;
+	(void)color;
+	
+	if (x < 0 || y < 0 || x < 0 || y < 0)
+		return (1);
+	
+	dprintf(STDERR_FILENO, "\n");
+								///// function to checkmap for 1 in pixels
+	if (x == 0 )
+		return (1);
+	return (0);
+}
+
+
+
+
+static int	check_for_wall_collision_loop(t_cub_data *cub_data,
+float start[2], float x1, float y1)
+{
+	if (within_drawing_limits(cub_data, (int)x1 + start[HIEGHT],
+			(int)y1 + start[WIDTH]))
+	{
+		if (is_wall_pixel(cub_data, x1 + start[HIEGHT],
+				y1 + start[WIDTH], 0))
+			return (1);
+	}
+	else
+		return (1);
+	return (0);
+}
+
+
+static int	init_circle_data(t_cub_data *cub_data, float x1, \
+	float y1, float *rad)
+{
+	if (!cub_data || !x1 || !y1 || !rad)
+		return (0);
+	*rad = 1;
+	return (1);
+}
+
+
+static int	check_wall_limit(t_cub_data *cub_data, float x1, float y1)
+{
+	float	start[2];
+	float	rad;
+
+	init_circle_data(cub_data, x1, y1, &rad);
+	start[WIDTH] = (0 - rad);
+	while (start[WIDTH] <= rad)
+	{
+		start[HIEGHT] = (0 - rad);
+		while (start[HIEGHT] <= rad)
+		{
+			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
+			{
+				if (check_for_wall_collision_loop(cub_data, start, x1, y1))
+					return (1);
+			}
+			start[HIEGHT]++;
+		}
+		start[WIDTH]++;
+	}
+	return (0);
+}
+
+
+
+
+
+
+
+
+
+
+static void	mlx_put_pixel(t_cub_data *cub_data, int x, int y)
+{
+	char	*pixel;
+	int		color_shift;
+	int		bits;
+
+	if (x < 0 || y < 0)
+		return ;
+	bits = 8;
+	color_shift = cub_data->map_data->form.pixel_bits - bits;
+	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x * \
+	(cub_data->map_data->form.pixel_bits / bits));
+	while (color_shift >= 0)
+	{
+		*pixel = (cub_data->map_data->form.dot_col >> \
+		(cub_data->map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
+		color_shift -= bits;
+		pixel++;
+	}
+}
+
+
+
+static void	calculate_rotated_line(float angle_radian,
+float length, t_cub_draw_line_data *line_data)
+{
+	line_data->x1 = line_data->x0 + length * cos(angle_radian);
+	line_data->y1 = line_data->y0 + length * sin(angle_radian);
+}
+
+int	cub_find_wall(t_cub_data*cub_data, float sup_angle)
+{
+	float					angle_radian;
+	float					length;
+	t_cub_draw_line_data	line_data;
+
+	line_data.y0 = cub_data->player_cub.pos_x_float;
+	line_data.x0 = cub_data->player_cub.pos_y_float;
+	angle_radian = (cub_data->map_data->player_data.player_degrees + sup_angle)
+		* (M_PI / 180);
+	length = 0.5;
+	calculate_rotated_line(angle_radian, length, &line_data);
+	while (!check_wall_limit(cub_data, line_data.x1, line_data.y1))
+	{
+		calculate_rotated_line(angle_radian, length, &line_data);
+		length += 0.5;
+	}
+	mlx_put_pixel(cub_data, (int)cub_data->map_data->gw.screen_width / 2, (int)cub_data->map_data->gw.screen_height / 2);
+	// draw_radar_line(map_data, &line_data, angle_radian);
+
+	dprintf(STDERR_FILENO, "length is '%f'\n", length);
+	return (0);
+}
 
 
 
 	
+
+
+//////////////////////////////////////    stop
+
+
+
+
+
+
+
 
 
 
@@ -43,11 +199,18 @@ int	draw_to_screen(t_cub_data *cub_data)
 	put_minimap_to_screen(cub_data->map_data);
 
 	get_start_pos_cub(cub_data);
-	debug_print_data_for_3D_view(cub_data);
+	//debug_print_data_for_3D_view(cub_data);
 	
 	if (!(cub_data)->map_data->minimap_show)
 	{
 		draw_background(cub_data->map_data);
+
+		if (cub_find_wall(cub_data, 30))
+			dprintf(STDERR_FILENO, "found wall\n");		
+
+
+
+		
 		mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window, \
 			cub_data->map_data->form.mlx_img, 0, 0);
 	}

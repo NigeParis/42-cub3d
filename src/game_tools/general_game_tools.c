@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_game_tools.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/26 13:06:20 by nige42           ###   ########.fr       */
+/*   Updated: 2024/10/30 13:56:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,4 @@ int	create_color(int color_1, int color_2, int color_3)
 {
 	return ((color_1 << 16) + (color_2 << 8) + color_3);
 }
+

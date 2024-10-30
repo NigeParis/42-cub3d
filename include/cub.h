@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 12:37:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:26:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ typedef struct s_player_cub
 	int		map_pos_y;
 	float	pos_x_float;
 	float	pos_y_float;
+	int		field_of_view;
 
 }	t_player_cub;
 
@@ -200,6 +201,26 @@ typedef struct s_cud_data
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
 }	t_cub_data;
+
+
+typedef struct s_cub_draw_line_data
+{
+	float length_from_origin;
+	float x0;
+	float x1;
+	float y0;
+	float y1;
+	float dx;
+	float dy;
+	float sx;
+	float sy;
+	float err;
+	float e2;
+	float x0_origin;
+	float y0_origin;
+	float distance_to_wall;	
+	
+} t_cub_draw_line_data;
 
 
 
