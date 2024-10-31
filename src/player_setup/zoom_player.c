@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:50:48 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 11:51:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:22:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	key_zoom_out(t_data *map_data)
 {
 	if ((map_data->gw.k_keypressed_flag) && (!map_data->lock_zoom))
 	{
-		if (map_data->char_pixel_height > 4 && map_data->char_pixel_width > 4)
+		if (map_data->char_pixel_height > 10 && map_data->char_pixel_width > 10)
 		{
 			map_data->char_pixel_height -= 1;
 			map_data->char_pixel_width -= 1;
