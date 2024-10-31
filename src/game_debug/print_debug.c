@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 20:31:11 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/31 10:20:23 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	dprintf(STDERR_FILENO, "initial player y srt pos in pixs !centered (map_data) '%d'\n", cub_data->map_data->player_data.y_pos);
 	dprintf(STDERR_FILENO, "initial map size x (map_data) '%d'\n", cub_data->map_data->minimap_max_width);
 	dprintf(STDERR_FILENO, "initial map size y (map_data) '%d'\n", cub_data->map_data->minimap_max_height);
+	dprintf(STDERR_FILENO, "map size y offset (map_data) '%d'\n", cub_data->map_data->minimap_offset_y);
+	dprintf(STDERR_FILENO, "map size x offset (map_data) '%d'\n", cub_data->map_data->minimap_offset_x);
 	
 	dprintf(STDERR_FILENO, "\ninfo (cub_data)\n");
 	dprintf(STDERR_FILENO, "player pos x on the map/char '%d'\n", cub_data->player_cub.map_pos_x);
@@ -113,7 +115,8 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	dprintf(STDERR_FILENO, "map height size in tiles / pixel '%d'\n", cub_data->map_height_in_tiles);
 	
 	dprintf(STDERR_FILENO, "\ndistance from the wall = '%f'\n", cub_data->player_cub.walls_distance);
-	dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", calculate_half_wall_height(cub_data->player_cub.walls_distance, 20)); 
+	dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", cub_data->player_cub.half_wall_size); 
+	dprintf(STDERR_FILENO, "player rotation in degrees (map_dat) = '%f'\n",cub_data->map_data->player_data.player_degrees); 
 
 	dprintf(STDERR_FILENO, "\ninfo GENERAL\n");
 	dprintf(STDERR_FILENO, "screen width in pixels '%d'\n", cub_data->map_data->gw.screen_width);

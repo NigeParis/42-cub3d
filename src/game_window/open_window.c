@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 20:29:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:11:14 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	put_minimap_to_screen(t_data *map_data)
 		move_player(map_data);
 		draw_dot(map_data);
 		put_line_call(map_data);
-		mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-			map_data->form.mlx_img, 0, 0);
+		//mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
+		//	map_data->form.mlx_img, 0, 0);
 	}
 	return (0);
 }
@@ -32,6 +32,10 @@ int	put_minimap_to_screen(t_data *map_data)
 
 #define WIDTH 0
 #define HIEGHT 1
+
+
+static int	draw_vertical_line(t_cub_data *cub_data);
+
 
 static int	within_drawing_limits(t_cub_data *cub_data, int x, int y)
 {
@@ -67,7 +71,7 @@ static int	is_wall_pixel(t_cub_data *cub_data, float x, float y, int color)
 		
 		// dprintf(STDERR_FILENO, "distance from the wall = '%f'\n", cub_data->player_cub.walls_distance);
 
-		// dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", calculate_half_wall_height(cub_data->player_cub.walls_distance, 20)); 
+		cub_data->player_cub.half_wall_size = calculate_half_wall_height(cub_data->player_cub.walls_distance, 30); 
 
 
 		
@@ -77,6 +81,9 @@ static int	is_wall_pixel(t_cub_data *cub_data, float x, float y, int color)
 	return (0);
 }
  
+
+
+
 
 
 
@@ -162,6 +169,27 @@ static void	mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 
 
 
+static int	draw_vertical_line(t_cub_data *cub_data)
+{
+	int	line_start_pixels;
+	int	line_stop_pixels;
+
+	line_start_pixels = 293 - (int)round(cub_data->player_cub.half_wall_size);
+	line_stop_pixels = ((int)round(cub_data->player_cub.half_wall_size) + 250);
+	
+	while (line_start_pixels < line_stop_pixels)
+	{		
+		
+		if(within_drawing_limits(cub_data, (int)cub_data->map_data->gw.screen_width / 2, line_start_pixels))
+			mlx_put_pixel(cub_data, (int)cub_data->map_data->gw.screen_width / 2, line_start_pixels);
+		line_start_pixels++;
+	}
+	return (1);
+}
+
+
+
+
 static void	calculate_rotated_line(float angle_radian,
 float length, t_cub_draw_line_data *line_data)
 {
@@ -191,6 +219,8 @@ int	cub_find_wall(t_cub_data*cub_data, float sup_angle)
 	mlx_put_pixel(cub_data, (int)cub_data->map_data->gw.screen_width / 2, (int)cub_data->map_data->gw.screen_height / 2);
 	// draw_radar_line(map_data, &line_data, angle_radian);
 	cub_data->player_cub.walls_distance = length;
+	draw_vertical_line(cub_data);
+	
 	return (0);
 }
 
@@ -217,19 +247,19 @@ int	draw_to_screen(t_cub_data *cub_data)
 
 	get_start_pos_cub(cub_data);
 	debug_print_data_for_3D_view(cub_data);
-	cub_find_wall(cub_data, -30);
 	
 	if (!(cub_data)->map_data->minimap_show)
 	{
 		draw_background(cub_data->map_data);
 
-
+		move_player(cub_data->map_data);
 
 
 		
-		mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window, \
-			cub_data->map_data->form.mlx_img, 0, 0);
 	}
+	cub_find_wall(cub_data, (int)-(cub_data->player_cub.field_of_view / 2));
+	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window, \
+		cub_data->map_data->form.mlx_img, 0, 0);
 	return (0);
 }
 
