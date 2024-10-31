@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/31 14:25:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/31 17:33:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	put_minimap_to_screen(t_data *map_data)
 	if (map_data->minimap_show)
 	{
 		//draw_background(map_data);
+		
 		draw_map(map_data);
 		move_player(map_data);
 		draw_dot(map_data);
@@ -200,13 +201,14 @@ float length, t_cub_draw_line_data *line_data)
 	line_data->y1 = line_data->y0 + length * sin(angle_radian);
 }
 
-int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
+static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
 {
 	float					angle_radian;
 	float					length;
 	t_cub_draw_line_data	line_data;
+	(void)i;
 
-	line_data.y0 = cub_data->player_cub.pos_y_float + i;
+	line_data.y0 = cub_data->player_cub.pos_y_float;
 	line_data.x0 = cub_data->player_cub.pos_x_float;
 	
 	angle_radian = (cub_data->map_data->player_data.player_degrees + sup_angle)
@@ -230,9 +232,39 @@ int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
 	return (0);
 }
 
+#define LINESTEPS 0.02// 60 deg 960 rayons  //0,0625
+#define ITERATIONS_FOV 0.12                    //0.12
+#define ANGLE_OPENER 19			//1.92
 
+static int	put_wall_call(t_cub_data *cub_data)
+{
+	float	i;
+	float	offset;
+	float	field_of_view;
+	float	degrees;
+	int y = 0;
+	i = 0;
+	field_of_view = cub_data->map_data->player_data.field_of_view * ANGLE_OPENER;
+	degrees = (cub_data->map_data->player_data.player_degrees / M_PI) * 360;
+	while (y < field_of_view)
+	{
+		if ((degrees) - (field_of_view) > 0)
+			cub_find_wall(cub_data, i, y);
+		else
+		{
+			offset = degrees - ((degrees) - (i));
+			cub_find_wall(cub_data, offset, y);
 
-	
+		}
+		field_of_view -= ITERATIONS_FOV;
+		i -= LINESTEPS;
+		y++;
+		dprintf(STDERR_FILENO, "i = %d\n", y);
+		if (y >= 960)
+			break ;
+	}
+	return (0);
+}	
 
 
 //////////////////////////////////////    stop
@@ -262,13 +294,15 @@ int	draw_to_screen(t_cub_data *cub_data)
 
 		
 	}
-	int i = 0;
-	float angle = 60 / 960;
-	while (i <  960)
-	{
-		cub_find_wall(cub_data, 30 - angle, i);
-		i++;
-	}
+	// int i = 0;
+	// float angle = 60 / 960;
+	// while (i <  960)
+	// {
+	// 	cub_find_wall(cub_data, 30 - angle, i);
+	// 	i++;
+	// }
+	put_wall_call(cub_data);
+	
 	put_minimap_to_screen(cub_data->map_data);
 	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window, \
 		cub_data->map_data->form.mlx_img, 0, 0);
