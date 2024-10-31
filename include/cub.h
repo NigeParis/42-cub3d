@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/31 17:12:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:50:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define HALF_WALL_HEIGHT 300
+# define HALF_WALL_HEIGHT 180
 # define HALF_WALL_SMALL_LIMIT 25
 
 typedef struct s_draw_dot_data

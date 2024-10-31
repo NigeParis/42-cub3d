@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/31 17:33:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:57:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,6 @@ int	put_minimap_to_screen(t_data *map_data)
 
 
 static int	draw_vertical_line(t_cub_data *cub_data, int i);
-
-
-// static void	define_cub_line_data_sx_sy(t_draw_line_data *line_data)
-// {
-// 	if (line_data->x0 < line_data->x1)
-// 		line_data->sx = 1;
-// 	else
-// 		line_data->sx = -1;
-// 	if (line_data->y0 < line_data->y1)
-// 		line_data->sy = 1;
-// 	else
-// 		line_data->sy = -1;
-// }
-
-// static void	draw_cub_radar_line(t_data *map_data, t_draw_line_data *line_data,
-// float angle_radian)
-// {	
-// 	line_data->distance_to_wall = 0;
-// 	line_data->y0_origin = line_data->y0;
-// 	line_data->x0_origin = line_data->x0;
-// 	line_data->dx = abs(line_data->x1 - line_data->x0);
-// 	line_data->dy = abs(line_data->y1 - line_data->y0);
-// 	line_data->err = line_data->dx - line_data->dy;
-// 	define_line_data_sx_sy(line_data);
-// 	draw_line_loop(map_data, line_data, angle_radian);
-// }
-
 
 
 
@@ -206,7 +179,7 @@ static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
 	float					angle_radian;
 	float					length;
 	t_cub_draw_line_data	line_data;
-	(void)i;
+	i = 960 - i;
 
 	line_data.y0 = cub_data->player_cub.pos_y_float;
 	line_data.x0 = cub_data->player_cub.pos_x_float;
@@ -287,7 +260,6 @@ int	draw_to_screen(t_cub_data *cub_data)
 	
 	if (!(cub_data)->map_data->minimap_show)
 	{
-		draw_background(cub_data->map_data);
 
 		move_player(cub_data->map_data);
 
@@ -301,7 +273,10 @@ int	draw_to_screen(t_cub_data *cub_data)
 	// 	cub_find_wall(cub_data, 30 - angle, i);
 	// 	i++;
 	// }
+	draw_background(cub_data->map_data);
+
 	put_wall_call(cub_data);
+
 	
 	put_minimap_to_screen(cub_data->map_data);
 	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window, \
