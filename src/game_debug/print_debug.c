@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/31 10:20:23 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:54:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	dprintf(STDERR_FILENO, "\ninfo GENERAL\n");
 	dprintf(STDERR_FILENO, "screen width in pixels '%d'\n", cub_data->map_data->gw.screen_width);
 	dprintf(STDERR_FILENO, "screen hieght in pixels '%d'\n", cub_data->map_data->gw.screen_height);
+	dprintf(STDERR_FILENO, "rays_angle '%f'\n", cub_data->rays.ray_angle);
+	dprintf(STDERR_FILENO, "ray index '%d'\n", cub_data->rays.ray_index);
 	
 	
 

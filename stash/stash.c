@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:11:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 14:04:33 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:06:16 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,67 @@ void	build_map(char *file, t_data *map_data)
 	}
 	display_dbl_ptr(map_data->map);
 }
+
+
+
+static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
+{
+	float					angle_radian;
+	float					length;
+	t_cub_draw_line_data	line_data;
+	i = 960 - i;
+
+	line_data.y0 = cub_data->player_cub.pos_y_float;
+	line_data.x0 = cub_data->player_cub.pos_x_float;
+	
+	angle_radian = (cub_data->map_data->player_data.player_degrees + sup_angle)
+		* (M_PI / 180);
+	length = 0;
+	calculate_rotated_line(angle_radian, length, &line_data);
+	while (!check_wall_limit(cub_data, line_data.x1, line_data.y1))
+	{
+		calculate_rotated_line(angle_radian, length, &line_data);
+		length += 0.5;
+	}
+	
+	
+	
+	cub_data->player_cub.walls_distance = length;
+	draw_vertical_line(cub_data, i);
+	
+	return (0);
+}
+
+#define LINESTEPS 0.02// 60 deg 960 rayons  //0,0625
+#define ITERATIONS_FOV 0.12                    //0.12
+#define ANGLE_OPENER 19			//1.92
+
+static int	put_wall_call(t_cub_data *cub_data)
+{
+	float	i;
+	float	offset;
+	float	field_of_view;
+	float	angle_radian;
+	int y = 0;
+	i = 0;
+	field_of_view = cub_data->map_data->player_data.field_of_view * ANGLE_OPENER;
+	angle_radian = (cub_data->map_data->player_data.player_degrees * (M_PI / 180));
+	while (y < field_of_view)
+	{
+		if ((angle_radian) - (field_of_view) > 0)
+			cub_find_wall(cub_data, i, y);
+		else
+		{
+			offset = angle_radian - ((angle_radian) - (i));
+			cub_find_wall(cub_data, offset, y);
+
+		}
+		field_of_view -= ITERATIONS_FOV;
+		i -= LINESTEPS;
+		y++;
+		//dprintf(STDERR_FILENO, "i = %d\n", y);
+		if (y >= 960)
+			break ;
+	}
+	return (0);
+}	

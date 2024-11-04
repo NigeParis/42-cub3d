@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/04 09:33:21 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:34:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,41 @@ int	put_minimap_to_screen(t_data *map_data)
 static int	draw_vertical_line(t_cub_data *cub_data, int i);
 
 
+float normalize_angle(float angle_radians) 
+{
+    angle_radians = fmod(angle_radians, 2 * M_PI);
+    if (angle_radians < 0)
+        angle_radians += 2 * M_PI;
+    return angle_radians;
+}
+
+float convert_to_radian(float angle_degrees)
+{
+	float angle_radian;
+	angle_radian = angle_degrees * (M_PI / 180);
+	angle_radian = normalize_angle(angle_radian);
+	return (angle_radian);	
+}
+
+
+float calculate_wall_height(float distance_from_the_wall, float angle_degrees) 
+{
+    float angle_radians;
+    float half_wall_height;
+    float wall_height;
+	
+    angle_radians = convert_to_radian(angle_degrees);
+    half_wall_height = distance_from_the_wall * tan(angle_radians);
+    wall_height = (WALL_HEIGHT - half_wall_height * 2);        
+    if (wall_height < WALL_SMALL_LIMIT)
+        wall_height = WALL_SMALL_LIMIT;
+
+    return (wall_height);
+}
+
+
+
+
 
 
 
@@ -55,10 +90,9 @@ static int	within_drawing_limits(t_cub_data *cub_data, int x, int y)
 
 
 
-static int	is_wall_pixel(t_cub_data *cub_data, float x, float y, int color)
+static int	is_wall_pixel(t_cub_data *cub_data, float x, float y)
 {
 	(void)cub_data;
-	(void)color;
 	
 	if (!within_drawing_limits(cub_data, x, y))
 		return (1);
@@ -71,7 +105,7 @@ static int	is_wall_pixel(t_cub_data *cub_data, float x, float y, int color)
 
 	if (cub_data->map_data->square_map[ty][tx] == '1')
 	{
-		cub_data->player_cub.half_wall_size = calculate_half_wall_height(cub_data->player_cub.walls_distance, 30); 
+		cub_data->player_cub.half_wall_size = calculate_wall_height(cub_data->player_cub.walls_distance, 30); 
 		return (1);
 	}
 	}
@@ -103,7 +137,7 @@ static int	check_wall_limit(t_cub_data *cub_data, float x1, float y1)
 		{
 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
 			{
-				if (is_wall_pixel(cub_data, x1, y1, 0))
+				if (is_wall_pixel(cub_data, x1, y1))
 					return (1);
 			}
 			start[HIEGHT]++;
@@ -174,21 +208,31 @@ float length, t_cub_draw_line_data *line_data)
 	line_data->y1 = line_data->y0 + length * sin(angle_radian);
 }
 
-static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
+
+
+
+
+
+
+
+static int	cast_ray(t_cub_data*cub_data, float ray_angle, int strip_index)
 {
 	float					angle_radian;
 	float					length;
 	t_cub_draw_line_data	line_data;
-	i = 960 - i;
+	//strip_index = 960 - strip_index;
 
 	line_data.y0 = cub_data->player_cub.pos_y_float;
 	line_data.x0 = cub_data->player_cub.pos_x_float;
 	
-	angle_radian = (cub_data->map_data->player_data.player_degrees + sup_angle)
-		* (M_PI / 180);
+	angle_radian = convert_to_radian(ray_angle);	
+	normalize_angle(angle_radian); 
+	
 	length = 0;
 	calculate_rotated_line(angle_radian, length, &line_data);
-	while (!check_wall_limit(cub_data, line_data.x1, line_data.y1))
+
+	
+	while (!check_wall_limit(cub_data, line_data.x1, line_data.y1))  /// this has to be changed to a y step + 1
 	{
 		calculate_rotated_line(angle_radian, length, &line_data);
 		length += 0.5;
@@ -197,42 +241,27 @@ static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
 	
 	
 	cub_data->player_cub.walls_distance = length;
-	draw_vertical_line(cub_data, i);
+	draw_vertical_line(cub_data, strip_index);
 	
 	return (0);
 }
 
-#define LINESTEPS 0.02// 60 deg 960 rayons  //0,0625
-#define ITERATIONS_FOV 0.12                    //0.12
-#define ANGLE_OPENER 19			//1.92
 
-static int	put_wall_call(t_cub_data *cub_data)
+
+static int	put_all_rays(t_cub_data *cub_data)
 {
-	float	i;
-	float	offset;
-	float	field_of_view;
-	float	angle_radian;
-	int y = 0;
-	i = 0;
-	field_of_view = cub_data->map_data->player_data.field_of_view * ANGLE_OPENER;
-	angle_radian = (cub_data->map_data->player_data.player_degrees * (M_PI / 180));
-	while (y < field_of_view)
-	{
-		if ((angle_radian) - (field_of_view) > 0)
-			cub_find_wall(cub_data, i, y);
-		else
-		{
-			offset = angle_radian - ((angle_radian) - (i));
-			cub_find_wall(cub_data, offset, y);
+	float fov_step = 0;
+	cub_data->rays.ray_index = 0;
+	cub_data->rays.ray_fov = 60;
+	cub_data->rays.ray_angle = cub_data->rays.ray_fov / cub_data->map_data->gw.screen_width;
 
-		}
-		field_of_view -= ITERATIONS_FOV;
-		i -= LINESTEPS;
-		y++;
-		//dprintf(STDERR_FILENO, "i = %d\n", y);
-		if (y >= 960)
-			break ;
+	while (fov_step < cub_data->rays.ray_fov)
+	{
+		cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->rays.ray_angle + fov_step, cub_data->rays.ray_index++);
+
+		fov_step += cub_data->rays.ray_angle;
 	}
+
 	return (0);
 }	
 
@@ -272,7 +301,7 @@ int	draw_to_screen(t_cub_data *cub_data)
 	// }
 	draw_background(cub_data->map_data);
 
-	put_wall_call(cub_data);
+	put_all_rays(cub_data);
 
 	
 	put_minimap_to_screen(cub_data->map_data);

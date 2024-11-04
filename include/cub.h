@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 09:17:40 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:52:45 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define HALF_WALL_HEIGHT 200
-# define HALF_WALL_SMALL_LIMIT 5
+# define WALL_HEIGHT 200
+# define WALL_SMALL_LIMIT 5
 # define CUB_TILESIZE 5
 
 typedef struct s_draw_dot_data
@@ -127,6 +127,19 @@ typedef struct s_cell_data
 
 }	t_cell_data;
 
+
+typedef struct s_rays
+{
+	float	ray_fov;
+	float	ray_angle;
+	float	ray_angle_rd;
+	int		ray_index;
+	
+
+	
+} t_rays;
+
+
 typedef struct s_player_data
 {
 	int		x_pos;
@@ -199,6 +212,7 @@ typedef struct s_player_cub
 typedef struct s_cud_data
 {
 	t_data			*map_data;
+	t_rays			rays;
 	t_player_cub	player_cub;
 	int				tile_size;
 	float  			tile_center;
