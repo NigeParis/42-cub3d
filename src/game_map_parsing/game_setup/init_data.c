@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/31 13:47:20 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 08:58:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	init_data(t_data *map_data, char *argv[])
 	map_data->player_data.field_of_view = 60;
 	map_data->cell_data.cell_size = 0;
 	map_data->nb_zeros_in_map = 0;
-	map_data->char_pixel_height = 25;
-	map_data->char_pixel_width = 25;
+	map_data->char_pixel_height = 5;
+	map_data->char_pixel_width = 5;
 	map_data->lock_zoom = 0;
 	map_data->player_data.prev_direction = -1;
 	init_textures_and_colours(map_data);

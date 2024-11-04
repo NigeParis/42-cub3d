@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:13:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 13:33:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:14:00 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	get_tile_sizes(t_cub_data *cub_data)
 {
-	cub_data->tile_size = cub_data->map_data->char_pixel_height;
+	cub_data->tile_size = CUB_TILESIZE;
 	cub_data->map_width_in_tiles = cub_data->tile_size \
 	* cub_data->map_data->minimap_max_width;
 	cub_data->map_height_in_tiles = cub_data->tile_size \
@@ -47,8 +47,8 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 	pos_y = 0;	
 	if (!cub_data->map_data->lock_zoom)
 	{
-		pos_x = (int)cub_data->map_data->player_data.x_pos / 25;
-		pos_y = (int)cub_data->map_data->player_data.y_pos / 25;
+		pos_x = (int)cub_data->map_data->player_data.x_pos / CUB_TILESIZE;
+		pos_y = (int)cub_data->map_data->player_data.y_pos / CUB_TILESIZE;
 		get_tile_sizes(cub_data);
 		get_char_position_in_map(cub_data, pos_x, pos_y);
 		get_player_pos_float(cub_data, pos_x, pos_y);

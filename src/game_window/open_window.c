@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/31 18:57:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:33:21 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,8 @@ static int	draw_vertical_line(t_cub_data *cub_data, int i)
 	int	line_stop_pixels;
 	//cub_data->map_data->form.dot_col++;
 
-	line_start_pixels = 293 - (int)round(cub_data->player_cub.half_wall_size);
-	line_stop_pixels = ((int)round(cub_data->player_cub.half_wall_size) + 250);
+	line_start_pixels = 293 - (int)(cub_data->player_cub.half_wall_size);
+	line_stop_pixels = ((int)(cub_data->player_cub.half_wall_size) + 250);
 	
 	while (line_start_pixels < line_stop_pixels)
 	{		
@@ -190,15 +190,12 @@ static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
 	calculate_rotated_line(angle_radian, length, &line_data);
 	while (!check_wall_limit(cub_data, line_data.x1, line_data.y1))
 	{
-		//dprintf(STDERR_FILENO, "x1 = '%f' y1 = '%f' \n", line_data.x1, line_data.y1);
 		calculate_rotated_line(angle_radian, length, &line_data);
 		length += 0.5;
 	}
-	//mlx_put_pixel(cub_data, (int)cub_data->map_data->gw.screen_width / 2, (int)cub_data->map_data->gw.screen_height / 2);
 	
 	
 	
-	// draw_radar_line(map_data, &line_data, angle_radian);
 	cub_data->player_cub.walls_distance = length;
 	draw_vertical_line(cub_data, i);
 	
@@ -214,25 +211,25 @@ static int	put_wall_call(t_cub_data *cub_data)
 	float	i;
 	float	offset;
 	float	field_of_view;
-	float	degrees;
+	float	angle_radian;
 	int y = 0;
 	i = 0;
 	field_of_view = cub_data->map_data->player_data.field_of_view * ANGLE_OPENER;
-	degrees = (cub_data->map_data->player_data.player_degrees / M_PI) * 360;
+	angle_radian = (cub_data->map_data->player_data.player_degrees * (M_PI / 180));
 	while (y < field_of_view)
 	{
-		if ((degrees) - (field_of_view) > 0)
+		if ((angle_radian) - (field_of_view) > 0)
 			cub_find_wall(cub_data, i, y);
 		else
 		{
-			offset = degrees - ((degrees) - (i));
+			offset = angle_radian - ((angle_radian) - (i));
 			cub_find_wall(cub_data, offset, y);
 
 		}
 		field_of_view -= ITERATIONS_FOV;
 		i -= LINESTEPS;
 		y++;
-		dprintf(STDERR_FILENO, "i = %d\n", y);
+		//dprintf(STDERR_FILENO, "i = %d\n", y);
 		if (y >= 960)
 			break ;
 	}
