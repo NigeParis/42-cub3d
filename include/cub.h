@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 11:52:45 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:37:25 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,22 @@ typedef struct s_rays
 	float	ray_fov;
 	float	ray_angle;
 	float	ray_angle_rd;
+	float	ray_x0;
+	float	ray_y0;
+	float	ray_x1;
+	float	ray_y1;
+	float	ray_vx0_hit;
+	float	ray_vx1_hit;
+	float	ray_y_len;
+	float	ray_x_len;
+	int		ray_hx0_hit;
+	int		ray_hx1_hit;
 	int		ray_index;
-	
+	int		ray_hit;
+	int		ray_facing_up;
+	int		ray_facing_down;
+	int		ray_facing_left;
+	int		ray_facing_right;
 
 	
 } t_rays;

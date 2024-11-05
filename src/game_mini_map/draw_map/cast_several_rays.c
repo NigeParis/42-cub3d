@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:24:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/04 09:36:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/04 16:20:18 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	put_line_call(t_data *map_data)
 	float	field_of_view;
 	float	angle_radian;
 
-	i = 0;
+	i = -map_data->player_data.field_of_view / 2;
 	field_of_view = (map_data->player_data.field_of_view  * (M_PI / 180));
 	angle_radian = (map_data->player_data.player_degrees * (M_PI / 180));
 	// while (field_of_view > 0)
