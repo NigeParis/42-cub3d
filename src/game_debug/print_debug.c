@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 11:54:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:50:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,17 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	dprintf(STDERR_FILENO, "rays_angle '%f'\n", cub_data->rays.ray_angle);
 	dprintf(STDERR_FILENO, "ray index '%d'\n", cub_data->rays.ray_index);
 	
-	
+	dprintf(STDERR_FILENO, "angle radian %f\n", cub_data->rays.ray_angle);
+	dprintf(STDERR_FILENO, "angle radian %f\n", cub_data->rays.ray_angle_rd);
 
+	char res = ray_facing(cub_data);
 
+	if (res == '1')
+		dprintf(STDERR_FILENO, "player direction in quarter north-east\n");
+	if (res == '2')
+		dprintf(STDERR_FILENO, "player direction in quarter south-east\n");
+	if (res == '3')
+		dprintf(STDERR_FILENO, "player direction in quarter south-west\n");
+	if (res == '4')
+		dprintf(STDERR_FILENO, "player direction in quarter north-west\n");
 }

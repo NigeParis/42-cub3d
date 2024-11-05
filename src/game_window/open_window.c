@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/05 13:26:32 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:44:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,15 +223,14 @@ char  ray_facing(t_cub_data *cub_data)
 
 	angle_radian = cub_data->rays.ray_angle_rd;
 
-	if (angle_radian >= 0.7854 && angle_radian < 2.3565)  // 0.7854  0 to 1.5708
-		return ('E');
-	if ((angle_radian >= 5.4978 && angle_radian <= 6.2832) \
-	|| (angle_radian >= 0 && angle_radian < 0.7854))      // 0.7854
-		return ('N');
-	if (angle_radian >= 2.3565 && angle_radian < 3.9386)   // 0.7854
-		return ('S');
-	if (angle_radian >= 3.9386 && angle_radian < 5.4978)    // 0.7854
-		return ('W');
+	if (angle_radian >= 0 && angle_radian <= 1.5708) \
+		return ('1');
+	if (angle_radian >= 1.5708 && angle_radian < 3.1416)  // 0.7854  0 to 1.5708
+		return ('2');
+	if (angle_radian >= 3.1416 && angle_radian < 4.7124)   // 0.7854
+		return ('3');
+	if (angle_radian >= 4.7124 && angle_radian < 6.2832)    // 0.7854
+		return ('4');
 
   return (0);
 }
@@ -350,9 +349,7 @@ int	draw_to_screen(t_cub_data *cub_data)
 		
 	
 	
-	dprintf(STDERR_FILENO, "angle radian %f\n", cub_data->rays.ray_angle);
-	dprintf(STDERR_FILENO, "angle radian %f\n", cub_data->rays.ray_angle_rd);
-	dprintf(STDERR_FILENO, "angle facing %c\n", ray_facing(cub_data));
+	
 
 
 	

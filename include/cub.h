@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 17:37:25 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/05 13:50:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,6 +431,7 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data);
 void	get_start_pos_cub(t_cub_data *cub_data);
 float	calculate_half_wall_height(float distance_from_the_wall, float angle_degrees);
 
+char 	ray_facing(t_cub_data *cub_data);
 
 
 
