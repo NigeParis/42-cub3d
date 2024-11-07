@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 08:54:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:04:10 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_map_offsets(t_data *map_data)
 
 void	get_player_speed(t_data *map_data)
 {
-	float	percentage;
+	double	percentage;
 	int		speed;
 
 	speed = 1;
@@ -56,13 +56,13 @@ void	adjust_starting_point_degree(t_data *map_data)
 
 	field_of_view = map_data->player_data.field_of_view;
 	if (map_data->player_data.player_direction == 'N')
-			map_data->player_data.player_degrees = 270 + field_of_view / 2;
+			map_data->player_data.player_degrees = 270;
 	if (map_data->player_data.player_direction == 'S')
-			map_data->player_data.player_degrees = 90 + field_of_view / 2;
+			map_data->player_data.player_degrees = 90;
 	if (map_data->player_data.player_direction == 'E')
-			map_data->player_data.player_degrees = 0 + field_of_view / 2;
+			map_data->player_data.player_degrees = 0;
 	if (map_data->player_data.player_direction == 'W')
-		map_data->player_data.player_degrees = 180 + field_of_view / 2;
+		map_data->player_data.player_degrees = 180;
 }
 
 int	destroy(t_data *map_data)

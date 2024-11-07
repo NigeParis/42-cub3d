@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_detection_pixel.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/30 13:24:53 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:09:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static int	is_color_pixel(t_data *map_data, int x, int y, int color)
 	return (0);
 }
 
-static int	init_circle_data(t_data *map_data, float x1, \
-	float y1, float *rad)
+static int	init_circle_data(t_data *map_data, double x1, \
+	double y1, double *rad)
 {
 	if (!map_data || !x1 || !y1 || !rad)
 		return (0);
@@ -51,7 +51,7 @@ static int	init_circle_data(t_data *map_data, float x1, \
 }
 
 int	check_for_wall_collision_loop(t_data *map_data,
-float start[2], float x1, float y1)
+double start[2], double x1, double y1)
 {
 	if (within_drawing_limits(map_data, (int)x1 + start[HIEGHT],
 			(int)y1 + start[WIDTH]))
@@ -65,10 +65,10 @@ float start[2], float x1, float y1)
 	return (0);
 }
 
-int	check_wall_limit_line(t_data *map_data, float x1, float y1)
+int	check_wall_limit_line(t_data *map_data, double x1, double y1)
 {
-	float	start[2];
-	float	rad;
+	double	start[2];
+	double	rad;
 
 	init_circle_data(map_data, x1, y1, &rad);
 	start[WIDTH] = (0 - rad);

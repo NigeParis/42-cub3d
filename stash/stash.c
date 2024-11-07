@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:11:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 11:06:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:09:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ void	build_map(char *file, t_data *map_data)
 
 
 
-static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
+static int	cub_find_wall(t_cub_data*cub_data, double sup_angle, int i)
 {
-	float					angle_radian;
-	float					length;
+	double					angle_radian;
+	double					length;
 	t_cub_draw_line_data	line_data;
 	i = 960 - i;
 
-	line_data.y0 = cub_data->player_cub.pos_y_float;
-	line_data.x0 = cub_data->player_cub.pos_x_float;
+	line_data.y0 = cub_data->player_cub.pos_y_double;
+	line_data.x0 = cub_data->player_cub.pos_x_double;
 	
 	angle_radian = (cub_data->map_data->player_data.player_degrees + sup_angle)
 		* (M_PI / 180);
@@ -85,10 +85,10 @@ static int	cub_find_wall(t_cub_data*cub_data, float sup_angle, int i)
 
 static int	put_wall_call(t_cub_data *cub_data)
 {
-	float	i;
-	float	offset;
-	float	field_of_view;
-	float	angle_radian;
+	double	i;
+	double	offset;
+	double	field_of_view;
+	double	angle_radian;
 	int y = 0;
 	i = 0;
 	field_of_view = cub_data->map_data->player_data.field_of_view * ANGLE_OPENER;

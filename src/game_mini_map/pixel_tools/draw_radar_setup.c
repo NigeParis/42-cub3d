@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_radar_setup.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:22:53 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 12:47:08 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:00:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	mlx_put_pixel(t_data *map_data, int x, int y)
 }
 
 void	draw_line_loop(t_data *map_data,
-t_draw_line_data *line_data, float angle_radian)
+t_draw_line_data *line_data, double angle_radian)
 {
 	while (1)
 	{
