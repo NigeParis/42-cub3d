@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 17:37:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data)
 	cub_data->map_data = map_data;
 	cub_data->player_cub.map_pos_x = 0;
 	cub_data->player_cub.map_pos_y = 0;
-	cub_data->player_cub.pos_x_float = 0;
-	cub_data->player_cub.pos_y_float = 0;
+	cub_data->player_cub.pos_x_double = 0;
+	cub_data->player_cub.pos_y_double = 0;
 	cub_data->tile_size = 0;
-	cub_data->map_height_in_tiles = 0;
-	cub_data->map_width_in_tiles = 0;
-	cub_data->map_height_chars = 0;
-	cub_data->map_width_chars = 0;
+	cub_data->map_height_in_tiles = 5;
+	cub_data->map_width_in_tiles = 5;
+	cub_data->map_height_chars = 5;
+	cub_data->map_width_chars = 5;
 	cub_data->tile_center = 0;
 	cub_data->player_cub.facing = 0;
 	cub_data->player_cub.walls_distance = 0;

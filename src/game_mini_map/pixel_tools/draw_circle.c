@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 18:00:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	calculate_dot_size(t_data *map_data)
 {
 	int		dot_size;
-	float	percentage;
+	double	percentage;
 
 	dot_size = 0;
 	percentage = 0.2;

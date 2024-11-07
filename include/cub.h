@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/05 13:50:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ typedef struct s_draw_line_data
 	int sy;
 	int err;
 	int e2;
-	float x0_origin;
-	float y0_origin;
-	float distance_to_wall;	
+	double x0_origin;
+	double y0_origin;
+	double distance_to_wall;	
 	
 } t_draw_line_data;
 
@@ -130,17 +130,17 @@ typedef struct s_cell_data
 
 typedef struct s_rays
 {
-	float	ray_fov;
-	float	ray_angle;
-	float	ray_angle_rd;
-	float	ray_x0;
-	float	ray_y0;
-	float	ray_x1;
-	float	ray_y1;
-	float	ray_vx0_hit;
-	float	ray_vx1_hit;
-	float	ray_y_len;
-	float	ray_x_len;
+	double	ray_fov;
+	double	ray_angle;
+	double	ray_angle_rd;
+	double	ray_x0;
+	double	ray_y0;
+	double	ray_x1;
+	double	ray_y1;
+	double	ray_vx0_hit;
+	double	ray_vx1_hit;
+	double	ray_y_len;
+	double	ray_x_len;
 	int		ray_hx0_hit;
 	int		ray_hx1_hit;
 	int		ray_index;
@@ -164,8 +164,8 @@ typedef struct s_player_data
 	int		x_last_pos;
 	int		speed;
 	int		size;
-	float	player_degrees;
-	float	rotation_speed;	
+	double	player_degrees;
+	double	rotation_speed;	
 	char	player_direction;
 	int		field_of_view;
 	int		prev_direction;
@@ -215,11 +215,11 @@ typedef struct s_player_cub
 	char	facing;
 	int		map_pos_x;
 	int		map_pos_y;
-	float	pos_x_float;
-	float	pos_y_float;
+	double	pos_x_double;
+	double	pos_y_double;
 	int		field_of_view;
-	float 	walls_distance;
-	float	half_wall_size;
+	double 	walls_distance;
+	double	half_wall_size;
 
 }	t_player_cub;
 
@@ -229,7 +229,7 @@ typedef struct s_cud_data
 	t_rays			rays;
 	t_player_cub	player_cub;
 	int				tile_size;
-	float  			tile_center;
+	double  			tile_center;
 	int				map_width_chars;
 	int				map_height_chars;
 	int 			map_width_in_tiles;
@@ -239,19 +239,19 @@ typedef struct s_cud_data
 
 typedef struct s_cub_draw_line_data
 {
-	float length_from_origin;
-	float x0;
-	float x1;
-	float y0;
-	float y1;
-	float dx;
-	float dy;
-	float sx;
-	float sy;
-	float err;
-	float e2;
-	float x0_origin;
-	float y0_origin;
+	double length_from_origin;
+	double x0;
+	double x1;
+	double y0;
+	double y1;
+	double dx;
+	double dy;
+	double sx;
+	double sy;
+	double err;
+	double e2;
+	double x0_origin;
+	double y0_origin;
 	
 } t_cub_draw_line_data;
 
@@ -382,10 +382,10 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 /// 	@return 1 on success and 0 if failed to draw
 int		draw_rectangle(t_data *map_data);
 int		draw_background(t_data *map_data);
-int		check_wall_limit_line(t_data *map_data, float x1, float y1);
-void	calculate_distance_to_wall(t_draw_line_data *line_data, float angle_radian);
+int		check_wall_limit_line(t_data *map_data, double x1, double y1);
+void	calculate_distance_to_wall(t_draw_line_data *line_data, double angle_radian);
 void	define_line_data_sx_sy(t_draw_line_data *line_data);
-void	draw_line_loop(t_data *map_data, t_draw_line_data *line_data, float angle_radian);
+void	draw_line_loop(t_data *map_data, t_draw_line_data *line_data, double angle_radian);
 //player setup
 void	get_player_starting_angle(t_data *map_data);
 void	rotate_player_left(t_data *map_data);
@@ -404,11 +404,11 @@ void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
 int		draw_dot(t_data *map_data);
 int		check_dot(t_data *map_data);
 int 	calculate_dot_size(t_data *map_data);
-void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, float angle_radian);
+void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, double angle_radian);
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
-int		put_line(t_data *map_data, float sup_angle);
+int		put_line(t_data *map_data, double sup_angle);
 int		put_line_call(t_data *map_data);
 
 
@@ -429,7 +429,7 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data);
 
 //cub#D functions
 void	get_start_pos_cub(t_cub_data *cub_data);
-float	calculate_half_wall_height(float distance_from_the_wall, float angle_degrees);
+double	calculate_half_wall_height(double distance_from_the_wall, double angle_degrees);
 
 char 	ray_facing(t_cub_data *cub_data);
 

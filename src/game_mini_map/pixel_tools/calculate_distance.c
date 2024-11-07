@@ -6,20 +6,20 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:11:19 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/30 12:12:39 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 void	calculate_distance_to_wall(t_draw_line_data *line_data,
-float angle_radian)
+double angle_radian)
 {
-	float	dx;
-	float	dy;
-	float	straight_difference;
-	float	angle_to_point;
-	float	angle_difference;
+	double	dx;
+	double	dy;
+	double	straight_difference;
+	double	angle_to_point;
+	double	angle_difference;
 
 	dx = line_data->x1 - line_data->x0_origin;
 	dy = line_data->y1 - line_data->y0_origin;

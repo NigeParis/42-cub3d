@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:13:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 09:14:00 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void get_char_position_in_map(t_cub_data *cub_data, int pos_x, int pos_y)
 	* cub_data->tile_size) / cub_data->tile_size);
 }
 
-static void	get_player_pos_float(t_cub_data *cub_data, int pos_x, int pos_y)
+static void	get_player_pos_double(t_cub_data *cub_data, int pos_x, int pos_y)
 {
-	cub_data->player_cub.pos_x_float = (float) (pos_x \
-	* cub_data->tile_size) + ((float)(cub_data->tile_size) / 2);
-	cub_data->player_cub.pos_y_float = (float) (pos_y \
-	* cub_data->tile_size) + ((float)(cub_data->tile_size) / 2);
+	cub_data->player_cub.pos_x_double = (double) (pos_x \
+	* cub_data->tile_size) + ((double)(cub_data->tile_size) / 2);
+	cub_data->player_cub.pos_y_double = (double) (pos_y \
+	* cub_data->tile_size) + ((double)(cub_data->tile_size) / 2);
 }
 
 
@@ -51,7 +51,7 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 		pos_y = (int)cub_data->map_data->player_data.y_pos / CUB_TILESIZE;
 		get_tile_sizes(cub_data);
 		get_char_position_in_map(cub_data, pos_x, pos_y);
-		get_player_pos_float(cub_data, pos_x, pos_y);
+		get_player_pos_double(cub_data, pos_x, pos_y);
 		
 		cub_data->player_cub.facing = cub_data->map_data \
 		->player_data.player_direction;

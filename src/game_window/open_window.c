@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/05 13:44:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:57:21 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,6 @@ float calculate_wall_height(float distance_from_the_wall, float angle_degrees)
 
     return (wall_height);
 }
-
-
-
-
-
-
 
 
 static int	within_drawing_limits(t_cub_data *cub_data, int x, int y)
@@ -148,14 +142,6 @@ static int	within_drawing_limits(t_cub_data *cub_data, int x, int y)
 // }
 
 
-
-
-
-
-
-
-
-
 static void	mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 {
 	char	*pixel;
@@ -217,24 +203,6 @@ float calculate_hypotenuse(float base_length, float angle_radians)
 }
 
 
-char  ray_facing(t_cub_data *cub_data)
-{
-	float angle_radian;
-
-	angle_radian = cub_data->rays.ray_angle_rd;
-
-	if (angle_radian >= 0 && angle_radian <= 1.5708) \
-		return ('1');
-	if (angle_radian >= 1.5708 && angle_radian < 3.1416)  // 0.7854  0 to 1.5708
-		return ('2');
-	if (angle_radian >= 3.1416 && angle_radian < 4.7124)   // 0.7854
-		return ('3');
-	if (angle_radian >= 4.7124 && angle_radian < 6.2832)    // 0.7854
-		return ('4');
-
-  return (0);
-}
-
 
 
 
@@ -248,17 +216,44 @@ float percentage(float number)
 	return (result);
 }
 
+int	is_wall_found(t_cub_data *cub_data, int y_val, int x_val)
+{
+	if (cub_data->map_data->square_map[y_val][x_val] == '1')
+	{
+		printf("GET X VAL WALL FOUND ! %d\n", x_val);
+		printf("GET Y VAL WALL FOUND %d\n", y_val);
+		return (1);
+	}
+		
+	return (0);
+}
 
 
-
+/*
+void    check_angle(float angle)
+{
+    if (angle > PI)
+        g_tray.ray_facingup = 1;
+    else
+        g_tray.ray_facingdown = 1;
+    if (angle > PI / 2 && angle < 3 * PI / 2)
+        g_tray.ray_facingleft = 1;
+    else
+        g_tray.ray_facingright = 1;
+}
+*/
+ 
 static int	cast_ray(t_cub_data*cub_data, float ray_angle, int strip_index)
 {
 	strip_index = 960 - strip_index;
 
-	cub_data->rays.ray_y0 = cub_data->player_cub.pos_y_float;
-	cub_data->rays.ray_x0 = cub_data->player_cub.pos_x_float;
+	cub_data->rays.ray_y0 = cub_data->player_cub.pos_y_double;
+	cub_data->rays.ray_x0 = cub_data->player_cub.pos_x_double;
 	
-	cub_data->rays.ray_angle_rd = convert_to_radian(ray_angle);	
+	cub_data->rays.ray_angle_rd = convert_to_radian(ray_angle);
+	ray_facing(cub_data);
+	increment_steps(cub_data);
+	/*
 
 	cub_data->rays.ray_x1 = cub_data->rays.ray_x0;
 	cub_data->rays.ray_y1 = cub_data->rays.ray_y0 + (CUB_TILESIZE * percentage(cub_data->rays.ray_y0)) ;
@@ -267,7 +262,7 @@ static int	cast_ray(t_cub_data*cub_data, float ray_angle, int strip_index)
 	cub_data->rays.ray_y1 = cub_data->rays.ray_y0;
 	cub_data->rays.ray_x1 = cub_data->rays.ray_x0 + (CUB_TILESIZE * percentage(cub_data->rays.ray_x0)) ;
 	cub_data->rays.ray_x_len = (cub_data->rays.ray_x1 - cub_data->rays.ray_x0) / cosf(cub_data->rays.ray_angle_rd);
-
+	*/
 
 	
 	// find horizontal collision
@@ -294,15 +289,7 @@ static int	cast_ray(t_cub_data*cub_data, float ray_angle, int strip_index)
 	// compare which the smaller
 	// treat fisheye
 	// draw to screen
-
-	
-
 	// line_data.y1 = line_data.y0 + CUB_TILESIZE;
-
-	
-
-
-	
 	// cub_data->player_cub.walls_distance = length;
 	draw_vertical_line(cub_data, strip_index);
 	
@@ -311,22 +298,7 @@ static int	cast_ray(t_cub_data*cub_data, float ray_angle, int strip_index)
 
 
 
-static int	put_all_rays(t_cub_data *cub_data)
-{
-	float fov_step = 0;
-	cub_data->rays.ray_index = 0;
-	cub_data->rays.ray_fov = 60;
-	cub_data->rays.ray_angle = cub_data->rays.ray_fov / cub_data->map_data->gw.screen_width;
 
-	while (fov_step < cub_data->rays.ray_fov)
-	{
-		cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->rays.ray_angle + fov_step, cub_data->rays.ray_index++);
-
-		fov_step += cub_data->rays.ray_angle;
-	}
-
-	return (0);
-}	
 
 
 //////////////////////////////////////    stop
@@ -346,13 +318,7 @@ int	draw_to_screen(t_cub_data *cub_data)
 
 	get_start_pos_cub(cub_data);
 	debug_print_data_for_3D_view(cub_data);
-		
-	
-	
-	
-
-
-	
+			
 	if (!(cub_data)->map_data->minimap_show)
 	{
 

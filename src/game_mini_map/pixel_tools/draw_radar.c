@@ -6,14 +6,14 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:03:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 12:20:29 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data,
-float angle_radian)
+double angle_radian)
 {	
 	line_data->distance_to_wall = 0;
 	line_data->y0_origin = line_data->y0;
