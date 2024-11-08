@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/07 09:40:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:45:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WALL_HEIGHT 200
 # define WALL_SMALL_LIMIT 5
 # define CUB_TILESIZE 5
+# define RAY_LIMIT 2147483647
 
 typedef struct s_draw_dot_data
 {
@@ -128,6 +129,19 @@ typedef struct s_cell_data
 }	t_cell_data;
 
 
+typedef struct s_ray_data
+{
+	double	ray_angle_rd[2048];
+	double	ray_deg[2048];
+	double	ray_x_len[2048];
+	double	ray_y_len[2048];
+	int  	ray_index[2048];
+	int  	ray_quadrant[2048];
+
+} t_ray_data;
+
+
+
 typedef struct s_rays
 {
 	double	ray_fov;
@@ -145,13 +159,12 @@ typedef struct s_rays
 	int		ray_hx1_hit;
 	int		ray_index;
 	int		ray_hit;
-	int		ray_facing_up;
-	int		ray_facing_down;
-	int		ray_facing_left;
-	int		ray_facing_right;
-
+	int		ray_facing;
+	t_ray_data	ray_data;
 	
 } t_rays;
+
+
 
 
 typedef struct s_player_data
@@ -432,11 +445,13 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data);
 void	get_start_pos_cub(t_cub_data *cub_data);
 double	calculate_half_wall_height(double distance_from_the_wall, double angle_degrees);
 
-char 	ray_facing(t_cub_data *cub_data);
+int		ray_facing(t_cub_data *cub_data, int strip_index);
 double	radian_to_degree(double angle_radian);
 double	degree_to_radian(double angle_degrees);
 double	normalize_angle(double angle_radians); 
-
+double	calibrate_angle_for_minimap(t_cub_data *cub_data);
+double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
+int		within_cub_drawing_limits(t_cub_data *cub_data, int x, int y);
 
 
 
