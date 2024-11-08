@@ -6,28 +6,12 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/08 12:09:02 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:04:44 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-double calibrate_angle_for_minimap(double angle_degrees)
-{
-    double calibrated_degrees;
-
-    calibrated_degrees = angle_degrees + 90;
-    if (calibrated_degrees < 0) 
-	{
-        calibrated_degrees += 360;
-    } 
-	else if (calibrated_degrees >= 360) 
-	{
-        calibrated_degrees -= 360;
-    }
-    return calibrated_degrees;
-}
 
 
 
@@ -128,9 +112,9 @@ char  debug_player_center_ray_facing(t_cub_data *cub_data)
 
 	angle_radian = cub_data->rays.ray_angle_rd + angle_rd_fov_div_2; // added to display center ray
 	angle_radian = normalize_angle(angle_radian); 
-	if (angle_radian >= 0 && angle_radian <= 1.5708) \
+	if ((angle_radian >= 0 && angle_radian < 1.5809) || angle_radian == 6.2832)
 		return ('1');
-	if (angle_radian >= 1.5708 && angle_radian < 3.1416)  // 0.7854  0 to 1.5708
+	if (angle_radian >= 1.5709 && angle_radian < 3.1416)  // 0.7854  0 to 1.5708
 		return ('2');
 	if (angle_radian >= 3.1416 && angle_radian < 4.7124)   // 0.7854
 		return ('3');
@@ -167,7 +151,7 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	
 	// dprintf(STDERR_FILENO, "\ndistance from the wall = '%f'\n", cub_data->player_cub.walls_distance);
 	// dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", cub_data->player_cub.half_wall_size); 
-	dprintf(STDERR_FILENO, "\nplayer rotation in degrees (map_dat) = '%f'\n",  calibrate_angle_for_minimap(cub_data->map_data->player_data.player_degrees)); // adjustement for inversion north south y and -y mlx 
+	//dprintf(STDERR_FILENO, "\nplayer rotation in degrees (map_dat) = '%f'\n",  calibrate_angle_for_minimap(cub_data->map_data->player_data.player_degrees)); // adjustement for inversion north south y and -y mlx 
 
 	// dprintf(STDERR_FILENO, "\ninfo GENERAL\n");
 	// dprintf(STDERR_FILENO, "screen width in pixels '%d'\n", cub_data->map_data->gw.screen_width);
@@ -186,17 +170,22 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	char res = debug_player_center_ray_facing(cub_data);
 
 	if (res == '1')
-		dprintf(STDERR_FILENO, "player direction in quarter north-east\n");
+		dprintf(STDERR_FILENO, "player direction in quarter north-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 	if (res == '2')
-		dprintf(STDERR_FILENO, "player direction in quarter north-west\n");
+		dprintf(STDERR_FILENO, "player direction in quarter north-west degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 	if (res == '3')
-		dprintf(STDERR_FILENO, "player direction in quarter south-west\n");
+		dprintf(STDERR_FILENO, "player direction in quarter south-west degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 	if (res == '4')
-		dprintf(STDERR_FILENO, "player direction in quarter south-east\n");
+		dprintf(STDERR_FILENO, "player direction in quarter south-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 
-	// dprintf(STDERR_FILENO, "length of rsay from x_step %f\n", cub_data->rays.ray_x_len);
-	// dprintf(STDERR_FILENO, "length of rsay from y_step %f\n", cub_data->rays.ray_y_len);
+	//dprintf(STDERR_FILENO, "length of rsay from x_step %f\n", fabs(cub_data->rays.ray_x_len));
+	//dprintf(STDERR_FILENO, "length of rsay from y_step %f\n", fabs(cub_data->rays.ray_y_len));
 	// dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->rays.ray_center, radian_to_degree(cub_data->rays.ray_center));
+	
+	
+	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[960], cub_data->rays.ray_data.ray_quadrant[960], cub_data->rays.ray_data.ray_deg[960], cub_data->rays.ray_data.ray_angle_rd[960], fabs(cub_data->rays.ray_data.ray_x_len[960]), fabs(cub_data->rays.ray_data.ray_y_len[960]));
+	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[480], cub_data->rays.ray_data.ray_quadrant[480], cub_data->rays.ray_data.ray_deg[480], cub_data->rays.ray_data.ray_angle_rd[480], fabs(cub_data->rays.ray_data.ray_x_len[480]), fabs(cub_data->rays.ray_data.ray_y_len[480]));
+	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[1], cub_data->rays.ray_data.ray_quadrant[1], cub_data->rays.ray_data.ray_deg[1], cub_data->rays.ray_data.ray_angle_rd[1], fabs(cub_data->rays.ray_data.ray_x_len[1]), fabs(cub_data->rays.ray_data.ray_y_len[1]));
 	
 
 		
