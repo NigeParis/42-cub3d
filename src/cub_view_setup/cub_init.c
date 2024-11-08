@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:13:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:04:23 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static void get_char_position_in_map(t_cub_data *cub_data, int pos_x, int pos_y)
 static void	get_player_pos_double(t_cub_data *cub_data, int pos_x, int pos_y)
 {
 	cub_data->player_cub.pos_x_double = (double) (pos_x \
-	* cub_data->tile_size) + ((double)(cub_data->tile_size) / 2);
+	* cub_data->tile_size) + ((double)
+	(cub_data->tile_size) / 2);
 	cub_data->player_cub.pos_y_double = (double) (pos_y \
 	* cub_data->tile_size) + ((double)(cub_data->tile_size) / 2);
 }
@@ -47,6 +48,8 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 	pos_y = 0;	
 	if (!cub_data->map_data->lock_zoom)
 	{
+		//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
+		
 		pos_x = (int)cub_data->map_data->player_data.x_pos / CUB_TILESIZE;
 		pos_y = (int)cub_data->map_data->player_data.y_pos / CUB_TILESIZE;
 		get_tile_sizes(cub_data);

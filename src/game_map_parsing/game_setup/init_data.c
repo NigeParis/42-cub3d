@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:39:32 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,26 +120,8 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data)
 	cub_data->player_cub.walls_distance = 0;
 	cub_data->player_cub.half_wall_size = 0;	
 
-	cub_data->rays.ray_angle = 0;
-	cub_data->rays.ray_angle_rd = 0;
-	cub_data->rays.ray_facing_down = 0;
-	cub_data->rays.ray_facing_left = 0;
-	cub_data->rays.ray_facing_right = 0;
-	cub_data->rays.ray_facing_up = 0;
+	ft_bzero(&cub_data->rays, sizeof(cub_data->rays));
 	cub_data->rays.ray_fov = 60;
-	cub_data->rays.ray_hit = 0;
-	cub_data->rays.ray_hx0_hit = 0;
-	cub_data->rays.ray_hx1_hit = 0;
-	cub_data->rays.ray_index = 0;
-	cub_data->rays.ray_hx1_hit = 0;
-	cub_data->rays.ray_vx0_hit = 0;
-	cub_data->rays.ray_vx1_hit = 0;
-	cub_data->rays.ray_x0 = 0;
-	cub_data->rays.ray_y0 = 0;
-	cub_data->rays.ray_x1 = 0;
-	cub_data->rays.ray_y1 = 0;	
-	cub_data->rays.ray_y_len = 0;	
-	cub_data->rays.ray_x_len = 0;	
 }
 
 

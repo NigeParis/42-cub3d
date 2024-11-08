@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/06 09:34:23 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:18:53 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,25 @@ typedef struct s_cell_data
 
 }	t_cell_data;
 
+typedef struct s_debug_rays
+{
+	int	counter;
+	double total_steps_x;
+	double total_steps_y;
+	double total_length;
+	double get_length_y_step;
+	double get_length_x_step;
+	double direction_step_y;
+	double direction_step_x;
+	char direction;
+	char direction_res;
+	int x_val;
+	int y_val;
+	int prev_wall [2];
+	int counter_wall_found;
+} t_debug_rays;
+
+
 
 typedef struct s_rays
 {
@@ -149,8 +168,6 @@ typedef struct s_rays
 	int		ray_facing_down;
 	int		ray_facing_left;
 	int		ray_facing_right;
-
-	
 } t_rays;
 
 
@@ -296,6 +313,7 @@ void	debug_print_setup_maps(t_data *map_data);
 void	print_info(t_data *map_data);
 void	debug_print_minimap_info(t_data *map_data);
 void	debug_print_data_for_3D_view(t_cub_data *t_cub_data);
+void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index);
 
 
 // functions parsing
@@ -432,6 +450,10 @@ void	get_start_pos_cub(t_cub_data *cub_data);
 double	calculate_half_wall_height(double distance_from_the_wall, double angle_degrees);
 
 char 	ray_facing(t_cub_data *cub_data);
+double	radian_to_degree(double angle_radian);
+double	degree_to_radian(double angle_degrees);
+double	normalize_angle(double angle_radians); 
+void	increment_steps(t_cub_data *cub_data);
 
 
 

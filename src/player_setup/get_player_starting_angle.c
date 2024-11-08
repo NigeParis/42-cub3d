@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:53 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 17:17:41 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/07 09:03:26 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ static int	is_north_or_south_direction(t_data *map_data, char *line, int i)
 	if (line[i] == 'N')
 	{
 		map_data->player_data.player_direction = 'N';
-		return ((map_data->player_data.player_degrees = 0), 1);
+		dprintf(STDERR_FILENO, "N FOUND\n");
+		return ((map_data->player_data.player_degrees = 90), 1);
 	}
 	if (line[i] == 'S')
 	{
 		map_data->player_data.player_direction = 'S';
-		return ((map_data->player_data.player_degrees = 180), 1);
+		dprintf(STDERR_FILENO, "S FOUND\n");
+		return ((map_data->player_data.player_degrees = 270), 1);
 	}
 	return (0);
 }
@@ -32,12 +34,12 @@ static int	is_east_or_west_direction(t_data *map_data, char *line, int i)
 	if (line[i] == 'E')
 	{
 		map_data->player_data.player_direction = 'E';
-		return ((map_data->player_data.player_degrees = 90), 1);
+		return ((map_data->player_data.player_degrees = 0), 1);
 	}
 	if (line[i] == 'W')
 	{
 		map_data->player_data.player_direction = 'W';
-		return ((map_data->player_data.player_degrees = 270), 1);
+		return ((map_data->player_data.player_degrees = 180), 1);
 	}
 	return (0);
 }
@@ -66,7 +68,11 @@ void	get_player_starting_angle(t_data *map_data)
 	while (map_data->square_map[i])
 	{
 		if (player_degree_found(map_data, map_data->square_map[i]))
+		{
+		dprintf(STDERR_FILENO, "player angle startaing --------------- %c\n", map_data->player_data.player_direction);
+			
 			return ;
+		}
 		i++;
 	}
 }

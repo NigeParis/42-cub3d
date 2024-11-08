@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/06 13:18:26 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:03:06 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	adjust_starting_point_degree(t_data *map_data)
 
 	field_of_view = map_data->player_data.field_of_view;
 	if (map_data->player_data.player_direction == 'N')
-			map_data->player_data.player_degrees = 90;
-	if (map_data->player_data.player_direction == 'S')
 			map_data->player_data.player_degrees = 270;
+	if (map_data->player_data.player_direction == 'S')
+			map_data->player_data.player_degrees = 90;
 	if (map_data->player_data.player_direction == 'E')
-			map_data->player_data.player_degrees = 0 ;
+			map_data->player_data.player_degrees = 0;
 	if (map_data->player_data.player_direction == 'W')
-		map_data->player_data.player_degrees = 180 ;
+		map_data->player_data.player_degrees = 180;
 }
 
 int	destroy(t_data *map_data)
