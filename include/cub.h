@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:01:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:14:38 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,14 +170,7 @@ void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index);
 
 
 
-//Draw_pixel_tools
 
-int		draw_rectangle(t_data *map_data);
-int		draw_background(t_data *map_data);
-int		check_wall_limit_line(t_data *map_data, double x1, double y1);
-void	calculate_distance_to_wall(t_draw_line_data *line_data, double angle_radian);
-void	define_line_data_sx_sy(t_draw_line_data *line_data);
-void	draw_line_loop(t_data *map_data, t_draw_line_data *line_data, double angle_radian);
 //player setup
 void	get_player_starting_angle(t_data *map_data);
 void	rotate_player_left(t_data *map_data);
