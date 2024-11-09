@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:14:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:26:06 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,23 +121,6 @@ typedef struct s_cud_data
 }	t_cub_data;
 
 
-typedef struct s_cub_draw_line_data
-{
-	double length_from_origin;
-	double x0;
-	double x1;
-	double y0;
-	double y1;
-	double dx;
-	double dy;
-	double sx;
-	double sy;
-	double err;
-	double e2;
-	double x0_origin;
-	double y0_origin;
-	
-} t_cub_draw_line_data;
 
 
 
@@ -180,12 +163,8 @@ void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
 
 
 
-
-void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
-void	draw_map(t_data *map_data);
-int		put_line(t_data *map_data, double sup_angle);
-int		put_line_call(t_data *map_data);
 void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data *cub_map);
+
 
 
 //mlx_main_game_functions
@@ -205,7 +184,6 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data);
 
 //cub#D functions
 void	get_start_pos_cub(t_cub_data *cub_data);
-double	calculate_half_wall_height(double distance_from_the_wall, double angle_degrees);
 
 int		ray_facing(t_cub_data *cub_data, int strip_index);
 double	radian_to_degree(double angle_radian);

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:19:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:27:51 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,7 @@ typedef struct s_cell_data
 
 }	t_cell_data;
 
-typedef struct s_draw_dot_data
-{
-	int	start[2];
-	int	ht_pos;
-	int	wt_pos;
-	int	rad;
-	
-} t_draw_dot_data;
+
 
 typedef struct s_draw_forms
 {
@@ -56,24 +49,7 @@ typedef struct s_draw_forms
 		
 }	t_draw_forms;
 
-typedef struct s_draw_line_data
-{
-	int	length_from_origin;
-	int	x0;
-	int x1;
-	int	y0;
-	int	y1;
-	int dx;
-	int dy;
-	int sx;
-	int sy;
-	int err;
-	int e2;
-	double x0_origin;
-	double y0_origin;
-	double distance_to_wall;	
-	
-} t_draw_line_data;
+
 
 typedef struct s_game_window
 {
