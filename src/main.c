@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 11:31:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:46:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 int	main(int argc, char *argv[])
 {
-	t_cub_data	cub_data;
-	t_data	map_data;
-	t_debug_rays debug_rays;
+	t_data			map_data;
+	t_cub_data		cub_data;
+	t_ray_data		ray_data;
+	t_debug_rays	debug_rays;
 	
 	ft_bzero(&debug_rays, sizeof(debug_rays));
-
+	ft_bzero(&ray_data, sizeof(ray_data));
+	
+	
 	setup_game(argc, argv, &map_data, &cub_data);
+	
 	cub_data.debug_rays = &debug_rays;   // @NOTE just access for debug printout 
+	cub_data.current_ray.ray_data = &ray_data;   // @NOTE just access for debug printout 
+	
 	cub_data.debug_rays->direction_res = 1;
 	//get_start_pos_cub(&cub_data);
 	if (!open_game_window(&cub_data, &map_data))

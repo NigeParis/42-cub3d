@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 09:25:28 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:49:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	set_map_offsets(t_data *map_data)
 
 void	get_player_speed(t_data *map_data)
 {
+
 	double	percentage;
 	int		speed;
 

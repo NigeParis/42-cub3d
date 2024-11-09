@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 13:41:03 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:43:30 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ typedef struct s_ray
 	double	current_y_len;
 	double	current_x_len;
 	int		current_index;
-	t_ray_data	ray_data;
+	t_ray_data	*ray_data;
 	
 } t_ray;
 

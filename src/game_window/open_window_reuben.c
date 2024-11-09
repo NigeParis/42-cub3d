@@ -33,7 +33,7 @@ void increment_steps(t_cub_data *cub_data, int strip_index)
 	
 	while (!is_wall_found(cub_data))
 	{
-		cub_data->debug_rays->direction_res = cub_data->current_ray.ray_data.ray_quadrant[strip_index];
+		cub_data->debug_rays->direction_res = cub_data->current_ray.ray_data->ray_quadrant[strip_index];
 		if (cub_data->debug_rays->counter == 0)
 		{
 			

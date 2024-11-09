@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 13:41:17 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:48:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,9 +178,9 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	// dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->current_ray.ray_center, radian_to_degree(cub_data->current_ray.ray_center));
 	
 	
-	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data.ray_index[959], cub_data->current_ray.ray_data.ray_quadrant[959], cub_data->current_ray.ray_data.ray_deg[959], cub_data->current_ray.ray_data.ray_angle_rd[959], fabs(cub_data->current_ray.ray_data.ray_x_len[959]), fabs(cub_data->current_ray.ray_data.ray_y_len[959]));
-	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data.ray_index[480], cub_data->current_ray.ray_data.ray_quadrant[480], cub_data->current_ray.ray_data.ray_deg[480], cub_data->current_ray.ray_data.ray_angle_rd[480], fabs(cub_data->current_ray.ray_data.ray_x_len[480]), fabs(cub_data->current_ray.ray_data.ray_y_len[480]));
-	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data.ray_index[0], cub_data->current_ray.ray_data.ray_quadrant[0], cub_data->current_ray.ray_data.ray_deg[0], cub_data->current_ray.ray_data.ray_angle_rd[0], fabs(cub_data->current_ray.ray_data.ray_x_len[0]), fabs(cub_data->current_ray.ray_data.ray_y_len[0]));
+	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[959], cub_data->current_ray.ray_data->ray_quadrant[959], cub_data->current_ray.ray_data->ray_deg[959], cub_data->current_ray.ray_data->ray_angle_rd[959], fabs(cub_data->current_ray.ray_data->ray_x_len[959]), fabs(cub_data->current_ray.ray_data->ray_y_len[959]));
+	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[480], cub_data->current_ray.ray_data->ray_quadrant[480], cub_data->current_ray.ray_data->ray_deg[480], cub_data->current_ray.ray_data->ray_angle_rd[480], fabs(cub_data->current_ray.ray_data->ray_x_len[480]), fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
+	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[0], cub_data->current_ray.ray_data->ray_quadrant[0], cub_data->current_ray.ray_data->ray_deg[0], cub_data->current_ray.ray_data->ray_angle_rd[0], fabs(cub_data->current_ray.ray_data->ray_x_len[0]), fabs(cub_data->current_ray.ray_data->ray_y_len[0]));
 	
 
 

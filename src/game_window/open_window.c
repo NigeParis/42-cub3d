@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/09 13:40:08 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:48:56 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ int  ray_facing(t_cub_data *cub_data, int strip_index)
 {
 	double angle_radian;
 
-	angle_radian = cub_data->current_ray.ray_data.ray_angle_rd[strip_index];
+	angle_radian = cub_data->current_ray.ray_data->ray_angle_rd[strip_index];
 
 	if ((angle_radian >= 0 && angle_radian < 1.508) || angle_radian == 6.2832)
 		return (1);
@@ -229,7 +229,7 @@ void	snap_to_y_axis(t_cub_data *cub_data, int strip_index)
 	cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0;
 	cub_data->current_ray.current_y1 = cub_data->current_ray.current_y0 + (step_y * percentage(cub_data->current_ray.current_y0)) ;	
 	base_len_y = (cub_data->current_ray.current_y1 - cub_data->current_ray.current_y0);
-	if ((cub_data->current_ray.ray_data.ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data.ray_deg[strip_index]) == 180)
+	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 180)
 	{
 		y_hyp = INT_MAX;
 	}
@@ -259,7 +259,7 @@ void	snap_to_x_axis(t_cub_data *cub_data, int strip_index)
 	cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0 + (step_x * percentage(cub_data->current_ray.current_x0)) ;	
 	base_len_x = (cub_data->current_ray.current_x1 - cub_data->current_ray.current_x0);	
 	
-	if ((cub_data->current_ray.ray_data.ray_deg[strip_index]) == 90 || (cub_data->current_ray.ray_data.ray_deg[strip_index]) == 270)
+	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 90 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 270)
 	{
 		x_hyp = INT_MAX;
 	}
@@ -318,12 +318,12 @@ void	x_axis_ray_1_step(t_cub_data *cub_data)
 
 void get_ray_data(t_cub_data *cub_data, int strip_index)
 {
-	cub_data->current_ray.ray_data.ray_index[strip_index] = strip_index ;
-	cub_data->current_ray.ray_data.ray_angle_rd[strip_index] = cub_data->current_ray.current_radian;
-	cub_data->current_ray.ray_data.ray_deg[strip_index] = radian_to_degree(cub_data->current_ray.ray_data.ray_angle_rd[strip_index]);
-	cub_data->current_ray.ray_data.ray_quadrant[strip_index] = ray_facing(cub_data, strip_index);
-	cub_data->current_ray.ray_data.ray_x_len[strip_index] = cub_data->current_ray.current_x_len;
-	cub_data->current_ray.ray_data.ray_y_len[strip_index] = cub_data->current_ray.current_y_len;	
+	cub_data->current_ray.ray_data->ray_index[strip_index] = strip_index ;
+	cub_data->current_ray.ray_data->ray_angle_rd[strip_index] = cub_data->current_ray.current_radian;
+	cub_data->current_ray.ray_data->ray_deg[strip_index] = radian_to_degree(cub_data->current_ray.ray_data->ray_angle_rd[strip_index]);
+	cub_data->current_ray.ray_data->ray_quadrant[strip_index] = ray_facing(cub_data, strip_index);
+	cub_data->current_ray.ray_data->ray_x_len[strip_index] = cub_data->current_ray.current_x_len;
+	cub_data->current_ray.ray_data->ray_y_len[strip_index] = cub_data->current_ray.current_y_len;	
 }
 
 
