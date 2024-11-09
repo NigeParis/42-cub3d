@@ -134,7 +134,7 @@ fclean:clean libfclean
 	@echo "FCLEAN all .o et .a files .......\n"
 	@rm -f $(NAME) > /dev/null
 
-re: fclean libfclean lib all
+re: fclean all
 	@echo "All erased and re-compiled .......\n"
 
 .PHONY: all lib libclean clean fclean re

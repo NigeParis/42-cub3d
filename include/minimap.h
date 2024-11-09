@@ -6,12 +6,13 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:56:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 14:22:48 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:01:28 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
-# define MINIMAP_H
+# define MINIMAP_H1
+
 
 typedef struct s_cell_data
 {

@@ -6,13 +6,12 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 14:30:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:01:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-
 
 typedef struct s_point
 {
@@ -183,5 +182,20 @@ void	free_setup_maps(t_data *map_data);
 int		create_color(int color_1, int color_2, int color_3);
 int		calculate_line_height(t_data *map_data);
 int		calculate_col_width(t_data *map_data);
+//keyboard input
+void	key_zoom_in(t_data *map_data);
+void	key_zoom_out(t_data *map_data);
+
+//  WINDOW MANAGEMENT!
+void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr, int *horizontal_ptr, int *vertical_ptr);
+void	reset_values_after_horizontal_loop(int *horizontal_ptr, int *vertical_ptr);
+void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vertical_ptr, int *char_ind_ptr);
+
+
+int		draw_dot(t_data *map_data);
+int		check_dot(t_data *map_data);
+int 	calculate_dot_size(t_data *map_data);
+void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, double angle_radian);
+
 
 #endif

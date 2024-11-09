@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 14:33:41 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:01:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,12 +168,6 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data);
 void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index);
 
 
-//  WINDOW MANAGEMENT!
-void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr, int *horizontal_ptr, int *vertical_ptr);
-void	reset_values_after_horizontal_loop(int *horizontal_ptr, int *vertical_ptr);
-void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vertical_ptr, int *char_ind_ptr);
-
-void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data *cub_map);
 
 
 //Draw_pixel_tools
@@ -192,15 +186,13 @@ void	move_player(t_data *map_data);
 void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
 
 
-int		draw_dot(t_data *map_data);
-int		check_dot(t_data *map_data);
-int 	calculate_dot_size(t_data *map_data);
-void	draw_radar_line(t_data *map_data, t_draw_line_data *line_data, double angle_radian);
+
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
 void	draw_map(t_data *map_data);
 int		put_line(t_data *map_data, double sup_angle);
 int		put_line_call(t_data *map_data);
+void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data *cub_map);
 
 
 //mlx_main_game_functions
@@ -232,10 +224,6 @@ double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
 int		within_cub_drawing_limits(int x, int y);
 
 
-
-//keyboard input
-void	key_zoom_in(t_data *map_data);
-void	key_zoom_out(t_data *map_data);
 
 
 
