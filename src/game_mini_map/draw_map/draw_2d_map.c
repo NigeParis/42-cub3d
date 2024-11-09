@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_2d_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:40:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/29 14:42:03 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:25:41 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	calculate_line_height(t_data *map_data)
 	i = 0;
 	while (map_data->square_map[i])
 		i++;
-	return (map_data->gw.screen_height / i);
+	return (SCREEN_H / i);
 }
 
 int	calculate_col_width(t_data *map_data)
@@ -35,5 +35,5 @@ int	calculate_col_width(t_data *map_data)
 			j++;
 		break ;
 	}
-	return (map_data->gw.screen_width / j);
+	return (SCREEN_W / j);
 }

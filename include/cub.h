@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/08 16:14:36 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:38:24 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define WALL_SMALL_LIMIT 5
 # define CUB_TILESIZE 5
 # define RAY_LIMIT 2147483647
+# define SCREEN_H 500
+# define SCREEN_W 960
 
 typedef struct s_draw_dot_data
 {
@@ -131,6 +133,7 @@ typedef struct s_cell_data
 typedef struct s_debug_rays
 {
 	int	counter;
+	int	strip_index;
 	double total_steps_x;
 	double total_steps_y;
 	double total_length;
@@ -150,12 +153,12 @@ typedef struct s_debug_rays
 
 typedef struct s_ray_data
 {
-	double	ray_angle_rd[2048];
-	double	ray_deg[2048];
-	double	ray_x_len[2048];
-	double	ray_y_len[2048];
-	int  	ray_index[2048];
-	int  	ray_quadrant[2048];
+	double	ray_angle_rd[SCREEN_W];
+	double	ray_deg[SCREEN_W];
+	double	ray_x_len[SCREEN_W];
+	double	ray_y_len[SCREEN_W];
+	int  	ray_index[SCREEN_W];
+	int  	ray_quadrant[SCREEN_W];
 
 } t_ray_data;
 
@@ -170,12 +173,8 @@ typedef struct s_rays
 	double	ray_y0;
 	double	ray_x1;
 	double	ray_y1;
-	double	ray_vx0_hit;
-	double	ray_vx1_hit;
 	double	ray_y_len;
 	double	ray_x_len;
-	int		ray_hx0_hit;
-	int		ray_hx1_hit;
 	int		ray_index;
 	int		ray_hit;
 	int		ray_facing;
@@ -266,6 +265,7 @@ typedef struct s_cud_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
+	t_debug_rays 	*debug_rays;
 }	t_cub_data;
 
 
@@ -327,7 +327,7 @@ void	print_square_map(t_data *map_data);
 void	debug_print_setup_maps(t_data *map_data);
 void	print_info(t_data *map_data);
 void	debug_print_minimap_info(t_data *map_data);
-void	debug_print_data_for_3D_view(t_cub_data *t_cub_data);
+void 	debug_print_data_for_3D_view(t_cub_data *cub_data);
 void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index);
 
 
@@ -471,7 +471,7 @@ double	normalize_angle(double angle_radians);
 void	increment_steps(t_cub_data *cub_data, int strip_index);
 double	calibrate_angle_for_minimap(t_cub_data *cub_data);
 double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
-int		within_cub_drawing_limits(t_cub_data *cub_data, int x, int y);
+int		within_cub_drawing_limits(int x, int y);
 
 
 

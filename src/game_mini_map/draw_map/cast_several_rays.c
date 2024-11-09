@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_several_rays.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:24:26 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/08 16:04:57 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:25:39 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	put_line(t_data *map_data, double sup_angle)
 	double				length;
 	t_draw_line_data	line_data;
 
-	line_data.y0 = (double)map_data->gw.screen_height / 6;
-	line_data.x0 = (double)map_data->gw.screen_width / 6;
+	line_data.y0 = (double) SCREEN_H / 6;
+	line_data.x0 = (double)SCREEN_W / 6;
 	angle_radian = (map_data->player_data.player_degrees + sup_angle)
 		* (M_PI / 180);
 	length = map_data->player_data.speed;

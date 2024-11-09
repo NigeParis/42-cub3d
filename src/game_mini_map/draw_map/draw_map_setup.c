@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map_setup.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:30:35 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/29 14:57:44 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:25:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale)
-	|| y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
+	if (x > (int)(SCREEN_W / map_data->minimap_scale)
+	|| y > (int)( SCREEN_H / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);

@@ -56,7 +56,7 @@ static int	put_all_rays(t_cub_data *cub_data)
 	double fov_step = -30;
 	cub_data->rays.ray_index = 0;
 	cub_data->rays.ray_fov = 60 / 2;
-	cub_data->rays.ray_angle = cub_data->rays.ray_fov / cub_data->map_data->gw.screen_width;
+	cub_data->rays.ray_angle = cub_data->rays.ray_fov / cub_data->map_data->gw.screen_widt;
 	double angle_offset = fov_step;
 	cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->rays.ray_angle , cub_data->rays.ray_index++);
 	while (fov_step < cub_data->rays.ray_fov)

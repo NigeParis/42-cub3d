@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 14:38:52 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/07 10:01:15 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:25:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	mlx_put_pixel(t_data *map_data, int x, int y)
 
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
-	if (x > (int)(map_data->gw.screen_width / map_data->minimap_scale) ||
-		y > (int)(map_data->gw.screen_height / map_data->minimap_scale))
+	if (x > (int)(SCREEN_W / map_data->minimap_scale) ||
+		y > (int)( SCREEN_H / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);
@@ -64,8 +64,8 @@ static int	init_circle_data(t_data *map_data, int *ht_pos, \
 {
 	if (!map_data || !ht_pos || !wt_pos || !rad)
 		return (0);
-	*ht_pos = map_data->gw.screen_height / 6;
-	*wt_pos = map_data->gw.screen_width / 6;
+	*ht_pos = SCREEN_H / 6;
+	*wt_pos = SCREEN_W / 6;
 	*rad = calculate_dot_size(map_data);
 	return (1);
 }

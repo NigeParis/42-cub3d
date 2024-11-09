@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/08 16:04:44 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:55:35 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,18 +149,13 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	// dprintf(STDERR_FILENO, "map width size in tiles / pixel '%d'\n", cub_data->map_width_in_tiles);
 	// dprintf(STDERR_FILENO, "map height size in tiles / pixel '%d'\n", cub_data->map_height_in_tiles);
 	
-	// dprintf(STDERR_FILENO, "\ndistance from the wall = '%f'\n", cub_data->player_cub.walls_distance);
-	// dprintf(STDERR_FILENO, "half_height of the wall = '%f'\n", cub_data->player_cub.half_wall_size); 
-	//dprintf(STDERR_FILENO, "\nplayer rotation in degrees (map_dat) = '%f'\n",  calibrate_angle_for_minimap(cub_data->map_data->player_data.player_degrees)); // adjustement for inversion north south y and -y mlx 
-
-	// dprintf(STDERR_FILENO, "\ninfo GENERAL\n");
-	// dprintf(STDERR_FILENO, "screen width in pixels '%d'\n", cub_data->map_data->gw.screen_width);
-	// dprintf(STDERR_FILENO, "screen hieght in pixels '%d'\n", cub_data->map_data->gw.screen_height);
+	// dprintf(STDERR_FILENO, "\ndit_debug_rays *debug_raysen width in pixels '%d'\n", cub_data->SCREEN_W);
+	// dprintf(STDERR_FILENO, "screen hieght in pixels '%d'\n", cub_data->);
 	//dprintf(STDERR_FILENO, "rays_angle '%f'\n", cub_data->rays.ray_angle);
 	//dprintf(STDERR_FILENO, "ray index '%d'\n", cub_data->rays.ray_index);
 	
 	// dprintf(STDERR_FILENO, "FOV sub division angle radian %f\n", cub_data->rays.ray_angle);
-	dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
+	//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
 
 
 
@@ -183,10 +178,21 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	// dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->rays.ray_center, radian_to_degree(cub_data->rays.ray_center));
 	
 	
-	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[960], cub_data->rays.ray_data.ray_quadrant[960], cub_data->rays.ray_data.ray_deg[960], cub_data->rays.ray_data.ray_angle_rd[960], fabs(cub_data->rays.ray_data.ray_x_len[960]), fabs(cub_data->rays.ray_data.ray_y_len[960]));
+	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[959], cub_data->rays.ray_data.ray_quadrant[959], cub_data->rays.ray_data.ray_deg[959], cub_data->rays.ray_data.ray_angle_rd[959], fabs(cub_data->rays.ray_data.ray_x_len[959]), fabs(cub_data->rays.ray_data.ray_y_len[959]));
 	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[480], cub_data->rays.ray_data.ray_quadrant[480], cub_data->rays.ray_data.ray_deg[480], cub_data->rays.ray_data.ray_angle_rd[480], fabs(cub_data->rays.ray_data.ray_x_len[480]), fabs(cub_data->rays.ray_data.ray_y_len[480]));
-	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[1], cub_data->rays.ray_data.ray_quadrant[1], cub_data->rays.ray_data.ray_deg[1], cub_data->rays.ray_data.ray_angle_rd[1], fabs(cub_data->rays.ray_data.ray_x_len[1]), fabs(cub_data->rays.ray_data.ray_y_len[1]));
+	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[0], cub_data->rays.ray_data.ray_quadrant[0], cub_data->rays.ray_data.ray_deg[0], cub_data->rays.ray_data.ray_angle_rd[0], fabs(cub_data->rays.ray_data.ray_x_len[0]), fabs(cub_data->rays.ray_data.ray_y_len[0]));
 	
+	char position[15];
+	if (cub_data->debug_rays->strip_index == 480)
+		ft_strlcpy(position, "center", 9);
+	else if (cub_data->debug_rays->strip_index == 0)
+		ft_strlcpy(position, "right", 9);
+	else if (cub_data->debug_rays->strip_index == 959)
+		ft_strlcpy(position, "left", 9);
+	else
+		ft_strlcpy(position, "not on minimap", 15);
+		
 
+	dprintf(STDERR_FILENO, "\n rayD[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' \n", cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, cub_data->debug_rays->x_val, cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd), cub_data->debug_rays->total_length);
 		
 }

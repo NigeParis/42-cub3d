@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/08 15:32:21 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:30:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	mlx_put_pixel(t_data *map_data, int x, int y)
 	}
 }
 
-static int	within_drawing_limits(t_data *map_data, int x, int y)
+static int	within_drawing_limits( int x, int y)
 {
-	if ((x > map_data->gw.screen_width) || (y > map_data->gw.screen_height))
+	if ((x > SCREEN_W) || (y > SCREEN_H))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);
@@ -54,8 +54,7 @@ int	draw_rectangle(t_data *map_data)
 		while (width_position < map_data->form.start_wt
 			+ map_data->form.size_wt)
 		{
-			if (within_drawing_limits(map_data,
-					width_position, hieght_position))
+			if (within_drawing_limits(width_position, hieght_position))
 				mlx_put_pixel(map_data, width_position, hieght_position);
 			width_position++;
 		}
@@ -72,13 +71,12 @@ int	draw_background(t_data *map_data)
 	hieght_position = 0;
 	width_position = 0;
 	map_data->form.col = 222;
-	while (hieght_position < map_data->gw.screen_height)
+	while (hieght_position < SCREEN_H)
 	{
 		width_position = 0;
-		while (width_position < map_data->gw.screen_width)
+		while (width_position < SCREEN_W)
 		{
-			if (within_drawing_limits(map_data,
-					width_position, hieght_position))
+			if (within_drawing_limits(width_position, hieght_position))
 				mlx_put_pixel(map_data, width_position, hieght_position);
 			width_position++;
 		}

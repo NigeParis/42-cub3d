@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/08 16:24:33 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 11:56:06 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	put_minimap_to_screen(t_data *map_data)
 		move_player(map_data);
 		draw_dot(map_data);
 		put_line_call(map_data);
-		//mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window, \
-		//	map_data->form.mlx_img, 0, 0);
+		//mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window, map_data->form.mlx_img, 0, 0);
 	}
 	return (0);
 }
@@ -89,8 +88,7 @@ double calculate_wall_height(double distance_from_the_wall, double angle_degrees
 // }
  
 
-// static int	init_circle_data(t_cub_data *cub_data, double x1, \
-// 	double y1, double *rad)
+// static int	init_circle_data(t_cub_data *cub_data, double x1, double y1, double *rad)
 // {
 // 	if (!cub_data || !x1 || !y1 || !rad)
 // 		return (0);
@@ -158,7 +156,7 @@ static int	draw_vertical_line(t_cub_data *cub_data, int i)
 	while (line_start_pixels < line_stop_pixels)
 	{		
 		
-		if(within_cub_drawing_limits(cub_data, i, line_start_pixels))
+		if(within_cub_drawing_limits(i, line_start_pixels))
 			mlx_put_pixel(cub_data, i, line_start_pixels);
 		line_start_pixels++;
 	}
@@ -320,36 +318,25 @@ void	x_axis_ray_1_step(t_cub_data *cub_data)
 
 void get_ray_data(t_cub_data *cub_data, int strip_index)
 {
-	
-	double ray_in_degrees;
-
-	ray_in_degrees = radian_to_degree(cub_data->rays.ray_angle_rd);
-	
 	cub_data->rays.ray_data.ray_index[strip_index] = strip_index ;
 	cub_data->rays.ray_data.ray_angle_rd[strip_index] = cub_data->rays.ray_angle_rd;
 	cub_data->rays.ray_data.ray_deg[strip_index] = radian_to_degree(cub_data->rays.ray_data.ray_angle_rd[strip_index]);
 	cub_data->rays.ray_data.ray_quadrant[strip_index] = ray_facing(cub_data, strip_index);
 	cub_data->rays.ray_data.ray_x_len[strip_index] = cub_data->rays.ray_x_len;
 	cub_data->rays.ray_data.ray_y_len[strip_index] = cub_data->rays.ray_y_len;	
-
 }
 
 
 
 static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 {
-	strip_index = 960 - strip_index;
+	strip_index = 959 - strip_index;
 	cub_data->rays.ray_angle_rd = degree_to_radian(ray_angle);	
-	if (strip_index == 1)
-		increment_steps(cub_data, strip_index);
-	else if (strip_index == 480)
-		increment_steps(cub_data, strip_index);
-	if (strip_index == 960)
-		increment_steps(cub_data, strip_index);	
+
 		
 	
-	//snap_to_y_axis(cub_data, strip_index);
-	//snap_to_x_axis(cub_data, strip_index);
+	snap_to_y_axis(cub_data, strip_index);
+	snap_to_x_axis(cub_data, strip_index);
 	
 
 	//debug_first_mid_last_rays(cub_data, strip_index);
@@ -375,7 +362,11 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 // }
 
 	get_ray_data(cub_data, strip_index);
+	
+	if (strip_index == 480)  // @NOTE change number to shown different rays  0 to 959
+		increment_steps(cub_data, strip_index);
 
+	
 	// exit (1);
 
 	// find vertical collision
@@ -393,15 +384,16 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 static int	put_all_rays(t_cub_data *cub_data)
 {
 	double fov_step = 0;
-	cub_data->rays.ray_index = 0;
+	int index = 0;
 	cub_data->rays.ray_fov = cub_data->map_data->player_data.field_of_view;
-	cub_data->rays.ray_angle = cub_data->rays.ray_fov / cub_data->map_data->gw.screen_width;
+	cub_data->rays.ray_angle = cub_data->rays.ray_fov / SCREEN_W;
 
 	
 	while (fov_step < cub_data->rays.ray_fov)
 	{
-		cast_ray(cub_data, calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees + fov_step), cub_data->rays.ray_index++);
+		cast_ray(cub_data, calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees + fov_step), index);
 		fov_step += cub_data->rays.ray_angle;
+		index++;
 	}
 	//printf("END HAS ARRIVED!\n");
 	//exit(1);
@@ -466,9 +458,9 @@ int	draw_to_screen(t_cub_data *cub_data)
 int	open_game_window(t_cub_data *cub_data, t_data *map_data)
 {
 	map_data->gw.mlx_window = mlx_new_window(map_data->gw.mlx_ptr,
-			map_data->gw.screen_width, map_data->gw.screen_height, "cub3D");
+			SCREEN_W, SCREEN_H, "cub3D");
 	map_data->form.mlx_img = mlx_new_image(map_data->gw.mlx_ptr,
-			map_data->gw.screen_width, map_data->gw.screen_height);
+			SCREEN_W, SCREEN_H);
 	map_data->form.addr = mlx_get_data_addr(map_data->form.mlx_img,
 			&map_data->form.pixel_bits,
 			&map_data->form.len, &map_data->form.endian);

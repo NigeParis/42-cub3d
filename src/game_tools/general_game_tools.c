@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/08 15:33:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:31:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,9 @@ double calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees)
 }
 
 
-int	within_cub_drawing_limits(t_cub_data *cub_data, int x, int y)
+int	within_cub_drawing_limits(int x, int y)
 {
-	if (x > (int)(cub_data->map_data->gw.screen_width) \
-	|| y > (int)(cub_data->map_data->gw.screen_height))
+	if (x > SCREEN_W || y > SCREEN_H)
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);

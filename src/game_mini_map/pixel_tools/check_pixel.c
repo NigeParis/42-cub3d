@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_pixel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/10/30 11:21:49 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/09 09:25:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	init_circle_data(t_data *map_data, t_draw_dot_data *dot_data)
 {
 	if (!map_data || !dot_data)
 		return (0);
-	dot_data->ht_pos = map_data->gw.screen_height / 6;
-	dot_data->wt_pos = map_data->gw.screen_width / 6;
+	dot_data->ht_pos = SCREEN_H / 6;
+	dot_data->wt_pos = SCREEN_W / 6;
 	dot_data->rad = calculate_dot_size(map_data);
 	if (dot_data->rad < 1)
 		dot_data->rad = 1;
