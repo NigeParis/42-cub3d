@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 11:55:35 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:40:14 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ void debug_print_minimap_info(t_data *map_data)
 void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index)
 {
 	if (strip_index == 1 )
-		dprintf(STDERR_FILENO, "player right ray [0] %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
+		dprintf(STDERR_FILENO, "player right ray [0] %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
 	if (strip_index == 480 )
-		dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
+		dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
 	if (strip_index == 960 )
-		dprintf(STDERR_FILENO, "player left ray [960] %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
+		dprintf(STDERR_FILENO, "player left ray [960] %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
 }
 
 
@@ -110,7 +110,7 @@ char  debug_player_center_ray_facing(t_cub_data *cub_data)
 	double angle_radian;
 	double angle_rd_fov_div_2 = degree_to_radian(cub_data->map_data->player_data.field_of_view / 2);
 
-	angle_radian = cub_data->rays.ray_angle_rd + angle_rd_fov_div_2; // added to display center ray
+	angle_radian = cub_data->current_ray.current_radian + angle_rd_fov_div_2; // added to display center ray
 	angle_radian = normalize_angle(angle_radian); 
 	if ((angle_radian >= 0 && angle_radian < 1.5809) || angle_radian == 6.2832)
 		return ('1');
@@ -151,11 +151,11 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	
 	// dprintf(STDERR_FILENO, "\ndit_debug_rays *debug_raysen width in pixels '%d'\n", cub_data->SCREEN_W);
 	// dprintf(STDERR_FILENO, "screen hieght in pixels '%d'\n", cub_data->);
-	//dprintf(STDERR_FILENO, "rays_angle '%f'\n", cub_data->rays.ray_angle);
-	//dprintf(STDERR_FILENO, "ray index '%d'\n", cub_data->rays.ray_index);
+	//dprintf(STDERR_FILENO, "current_ray_angle '%f'\n", cub_data->current_ray.ray_angle);
+	//dprintf(STDERR_FILENO, "ray index '%d'\n", cub_data->current_ray.ray_index);
 	
-	// dprintf(STDERR_FILENO, "FOV sub division angle radian %f\n", cub_data->rays.ray_angle);
-	//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd));
+	// dprintf(STDERR_FILENO, "FOV sub division angle radian %f\n", cub_data->current_ray.ray_angle);
+	//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
 
 
 
@@ -173,15 +173,19 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	if (res == '4')
 		dprintf(STDERR_FILENO, "player direction in quarter south-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 
-	//dprintf(STDERR_FILENO, "length of rsay from x_step %f\n", fabs(cub_data->rays.ray_x_len));
-	//dprintf(STDERR_FILENO, "length of rsay from y_step %f\n", fabs(cub_data->rays.ray_y_len));
-	// dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->rays.ray_center, radian_to_degree(cub_data->rays.ray_center));
+	//dprintf(STDERR_FILENO, "length of rsay from x_step %f\n", fabs(cub_data->current_ray.ray_x_len));
+	//dprintf(STDERR_FILENO, "length of rsay from y_step %f\n", fabs(cub_data->current_ray.ray_y_len));
+	// dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->current_ray.ray_center, radian_to_degree(cub_data->current_ray.ray_center));
 	
 	
-	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[959], cub_data->rays.ray_data.ray_quadrant[959], cub_data->rays.ray_data.ray_deg[959], cub_data->rays.ray_data.ray_angle_rd[959], fabs(cub_data->rays.ray_data.ray_x_len[959]), fabs(cub_data->rays.ray_data.ray_y_len[959]));
-	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[480], cub_data->rays.ray_data.ray_quadrant[480], cub_data->rays.ray_data.ray_deg[480], cub_data->rays.ray_data.ray_angle_rd[480], fabs(cub_data->rays.ray_data.ray_x_len[480]), fabs(cub_data->rays.ray_data.ray_y_len[480]));
-	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->rays.ray_data.ray_index[0], cub_data->rays.ray_data.ray_quadrant[0], cub_data->rays.ray_data.ray_deg[0], cub_data->rays.ray_data.ray_angle_rd[0], fabs(cub_data->rays.ray_data.ray_x_len[0]), fabs(cub_data->rays.ray_data.ray_y_len[0]));
+	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data.ray_index[959], cub_data->current_ray.ray_data.ray_quadrant[959], cub_data->current_ray.ray_data.ray_deg[959], cub_data->current_ray.ray_data.ray_angle_rd[959], fabs(cub_data->current_ray.ray_data.ray_x_len[959]), fabs(cub_data->current_ray.ray_data.ray_y_len[959]));
+	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data.ray_index[480], cub_data->current_ray.ray_data.ray_quadrant[480], cub_data->current_ray.ray_data.ray_deg[480], cub_data->current_ray.ray_data.ray_angle_rd[480], fabs(cub_data->current_ray.ray_data.ray_x_len[480]), fabs(cub_data->current_ray.ray_data.ray_y_len[480]));
+	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data.ray_index[0], cub_data->current_ray.ray_data.ray_quadrant[0], cub_data->current_ray.ray_data.ray_deg[0], cub_data->current_ray.ray_data.ray_angle_rd[0], fabs(cub_data->current_ray.ray_data.ray_x_len[0]), fabs(cub_data->current_ray.ray_data.ray_y_len[0]));
 	
+
+
+	//Reubens DEBUG for increment and structure debug_rays
+
 	char position[15];
 	if (cub_data->debug_rays->strip_index == 480)
 		ft_strlcpy(position, "center", 9);
@@ -191,8 +195,9 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 		ft_strlcpy(position, "left", 9);
 	else
 		ft_strlcpy(position, "not on minimap", 15);
+	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' \n", cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, cub_data->debug_rays->x_val, cub_data->debug_rays->radian, radian_to_degree(cub_data->debug_rays->radian), cub_data->debug_rays->total_length);
 		
+	// end Reuben's debug increment
 
-	dprintf(STDERR_FILENO, "\n rayD[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' \n", cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, cub_data->debug_rays->x_val, cub_data->rays.ray_angle_rd, radian_to_degree(cub_data->rays.ray_angle_rd), cub_data->debug_rays->total_length);
 		
 }

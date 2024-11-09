@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 11:38:24 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:43:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ typedef struct s_debug_rays
 	double get_length_x_step;
 	double direction_step_y;
 	double direction_step_x;
+	double radian;
 	char direction;
 	int direction_res;
 	int x_val;
@@ -164,11 +165,11 @@ typedef struct s_ray_data
 
 
 
-typedef struct s_rays
+typedef struct s_ray
 {
 	double	ray_fov;
-	double	ray_angle;
-	double	ray_angle_rd;
+	double	current_radian;
+	double	current_angle;	
 	double	ray_x0;
 	double	ray_y0;
 	double	ray_x1;
@@ -180,7 +181,7 @@ typedef struct s_rays
 	int		ray_facing;
 	t_ray_data	ray_data;
 	
-} t_rays;
+} t_ray;
 
 
 
@@ -257,7 +258,7 @@ typedef struct s_player_cub
 typedef struct s_cud_data
 {
 	t_data			*map_data;
-	t_rays			rays;
+	t_ray			current_ray;
 	t_player_cub	player_cub;
 	int				tile_size;
 	double  			tile_center;

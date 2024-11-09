@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/09 11:56:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 12:44:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ int  ray_facing(t_cub_data *cub_data, int strip_index)
 {
 	double angle_radian;
 
-	angle_radian = cub_data->rays.ray_data.ray_angle_rd[strip_index];
+	angle_radian = cub_data->current_ray.ray_data.ray_angle_rd[strip_index];
 
 	if ((angle_radian >= 0 && angle_radian < 1.508) || angle_radian == 6.2832)
 		return (1);
@@ -220,22 +220,22 @@ void	snap_to_y_axis(t_cub_data *cub_data, int strip_index)
 	int		step_y = CUB_TILESIZE;
 	
 	
-	cub_data->rays.ray_y0 = 7.5;
-	cub_data->rays.ray_x0 = 7.5;
+	cub_data->current_ray.ray_y0 = 7.5;
+	cub_data->current_ray.ray_x0 = 7.5;
 	
-	// cub_data->rays.ray_y0 = cub_data->player_cub.pos_y_double;
-	// cub_data->rays.ray_x0 = cub_data->player_cub.pos_x_double;
+	// cub_data->current_ray.ray_y0 = cub_data->player_cub.pos_y_double;
+	// cub_data->current_ray.ray_x0 = cub_data->player_cub.pos_x_double;
 	
-	cub_data->rays.ray_x1 = cub_data->rays.ray_x0;
-	cub_data->rays.ray_y1 = cub_data->rays.ray_y0 + (step_y * percentage(cub_data->rays.ray_y0)) ;	
-	base_len_y = (cub_data->rays.ray_y1 - cub_data->rays.ray_y0);
-	if ((cub_data->rays.ray_data.ray_deg[strip_index]) == 0 || (cub_data->rays.ray_data.ray_deg[strip_index]) == 180)
+	cub_data->current_ray.ray_x1 = cub_data->current_ray.ray_x0;
+	cub_data->current_ray.ray_y1 = cub_data->current_ray.ray_y0 + (step_y * percentage(cub_data->current_ray.ray_y0)) ;	
+	base_len_y = (cub_data->current_ray.ray_y1 - cub_data->current_ray.ray_y0);
+	if ((cub_data->current_ray.ray_data.ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data.ray_deg[strip_index]) == 180)
 	{
 		y_hyp = INT_MAX;
 	}
 	else
-	y_hyp = (base_len_y / sinf(cub_data->rays.ray_angle_rd));
-	cub_data->rays.ray_y_len = y_hyp;
+	y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
+	cub_data->current_ray.ray_y_len = y_hyp;
 
 }
 
@@ -248,25 +248,25 @@ void	snap_to_x_axis(t_cub_data *cub_data, int strip_index)
 	
 	
 	
-	// cub_data->rays.ray_y0 = cub_data->player_cub.pos_y_double;
+	// cub_data->current_ray.ray_y0 = cub_data->player_cub.pos_y_double;
 	
-	// cub_data->rays.ray_x0 = cub_data->player_cub.pos_x_double;
+	// cub_data->current_ray.ray_x0 = cub_data->player_cub.pos_x_double;
 	
-	cub_data->rays.ray_y0 = 7.5;
-	cub_data->rays.ray_x0 = 7.5;
+	cub_data->current_ray.ray_y0 = 7.5;
+	cub_data->current_ray.ray_x0 = 7.5;
 	
-	cub_data->rays.ray_y1 = cub_data->rays.ray_y0;
-	cub_data->rays.ray_x1 = cub_data->rays.ray_x0 + (step_x * percentage(cub_data->rays.ray_x0)) ;	
-	base_len_x = (cub_data->rays.ray_x1 - cub_data->rays.ray_x0);	
+	cub_data->current_ray.ray_y1 = cub_data->current_ray.ray_y0;
+	cub_data->current_ray.ray_x1 = cub_data->current_ray.ray_x0 + (step_x * percentage(cub_data->current_ray.ray_x0)) ;	
+	base_len_x = (cub_data->current_ray.ray_x1 - cub_data->current_ray.ray_x0);	
 	
-	if ((cub_data->rays.ray_data.ray_deg[strip_index]) == 90 || (cub_data->rays.ray_data.ray_deg[strip_index]) == 270)
+	if ((cub_data->current_ray.ray_data.ray_deg[strip_index]) == 90 || (cub_data->current_ray.ray_data.ray_deg[strip_index]) == 270)
 	{
 		x_hyp = INT_MAX;
 	}
 	else
-		x_hyp = (base_len_x / cosf(cub_data->rays.ray_angle_rd));
+		x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
 	
-	cub_data->rays.ray_x_len = x_hyp;
+	cub_data->current_ray.ray_x_len = x_hyp;
 
 }
 
@@ -277,20 +277,20 @@ void	y_axis_ray_1_step(t_cub_data *cub_data)
 	double	base_len_y = 0;
 	
 	
-	cub_data->rays.ray_y0 = cub_data->player_cub.pos_y_double;
-	cub_data->rays.ray_x0 = cub_data->player_cub.pos_x_double;
+	cub_data->current_ray.ray_y0 = cub_data->player_cub.pos_y_double;
+	cub_data->current_ray.ray_x0 = cub_data->player_cub.pos_x_double;
 	
-	//cub_data->rays.ray_x1 = cub_data->rays.ray_x0;
-	//cub_data->rays.ray_y1 = cub_data->rays.ray_y0;	
-	cub_data->rays.ray_y1 += CUB_TILESIZE;	
-	base_len_y = (cub_data->rays.ray_y1 - cub_data->rays.ray_y0);
+	//cub_data->current_ray.ray_x1 = cub_data->current_ray.ray_x0;
+	//cub_data->current_ray.ray_y1 = cub_data->current_rayent_rayent_ray.ray_y0;	
+	cub_data->current_ray.ray_y1 += CUB_TILESIZE;	
+	base_len_y = (cub_data->current_ray.ray_y1 - cub_data->current_ray.ray_y0);
 
-	y_hyp = (base_len_y / sinf(cub_data->rays.ray_angle_rd));
+	y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
 	//dprintf(STDERR_FILENO, "                           y_high y_hyp '%f'\n", y_hyp );
-	cub_data->rays.ray_y_len = y_hyp;
+	cub_data->current_ray.ray_y_len = y_hyp;
 	
-	// cub_data->rays.ray_y_len = pow(y_high, 2) + pow(base_len_y, 2);
-	// cub_data->rays.ray_y_len += sqrt(cub_data->rays.ray_y_len);
+	// cub_data->current_ray.ray_y_len = pow(y_high, 2) + pow(base_len_y, 2);
+	// cub_data->current_ray.ray_y_len += sqrt(cub_data->current_ray.ray_y_len);
 }
 
 
@@ -301,29 +301,29 @@ void	x_axis_ray_1_step(t_cub_data *cub_data)
 	
 
 	
-	cub_data->rays.ray_y0 = cub_data->player_cub.pos_y_double;
-	cub_data->rays.ray_x0 = cub_data->player_cub.pos_x_double;
+	cub_data->current_ray.ray_y0 = cub_data->player_cub.pos_y_double;
+	cub_data->current_ray.ray_x0 = cub_data->player_cub.pos_x_double;
 	
-	//cub_data->rays.ray_y1 = cub_data->rays.ray_y0;
-	//cub_data->rays.ray_x1 = cub_data->rays.ray_x0;	
-	cub_data->rays.ray_x1 += CUB_TILESIZE;	
-	base_len_x = (cub_data->rays.ray_x1 - cub_data->rays.ray_x0);
-	x_hyp = (base_len_x / cosf(cub_data->rays.ray_angle_rd));
+	//cub_data->current_ray.ray_y1 = cub_data->current_rayent_rayent_rayent_ray.ray_y0;
+	//cub_data->current_ray.ray_x1 = cub_data->current_ray.ray_x0;	
+	cub_data->current_ray.ray_x1 += CUB_TILESIZE;	
+	base_len_x = (cub_data->current_ray.ray_x1 - cub_data->current_ray.ray_x0);
+	x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
 	//dprintf(STDERR_FILENO, "1 step x_high '%f'\n", x_hyp );
-	// cub_data->rays.ray_x_len = pow(x_hyp, 2) + pow(base_len_x, 2);
-	// cub_data->rays.ray_x_len += sqrt(cub_data->rays.ray_x_len);
-	cub_data->rays.ray_x_len = x_hyp;
+	// cub_data->current_ray.ray_x_len = pow(x_hyp, 2) + pow(base_len_x, 2);
+	// cub_data->current_ray.ray_x_len += sqrt(cub_data->current_ray.ray_x_len);
+	cub_data->current_ray.ray_x_len = x_hyp;
 
 }
 
 void get_ray_data(t_cub_data *cub_data, int strip_index)
 {
-	cub_data->rays.ray_data.ray_index[strip_index] = strip_index ;
-	cub_data->rays.ray_data.ray_angle_rd[strip_index] = cub_data->rays.ray_angle_rd;
-	cub_data->rays.ray_data.ray_deg[strip_index] = radian_to_degree(cub_data->rays.ray_data.ray_angle_rd[strip_index]);
-	cub_data->rays.ray_data.ray_quadrant[strip_index] = ray_facing(cub_data, strip_index);
-	cub_data->rays.ray_data.ray_x_len[strip_index] = cub_data->rays.ray_x_len;
-	cub_data->rays.ray_data.ray_y_len[strip_index] = cub_data->rays.ray_y_len;	
+	cub_data->current_ray.ray_data.ray_index[strip_index] = strip_index ;
+	cub_data->current_ray.ray_data.ray_angle_rd[strip_index] = cub_data->current_ray.current_radian;
+	cub_data->current_ray.ray_data.ray_deg[strip_index] = radian_to_degree(cub_data->current_ray.ray_data.ray_angle_rd[strip_index]);
+	cub_data->current_ray.ray_data.ray_quadrant[strip_index] = ray_facing(cub_data, strip_index);
+	cub_data->current_ray.ray_data.ray_x_len[strip_index] = cub_data->current_ray.ray_x_len;
+	cub_data->current_ray.ray_data.ray_y_len[strip_index] = cub_data->current_ray.ray_y_len;	
 }
 
 
@@ -331,7 +331,7 @@ void get_ray_data(t_cub_data *cub_data, int strip_index)
 static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 {
 	strip_index = 959 - strip_index;
-	cub_data->rays.ray_angle_rd = degree_to_radian(ray_angle);	
+	cub_data->current_ray.current_radian = degree_to_radian(ray_angle);	
 
 		
 	
@@ -339,31 +339,31 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 	snap_to_x_axis(cub_data, strip_index);
 	
 
-	//debug_first_mid_last_rays(cub_data, strip_index);
+	//debug_first_mid_last_current_ray(cub_data, strip_index);
 	// find horizontal collision
 
 
 
 
-// while (!check_wall_limit(cub_data, cub_data->rays.ray_x1, cub_data->rays.ray_y1))
+// while (!check_wall_limit(cub_data, cub_data->current_ray.ray_x1, cub_data->current_ray.ray_y1))
 // {
 	
-	// if (fabs(cub_data->rays.ray_x_len) <= fabs(cub_data->rays.ray_y_len))
+	// if (fabs(cub_data->current_ray.ray_x_len) <= fabs(cub_data->current_ray.ray_y_len))
 	// {
 	// 	x_axis_ray_1_step(cub_data);
-	// 	//dprintf(STDERR_FILENO, "x : '%f'\n", cub_data->rays.ray_x1 / CUB_TILESIZE );
+	// 	//dprintf(STDERR_FILENO, "x : '%f'\n", cub_data->current_ray.ray_x1 / CUB_TILESIZE );
 		
 	// }
 	// else
 	// {
 	// 	y_axis_ray_1_step(cub_data);
-	// 	//dprintf(STDERR_FILENO, "y : '%f'\n", cub_data->rays.ray_y1 / CUB_TILESIZE );
+	// 	//dprintf(STDERR_FILENO, "y : '%f'\n", cub_data->current_ray.ray_y1 / CUB_TILESIZE );
 	// }
 // }
 
 	get_ray_data(cub_data, strip_index);
 	
-	if (strip_index == 480)  // @NOTE change number to shown different rays  0 to 959
+	if (strip_index == 480)  // @NOTE change number to shown different current_ray  0 to 959
 		increment_steps(cub_data, strip_index);
 
 	
@@ -381,18 +381,18 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 }
 
 
-static int	put_all_rays(t_cub_data *cub_data)
+static int	put_all_current_ray(t_cub_data *cub_data)
 {
 	double fov_step = 0;
 	int index = 0;
-	cub_data->rays.ray_fov = cub_data->map_data->player_data.field_of_view;
-	cub_data->rays.ray_angle = cub_data->rays.ray_fov / SCREEN_W;
+	cub_data->current_ray.ray_fov = cub_data->map_data->player_data.field_of_view;
+	cub_data->current_ray.current_angle = cub_data->current_ray.ray_fov / SCREEN_W;
 
 	
-	while (fov_step < cub_data->rays.ray_fov)
+	while (fov_step < cub_data->current_ray.ray_fov)
 	{
 		cast_ray(cub_data, calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees + fov_step), index);
-		fov_step += cub_data->rays.ray_angle;
+		fov_step += cub_data->current_ray.current_angle;		
 		index++;
 	}
 	//printf("END HAS ARRIVED!\n");
@@ -437,7 +437,7 @@ int	draw_to_screen(t_cub_data *cub_data)
 	// }
 	draw_background(cub_data->map_data);
 
-	put_all_rays(cub_data);
+	put_all_current_ray(cub_data);
 
 	
 	put_minimap_to_screen(cub_data->map_data);
