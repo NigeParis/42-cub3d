@@ -54,16 +54,16 @@ char  ray_facing(t_cub_data *cub_data)
 static int	put_all_current_ray(t_cub_data *cub_data)
 {
 	double fov_step = -30;
-	cub_data->current_ray.ray_index = 0;
+	cub_data->current_ray.current_index = 0;
 	cub_data->current_ray.ray_fov = 60 / 2;
 	cub_data->current_ray.ray_angle = cub_data->current_ray.ray_fov / cub_data->map_data->gw.screen_widt;
 	double angle_offset = fov_step;
-	cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->current_ray.ray_angle , cub_data->current_ray.ray_index++);
+	cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->current_ray.ray_angle , cub_data->current_ray.current_index++);
 	while (fov_step < cub_data->current_ray.ray_fov)
 	{
 		if (cub_data->map_data->player_data.player_degrees + cub_data->current_ray.ray_angle + angle_offset >= 360)
 			angle_offset = 0;
-		//cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->current_ray.ray_angle + angle_offset, cub_data->current_ray.ray_index++);
+		//cast_ray(cub_data, cub_data->map_data->player_data.player_degrees + cub_data->current_ray.ray_angle + angle_offset, cub_data->current_ray.current_index++);
 		fov_step += cub_data->current_ray.current_angle		angle_offset+= cub_data->current_ray.current_angle		
 	}
 

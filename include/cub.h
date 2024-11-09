@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 12:43:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:41:03 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,15 +170,13 @@ typedef struct s_ray
 	double	ray_fov;
 	double	current_radian;
 	double	current_angle;	
-	double	ray_x0;
-	double	ray_y0;
-	double	ray_x1;
-	double	ray_y1;
-	double	ray_y_len;
-	double	ray_x_len;
-	int		ray_index;
-	int		ray_hit;
-	int		ray_facing;
+	double	current_x0;
+	double	current_y0;
+	double	current_x1;
+	double	current_y1;
+	double	current_y_len;
+	double	current_x_len;
+	int		current_index;
 	t_ray_data	ray_data;
 	
 } t_ray;
