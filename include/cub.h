@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:26:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:47:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,6 @@ typedef struct s_ray
 	
 } t_ray;
 
-
-
-/// cud3D values
 
 typedef struct s_player_cub
 {

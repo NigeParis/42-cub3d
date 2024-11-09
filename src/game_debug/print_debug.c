@@ -6,13 +6,20 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 13:48:15 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:59:30 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 
+
+int	ray_face_hit(t_cub_data *cub_data, int strip_index)
+{
+	if (cub_data->current_ray.ray_data->ray_x_len[strip_index] >= cub_data->current_ray.ray_data->ray_y_len[strip_index] )
+		return (1);
+	return(0);	
+}
 
 
 
@@ -128,37 +135,6 @@ char  debug_player_center_ray_facing(t_cub_data *cub_data)
 void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 {
 	(void)cub_data;
-	// dprintf(STDERR_FILENO, "\n\ninfo (map_data)\n");
-	// dprintf(STDERR_FILENO, "initial player x srt pos in pixs !centered (map_data) '%d'\n", cub_data->map_data->player_data.x_pos);
-	// dprintf(STDERR_FILENO, "initial player y srt pos in pixs !centered (map_data) '%d'\n", cub_data->map_data->player_data.y_pos);
-	// dprintf(STDERR_FILENO, "initial map size x (map_data) '%d'\n", cub_data->map_data->minimap_max_width);
-	// dprintf(STDERR_FILENO, "initial map size y (map_data) '%d'\n", cub_data->map_data->minimap_max_height);
-	// dprintf(STDERR_FILENO, "map size y offset (map_data) '%d'\n", cub_data->map_data->minimap_offset_y);
-	// dprintf(STDERR_FILENO, "map size x offset (map_data) '%d'\n", cub_data->map_data->minimap_offset_x);
-	
-	// dprintf(STDERR_FILENO, "\ninfo (cub_data)\n");
-	// dprintf(STDERR_FILENO, "player pos x on the map/char '%d'\n", cub_data->player_cub.map_pos_x);
-	// dprintf(STDERR_FILENO, "player pos y on the map/char '%d'\n", cub_data->player_cub.map_pos_y);
-	
-	// dprintf(STDERR_FILENO, "player x in centered on the tile / pixel '%f'\n", cub_data->player_cub.pos_x_double);
-	// dprintf(STDERR_FILENO, "player y in centered on the tile / pixel '%f'\n", cub_data->player_cub.pos_y_double);
-	
-	// dprintf(STDERR_FILENO, "player start facing '%c'\n", cub_data->player_cub.facing);
-	// dprintf(STDERR_FILENO, "player start facing (mapa_data) '%c'\n", cub_data->map_data->player_data.player_direction);
-	// dprintf(STDERR_FILENO, "tile size '%d'\n", cub_data->tile_size);
-	// dprintf(STDERR_FILENO, "map width size in tiles / pixel '%d'\n", cub_data->map_width_in_tiles);
-	// dprintf(STDERR_FILENO, "map height size in tiles / pixel '%d'\n", cub_data->map_height_in_tiles);
-	
-	// dprintf(STDERR_FILENO, "\ndit_debug_rays *debug_raysen width in pixels '%d'\n", cub_data->SCREEN_W);
-	// dprintf(STDERR_FILENO, "screen hieght in pixels '%d'\n", cub_data->);
-	//dprintf(STDERR_FILENO, "current_ray_angle '%f'\n", cub_data->current_ray.ray_angle);
-	//dprintf(STDERR_FILENO, "ray index '%d'\n", cub_data->current_ray.current_index);
-	
-	// dprintf(STDERR_FILENO, "FOV sub division angle radian %f\n", cub_data->current_ray.ray_angle);
-	//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
-
-
-
 
 
 
@@ -173,14 +149,10 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	if (res == '4')
 		dprintf(STDERR_FILENO, "player direction in quarter south-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 
-	//dprintf(STDERR_FILENO, "length of rsay from x_step %f\n", fabs(cub_data->current_ray.ray_x_len));
-	//dprintf(STDERR_FILENO, "length of rsay from y_step %f\n", fabs(cub_data->current_ray.current_y_len));
-	// dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->current_ray.ray_center, radian_to_degree(cub_data->current_ray.ray_center));
 	
-	
-	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[959], cub_data->current_ray.ray_data->ray_quadrant[959], cub_data->current_ray.ray_data->ray_deg[959], cub_data->current_ray.ray_data->ray_angle_rd[959], fabs(cub_data->current_ray.ray_data->ray_x_len[959]), fabs(cub_data->current_ray.ray_data->ray_y_len[959]));
-	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[480], cub_data->current_ray.ray_data->ray_quadrant[480], cub_data->current_ray.ray_data->ray_deg[480], cub_data->current_ray.ray_data->ray_angle_rd[480], fabs(cub_data->current_ray.ray_data->ray_x_len[480]), fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
-	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[0], cub_data->current_ray.ray_data->ray_quadrant[0], cub_data->current_ray.ray_data->ray_deg[0], cub_data->current_ray.ray_data->ray_angle_rd[0], fabs(cub_data->current_ray.ray_data->ray_x_len[0]), fabs(cub_data->current_ray.ray_data->ray_y_len[0]));
+	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' ray_hit '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[959], cub_data->current_ray.ray_data->ray_quadrant[959], ray_face_hit(cub_data, 959), cub_data->current_ray.ray_data->ray_deg[959], cub_data->current_ray.ray_data->ray_angle_rd[959], fabs(cub_data->current_ray.ray_data->ray_x_len[959]), fabs(cub_data->current_ray.ray_data->ray_y_len[959]));
+	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' ray_hit '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[480], cub_data->current_ray.ray_data->ray_quadrant[480], ray_face_hit(cub_data, 480),cub_data->current_ray.ray_data->ray_deg[480], cub_data->current_ray.ray_data->ray_angle_rd[480], fabs(cub_data->current_ray.ray_data->ray_x_len[480]), fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
+	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' ray_hit '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[0], cub_data->current_ray.ray_data->ray_quadrant[0], ray_face_hit(cub_data, 0), cub_data->current_ray.ray_data->ray_deg[0], cub_data->current_ray.ray_data->ray_angle_rd[0], fabs(cub_data->current_ray.ray_data->ray_x_len[0]), fabs(cub_data->current_ray.ray_data->ray_y_len[0]));
 	
 
 
