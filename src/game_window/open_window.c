@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/10 12:32:39 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/10 13:30:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,8 +274,6 @@ void	steps_y_axis(t_cub_data *cub_data, int strip_index)
 		y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
 
 	cub_data->current_ray.current_y_len += y_hyp;
-	if (strip_index == 480)
-		dprintf(STDERR_FILENO, "result len YYY '%f' \n", cub_data->current_ray.current_y_len);
 }
 
 
@@ -296,9 +294,6 @@ void	steps_x_axis(t_cub_data *cub_data, int strip_index)
 		x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
 
 	cub_data->current_ray.current_x_len += x_hyp;
-	if (strip_index == 480)
-		dprintf(STDERR_FILENO, "result len XXX '%f' \n", cub_data->current_ray.current_x_len);
-
 }
 
 void get_ray_data(t_cub_data *cub_data, int strip_index)
@@ -318,7 +313,9 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 	strip_index = 959 - strip_index;
 	cub_data->current_ray.current_radian = degree_to_radian(ray_angle);	
 
-		
+	int flag_x = 0;
+	int flag_y = 0;
+	
 	
 	snap_to_x_axis(cub_data, strip_index);
 	snap_to_y_axis(cub_data, strip_index);
@@ -326,19 +323,31 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 
 	//debug_first_mid_last_current_ray(cub_data, strip_index);
 	// find horizontal collision
-	while (!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
+	while ((!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1)) && flag_x != 1 && flag_y != 1)
 	{
 	
 		if (fabs(cub_data->current_ray.current_x_len) <= fabs(cub_data->current_ray.current_y_len))
 		{
 			steps_x_axis(cub_data, strip_index);
+			if (check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
+				flag_x = 1;
 		}
 			else
 		{
 			steps_y_axis(cub_data, strip_index);
+			if (check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
+				flag_y = 1;
+
 		}
 
 	}
+
+	
+
+
+
+
+	
 // while (!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
 // {
 	
