@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/09 13:48:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/10 12:32:39 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,68 +58,68 @@ double calculate_wall_height(double distance_from_the_wall, double angle_degrees
 
 
 
-
-
-
-
-
-
-
-// static int	is_wall_pixel(t_cub_data *cub_data, double x, double y)
-// {
-// 	(void)cub_data;
+static int	is_wall_pixel(t_cub_data *cub_data, double x, double y)
+{
+	(void)cub_data;
 	
-// 	if (!within_drawing_limits(cub_data, x, y))
-// 		return (1);
+	if (!within_cub_drawing_limits(x, y))
+		return (1);
 	
-// 	int tx = (int)(x / cub_data->tile_size);
-// 	int ty = (int)(y / cub_data->tile_size);
+	int tx = (int)(x / cub_data->tile_size);
+	int ty = (int)(y / cub_data->tile_size);
 	
-// 	if (tx < cub_data->map_data->minimap_max_width && ty < cub_data->map_data->minimap_max_height)   //// todo proctection outside map in memory
-// 	{
+	if (tx < cub_data->map_data->minimap_max_width && ty < cub_data->map_data->minimap_max_height)   //// todo proctection outside map in memory
+	{
 
-// 	if (cub_data->map_data->square_map[ty][tx] == '1')
-// 	{
-// 		cub_data->player_cub.half_wall_size = calculate_wall_height(cub_data->player_cub.walls_distance, 30); 
-// 		return (1);
-// 	}
-// 	}
-// 	return (0);
-// }
+	if (cub_data->map_data->square_map[ty][tx] == '1')
+	{
+		cub_data->player_cub.half_wall_size = calculate_wall_height(cub_data->player_cub.walls_distance, 30); 
+		return (1);
+	}
+	}
+	return (0);
+}
  
 
-// static int	init_circle_data(t_cub_data *cub_data, double x1, double y1, double *rad)
-// {
-// 	if (!cub_data || !x1 || !y1 || !rad)
-// 		return (0);
-// 	*rad = 1;
-// 	return (1);
-// }
+static int	init_circle_data(t_cub_data *cub_data, double x1, double y1, double *rad)
+{
+	if (!cub_data || !x1 || !y1 || !rad)
+		return (0);
+	*rad = 1;
+	return (1);
+}
 
 
-// static int	check_wall_limit(t_cub_data *cub_data, double x1, double y1)
-// {
-// 	double	start[2];
-// 	double	rad;
+static int	check_wall_limit(t_cub_data *cub_data, double x1, double y1)
+{
+	double	start[2];
+	double	rad;
 
-// 	init_circle_data(cub_data, x1, y1, &rad);
-// 	start[WIDTH] = (0 - rad);
-// 	while (start[WIDTH] <= rad)
-// 	{
-// 		start[HIEGHT] = (0 - rad);
-// 		while (start[HIEGHT] <= rad)
-// 		{
-// 			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
-// 			{
-// 				if (is_wall_pixel(cub_data, x1, y1))
-// 					return (1);
-// 			}
-// 			start[HIEGHT]++;
-// 		}
-// 		start[WIDTH]++;
-// 	}
-// 	return (0);
-// }
+	init_circle_data(cub_data, x1, y1, &rad);
+	start[WIDTH] = (0 - rad);
+	while (start[WIDTH] <= rad)
+	{
+		start[HIEGHT] = (0 - rad);
+		while (start[HIEGHT] <= rad)
+		{
+			if ((pow(start[HIEGHT], 2) + pow(start[WIDTH], 2)) <= pow(rad, 2))
+			{
+				if (is_wall_pixel(cub_data, x1, y1))
+					return (1);
+			}
+			start[HIEGHT]++;
+		}
+		start[WIDTH]++;
+	}
+	return (0);
+}
+
+
+
+
+
+
+
 
 
 static void	mlx_put_pixel(t_cub_data *cub_data, int x, int y)
@@ -218,15 +218,9 @@ void	snap_to_y_axis(t_cub_data *cub_data, int strip_index)
 	double	y_hyp = 0;
 	double	base_len_y = 0;
 	int		step_y = CUB_TILESIZE;
+
 	
-	
-	cub_data->current_ray.current_y0 = 7.5;
-	cub_data->current_ray.current_x0 = 7.5;
-	
-	// cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;
-	// cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
-	
-	cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0;
+	cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;
 	cub_data->current_ray.current_y1 = cub_data->current_ray.current_y0 + (step_y * percentage(cub_data->current_ray.current_y0)) ;	
 	base_len_y = (cub_data->current_ray.current_y1 - cub_data->current_ray.current_y0);
 	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 180)
@@ -234,7 +228,7 @@ void	snap_to_y_axis(t_cub_data *cub_data, int strip_index)
 		y_hyp = INT_MAX;
 	}
 	else
-	y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
+		y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
 	cub_data->current_ray.current_y_len = y_hyp;
 
 }
@@ -245,17 +239,8 @@ void	snap_to_x_axis(t_cub_data *cub_data, int strip_index)
 	double	x_hyp = 0;
 	double	base_len_x = 0;
 	int		step_x = CUB_TILESIZE;
-	
-	
-	
-	// cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;
-	
-	// cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
-	
-	cub_data->current_ray.current_y0 = 7.5;
-	cub_data->current_ray.current_x0 = 7.5;
-	
-	cub_data->current_ray.current_y1 = cub_data->current_ray.current_y0;
+
+	cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
 	cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0 + (step_x * percentage(cub_data->current_ray.current_x0)) ;	
 	base_len_x = (cub_data->current_ray.current_x1 - cub_data->current_ray.current_x0);	
 	
@@ -271,48 +256,48 @@ void	snap_to_x_axis(t_cub_data *cub_data, int strip_index)
 }
 
 
-void	y_axis_ray_1_step(t_cub_data *cub_data)
+void	steps_y_axis(t_cub_data *cub_data, int strip_index)
 {
-	double	y_hyp = 0;
 	double	base_len_y = 0;
+	double	y_hyp = 0;
 	
-	
-	cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;
-	cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
-	
-	//cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0;
-	//cub_data->current_ray.current_y1 = cub_data->current_ray.current_y0;	
+	cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;	
 	cub_data->current_ray.current_y1 += CUB_TILESIZE;	
-	base_len_y = (cub_data->current_ray.current_y1 - cub_data->current_ray.current_y0);
 
-	y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
-	//dprintf(STDERR_FILENO, "                           y_high y_hyp '%f'\n", y_hyp );
-	cub_data->current_ray.current_y_len = y_hyp;
-	
-	// cub_data->current_ray.current_y_len = pow(y_high, 2) + pow(base_len_y, 2);
-	// cub_data->current_ray.current_y_len += sqrt(cub_data->current_ray.current_y_len);
+	base_len_y = CUB_TILESIZE;
+
+	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 180)
+	{
+		y_hyp = INT_MAX;
+	}
+	else
+		y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
+
+	cub_data->current_ray.current_y_len += y_hyp;
+	if (strip_index == 480)
+		dprintf(STDERR_FILENO, "result len YYY '%f' \n", cub_data->current_ray.current_y_len);
 }
 
 
-void	x_axis_ray_1_step(t_cub_data *cub_data)
+void	steps_x_axis(t_cub_data *cub_data, int strip_index)
 {
-	double	x_hyp = 0;
 	double	base_len_x = 0;
+	double	x_hyp = 0;
 	
-
-	
-	cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;
 	cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
 	
-	//cub_data->current_ray.current_y1 = cub_data->current_rayent_rayent_rayent_ray.current_y0;
-	//cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0;	
 	cub_data->current_ray.current_x1 += CUB_TILESIZE;	
-	base_len_x = (cub_data->current_ray.current_x1 - cub_data->current_ray.current_x0);
-	x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
-	//dprintf(STDERR_FILENO, "1 step x_high '%f'\n", x_hyp );
-	// cub_data->current_ray.current_x_len = pow(x_hyp, 2) + pow(base_len_x, 2);
-	// cub_data->current_ray.current_x_len += sqrt(cub_data->current_ray.current_x_len);
-	cub_data->current_ray.current_x_len = x_hyp;
+	base_len_x = CUB_TILESIZE;
+	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 90 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 270)
+	{
+		x_hyp = INT_MAX;
+	}
+	else
+		x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
+
+	cub_data->current_ray.current_x_len += x_hyp;
+	if (strip_index == 480)
+		dprintf(STDERR_FILENO, "result len XXX '%f' \n", cub_data->current_ray.current_x_len);
 
 }
 
@@ -335,16 +320,25 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 
 		
 	
-	snap_to_y_axis(cub_data, strip_index);
 	snap_to_x_axis(cub_data, strip_index);
+	snap_to_y_axis(cub_data, strip_index);
 	
 
 	//debug_first_mid_last_current_ray(cub_data, strip_index);
 	// find horizontal collision
+	while (!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
+	{
+	
+		if (fabs(cub_data->current_ray.current_x_len) <= fabs(cub_data->current_ray.current_y_len))
+		{
+			steps_x_axis(cub_data, strip_index);
+		}
+			else
+		{
+			steps_y_axis(cub_data, strip_index);
+		}
 
-
-
-
+	}
 // while (!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
 // {
 	
@@ -363,8 +357,8 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 
 	get_ray_data(cub_data, strip_index);
 	
-	if (strip_index == 480)  // @NOTE change number to shown different current_ray  0 to 959
-		increment_steps(cub_data, strip_index);
+	// if (strip_index == 480)  // @NOTE Reuben change number to shown different current_ray  0 to 959
+	// 	increment_steps(cub_data, strip_index);
 
 	
 	// exit (1);
