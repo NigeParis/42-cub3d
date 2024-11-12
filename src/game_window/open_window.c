@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/12 07:53:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 08:44:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,19 +216,18 @@ double percentage(double number)
 void	snap_to_y_axis(t_cub_data *cub_data, int strip_index)
 {
 	double	y_hyp = 0;
-	double	base_len_y = 0;
 	int		step_y = CUB_TILESIZE;
 
 	
 	cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;
 	cub_data->current_ray.current_y1 = cub_data->current_ray.current_y0 + (step_y * percentage(cub_data->current_ray.current_y0)) ;	
-	base_len_y = (cub_data->current_ray.current_y1 - cub_data->current_ray.current_y0);
+	cub_data->current_ray.ray_data->ray_y_baselen[strip_index] = (cub_data->current_ray.current_y1 - cub_data->current_ray.current_y0);
 	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 180)
 	{
 		y_hyp = INT_MAX;
 	}
 	else
-		y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
+		y_hyp = (cub_data->current_ray.ray_data->ray_y_baselen[strip_index] / sinf(cub_data->current_ray.current_radian));
 	cub_data->current_ray.current_y_len = y_hyp;
 
 }
@@ -237,19 +236,18 @@ void	snap_to_y_axis(t_cub_data *cub_data, int strip_index)
 void	snap_to_x_axis(t_cub_data *cub_data, int strip_index)
 {
 	double	x_hyp = 0;
-	double	base_len_x = 0;
 	int		step_x = CUB_TILESIZE;
 
 	cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
 	cub_data->current_ray.current_x1 = cub_data->current_ray.current_x0 + (step_x * percentage(cub_data->current_ray.current_x0)) ;	
-	base_len_x = (cub_data->current_ray.current_x1 - cub_data->current_ray.current_x0);	
+	cub_data->current_ray.ray_data->ray_x_baselen[strip_index] = (cub_data->current_ray.current_x1 - cub_data->current_ray.current_x0);	
 	
 	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 90 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 270)
 	{
 		x_hyp = INT_MAX;
 	}
 	else
-		x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
+		x_hyp = (cub_data->current_ray.ray_data->ray_x_baselen[strip_index] / cosf(cub_data->current_ray.current_radian));
 	
 	cub_data->current_ray.current_x_len = x_hyp;
 
@@ -258,13 +256,14 @@ void	snap_to_x_axis(t_cub_data *cub_data, int strip_index)
 
 void	steps_y_axis(t_cub_data *cub_data, int strip_index)
 {
-	double	base_len_y = 0;
+	double	base_len_y = cub_data->current_ray.ray_data->ray_y_baselen[strip_index];
 	double	y_hyp = 0;
 	
 	cub_data->current_ray.current_y0 = cub_data->player_cub.pos_y_double;	
 	cub_data->current_ray.current_y1 += CUB_TILESIZE;	
-
-	base_len_y = CUB_TILESIZE;
+	base_len_y += CUB_TILESIZE;
+	
+	cub_data->current_ray.ray_data->ray_y_baselen[strip_index] = base_len_y;
 
 	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 0 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 180)
 	{
@@ -273,19 +272,20 @@ void	steps_y_axis(t_cub_data *cub_data, int strip_index)
 	else
 		y_hyp = (base_len_y / sinf(cub_data->current_ray.current_radian));
 
-	cub_data->current_ray.current_y_len += y_hyp;
+	cub_data->current_ray.current_y_len = y_hyp;
 }
 
 
 void	steps_x_axis(t_cub_data *cub_data, int strip_index)
 {
-	double	base_len_x = 0;
+	double	base_len_x = cub_data->current_ray.ray_data->ray_x_baselen[strip_index];
 	double	x_hyp = 0;
 	
 	cub_data->current_ray.current_x0 = cub_data->player_cub.pos_x_double;
-	
 	cub_data->current_ray.current_x1 += CUB_TILESIZE;	
-	base_len_x = CUB_TILESIZE;
+	base_len_x += CUB_TILESIZE;
+	
+	cub_data->current_ray.ray_data->ray_x_baselen[strip_index] = base_len_x;
 	if ((cub_data->current_ray.ray_data->ray_deg[strip_index]) == 90 || (cub_data->current_ray.ray_data->ray_deg[strip_index]) == 270)
 	{
 		x_hyp = INT_MAX;
@@ -293,7 +293,7 @@ void	steps_x_axis(t_cub_data *cub_data, int strip_index)
 	else
 		x_hyp = (base_len_x / cosf(cub_data->current_ray.current_radian));
 
-	cub_data->current_ray.current_x_len += x_hyp;
+	cub_data->current_ray.current_x_len = x_hyp;
 }
 
 void get_ray_data(t_cub_data *cub_data, int strip_index)
@@ -314,7 +314,7 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 	cub_data->current_ray.current_radian = degree_to_radian(ray_angle);	
 
 	int flag_x = 0;
-	int flag_y = 0;
+	// int flag_y = 0;
 	
 	
 	snap_to_x_axis(cub_data, strip_index);
@@ -323,24 +323,27 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 
 	//debug_first_mid_last_current_ray(cub_data, strip_index);
 	// find horizontal collision
-	while ((!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1)) && flag_x != 1 && flag_y != 1)
-	{
+	// while ((!check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1)) && flag_x != 1 && flag_y != 1)
+	// {
 	
 		if (fabs(cub_data->current_ray.current_x_len) <= fabs(cub_data->current_ray.current_y_len))
 		{
 			steps_x_axis(cub_data, strip_index);
 			if (check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
 				flag_x = 1;
+
+			cub_data->current_ray.ray_data->ray_y_baselen[strip_index] = 0;
 		}
-			else
+		else
 		{
 			steps_y_axis(cub_data, strip_index);
-			if (check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
-				flag_y = 1;
+			// if (check_wall_limit(cub_data, cub_data->current_ray.current_x1, cub_data->current_ray.current_y1))
+				// flag_y = 1;
+			cub_data->current_ray.ray_data->ray_x_baselen[strip_index] = 0;
 
 		}
 
-	}
+	// }
 
 	
 

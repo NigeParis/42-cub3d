@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:47:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 08:14:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_ray_data
 	double	ray_deg[SCREEN_W];
 	double	ray_x_len[SCREEN_W];
 	double	ray_y_len[SCREEN_W];
+	double	ray_x_baselen[SCREEN_W];
+	double	ray_y_baselen[SCREEN_W];
 	int  	ray_index[SCREEN_W];
 	int  	ray_quadrant[SCREEN_W];
 

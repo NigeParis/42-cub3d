@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/12 07:52:30 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:03:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	ray_switch_length(t_cub_data *cub_data, int strip_index)
 {
 	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 1) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
 		return (1);
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 2) && cub_data->current_ray.ray_data->ray_deg[strip_index] < 135) 
+	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 2) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
 		return (1);
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 3) && cub_data->current_ray.ray_data->ray_deg[strip_index] > 225) 
+	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 3) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
 		return (1);
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 4) && cub_data->current_ray.ray_data->ray_deg[strip_index] < 315) 
+	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 4) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
 		return (1);	
 	return(0);	
 }
@@ -111,16 +111,28 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 		dprintf(STDERR_FILENO, "player direction in quarter south-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
 
 	
-	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' ray_hit '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[959], cub_data->current_ray.ray_data->ray_quadrant[959], ray_face_hit(cub_data, 959), cub_data->current_ray.ray_data->ray_deg[959], cub_data->current_ray.ray_data->ray_angle_rd[959], fabs(cub_data->current_ray.ray_data->ray_x_len[959]), fabs(cub_data->current_ray.ray_data->ray_y_len[959]));
-	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' ray_hit '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[480], cub_data->current_ray.ray_data->ray_quadrant[480], ray_face_hit(cub_data, 480),cub_data->current_ray.ray_data->ray_deg[480], cub_data->current_ray.ray_data->ray_angle_rd[480], fabs(cub_data->current_ray.ray_data->ray_x_len[480]), fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
-	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' ray_hit '%d' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[0], cub_data->current_ray.ray_data->ray_quadrant[0], ray_face_hit(cub_data, 0), cub_data->current_ray.ray_data->ray_deg[0], cub_data->current_ray.ray_data->ray_angle_rd[0], fabs(cub_data->current_ray.ray_data->ray_x_len[0]), fabs(cub_data->current_ray.ray_data->ray_y_len[0]));
+	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' ray_hit '%d' baselen_x '%11f' baselen_y '%11f' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[959], cub_data->current_ray.ray_data->ray_quadrant[959], ray_face_hit(cub_data, 959),  cub_data->current_ray.ray_data->ray_x_baselen[959], cub_data->current_ray.ray_data->ray_y_baselen[959], cub_data->current_ray.ray_data->ray_deg[959], cub_data->current_ray.ray_data->ray_angle_rd[959], fabs(cub_data->current_ray.ray_data->ray_x_len[959]), fabs(cub_data->current_ray.ray_data->ray_y_len[959]));
+	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' ray_hit '%d' baselen_x '%11f' baselen_y '%11f' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[480], cub_data->current_ray.ray_data->ray_quadrant[480], ray_face_hit(cub_data, 480), cub_data->current_ray.ray_data->ray_x_baselen[480], cub_data->current_ray.ray_data->ray_y_baselen[480], cub_data->current_ray.ray_data->ray_deg[480], cub_data->current_ray.ray_data->ray_angle_rd[480], fabs(cub_data->current_ray.ray_data->ray_x_len[480]), fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
+	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' ray_hit '%d' baselen_x '%11f' baselen_y '%11f' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[0], cub_data->current_ray.ray_data->ray_quadrant[0], ray_face_hit(cub_data, 0), cub_data->current_ray.ray_data->ray_x_baselen[0], cub_data->current_ray.ray_data->ray_y_baselen[0], cub_data->current_ray.ray_data->ray_deg[0],  cub_data->current_ray.ray_data->ray_angle_rd[0], fabs(cub_data->current_ray.ray_data->ray_x_len[0]), fabs(cub_data->current_ray.ray_data->ray_y_len[0]));
 	
-	if (ray_switch_length(cub_data, 480))
+	int i = 959;
+	while (i != -1)
 	{
-		dprintf(STDERR_FILENO, "length to wall '%f'\n", fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
+		if (ray_switch_length(cub_data, i))
+		{
+			dprintf(STDERR_FILENO, "Ray[%3d] length to wall '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_y_len[i]));
+		}
+		else
+			dprintf(STDERR_FILENO, "Ray[%3d] length to wall '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_x_len[i]));
+		if ( i == 959)
+			i = 480;
+		else if (i == 480)
+			i = 0;
+		else if (i == 0)
+			i = -1;
 	}
-	else
-		dprintf(STDERR_FILENO, "length to wall '%f'\n", fabs(cub_data->current_ray.ray_data->ray_x_len[480]));
+
+	
 
 
 	//Reubens DEBUG for increment and structure debug_rays
