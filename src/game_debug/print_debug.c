@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/10 13:51:45 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 07:52:30 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,16 +125,16 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 
 	//Reubens DEBUG for increment and structure debug_rays
 
-	// char position[15];
-	// if (cub_data->debug_rays->strip_index == 480)
-	// 	ft_strlcpy(position, "center", 9);
-	// else if (cub_data->debug_rays->strip_index == 0)
-	// 	ft_strlcpy(position, "right", 9);
-	// else if (cub_data->debug_rays->strip_index == 959)
-	// 	ft_strlcpy(position, "left", 9);
-	// else
-	// 	ft_strlcpy(position, "not on minimap", 15);
-	// dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' \n", cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, cub_data->debug_rays->x_val, cub_data->debug_rays->radian, radian_to_degree(cub_data->debug_rays->radian), cub_data->debug_rays->total_length);
+	char position[15];
+	if (cub_data->debug_rays->strip_index == 480)
+		ft_strlcpy(position, "center", 9);
+	else if (cub_data->debug_rays->strip_index == 0)
+		ft_strlcpy(position, "right", 9);
+	else if (cub_data->debug_rays->strip_index == 959)
+		ft_strlcpy(position, "left", 9);
+	else
+		ft_strlcpy(position, "not on minimap", 15);
+	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' \n", cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, cub_data->debug_rays->x_val, cub_data->debug_rays->radian, radian_to_degree(cub_data->debug_rays->radian), cub_data->debug_rays->total_length);
 		
 	// end Reuben's debug increment
 

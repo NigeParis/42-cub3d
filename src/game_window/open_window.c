@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/10 13:30:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 07:53:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -366,8 +366,8 @@ static int	cast_ray(t_cub_data*cub_data, double ray_angle, int strip_index)
 
 	get_ray_data(cub_data, strip_index);
 	
-	// if (strip_index == 480)  // @NOTE Reuben change number to shown different current_ray  0 to 959
-	// 	increment_steps(cub_data, strip_index);
+	if (strip_index == 480)  // @NOTE Reuben change number to shown different current_ray  0 to 959
+		increment_steps(cub_data, strip_index);
 
 	
 	// exit (1);
