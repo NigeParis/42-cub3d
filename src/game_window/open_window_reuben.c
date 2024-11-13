@@ -103,7 +103,7 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_y - cub_data->build_rays->delta_y) * CUB_TILESIZE;
 }
 
-void increment_steps(t_cub_data *cub_data, int strip_index)
+void make_rays(t_cub_data *cub_data, int strip_index)
 {
 	init_build_rays_data(cub_data, strip_index);
 	setup_build_rays_delta(cub_data);

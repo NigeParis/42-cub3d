@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/13 10:34:35 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:42:07 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static int cast_ray(t_cub_data *cub_data, double ray_angle, int strip_index)
 
 	make_rays(cub_data, strip_index);
 
-	cub_data->current_ray.current_wall = calculate_wall_height(cub_data->debug_rays->total_length, 50);
+	cub_data->current_ray.current_wall = calculate_wall_height(cub_data->build_rays->total_length, 30);
 	draw_vertical_line(cub_data, strip_index);
 
 	return (0);
