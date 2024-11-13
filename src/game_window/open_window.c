@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/13 12:32:04 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:19:00 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ double calculate_wall_height(double distance_from_the_wall, double angle_degrees
 double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_the_wall, int strip_index)
 {
 	int screenheight = 500;
-	int lineheight = (int) (screenheight / (distance_from_the_wall));
+	int lineheight = (int) (screenheight / (distance_from_the_wall / 1.4));
 	int drawStart = (-lineheight / 2) + (screenheight / 2);
 	if (drawStart < 0)
 		drawStart = 0;
