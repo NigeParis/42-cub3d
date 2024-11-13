@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/13 09:28:10 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:18:41 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@
 # define SCREEN_W 960
 
 
-typedef struct s_debug_rays
+typedef struct s_build_rays
 {
-	int	counter;
 	int	strip_index;
+	int	step_x_orientation;
+	int	step_y_orientation;
 	double total_steps_x;
 	double total_steps_y;
 	double total_length;
@@ -52,18 +53,16 @@ typedef struct s_debug_rays
 	double direction_step_y;
 	double direction_step_x;
 	double radian;
-	char direction;
 	int direction_res;
 	int x_val;
 	int y_val;
-	int counter_wall_found;
-	double corresponding_x_val;
-	double corresponding_y_val;
 	double delta_x;
 	double delta_y;
 	double side_dist_x;
 	double side_dist_y;
-} t_debug_rays;
+	int		side;
+	
+} t_build_rays;
 
 
 
@@ -123,7 +122,7 @@ typedef struct s_cud_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
-	t_debug_rays 	*debug_rays;
+	t_build_rays 	*build_rays;
 }	t_cub_data;
 
 
