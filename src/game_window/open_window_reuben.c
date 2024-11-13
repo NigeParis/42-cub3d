@@ -17,7 +17,7 @@ static int	is_wall_found(t_cub_data *cub_data)
 }
 
 
-void increment_steps(t_cub_data *cub_data, int strip_index)
+void make_rays(t_cub_data *cub_data, int strip_index)
 {
 	int step_x_direction = 0;
 	int step_y_direction = 0;

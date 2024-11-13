@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/13 09:28:10 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:34:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_ray
 	double	current_y1;
 	double	current_y_len;
 	double	current_x_len;
+	double	current_wall;
 	int		current_index;
 	t_ray_data	*ray_data;
 	
@@ -195,7 +196,7 @@ int		ray_facing(t_cub_data *cub_data, int strip_index);
 double	radian_to_degree(double angle_radian);
 double	degree_to_radian(double angle_degrees);
 double	normalize_angle(double angle_radians); 
-void	increment_steps(t_cub_data *cub_data, int strip_index);
+void	make_rays(t_cub_data *cub_data, int strip_index);
 double	calibrate_angle_for_minimap(t_cub_data *cub_data);
 double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
 int		within_cub_drawing_limits(int x, int y);
