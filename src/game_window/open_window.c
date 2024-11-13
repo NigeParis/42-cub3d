@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/13 10:42:07 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:32:04 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int put_minimap_to_screen(t_data *map_data)
 #define WIDTH 0
 #define HIEGHT 1
 
-static int draw_vertical_line(t_cub_data *cub_data, int i);
+static int draw_vertical_line(t_cub_data *cub_data, int start, int end, int strip_index);
 
 double calculate_wall_height(double distance_from_the_wall, double angle_degrees)
 {
@@ -49,6 +49,22 @@ double calculate_wall_height(double distance_from_the_wall, double angle_degrees
 	return (wall_height);
 }
 
+double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_the_wall, int strip_index)
+{
+	int screenheight = 500;
+	int lineheight = (int) (screenheight / (distance_from_the_wall));
+	int drawStart = (-lineheight / 2) + (screenheight / 2);
+	if (drawStart < 0)
+		drawStart = 0;
+	int drawEnd = (lineheight / 2) + (screenheight / 2); 
+	if (drawEnd >= screenheight )
+		drawEnd = screenheight - 1;
+	draw_vertical_line(cub_data, drawStart, drawEnd, strip_index);
+	return (drawEnd - drawStart);
+}
+
+
+
 static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 {
 	char *pixel;
@@ -59,8 +75,8 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 		return;
 	bits = 8;
 	color_shift = cub_data->map_data->form.pixel_bits - bits;
-	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x *
-																					(cub_data->map_data->form.pixel_bits / bits));
+	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x *(cub_data->map_data->form.pixel_bits / bits));
+	
 	while (color_shift >= 0)
 	{
 		*pixel = (cub_data->map_data->form.dot_col >>
@@ -71,13 +87,13 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 	}
 }
 
-static int draw_vertical_line(t_cub_data *cub_data, int strip_index)
+static int draw_vertical_line(t_cub_data *cub_data, int start, int end, int strip_index)
 {
 	int line_start_pixels;
 	int line_stop_pixels;
 
-	line_start_pixels = 293 - (int)(cub_data->current_ray.current_wall); // TODO clean function
-	line_stop_pixels = ((int)(cub_data->current_ray.current_wall) + 250);
+	line_start_pixels = start;
+	line_stop_pixels = end;
 
 	while (line_start_pixels < line_stop_pixels)
 	{
@@ -119,15 +135,16 @@ void get_ray_data(t_cub_data *cub_data, int strip_index)
 
 static int cast_ray(t_cub_data *cub_data, double ray_angle, int strip_index)
 {
-	strip_index = 959 - strip_index;
+	//strip_index = 959 - strip_index;
 	cub_data->current_ray.current_radian = degree_to_radian(ray_angle);
 
 	get_ray_data(cub_data, strip_index);
 
 	make_rays(cub_data, strip_index);
 
-	cub_data->current_ray.current_wall = calculate_wall_height(cub_data->build_rays->total_length, 30);
-	draw_vertical_line(cub_data, strip_index);
+	//cub_data->current_ray.current_wall = calculate_wall_height(cub_data->build_rays->total_length, 30);
+	cub_data->current_ray.current_wall = calculate_wall_height_fisheye(cub_data, cub_data->build_rays->total_length, strip_index);
+	//draw_vertical_line(cub_data, strip_index);
 
 	return (0);
 }

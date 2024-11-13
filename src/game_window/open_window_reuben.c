@@ -26,14 +26,14 @@ void init_build_rays_data(t_cub_data *cub_data, int strip_index)
 void setup_build_rays_delta(t_cub_data *cub_data)
 {
 	
-	if (cos(cub_data->build_rays->radian) == 0)
+	if (cosf(cub_data->build_rays->radian) == 0)
 		cub_data->build_rays->delta_x = INT_MAX;
-	if (sin(cub_data->build_rays->radian ) == 0)
+	if (sinf(cub_data->build_rays->radian ) == 0)
 		cub_data->build_rays->delta_y = INT_MAX;
-	if (cos(cub_data->build_rays->radian != 0))
-		cub_data->build_rays->delta_x = fabs(1 / cos(cub_data->build_rays->radian));
-	if (sin(cub_data->build_rays->radian) != 0)
-		cub_data->build_rays->delta_y = fabs(1 / sin(cub_data->build_rays->radian));
+	if (cosf(cub_data->build_rays->radian != 0))
+		cub_data->build_rays->delta_x = fabs(1 / cosf(cub_data->build_rays->radian));
+	if (sinf(cub_data->build_rays->radian) != 0)
+		cub_data->build_rays->delta_y = fabs(1 / sinf(cub_data->build_rays->radian));
 }
 
 void setup_build_rays_side_dist_y(t_cub_data *cub_data)
@@ -98,9 +98,9 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 void calculate_final_length_for_ray(t_cub_data *cub_data)
 {
 	if (cub_data->build_rays->side == 0 )
-		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_x - cub_data->build_rays->delta_x) * CUB_TILESIZE;
+		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_x - cub_data->build_rays->delta_x);
 	else 
-		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_y - cub_data->build_rays->delta_y) * CUB_TILESIZE;
+		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_y - cub_data->build_rays->delta_y);
 }
 
 void make_rays(t_cub_data *cub_data, int strip_index)

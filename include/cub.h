@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/13 10:41:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:45:19 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define WALL_HEIGHT 200
+# define WALL_HEIGHT 250
 # define WALL_SMALL_LIMIT 5
 # define CUB_TILESIZE 5
 # define RAY_LIMIT 2147483647
