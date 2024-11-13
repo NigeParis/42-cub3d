@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/12 18:40:51 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:28:10 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_debug_rays
 	double total_steps_x;
 	double total_steps_y;
 	double total_length;
+	double length_x;
+	double length_y;
 	double get_length_y_step;
 	double get_length_x_step;
 	double direction_step_y;
@@ -54,14 +56,11 @@ typedef struct s_debug_rays
 	int direction_res;
 	int x_val;
 	int y_val;
-	int prev_wall [2];
 	int counter_wall_found;
 	double corresponding_x_val;
 	double corresponding_y_val;
 	double delta_x;
 	double delta_y;
-	double distance_to_x;
-	double distance_to_y;
 	double side_dist_x;
 	double side_dist_y;
 } t_debug_rays;
