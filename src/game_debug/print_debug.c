@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/12 09:03:34 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:58:30 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 			dprintf(STDERR_FILENO, "Ray[%3d] length to wall '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_y_len[i]));
 		}
 		else
-			dprintf(STDERR_FILENO, "Ray[%3d] length to wall '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_x_len[i]));
+			dprintf(STDERR_FILENO, "Ray[%3d]  '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_x_len[i]));
 		if ( i == 959)
 			i = 480;
 		else if (i == 480)
@@ -146,7 +146,11 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 		ft_strlcpy(position, "left", 9);
 	else
 		ft_strlcpy(position, "not on minimap", 15);
-	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' \n", cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, cub_data->debug_rays->x_val, cub_data->debug_rays->radian, radian_to_degree(cub_data->debug_rays->radian), cub_data->debug_rays->total_length);
+	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f' DIRECTION MOVEMENT %c  GET Y DIRECTION %f GET DIRECTION RES %d \n", 
+	cub_data->debug_rays->strip_index,  position, cub_data->debug_rays->direction_res, cub_data->debug_rays->y_val, 
+	cub_data->debug_rays->x_val, cub_data->debug_rays->radian, radian_to_degree(cub_data->debug_rays->radian), 
+	cub_data->debug_rays->total_length, cub_data->debug_rays->direction,cub_data->debug_rays->direction_step_y, 
+	cub_data->debug_rays->direction_res);
 		
 	// end Reuben's debug increment
 

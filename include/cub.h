@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/12 08:14:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:40:51 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ typedef struct s_debug_rays
 	int y_val;
 	int prev_wall [2];
 	int counter_wall_found;
+	double corresponding_x_val;
+	double corresponding_y_val;
+	double delta_x;
+	double delta_y;
+	double distance_to_x;
+	double distance_to_y;
+	double side_dist_x;
+	double side_dist_y;
 } t_debug_rays;
 
 
