@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 12:23:03 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:54:08 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
 {
 	get_map_check_and_setup(argc, argv, map_data, cub_data);
 	free_setup_maps(map_data);
-	map_data->gw.mlx_ptr = mlx_init();
 	map_data->gw.screen_height  = SCREEN_H;
 	map_data->gw.screen_width = SCREEN_W;
 	get_player_starting_pos(map_data);
