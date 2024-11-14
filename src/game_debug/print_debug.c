@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 10:23:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:51:42 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,8 +147,8 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	else
 		ft_strlcpy(position, "not on minimap", 15);
 	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f'   GET Y DIRECTION %f GET DIRECTION RES %d \n", 
-	cub_data->current_ray.strip_index,  position, cub_data->current_ray.direction_res, cub_data->build_rays->y_val, 
-	cub_data->build_rays->x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
+	cub_data->current_ray.strip_index,  position, cub_data->current_ray.direction_res, cub_data->current_ray.y_val, 
+	cub_data->current_ray.x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
 	cub_data->current_ray.current_wall, cub_data->current_ray.direction_step_y, 
 	cub_data->current_ray.direction_res);
 		

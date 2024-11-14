@@ -2,25 +2,26 @@
 
 static int	is_wall_found(t_cub_data *cub_data)
 {
-	cub_data->build_rays->y_val = (int) cub_data->player_cub.map_pos_y + cub_data->current_ray.direction_step_y;
-	cub_data->build_rays->x_val = (int) cub_data->player_cub.map_pos_x + cub_data->current_ray.direction_step_x;
-	if (cub_data->map_data->square_map[cub_data->build_rays->y_val][cub_data->build_rays->x_val] == '1')
+	cub_data->current_ray.y_val = (int) cub_data->player_cub.map_pos_y + cub_data->current_ray.direction_step_y;
+	cub_data->current_ray.x_val = (int) cub_data->player_cub.map_pos_x + cub_data->current_ray.direction_step_x;
+	if (cub_data->map_data->square_map[cub_data->current_ray.y_val][cub_data->current_ray.x_val] == '1')
 		return (1);	
 	return (0);
 }
 
 void init_build_rays_data(t_cub_data *cub_data, int strip_index)
 {
-	cub_data->current_ray.current_wall = 0;
-	cub_data->current_ray.strip_index = strip_index;
-	cub_data->current_ray.get_length_y_step = 0;
+	(void)strip_index;
 	cub_data->current_ray.direction_step_y = 0;
-	cub_data->current_ray.get_length_x_step = 0;
-	cub_data->current_ray.step_x_orientation = 0;
-	cub_data->current_ray.step_y_orientation = 0;
-	cub_data->current_ray.side = 0;
-
 	cub_data->current_ray.direction_step_x = 0;
+	//cub_data->current_ray.current_wall = 0;
+	//cub_data->current_ray.strip_index = strip_index;
+	//cub_data->current_ray.get_length_y_step = 0;
+	//cub_data->current_ray.get_length_x_step = 0;
+	//cub_data->current_ray.step_x_orientation = 0;
+	//cub_data->current_ray.step_y_orientation = 0;
+	//cub_data->current_ray.side = 0;
+
 }
 
 void setup_build_rays_delta(t_cub_data *cub_data)
@@ -104,7 +105,7 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 	if (cub_data->current_ray.side == 0 )
 		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
 	else 
-		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_y - cub_data->build_rays-> delta_y) * cos(angle_difference);
+		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference);
 	//printf("GET PLAYER ANGLE %f\n",calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees));
 	//printf("GET ACTUAL LENGTH %f\n", cub_data->current_ray.current_wall);
 }
