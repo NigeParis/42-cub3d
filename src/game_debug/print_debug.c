@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/13 10:19:30 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:51:42 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void debug_print_minimap_info(t_data *map_data)
 void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index)
 {
 	if (strip_index == 1 )
-		dprintf(STDERR_FILENO, "player right ray [0] %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
+		dprintf(STDERR_FILENO, "player right ray [0] %f - in degrees '%f'\n", cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian));
 	if (strip_index == 480 )
-		dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
+		dprintf(STDERR_FILENO, "player center ray [480] %f - in degrees '%f'\n", cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian));
 	if (strip_index == 960 )
-		dprintf(STDERR_FILENO, "player left ray [960] %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
+		dprintf(STDERR_FILENO, "player left ray [960] %f - in degrees '%f'\n", cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian));
 }
 
 
@@ -78,7 +78,7 @@ char  debug_player_center_ray_facing(t_cub_data *cub_data)
 	double angle_radian;
 	double angle_rd_fov_div_2 = degree_to_radian(cub_data->map_data->player_data.field_of_view / 2);
 
-	angle_radian = cub_data->current_ray.current_radian + angle_rd_fov_div_2; // added to display center ray
+	angle_radian = cub_data->current_ray.radian + angle_rd_fov_div_2; // added to display center ray
 	angle_radian = normalize_angle(angle_radian); 
 	if ((angle_radian >= 0 && angle_radian < 1.5809) || angle_radian == 6.2832)
 		return ('1');
@@ -138,19 +138,19 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	//Reubens DEBUG for increment and structure build_rays
 
 	char position[15];
-	if (cub_data->build_rays->strip_index == 480)
+	if (cub_data->current_ray.strip_index == 480)
 		ft_strlcpy(position, "center", 9);
-	else if (cub_data->build_rays->strip_index == 0)
+	else if (cub_data->current_ray.strip_index == 0)
 		ft_strlcpy(position, "right", 9);
-	else if (cub_data->build_rays->strip_index == 959)
+	else if (cub_data->current_ray.strip_index == 959)
 		ft_strlcpy(position, "left", 9);
 	else
 		ft_strlcpy(position, "not on minimap", 15);
 	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f'   GET Y DIRECTION %f GET DIRECTION RES %d \n", 
-	cub_data->build_rays->strip_index,  position, cub_data->build_rays->direction_res, cub_data->build_rays->y_val, 
-	cub_data->build_rays->x_val, cub_data->build_rays->radian, radian_to_degree(cub_data->build_rays->radian), 
-	cub_data->build_rays->total_length, cub_data->build_rays->direction_step_y, 
-	cub_data->build_rays->direction_res);
+	cub_data->current_ray.strip_index,  position, cub_data->current_ray.direction_res, cub_data->current_ray.y_val, 
+	cub_data->current_ray.x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
+	cub_data->current_ray.current_wall, cub_data->current_ray.direction_step_y, 
+	cub_data->current_ray.direction_res);
 		
 	// end Reuben's debug increment
 

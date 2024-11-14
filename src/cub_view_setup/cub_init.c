@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:13:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 12:39:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 09:38:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 	pos_y = 0;	
 	if (!cub_data->map_data->lock_zoom)
 	{
-		//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->current_ray.current_radian, radian_to_degree(cub_data->current_ray.current_radian));
+		//dprintf(STDERR_FILENO, "angle radian %f - in degrees '%f'\n", cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian));
 		
 		pos_x = (int)cub_data->map_data->player_data.x_pos / CUB_TILESIZE;
 		pos_y = (int)cub_data->map_data->player_data.y_pos / CUB_TILESIZE;

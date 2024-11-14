@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 10:51:09 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:02:10 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ typedef struct s_build_rays
 	double total_steps_x;
 	double total_steps_y;
 	double total_length;
-	double length_x;
-	double length_y;
 	double get_length_y_step;
 	double get_length_x_step;
 	double direction_step_y;
@@ -84,7 +82,6 @@ typedef struct s_ray_data
 typedef struct s_ray
 {
 	double	ray_fov;
-	double	current_radian;
 	double	current_angle;	
 	double	current_x0;
 	double	current_y0;
@@ -93,7 +90,28 @@ typedef struct s_ray
 	double	current_y_len;
 	double	current_x_len;
 	double	current_wall;
-	int		current_index;
+	double	radian;
+	int		strip_index;
+
+	int	step_x_orientation;
+	int	step_y_orientation;
+	double total_steps_x;
+	double total_steps_y;
+	double total_length;
+	double get_length_y_step;
+	double get_length_x_step;
+	double direction_step_y;
+	double direction_step_x;
+	int direction_res;
+	int x_val;
+	int y_val;
+	double delta_x;
+	double delta_y;
+	double side_dist_x;
+	double side_dist_y;
+	int		side;
+
+	
 	t_ray_data	*ray_data;
 	
 } t_ray;
