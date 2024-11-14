@@ -25,14 +25,14 @@ void key_north_cub_map(t_cub_data *cub_data)
 	double y_movement;
 	double x_movement;
 	int player_facing = get_player_facing(get_player_radian);
-	printf("GET PLAYER POS Y %f\n", cub_data->player_cub.pos_y_double);
-	printf("GET PLAYER POS X %f\n", cub_data->player_cub.pos_x_double);
-	printf("GET PLAYER FACING X %d\n", player_facing);
+	//printf("GET PLAYER POS Y %f\n", cub_data->player_cub.pos_y_double);
+	//printf("GET PLAYER POS X %f\n", cub_data->player_cub.pos_x_double);
+	//printf("GET PLAYER FACING X %d\n", player_facing);
 	
 	y_movement = fabs(cub_data->map_data->player_data.speed * sin(get_player_radian));
 	x_movement = fabs(cub_data->map_data->player_data.speed * cos(get_player_radian));
-	printf("GET Y MOVEMENT %f\n", y_movement);
-	printf("GET X MOVEMENT %f\n", x_movement);
+	//printf("GET Y MOVEMENT %f\n", y_movement);
+	//printf("GET X MOVEMENT %f\n", x_movement);
 	if (cub_data->map_data->gw.w_keypressed_flag)
 	{
 		
@@ -79,14 +79,14 @@ void key_south_cub_map(t_cub_data *cub_data)
 	double y_movement;
 	double x_movement;
 	int player_facing = get_player_facing(get_player_radian);
-	printf("GET PLAYER POS Y %f\n", cub_data->player_cub.pos_y_double);
-	printf("GET PLAYER POS X %f\n", cub_data->player_cub.pos_x_double);
-	printf("GET PLAYER FACING X %d\n", player_facing);
+	//printf("GET PLAYER POS Y %f\n", cub_data->player_cub.pos_y_double);
+	//printf("GET PLAYER POS X %f\n", cub_data->player_cub.pos_x_double);
+	//printf("GET PLAYER FACING X %d\n", player_facing);
 	
 	y_movement = fabs(cub_data->map_data->player_data.speed * sin(get_player_radian));
 	x_movement = fabs(cub_data->map_data->player_data.speed * cos(get_player_radian));
-	printf("GET Y MOVEMENT %f\n", y_movement);
-	printf("GET X MOVEMENT %f\n", x_movement);
+	//printf("GET Y MOVEMENT %f\n", y_movement);
+	//printf("GET X MOVEMENT %f\n", x_movement);
 	if (cub_data->map_data->gw.s_keypressed_flag)
 	{
 		

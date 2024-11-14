@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 13:47:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:21:01 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	cub_data->current_ray.x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
 	cub_data->current_ray.wall_height, cub_data->current_ray.direction_step_y, 
 	cub_data->current_ray.quadrant);
+	dprintf(STDERR_FILENO, "\n ray[%d]  wall heigth %f   ditance to wall %f\n",cub_data->current_ray.strip_index, cub_data->current_ray.wall_height, cub_data->current_ray.total_length); 
 		
 	// end Reuben's debug increment
 

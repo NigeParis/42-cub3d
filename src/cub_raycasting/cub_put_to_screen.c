@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:06:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 15:08:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:15:55 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int cast_ray(t_cub_data *cub_data, double ray_angle, int strip_index)
 
 	make_rays(cub_data, strip_index);
 
-	cub_data->current_ray.wall_height = calculate_wall_height_fisheye(cub_data, cub_data->current_ray.wall_height, strip_index);
+	cub_data->current_ray.wall_height = calculate_wall_height_fisheye(cub_data, cub_data->current_ray.total_length, strip_index);
 
 	return (0);
 }
