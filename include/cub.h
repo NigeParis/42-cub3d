@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 11:02:10 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:12:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,6 @@
 # define SCREEN_H 500
 # define SCREEN_W 960
 
-
-typedef struct s_build_rays
-{
-	int	strip_index;
-	int	step_x_orientation;
-	int	step_y_orientation;
-	double total_steps_x;
-	double total_steps_y;
-	double total_length;
-	double get_length_y_step;
-	double get_length_x_step;
-	double direction_step_y;
-	double direction_step_x;
-	double radian;
-	int direction_res;
-	int x_val;
-	int y_val;
-	double delta_x;
-	double delta_y;
-	double side_dist_x;
-	double side_dist_y;
-	int		side;
-	
-} t_build_rays;
-
-
-
 typedef struct s_ray_data
 {
 	double	ray_angle_rd[SCREEN_W];
@@ -81,6 +54,7 @@ typedef struct s_ray_data
 
 typedef struct s_ray
 {
+	int		strip_index;
 	double	ray_fov;
 	double	current_angle;	
 	double	current_x0;
@@ -91,10 +65,9 @@ typedef struct s_ray
 	double	current_x_len;
 	double	current_wall;
 	double	radian;
-	int		strip_index;
 
-	int	step_x_orientation;
-	int	step_y_orientation;
+	int		step_x_orientation;
+	int		step_y_orientation;
 	double total_steps_x;
 	double total_steps_y;
 	double total_length;
@@ -102,9 +75,9 @@ typedef struct s_ray
 	double get_length_x_step;
 	double direction_step_y;
 	double direction_step_x;
-	int direction_res;
-	int x_val;
-	int y_val;
+	int		direction_res;
+	int		x_val;
+	int		y_val;
 	double delta_x;
 	double delta_y;
 	double side_dist_x;
@@ -141,7 +114,6 @@ typedef struct s_cud_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
-	t_build_rays 	*build_rays;
 }	t_cub_data;
 
 
