@@ -6,23 +6,23 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/13 13:19:00 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:39:47 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // debug_print_minimap_info(map_data); //
 #include "cub.h"
 
-int put_minimap_to_screen(t_data *map_data)
+int put_minimap_to_screen(t_cub_data *cub_data)
 {
-	if (map_data->minimap_show)
+	if (cub_data->map_data->minimap_show)
 	{
 		// draw_background(map_data);
 
-		draw_map(map_data);
-		move_player(map_data);
-		draw_dot(map_data);
-		put_line_call(map_data);
+		draw_map(cub_data->map_data);
+		move_player(cub_data);
+		draw_dot(cub_data->map_data);
+		put_line_call(cub_data->map_data);
 		// mlx_put_image_to_window(map_data->gw.mlx_ptr, map_data->gw.mlx_window, map_data->form.mlx_img, 0, 0);
 	}
 	return (0);
@@ -175,14 +175,14 @@ int draw_to_screen(t_cub_data *cub_data)
 
 	if (!(cub_data)->map_data->minimap_show)
 	{
-		move_player(cub_data->map_data);
+		move_player(cub_data);
 	}
 
 	draw_background(cub_data->map_data);
 
 	put_all_current_ray(cub_data);
 
-	put_minimap_to_screen(cub_data->map_data);
+	put_minimap_to_screen(cub_data);
 	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window,
 							cub_data->map_data->form.mlx_img, 0, 0);
 	return (0);

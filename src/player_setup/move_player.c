@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 17:00:14 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:40:53 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,16 @@ static void	key_west(t_data *map_data)
 	}
 }
 
-void	move_player(t_data *map_data)
+void	move_player(t_cub_data *cub_data)
 {
-	if (map_data->gw.fl_keypressed_flag)
-		rotate_player_left(map_data);
-	if (map_data->gw.fr_keypressed_flag)
-		rotate_player_right(map_data);
-	key_north(map_data);
-	key_south(map_data);
-	key_east(map_data);
-	key_west(map_data);
-	key_zoom_in(map_data);
-	key_zoom_out(map_data);
+	if (cub_data->map_data->gw.fl_keypressed_flag)
+		rotate_player_left(cub_data);
+	if (cub_data->map_data->gw.fr_keypressed_flag)
+		rotate_player_right(cub_data);
+	key_north(cub_data->map_data);
+	key_south(cub_data->map_data);
+	key_east(cub_data->map_data);
+	key_west(cub_data->map_data);
+	key_zoom_in(cub_data->map_data);
+	key_zoom_out(cub_data->map_data);
 }

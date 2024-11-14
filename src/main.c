@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/13 10:19:16 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:59:45 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ int	main(int argc, char *argv[])
 	//get_start_pos_cub(&cub_data);
 	if (!open_game_window(&cub_data, &map_data))
 		return (EXIT_FAILURE);
-	game_mlx_hooks_and_loop(&map_data);
+	game_mlx_hooks_and_loop(&cub_data);
 	free_map_at_end(&map_data);
 	return (EXIT_SUCCESS);
 }
 
-void	game_mlx_hooks_and_loop(t_data *map_data)
+void	game_mlx_hooks_and_loop(t_cub_data *cub_data)
 {
-	mlx_hook(map_data->gw.mlx_window, KeyPress, KeyPressMask, \
-	&handle_keypress, map_data);
-	mlx_hook(map_data->gw.mlx_window, KeyRelease, KeyReleaseMask, \
-	&handle_keyrelease, map_data);
-	mlx_hook(map_data->gw.mlx_window, DestroyNotify, StructureNotifyMask, \
-	&destroy, map_data);
-	mlx_loop(map_data->gw.mlx_ptr);
+	mlx_hook(cub_data->map_data->gw.mlx_window, KeyPress, KeyPressMask, \
+	&handle_keypress, cub_data);
+	mlx_hook(cub_data->map_data->gw.mlx_window, KeyRelease, KeyReleaseMask, \
+	&handle_keyrelease, cub_data);
+	mlx_hook(cub_data->map_data->gw.mlx_window, DestroyNotify, StructureNotifyMask, \
+	&destroy, cub_data->map_data);
+	mlx_loop(cub_data->map_data->gw.mlx_ptr);
 }

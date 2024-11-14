@@ -100,13 +100,10 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 	float angle_difference = cub_data->build_rays->radian - degree_to_radian(calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees) 
 	- cub_data->map_data->player_data.field_of_view / 2);
 	
-	
 	if (cub_data->build_rays->side == 0 )
 		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_x - cub_data->build_rays->delta_x) * cos(angle_difference);
 	else 
 		cub_data->build_rays->total_length = (cub_data->build_rays->side_dist_y - cub_data->build_rays-> delta_y) * cos(angle_difference);
-	//printf("GET PLAYER ANGLE %f\n",calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees));
-	//printf("GET ACTUAL LENGTH %f\n", cub_data->build_rays->total_length);
 }
 
 void make_rays(t_cub_data *cub_data, int strip_index)

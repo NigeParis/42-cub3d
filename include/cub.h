@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/13 11:45:19 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:51:09 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,9 +162,9 @@ void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index);
 
 //player setup
 void	get_player_starting_angle(t_data *map_data);
-void	rotate_player_left(t_data *map_data);
-void	rotate_player_right(t_data *map_data);
-void	move_player(t_data *map_data);
+void	rotate_player_left(t_cub_data *cub_data);
+void	rotate_player_right(t_cub_data *cub_data);
+void	move_player(t_cub_data *cub_data);
 void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
 
 
@@ -176,15 +176,15 @@ void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data
 //mlx_main_game_functions
 void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data);
 int		open_game_window(t_cub_data *cub_data, t_data *map_data);
-void	game_mlx_hooks_and_loop(t_data *map_data);
+void	game_mlx_hooks_and_loop(t_cub_data *cub_data);
 void	set_map_offsets(t_data *map_data);
 void	get_player_speed(t_data *map_data);
 void	adjust_starting_point_degree(t_data *map_data);
-int		handle_keypress(int keysym, t_data *map_data);
-void	handle_special_keypress(int *keysym, t_data *map_data);
-int		handle_keyrelease(int keysym, t_data *map_data);
+int		handle_keypress(int keysym, t_cub_data  *cub_data);
+void	handle_special_keypress(int *keysym, t_cub_data *cub_data);
+int		handle_keyrelease(int keysym, t_cub_data *cub_data);
 int		destroy(t_data *map_data);
-void	game_mlx_hooks_and_loop(t_data *map_data);
+void	game_mlx_hooks_and_loop(t_cub_data *cub_data);
 void	init_cub(t_data *map_data, t_cub_data *cub_data);
 
 
