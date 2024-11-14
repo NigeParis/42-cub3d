@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:27:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:34:14 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,14 @@ typedef struct s_player_data
 	int		y_row_map;
 	int		y_last_pos;
 	int		x_last_pos;
-	int		speed;
+	double	speed;
 	int		size;
 	double	player_degrees;
 	double	rotation_speed;	
 	char	player_direction;
 	int		field_of_view;
 	int		prev_direction;
+	double	player_radian;
 
 }	t_player_data;
 

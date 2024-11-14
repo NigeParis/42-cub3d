@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_setup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 13:49:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:23:03 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_player_speed(t_data *map_data)
 {
 
 	double	percentage;
-	int		speed;
+	double		speed;
 
 	speed = 1;
 	percentage = 0.02;

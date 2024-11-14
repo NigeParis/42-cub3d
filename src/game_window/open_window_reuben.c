@@ -103,9 +103,9 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 	
 	
 	if (cub_data->current_ray.side == 0 )
-		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
+		cub_data->current_ray.current_wall = ((cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference)) * CUB_TILESIZE;
 	else 
-		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference);
+		cub_data->current_ray.current_wall = ((cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference)) * CUB_TILESIZE;
 	//printf("GET PLAYER ANGLE %f\n",calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees));
 	//printf("GET ACTUAL LENGTH %f\n", cub_data->current_ray.current_wall);
 }

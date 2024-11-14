@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 11:02:10 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:41:52 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,6 +218,10 @@ double	calibrate_angle_for_minimap(t_cub_data *cub_data);
 double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
 int		within_cub_drawing_limits(int x, int y);
 
+
+// move _player
+void key_north_cub_map(t_cub_data *cub_data);
+void key_south_cub_map(t_cub_data *cub_data);
 
 
 
