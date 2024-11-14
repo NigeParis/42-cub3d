@@ -38,6 +38,7 @@ PARSE_TOOLS = game_parsing_tools/
 TOOLS = game_tools/
 KEY_EVENTS = game_key_events/
 CUB_SETUP = cub_view_setup/
+CUB_CAST = cub_raycasting/
 
 SRC= main.c  \
 	game_map_parsing/game_parsing_tools/get_next_line.c game_map_parsing/game_parsing_tools/get_next_line_utils.c \
@@ -59,15 +60,14 @@ SRC= main.c  \
 	game_mini_map/pixel_tools/draw_line.c game_mini_map/pixel_tools/draw_circle.c game_mini_map/pixel_tools/check_pixel.c\
 	game_debug/print_debug_map.c game_debug/print_debug.c \
 	game_window/open_window.c game_mini_map/draw_map/draw_2d_map.c game_mini_map/draw_map/draw_map_setup.c \
-	game_window/open_window_reuben.c \
+	game_window/make_rays.c \
 	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
 	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_radar.c \
 	player_setup/move_player.c player_setup/rotate_player.c player_setup/move_player_cub.c \
 	game_tools/general_game_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
 	cub_view_setup/cub_init.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
-	game_mini_map/pixel_tools/calculate_distance.c 
-	
+	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c	
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
 
@@ -95,6 +95,7 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/$(CUB_SETUP)
+	@mkdir -p $(OBJ_DIR)/$(CUB_CAST)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)
 	@mkdir -p $(OBJ_DIR)/$(KEY_EVENTS)
 	@mkdir -p $(OBJ_DIR)/$(TOOLS)

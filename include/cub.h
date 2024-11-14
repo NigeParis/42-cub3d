@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 13:52:39 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:08:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,7 @@ void	build_map(char *file, t_data *map_data);
 
 //DEDUG - functions
 void	printmap(t_data *map_data);
-void	print_textures(t_data *map_data);
-void	print_map_rgb(t_data *map_data);
-void	print_player_data(t_data *map_data);
 void	print_square_map(t_data *map_data);
-void	debug_print_setup_maps(t_data *map_data);
 void	print_info(t_data *map_data);
 void	debug_print_minimap_info(t_data *map_data);
 void 	debug_print_data_for_3D_view(t_cub_data *cub_data);
@@ -158,7 +154,6 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data);
 //cub#D functions
 void	get_start_pos_cub(t_cub_data *cub_data);
 
-int		ray_facing(t_cub_data *cub_data, int strip_index);
 double	radian_to_degree(double angle_radian);
 double	degree_to_radian(double angle_degrees);
 double	normalize_angle(double angle_radians); 
@@ -166,7 +161,8 @@ void	make_rays(t_cub_data *cub_data, int strip_index);
 double	calibrate_angle_for_minimap(t_cub_data *cub_data);
 double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
 int		within_cub_drawing_limits(int x, int y);
-
+double  calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_the_wall, int strip_index);
+int 	put_all_current_ray(t_cub_data *cub_data);
 
 // move _player
 void key_north_cub_map(t_cub_data *cub_data);
