@@ -27,13 +27,13 @@ void setup_build_rays_delta(t_cub_data *cub_data)
 {
 	
 	if (cosf(cub_data->current_ray.radian) == 0)
-		cub_data->build_rays->delta_x = INT_MAX;
+		cub_data->current_ray.delta_x = INT_MAX;
 	if (sinf(cub_data->current_ray.radian ) == 0)
-		cub_data->build_rays->delta_y = INT_MAX;
+		cub_data->current_ray.delta_y = INT_MAX;
 	if (cosf(cub_data->current_ray.radian != 0))
-		cub_data->build_rays->delta_x = fabs(1 / cosf(cub_data->current_ray.radian));
+		cub_data->current_ray.delta_x = fabs(1 / cosf(cub_data->current_ray.radian));
 	if (sinf(cub_data->current_ray.radian) != 0)
-		cub_data->build_rays->delta_y = fabs(1 / sinf(cub_data->current_ray.radian));
+		cub_data->current_ray.delta_y = fabs(1 / sinf(cub_data->current_ray.radian));
 }
 
 void setup_build_rays_side_dist_y(t_cub_data *cub_data)
@@ -43,14 +43,14 @@ void setup_build_rays_side_dist_y(t_cub_data *cub_data)
 	{
 		cub_data->current_ray.step_y_orientation = -1;
 		cub_data->current_ray.side_dist_y = ((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) 
-			- cub_data->player_cub.map_pos_y) * cub_data->build_rays->delta_y;
+			- cub_data->player_cub.map_pos_y) * cub_data->current_ray.delta_y;
 	}
 	else if (cub_data->build_rays->direction_res == 3 || cub_data->build_rays->direction_res == 4)
 	{
 		cub_data->current_ray.step_y_orientation = 1;
 		cub_data->current_ray.side_dist_y = ((cub_data->player_cub.map_pos_y + 1) 
 			- (cub_data->player_cub.pos_y_double / cub_data->map_height_chars)) 
-			* cub_data->build_rays->delta_y;
+			* cub_data->current_ray.delta_y;
 	}
 }
 
@@ -60,13 +60,13 @@ void setup_build_rays_side_dist_x(t_cub_data *cub_data)
 	{
 		cub_data->current_ray.step_x_orientation = -1;
 		cub_data->current_ray.side_dist_x = ((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) 
-			- cub_data->player_cub.map_pos_x) * cub_data->build_rays->delta_x;
+			- cub_data->player_cub.map_pos_x) * cub_data->current_ray.delta_x;
 	}
 	else if (cub_data->build_rays->direction_res == 1 || cub_data->build_rays->direction_res == 4)
 	{
 		cub_data->current_ray.step_x_orientation = 1;
 		cub_data->current_ray.side_dist_x = ((cub_data->player_cub.map_pos_x + 1) 
-			- (cub_data->player_cub.pos_x_double / cub_data->map_width_chars)) * cub_data->build_rays->delta_x;
+			- (cub_data->player_cub.pos_x_double / cub_data->map_width_chars)) * cub_data->current_ray.delta_x;
 	}
 }
 
@@ -78,18 +78,18 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 	{
 		if (cub_data->current_ray.side_dist_x < cub_data->current_ray.side_dist_y)
 		{
-			cub_data->current_ray.side_dist_x += cub_data->build_rays->delta_x;
+			cub_data->current_ray.side_dist_x += cub_data->current_ray.delta_x;
 			cub_data->current_ray.direction_step_x += cub_data->current_ray.step_x_orientation;
 			cub_data->current_ray.get_length_x_step = (cub_data->current_ray.side_dist_x
-				- cub_data->build_rays->delta_x) * CUB_TILESIZE;
+				- cub_data->current_ray.delta_x) * CUB_TILESIZE;
 			cub_data->current_ray.side = 0;
 		}
 		else 
 		{
-			cub_data->current_ray.side_dist_y += cub_data->build_rays->delta_y;
+			cub_data->current_ray.side_dist_y += cub_data->current_ray.delta_y;
 			cub_data->current_ray.direction_step_y += cub_data->current_ray.step_y_orientation;
 			cub_data->current_ray.get_length_y_step = (cub_data->current_ray.side_dist_y
-				- cub_data->build_rays->delta_y) * CUB_TILESIZE;
+				- cub_data->current_ray.delta_y) * CUB_TILESIZE;
 			cub_data->current_ray.side = 1;
 		}
 	}
@@ -102,7 +102,7 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 	
 	
 	if (cub_data->current_ray.side == 0 )
-		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_x - cub_data->build_rays->delta_x) * cos(angle_difference);
+		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
 	else 
 		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_y - cub_data->build_rays-> delta_y) * cos(angle_difference);
 	//printf("GET PLAYER ANGLE %f\n",calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees));
