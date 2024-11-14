@@ -75,16 +75,12 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 		{
 			cub_data->current_ray.side_dist_x += cub_data->current_ray.delta_x;
 			cub_data->current_ray.direction_step_x += cub_data->current_ray.step_x_orientation;
-			cub_data->current_ray.get_length_x_step = (cub_data->current_ray.side_dist_x
-				- cub_data->current_ray.delta_x) * CUB_TILESIZE;
 			cub_data->current_ray.side = 0;
 		}
 		else 
 		{
 			cub_data->current_ray.side_dist_y += cub_data->current_ray.delta_y;
 			cub_data->current_ray.direction_step_y += cub_data->current_ray.step_y_orientation;
-			cub_data->current_ray.get_length_y_step = (cub_data->current_ray.side_dist_y
-				- cub_data->current_ray.delta_y) * CUB_TILESIZE;
 			cub_data->current_ray.side = 1;
 		}
 	}
@@ -97,9 +93,9 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 	
 	
 	if (cub_data->current_ray.side == 0 )
-		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
+		cub_data->current_ray.wall_height = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
 	else 
-		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference);
+		cub_data->current_ray.wall_height = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference);
 
 }
 

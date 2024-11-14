@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 13:32:18 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:47:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,42 +36,33 @@
 # define RAY_LIMIT 2147483647
 # define SCREEN_H 500
 # define SCREEN_W 960
+# define CUB_FOV 60
 
 
 
 typedef struct s_ray
 {
+	
 	int		strip_index;
-	double	ray_fov;
-	double	current_angle;	
-	double	current_x0;
-	double	current_y0;
-	double	current_x1;
-	double	current_y1;
-	double	current_y_len;
-	double	current_x_len;
-	double	current_wall;
+	double	fov;
+	double	angle;	
+	double	wall_height;
 	double	radian;
-
 	int		step_x_orientation;
 	int		step_y_orientation;
-	double total_steps_x;
-	double total_steps_y;
-	double total_length;
-	double get_length_y_step;
-	double get_length_x_step;
-	double direction_step_y;
-	double direction_step_x;
+	double 	total_steps_x;
+	double 	total_steps_y;
+	double 	total_length;
+	double 	direction_step_y;
+	double 	direction_step_x;
 	int		quadrant;
 	int		x_val;
 	int		y_val;
-	double delta_x;
-	double delta_y;
-	double side_dist_x;
-	double side_dist_y;
+	double 	delta_x;
+	double 	delta_y;
+	double 	side_dist_x;
+	double 	side_dist_y;
 	int		side;
-
-	
 	
 } t_ray;
 

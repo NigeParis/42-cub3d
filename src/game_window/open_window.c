@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/14 13:31:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:47:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ static int cast_ray(t_cub_data *cub_data, double ray_angle, int strip_index)
 
 	make_rays(cub_data, strip_index);
 
-	cub_data->current_ray.current_wall = calculate_wall_height_fisheye(cub_data, cub_data->current_ray.current_wall, strip_index);
+	cub_data->current_ray.wall_height = calculate_wall_height_fisheye(cub_data, cub_data->current_ray.wall_height, strip_index);
 
 	return (0);
 }
@@ -142,13 +142,13 @@ static int put_all_current_ray(t_cub_data *cub_data)
 {
 	double fov_step = 0;
 	int index = 0;
-	cub_data->current_ray.ray_fov = cub_data->map_data->player_data.field_of_view;
-	cub_data->current_ray.current_angle = cub_data->current_ray.ray_fov / SCREEN_W;
+	cub_data->current_ray.fov = cub_data->map_data->player_data.field_of_view;
+	cub_data->current_ray.angle = cub_data->current_ray.fov / SCREEN_W;
 
-	while (fov_step < cub_data->current_ray.ray_fov)
+	while (fov_step < cub_data->current_ray.fov)
 	{
 		cast_ray(cub_data, calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees + fov_step), index);
-		fov_step += cub_data->current_ray.current_angle;
+		fov_step += cub_data->current_ray.angle;
 		index++;
 	}
 	return (0);
