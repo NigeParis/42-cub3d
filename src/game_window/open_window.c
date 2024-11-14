@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/14 11:01:56 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:31:38 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,10 @@ static int draw_vertical_line(t_cub_data *cub_data, int start, int end, int stri
 
 int ray_facing(t_cub_data *cub_data, int strip_index)
 {
+	(void) strip_index;
 	double angle_radian;
 
-	angle_radian = cub_data->current_ray.ray_data->ray_angle_rd[strip_index];
+	angle_radian = cub_data->current_ray.radian;
 
 	if ((angle_radian >= 0 && angle_radian < 1.508) || angle_radian == 6.2832)
 		return (1);
@@ -123,28 +124,16 @@ int ray_facing(t_cub_data *cub_data, int strip_index)
 	return (1);
 }
 
-void get_ray_data(t_cub_data *cub_data, int strip_index)
-{
-	cub_data->current_ray.ray_data->ray_index[strip_index] = strip_index;
-	cub_data->current_ray.ray_data->ray_angle_rd[strip_index] = cub_data->current_ray.radian;
-	cub_data->current_ray.ray_data->ray_deg[strip_index] = radian_to_degree(cub_data->current_ray.ray_data->ray_angle_rd[strip_index]);
-	cub_data->current_ray.ray_data->ray_quadrant[strip_index] = ray_facing(cub_data, strip_index);
-	cub_data->current_ray.ray_data->ray_x_len[strip_index] = cub_data->current_ray.current_x_len;
-	cub_data->current_ray.ray_data->ray_y_len[strip_index] = cub_data->current_ray.current_y_len;
-}
+
 
 static int cast_ray(t_cub_data *cub_data, double ray_angle, int strip_index)
 {
-	//strip_index = 959 - strip_index;
 	cub_data->current_ray.radian = degree_to_radian(ray_angle);
-
-	get_ray_data(cub_data, strip_index);
+	cub_data->current_ray.quadrant = ray_facing(cub_data, strip_index);
 
 	make_rays(cub_data, strip_index);
 
-	//cub_data->current_ray.current_wall = calculate_wall_height(cub_data->current_ray.current_wall, 30);
 	cub_data->current_ray.current_wall = calculate_wall_height_fisheye(cub_data, cub_data->current_ray.current_wall, strip_index);
-	//draw_vertical_line(cub_data, strip_index);
 
 	return (0);
 }

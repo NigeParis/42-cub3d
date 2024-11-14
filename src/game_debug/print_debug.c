@@ -6,35 +6,12 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 10:51:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:33:06 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-
-int	ray_face_hit(t_cub_data *cub_data, int strip_index)
-{
-	if (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) <= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index]))
-		return (1);
-	return(0);	
-}
-
-
-
-int	ray_switch_length(t_cub_data *cub_data, int strip_index)
-{
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 1) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
-		return (1);
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 2) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
-		return (1);
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 3) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
-		return (1);
-	if ((cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 4) && (fabs(cub_data->current_ray.ray_data->ray_x_len[strip_index]) >= fabs(cub_data->current_ray.ray_data->ray_y_len[strip_index])))
-		return (1);	
-	return(0);	
-}
 
 
 
@@ -98,40 +75,6 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	(void)cub_data;
 
 
-
-	char res = debug_player_center_ray_facing(cub_data);
-
-	if (res == '1')
-		dprintf(STDERR_FILENO, "player direction in quarter north-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
-	if (res == '2')
-		dprintf(STDERR_FILENO, "player direction in quarter north-west degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
-	if (res == '3')
-		dprintf(STDERR_FILENO, "player direction in quarter south-west degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
-	if (res == '4')
-		dprintf(STDERR_FILENO, "player direction in quarter south-east degrees '%0.1f'\n", calibrate_angle_for_minimap(cub_data));
-
-	
-	dprintf(STDERR_FILENO, "rayG[%3d] ray_quad '%d' ray_hit '%d' baselen_x '%11f' baselen_y '%11f' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[959], cub_data->current_ray.ray_data->ray_quadrant[959], ray_face_hit(cub_data, 959),  cub_data->current_ray.ray_data->ray_x_baselen[959], cub_data->current_ray.ray_data->ray_y_baselen[959], cub_data->current_ray.ray_data->ray_deg[959], cub_data->current_ray.ray_data->ray_angle_rd[959], fabs(cub_data->current_ray.ray_data->ray_x_len[959]), fabs(cub_data->current_ray.ray_data->ray_y_len[959]));
-	dprintf(STDERR_FILENO, "rayC[%3d] ray_quad '%d' ray_hit '%d' baselen_x '%11f' baselen_y '%11f' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[480], cub_data->current_ray.ray_data->ray_quadrant[480], ray_face_hit(cub_data, 480), cub_data->current_ray.ray_data->ray_x_baselen[480], cub_data->current_ray.ray_data->ray_y_baselen[480], cub_data->current_ray.ray_data->ray_deg[480], cub_data->current_ray.ray_data->ray_angle_rd[480], fabs(cub_data->current_ray.ray_data->ray_x_len[480]), fabs(cub_data->current_ray.ray_data->ray_y_len[480]));
-	dprintf(STDERR_FILENO, "rayD[%3d] ray_quad '%d' ray_hit '%d' baselen_x '%11f' baselen_y '%11f' deg_rad '%11f' angle_rd '%11f' len x '%11f'   len y '%11f' \n", cub_data->current_ray.ray_data->ray_index[0], cub_data->current_ray.ray_data->ray_quadrant[0], ray_face_hit(cub_data, 0), cub_data->current_ray.ray_data->ray_x_baselen[0], cub_data->current_ray.ray_data->ray_y_baselen[0], cub_data->current_ray.ray_data->ray_deg[0],  cub_data->current_ray.ray_data->ray_angle_rd[0], fabs(cub_data->current_ray.ray_data->ray_x_len[0]), fabs(cub_data->current_ray.ray_data->ray_y_len[0]));
-	
-	int i = 959;
-	while (i != -1)
-	{
-		if (ray_switch_length(cub_data, i))
-		{
-			dprintf(STDERR_FILENO, "Ray[%3d] length to wall '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_y_len[i]));
-		}
-		else
-			dprintf(STDERR_FILENO, "Ray[%3d]  '%11f'\n", i, fabs(cub_data->current_ray.ray_data->ray_x_len[i]));
-		if ( i == 959)
-			i = 480;
-		else if (i == 480)
-			i = 0;
-		else if (i == 0)
-			i = -1;
-	}
-
 	
 
 
@@ -147,10 +90,10 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 	else
 		ft_strlcpy(position, "not on minimap", 15);
 	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f'   GET Y DIRECTION %f GET DIRECTION RES %d \n", 
-	cub_data->current_ray.strip_index,  position, cub_data->current_ray.direction_res, cub_data->current_ray.y_val, 
+	cub_data->current_ray.strip_index,  position, cub_data->current_ray.quadrant, cub_data->current_ray.y_val, 
 	cub_data->current_ray.x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
 	cub_data->current_ray.current_wall, cub_data->current_ray.direction_step_y, 
-	cub_data->current_ray.direction_res);
+	cub_data->current_ray.quadrant);
 		
 	// end Reuben's debug increment
 

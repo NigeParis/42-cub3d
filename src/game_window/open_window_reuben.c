@@ -12,16 +12,9 @@ static int	is_wall_found(t_cub_data *cub_data)
 void init_build_rays_data(t_cub_data *cub_data, int strip_index)
 {
 	(void)strip_index;
+	(void)cub_data;
 	cub_data->current_ray.direction_step_y = 0;
 	cub_data->current_ray.direction_step_x = 0;
-	//cub_data->current_ray.current_wall = 0;
-	//cub_data->current_ray.strip_index = strip_index;
-	//cub_data->current_ray.get_length_y_step = 0;
-	//cub_data->current_ray.get_length_x_step = 0;
-	//cub_data->current_ray.step_x_orientation = 0;
-	//cub_data->current_ray.step_y_orientation = 0;
-	//cub_data->current_ray.side = 0;
-
 }
 
 void setup_build_rays_delta(t_cub_data *cub_data, int strip_index)
@@ -39,14 +32,14 @@ void setup_build_rays_delta(t_cub_data *cub_data, int strip_index)
 
 void setup_build_rays_side_dist_y(t_cub_data *cub_data, int strip_index)
 {
-	
-	if (cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 1 ||  cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 2)
+	(void)strip_index;
+	if (cub_data->current_ray.quadrant == 1 ||  cub_data->current_ray.quadrant == 2)
 	{
 		cub_data->current_ray.step_y_orientation = -1;
 		cub_data->current_ray.side_dist_y = ((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) 
 			- cub_data->player_cub.map_pos_y) * cub_data->current_ray.delta_y;
 	}
-	else if (cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 3 || cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 4)
+	else if (cub_data->current_ray.quadrant == 3 || cub_data->current_ray.quadrant == 4)
 	{
 		cub_data->current_ray.step_y_orientation = 1;
 		cub_data->current_ray.side_dist_y = ((cub_data->player_cub.map_pos_y + 1) 
@@ -57,13 +50,14 @@ void setup_build_rays_side_dist_y(t_cub_data *cub_data, int strip_index)
 
 void setup_build_rays_side_dist_x(t_cub_data *cub_data, int strip_index)
 {
-	if (cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 2 || cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 3)
+	(void)strip_index;
+	if (cub_data->current_ray.quadrant == 2 || cub_data->current_ray.quadrant == 3)
 	{
 		cub_data->current_ray.step_x_orientation = -1;
 		cub_data->current_ray.side_dist_x = ((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) 
 			- cub_data->player_cub.map_pos_x) * cub_data->current_ray.delta_x;
 	}
-	else if (cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 1 || cub_data->current_ray.ray_data->ray_quadrant[strip_index] == 4)
+	else if (cub_data->current_ray.quadrant == 1 || cub_data->current_ray.quadrant == 4)
 	{
 		cub_data->current_ray.step_x_orientation = 1;
 		cub_data->current_ray.side_dist_x = ((cub_data->player_cub.map_pos_x + 1) 
@@ -75,8 +69,6 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 {
 	(void)strip_index;
 
-	// cub_data->current_ray.ray_data->ray_quadrant[strip_index]
-	// 	= cub_data->current_ray.ray_data->ray_quadrant[strip_index];
 	while (!is_wall_found(cub_data))
 	{
 		if (cub_data->current_ray.side_dist_x < cub_data->current_ray.side_dist_y)
@@ -108,8 +100,7 @@ void calculate_final_length_for_ray(t_cub_data *cub_data)
 		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
 	else 
 		cub_data->current_ray.current_wall = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference);
-	//printf("GET PLAYER ANGLE %f\n",calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees));
-	//printf("GET ACTUAL LENGTH %f\n", cub_data->current_ray.current_wall);
+
 }
 
 void make_rays(t_cub_data *cub_data, int strip_index)

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 11:12:53 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:32:18 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,6 @@
 # define SCREEN_H 500
 # define SCREEN_W 960
 
-typedef struct s_ray_data
-{
-	double	ray_angle_rd[SCREEN_W];
-	double	ray_deg[SCREEN_W];
-	double	ray_x_len[SCREEN_W];
-	double	ray_y_len[SCREEN_W];
-	double	ray_x_baselen[SCREEN_W];
-	double	ray_y_baselen[SCREEN_W];
-	int  	ray_index[SCREEN_W];
-	int  	ray_quadrant[SCREEN_W];
-
-} t_ray_data;
-
 
 
 typedef struct s_ray
@@ -75,7 +62,7 @@ typedef struct s_ray
 	double get_length_x_step;
 	double direction_step_y;
 	double direction_step_x;
-	int		direction_res;
+	int		quadrant;
 	int		x_val;
 	int		y_val;
 	double delta_x;
@@ -85,7 +72,6 @@ typedef struct s_ray
 	int		side;
 
 	
-	t_ray_data	*ray_data;
 	
 } t_ray;
 
