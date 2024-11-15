@@ -46,14 +46,14 @@ void init_build_rays_data(t_cub_data *cub_data, int strip_index)
 void setup_build_rays_delta(t_cub_data *cub_data, int strip_index)
 {
 	(void)strip_index;
-	if (cosf(cub_data->current_ray.radian) == 0)
+	if (cos(cub_data->current_ray.radian) == 0)
 		cub_data->current_ray.delta_x = INT_MAX;
-	if (sinf(cub_data->current_ray.radian ) == 0)
+	if (sin(cub_data->current_ray.radian ) == 0)
 		cub_data->current_ray.delta_y = INT_MAX;
-	if (cosf(cub_data->current_ray.radian != 0))
-		cub_data->current_ray.delta_x = fabs(1 / cosf(cub_data->current_ray.radian));
-	if (sinf(cub_data->current_ray.radian) != 0)
-		cub_data->current_ray.delta_y = fabs(1 / sinf(cub_data->current_ray.radian));
+	if (cos(cub_data->current_ray.radian != 0))
+		cub_data->current_ray.delta_x = fabs(1 / cos(cub_data->current_ray.radian));
+	if (sin(cub_data->current_ray.radian) != 0)
+		cub_data->current_ray.delta_y = fabs(1 / sin(cub_data->current_ray.radian));
 }
 
 void setup_build_rays_side_dist_y(t_cub_data *cub_data, int strip_index)
