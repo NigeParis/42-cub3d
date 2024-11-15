@@ -3,18 +3,18 @@
 static int	is_wall_found(t_cub_data *cub_data, int strip_index)
 {
 	(void)strip_index;
-	cub_data->current_ray.y_val = (int)((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y);
-	cub_data->current_ray.x_val = (int)((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x);
+	cub_data->current_ray.y_val = floor((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y);
+	cub_data->current_ray.x_val = floor((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x);
 	if (cub_data->map_data->square_map[cub_data->current_ray.y_val][cub_data->current_ray.x_val] == '1')
 	{
 		if (strip_index == 959)
 		{
-			dprintf(STDERR_FILENO,"GET Y POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_y_double);
-			dprintf(STDERR_FILENO,"GET X POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_x_double);
-			dprintf(STDERR_FILENO,"GET Y VALUE WALL FOUND %d\n", cub_data->current_ray.y_val);
-			dprintf(STDERR_FILENO,"GET X VALUE WALL FOUND %d\n", cub_data->current_ray.x_val);
-			dprintf(STDERR_FILENO,"GET Y DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_y);
-			dprintf(STDERR_FILENO,"GET X DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_x);
+			//dprintf(STDERR_FILENO,"GET Y POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_y_double);
+			//dprintf(STDERR_FILENO,"GET X POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_x_double);
+			//dprintf(STDERR_FILENO,"GET Y VALUE WALL FOUND %d\n", cub_data->current_ray.y_val);
+			//dprintf(STDERR_FILENO,"GET X VALUE WALL FOUND %d\n", cub_data->current_ray.x_val);
+			//dprintf(STDERR_FILENO,"GET Y DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_y);
+			//dprintf(STDERR_FILENO,"GET X DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_x);
 		}
 		
 		return (1);	
@@ -63,7 +63,7 @@ void setup_build_rays_side_dist_y(t_cub_data *cub_data, int strip_index)
 	{
 		cub_data->current_ray.step_y_orientation = -1;
 		cub_data->current_ray.side_dist_y = ((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) 
-			- cub_data->player_cub.map_pos_y) * cub_data->current_ray.delta_y;
+			- cub_data->player_cub.map_pos_y) * cub_data->current_ray.delta_y ;
 	}
 	else if (cub_data->current_ray.quadrant == 3 || cub_data->current_ray.quadrant == 4)
 	{
@@ -120,9 +120,9 @@ void calculate_final_length_for_ray(t_cub_data *cub_data, int strip_index)
 	
 	
 	if (cub_data->current_ray.side == 0 )
-		cub_data->current_ray.total_length = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference);
+		cub_data->current_ray.total_length = ((cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference));
 	else 
-		cub_data->current_ray.total_length = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference);
+		cub_data->current_ray.total_length = ((cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference));
 
 }
 
