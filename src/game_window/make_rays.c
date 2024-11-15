@@ -7,8 +7,26 @@ static int	is_wall_found(t_cub_data *cub_data, int strip_index)
 	cub_data->current_ray.x_val = (int)((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x);
 	if (cub_data->map_data->square_map[cub_data->current_ray.y_val][cub_data->current_ray.x_val] == '1')
 	{
+		if (strip_index == 959)
+		{
+			dprintf(STDERR_FILENO,"GET Y POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_y_double);
+			dprintf(STDERR_FILENO,"GET X POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_x_double);
+			dprintf(STDERR_FILENO,"GET Y VALUE WALL FOUND %d\n", cub_data->current_ray.y_val);
+			dprintf(STDERR_FILENO,"GET X VALUE WALL FOUND %d\n", cub_data->current_ray.x_val);
+			dprintf(STDERR_FILENO,"GET Y DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_y);
+			dprintf(STDERR_FILENO,"GET X DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_x);
+		}
+		
 		return (1);	
 	}
+	/*
+	if (strip_index == 959)
+	{
+		dprintf(STDERR_FILENO,"GET Y VALUE WALL NOT FOUND %d\n", cub_data->current_ray.y_val);
+		dprintf(STDERR_FILENO,"GET X VALUE WALL NOT FOUND %d\n", cub_data->current_ray.x_val);
+	}
+	*/
+	
 	return (0);
 }
 
