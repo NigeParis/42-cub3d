@@ -63,7 +63,7 @@ SRC= main.c  \
 	game_window/make_rays.c \
 	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
 	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_radar.c \
-	player_setup/move_player.c player_setup/rotate_player.c player_setup/move_player_cub.c \
+	player_setup/move_player.c player_setup/rotate_player.c player_setup/move_player_cub.c player_setup/player_wall_collisions.c\
 	game_tools/general_game_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
 	cub_view_setup/cub_init.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \

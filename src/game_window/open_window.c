@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/14 15:10:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:39:28 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int put_minimap_to_screen(t_cub_data *cub_data)
 int draw_to_screen(t_cub_data *cub_data)
 {
 	get_start_pos_cub(cub_data);
-	debug_print_data_for_3D_view(cub_data);
+	//debug_print_data_for_3D_view(cub_data);
 
 	if (!(cub_data)->map_data->minimap_show)
 	{
