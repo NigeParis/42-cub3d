@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:53 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/07 09:03:26 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:07:45 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ static int	is_north_or_south_direction(t_data *map_data, char *line, int i)
 	if (line[i] == 'N')
 	{
 		map_data->player_data.player_direction = 'N';
-		dprintf(STDERR_FILENO, "N FOUND\n");
 		return ((map_data->player_data.player_degrees = 90), 1);
 	}
 	if (line[i] == 'S')
 	{
 		map_data->player_data.player_direction = 'S';
-		dprintf(STDERR_FILENO, "S FOUND\n");
 		return ((map_data->player_data.player_degrees = 270), 1);
 	}
 	return (0);
@@ -68,9 +66,7 @@ void	get_player_starting_angle(t_data *map_data)
 	while (map_data->square_map[i])
 	{
 		if (player_degree_found(map_data, map_data->square_map[i]))
-		{
-		dprintf(STDERR_FILENO, "player angle startaing --------------- %c\n", map_data->player_data.player_direction);
-			
+		{			
 			return ;
 		}
 		i++;

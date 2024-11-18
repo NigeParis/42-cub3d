@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/15 17:05:18 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:43:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	init_textures_and_colours(t_data *map_data)
 	map_data->colors.floor_r = 0;
 	map_data->colors.floor_g = 0;
 	map_data->colors.floor_b = 0;
+	map_data->colors.map_rays = create_color(255,0, 0);
 	return (0);
 }
 

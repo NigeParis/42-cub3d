@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 14:34:24 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:46:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
 	adjust_starting_point_degree(map_data);
 	get_player_speed(map_data);
 	set_map_offsets(map_data);
+	map_data->colors.floor_color = create_color(map_data->colors.floor_r, \
+				map_data->colors.floor_g, map_data->colors.floor_b);
+	map_data->colors.ceiling_color = create_color(map_data->colors.ceiling_r, \
+		map_data->colors.ceiling_g, map_data->colors.ceiling_b);
 }
 
 void	set_map_offsets(t_data *map_data)

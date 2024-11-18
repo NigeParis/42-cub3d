@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:22:53 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/09 09:27:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:37:25 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	mlx_put_pixel(t_data *map_data, int x, int y)
 			+ x * (map_data->form.pixel_bits / 8));
 	while (color_shift >= 0)
 	{
-		*pixel = (map_data->form.dot_col
+		*pixel = (map_data->colors.map_rays
 				>> (map_data->form.pixel_bits - bits - color_shift)) & 0xFF;
 		color_shift -= bits;
 		pixel++;

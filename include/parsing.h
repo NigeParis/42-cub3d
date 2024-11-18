@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/15 15:24:58 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:43:16 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ typedef struct s_colors
 	int	ceiling_r;
 	int	ceiling_b;
 	int	ceiling_g;
+	int map_rays;
+	int floor_color;
+	int ceiling_color;
 
 }	t_colors;
 

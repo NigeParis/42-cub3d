@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 15:13:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:47:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,11 @@ int	draw_background(t_data *map_data)
 
 	height_position = 0;
 	width_position = 0;
-	map_data->form.col = create_color(map_data->colors.ceiling_r, \
-		map_data->colors.ceiling_g, map_data->colors.ceiling_b);
+	map_data->form.col = map_data->colors.ceiling_color;
 	while (height_position < SCREEN_H)
 	{	
 		if (height_position > (SCREEN_H / 2))
-			map_data->form.col = create_color(map_data->colors.floor_r, \
-				map_data->colors.floor_g, map_data->colors.floor_b);
+			map_data->form.col = map_data->colors.floor_color;
 
 		width_position = 0;
 		while (width_position < SCREEN_W)
