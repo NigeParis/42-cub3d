@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 09:30:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:13:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,45 +42,51 @@ static int	within_drawing_limits( int x, int y)
 
 int	draw_rectangle(t_data *map_data)
 {
-	int	hieght_position;
+	int	height_position;
 	int	width_position;
 
-	hieght_position = 0;
+	height_position = 0;
 	width_position = 0;
-	hieght_position = map_data->form.start_ht;
-	while (hieght_position < map_data->form.start_ht + map_data->form.size_ht)
+	height_position = map_data->form.start_ht;
+	while (height_position < map_data->form.start_ht + map_data->form.size_ht)
 	{
 		width_position = map_data->form.start_wt;
 		while (width_position < map_data->form.start_wt
 			+ map_data->form.size_wt)
 		{
-			if (within_drawing_limits(width_position, hieght_position))
-				mlx_put_pixel(map_data, width_position, hieght_position);
+			if (within_drawing_limits(width_position, height_position))
+				mlx_put_pixel(map_data, width_position, height_position);
 			width_position++;
 		}
-		hieght_position++;
+		height_position++;
 	}
 	return (1);
 }
 
+
 int	draw_background(t_data *map_data)
 {
-	int	hieght_position;
+	int	height_position;
 	int	width_position;
 
-	hieght_position = 0;
+	height_position = 0;
 	width_position = 0;
-	map_data->form.col = 222;
-	while (hieght_position < SCREEN_H)
-	{
+	map_data->form.col = create_color(map_data->colors.ceiling_r, \
+		map_data->colors.ceiling_g, map_data->colors.ceiling_b);
+	while (height_position < SCREEN_H)
+	{	
+		if (height_position > (SCREEN_H / 2))
+			map_data->form.col = create_color(map_data->colors.floor_r, \
+				map_data->colors.floor_g, map_data->colors.floor_b);
+
 		width_position = 0;
 		while (width_position < SCREEN_W)
 		{
-			if (within_drawing_limits(width_position, hieght_position))
-				mlx_put_pixel(map_data, width_position, hieght_position);
+			if (within_drawing_limits(width_position, height_position))
+				mlx_put_pixel(map_data, width_position, height_position);
 			width_position++;
 		}
-		hieght_position++;
+		height_position++;
 	}
 	return (1);
 }
