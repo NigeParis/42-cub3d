@@ -2,8 +2,8 @@
 
 int detect_wall_collision_north(t_cub_data *cub_data, double get_player_radian, int player_facing)
 {
-	double next_x = (cub_data->map_data->player_data.speed * sin(get_player_radian)) + 2;
-	double next_y = (cub_data->map_data->player_data.speed * cos(get_player_radian)) + 2;
+	double next_x = (cub_data->map_data->player_data.speed * cos(get_player_radian)) + 2;
+	double next_y = (cub_data->map_data->player_data.speed * sin(get_player_radian)) + 2;
 	int check_y_val;
 	int check_x_val;
 	if (player_facing == 1)
@@ -70,8 +70,8 @@ int detect_wall_collision_north(t_cub_data *cub_data, double get_player_radian, 
 
 int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, int player_facing)
 {
-	double next_x = (cub_data->map_data->player_data.speed * sin(get_player_radian)) + 1;
-	double next_y = (cub_data->map_data->player_data.speed * cos(get_player_radian)) + 1;
+	double next_x = (cub_data->map_data->player_data.speed * cos(get_player_radian)) + 1;
+	double next_y = (cub_data->map_data->player_data.speed * sin(get_player_radian)) + 1;
 	int check_y_val;
 	int check_x_val;
 	if (player_facing == 1)
@@ -139,8 +139,8 @@ int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, i
 
 int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, int player_facing)
 {
-	double next_x = (cub_data->map_data->player_data.speed * sin(get_player_radian)) + 1;
-	double next_y = (cub_data->map_data->player_data.speed * cos(get_player_radian)) + 1;
+	double next_x = (cub_data->map_data->player_data.speed * cos(get_player_radian)) + 1;
+	double next_y = (cub_data->map_data->player_data.speed * sin(get_player_radian)) + 1;
 	int check_y_val;
 	int check_x_val;
 	if (player_facing == 1)

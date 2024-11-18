@@ -105,6 +105,8 @@ void move_key_west_cub_map(t_cub_data *cub_data)
 	player_facing = get_player_facing(get_player_radian);
 	y_movement = fabs((cub_data->map_data->player_data.speed ) * sin(get_player_radian));
 	x_movement = fabs((cub_data->map_data->player_data.speed ) * cos(get_player_radian));
+	y_movement /= 10;
+	x_movement /= 10;
 	if (cub_data->map_data->gw.a_keypressed_flag)
 	{
 		if (!detect_wall_collision_west(cub_data, get_player_radian, player_facing))
@@ -115,6 +117,8 @@ void move_key_west_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double += y_movement;
 				cub_data->player_cub.pos_x_double -= x_movement;
+				cub_data->map_data->minimap_offset_y -= y_movement;
+				cub_data->map_data->minimap_offset_x += x_movement;
 			}
 
 			if (player_facing == 2)
@@ -123,6 +127,8 @@ void move_key_west_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double += y_movement;
 				cub_data->player_cub.pos_x_double += x_movement;
+				cub_data->map_data->minimap_offset_y -= y_movement;
+				cub_data->map_data->minimap_offset_x -= x_movement;
 			}
 
 			if (player_facing == 3)
@@ -131,6 +137,8 @@ void move_key_west_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double -= y_movement;
 				cub_data->player_cub.pos_x_double += x_movement;
+				cub_data->map_data->minimap_offset_y += y_movement;
+				cub_data->map_data->minimap_offset_x -= x_movement;
 			}
 
 			if (player_facing == 4)
@@ -139,6 +147,8 @@ void move_key_west_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double -= y_movement;
 				cub_data->player_cub.pos_x_double -= x_movement;
+				cub_data->map_data->minimap_offset_y += y_movement;
+				cub_data->map_data->minimap_offset_x += x_movement;
 			}
 		}
 		
@@ -168,6 +178,10 @@ void move_key_east_cub_map(t_cub_data *cub_data)
 	player_facing = get_player_facing(get_player_radian);
 	y_movement = fabs((cub_data->map_data->player_data.speed ) * sin(get_player_radian));
 	x_movement = fabs((cub_data->map_data->player_data.speed ) * cos(get_player_radian));
+
+	y_movement /= 10;  ///TODO slowed speed by 10
+	x_movement /= 10;
+
 	if (cub_data->map_data->gw.d_keypressed_flag)
 	{
 		if (!detect_wall_collision_west(cub_data, get_player_radian, player_facing))
@@ -178,6 +192,8 @@ void move_key_east_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double += y_movement;
 				cub_data->player_cub.pos_x_double -= x_movement;
+				cub_data->map_data->minimap_offset_y -= y_movement;
+				cub_data->map_data->minimap_offset_x += x_movement;
 			}
 
 			if (player_facing == 2)
@@ -186,6 +202,8 @@ void move_key_east_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double += y_movement;
 				cub_data->player_cub.pos_x_double += x_movement;
+				cub_data->map_data->minimap_offset_y -= y_movement;
+				cub_data->map_data->minimap_offset_x -= x_movement;
 			}
 
 			if (player_facing == 3)
@@ -194,6 +212,8 @@ void move_key_east_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double -= y_movement;
 				cub_data->player_cub.pos_x_double += x_movement;
+				cub_data->map_data->minimap_offset_y += y_movement;
+				cub_data->map_data->minimap_offset_x -= x_movement;
 			}
 
 			if (player_facing == 4)
@@ -202,6 +222,8 @@ void move_key_east_cub_map(t_cub_data *cub_data)
 					get_player_radian = INT_MAX;
 				cub_data->player_cub.pos_y_double -= y_movement;
 				cub_data->player_cub.pos_x_double -= x_movement;
+				cub_data->map_data->minimap_offset_y += y_movement;
+				cub_data->map_data->minimap_offset_x += x_movement;
 		}
 		}
 		

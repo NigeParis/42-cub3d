@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 10:09:33 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:26:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	get_player_speed(t_data *map_data)
 	double		speed;
 
 	speed = 1;
-	percentage = 0.1;
+	percentage = 0.5;
 	speed = (double)map_data->char_pixel_height * percentage;
 	
-	if (speed < 1)
-		speed = 1;
+	// if (speed < 1)
+	// 	speed = 1;
 
 	map_data->player_data.speed = speed;
 }
