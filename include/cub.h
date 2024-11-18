@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 08:51:09 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:17:27 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,11 @@ typedef struct s_player_cub
 	double	reset_y;
 	
 	
+	char	*prev_direction;
+
 }	t_player_cub;
 
-typedef struct s_cud_data
+typedef struct s_cub_data
 {
 	t_data			*map_data;
 	t_ray			current_ray;
@@ -96,7 +98,7 @@ typedef struct s_cud_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
-
+	
 }	t_cub_data;
 
 
@@ -172,10 +174,16 @@ double  calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from
 int 	put_all_current_ray(t_cub_data *cub_data);
 
 // move _player
-void key_north_cub_map(t_cub_data *cub_data);
-void key_south_cub_map(t_cub_data *cub_data);
+void move_key_north_cub_map(t_cub_data *cub_data);
+void move_key_south_cub_map(t_cub_data *cub_data);
+void move_key_west_cub_map(t_cub_data *cub_data);
+void move_key_east_cub_map(t_cub_data *cub_data);
+int detect_wall_collision_north(t_cub_data *cub_data, double get_player_radian, int player_facing);
+int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, int player_facing);
+int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, int player_facing);
+int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, int player_facing);
 
 
-int	get_player_facing(double angle_radian);
+
 
 #endif
