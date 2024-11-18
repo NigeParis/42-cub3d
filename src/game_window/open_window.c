@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/14 15:10:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:02:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int put_minimap_to_screen(t_cub_data *cub_data)
 {
 	if (cub_data->map_data->minimap_show)
 	{
-		draw_map(cub_data->map_data);
+		draw_map(cub_data);
 		move_player(cub_data);
 		draw_dot(cub_data->map_data);
 		put_line_call(cub_data->map_data);
@@ -28,6 +28,8 @@ int put_minimap_to_screen(t_cub_data *cub_data)
 int draw_to_screen(t_cub_data *cub_data)
 {
 	get_start_pos_cub(cub_data);
+	cub_data->map_data->lock_zoom = 1; // fix zoom key
+	
 	debug_print_data_for_3D_view(cub_data);
 
 	if (!(cub_data)->map_data->minimap_show)

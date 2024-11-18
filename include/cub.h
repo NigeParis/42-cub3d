@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 17:29:31 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 08:51:09 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define SCREEN_H 500
 # define SCREEN_W 960
 # define CUB_FOV 60
+# define CUBSPEED 50
 
 
 
@@ -77,7 +78,11 @@ typedef struct s_player_cub
 	int		field_of_view;
 	double 	walls_distance;
 	double	half_wall_size;
-
+	int		outside_map;
+	double	reset_x;
+	double	reset_y;
+	
+	
 }	t_player_cub;
 
 typedef struct s_cud_data
@@ -91,6 +96,7 @@ typedef struct s_cud_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
+
 }	t_cub_data;
 
 
@@ -133,6 +139,7 @@ void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y);
 
 
 void	get_map_check_and_setup(int argc, char **argv, t_data *map_data, t_cub_data *cub_map);
+void	draw_map(t_cub_data *cub_data);
 
 
 
@@ -169,6 +176,6 @@ void key_north_cub_map(t_cub_data *cub_data);
 void key_south_cub_map(t_cub_data *cub_data);
 
 
-
+int	get_player_facing(double angle_radian);
 
 #endif

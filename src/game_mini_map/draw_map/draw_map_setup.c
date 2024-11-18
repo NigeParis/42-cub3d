@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:30:35 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/09 09:25:43 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:51:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,20 @@ void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line)
 	reset_values_end_loop(map_data, offset_x, offset_y);
 }
 
-void	draw_map(t_data *map_data)
+void	draw_map(t_cub_data *cub_data)
 {
 	int	i;
 	int	offset_x;
 	int	offset_y;
 
 	i = 0;
-	offset_x = map_data->minimap_offset_x;
-	offset_y = map_data->minimap_offset_y;
-	while (map_data->square_map[i])
+	offset_x = cub_data->map_data->minimap_offset_x;
+	offset_y = cub_data->map_data->minimap_offset_y;
+	while (cub_data->map_data->square_map[i])
 	{
-		draw_lines(map_data, &offset_x, &offset_y, map_data->square_map[i]);
+		draw_lines((t_data*)cub_data->map_data, &offset_x, \
+		&offset_y, cub_data->map_data->square_map[i]);
 		i++;
 	}
 }
+  

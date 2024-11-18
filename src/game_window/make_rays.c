@@ -1,32 +1,41 @@
 #include "cub.h"
 
+static int is_outside_map(t_cub_data *cub_data)
+{
+	if ((cub_data->player_cub.map_pos_x >= cub_data->map_data->minimap_max_width) 
+		|| ((cub_data->player_cub.map_pos_y >= cub_data->map_data->minimap_max_height))
+		|| (cub_data->player_cub.map_pos_x <= 0) || ((cub_data->player_cub.map_pos_y <= 0)))
+	{
+		cub_data->player_cub.outside_map = 1;
+		return (-1);
+	}
+	return (0);
+}
+
+static void reset_player_if_outside_map(t_cub_data *cub_data)
+{
+	if (cub_data->player_cub.outside_map == 1)
+	{
+		cub_data->player_cub.outside_map = 0;
+		cub_data->map_data->lock_zoom = 0;
+		cub_data->map_data->minimap_offset_x = cub_data->player_cub.reset_x;
+		cub_data->map_data->minimap_offset_y = cub_data->player_cub.reset_y;
+		get_start_pos_cub(cub_data);
+	}
+}
+
 static int	is_wall_found(t_cub_data *cub_data, int strip_index)
 {
 	(void)strip_index;
 	cub_data->current_ray.y_val = floor((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y);
 	cub_data->current_ray.x_val = floor((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x);
+
+	if (is_outside_map(cub_data))
+		return (-1);
+	if (cub_data->map_data->square_map[cub_data->current_ray.y_val][cub_data->current_ray.x_val] == ' ')
+		return (-1);	
 	if (cub_data->map_data->square_map[cub_data->current_ray.y_val][cub_data->current_ray.x_val] == '1')
-	{
-		if (strip_index == 959)
-		{
-			//dprintf(STDERR_FILENO,"GET Y POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_y_double);
-			//dprintf(STDERR_FILENO,"GET X POS FLOAT PLAYER FOUND %f\n", cub_data->player_cub.pos_x_double);
-			//dprintf(STDERR_FILENO,"GET Y VALUE WALL FOUND %d\n", cub_data->current_ray.y_val);
-			//dprintf(STDERR_FILENO,"GET X VALUE WALL FOUND %d\n", cub_data->current_ray.x_val);
-			//dprintf(STDERR_FILENO,"GET Y DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_y);
-			//dprintf(STDERR_FILENO,"GET X DIRECTION STEP WALL FOUND %f\n", cub_data->current_ray.direction_step_x);
-		}
-		
 		return (1);	
-	}
-	/*
-	if (strip_index == 959)
-	{
-		dprintf(STDERR_FILENO,"GET Y VALUE WALL NOT FOUND %d\n", cub_data->current_ray.y_val);
-		dprintf(STDERR_FILENO,"GET X VALUE WALL NOT FOUND %d\n", cub_data->current_ray.x_val);
-	}
-	*/
-	
 	return (0);
 }
 
@@ -97,6 +106,8 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 
 	while (!is_wall_found(cub_data, strip_index))
 	{
+
+		
 		if (cub_data->current_ray.side_dist_x < cub_data->current_ray.side_dist_y)
 		{
 			cub_data->current_ray.side_dist_x += cub_data->current_ray.delta_x;
@@ -110,6 +121,9 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 			cub_data->current_ray.side = 1;
 		}
 	}
+	reset_player_if_outside_map(cub_data);
+
+	
 }
 
 void calculate_final_length_for_ray(t_cub_data *cub_data, int strip_index)

@@ -29,8 +29,7 @@ int	put_line_call(t_data *map_data)
 	field_of_view = (map_data->player_data.field_of_view  * (M_PI / 180));
 	angle_radian =  (map_data->player_data.player_degrees * (M_PI / 180));
 	
-	// while (field_of_view > 0)
-	// {
+	
 	while ( i < (map_data->player_data.field_of_view + calibrate_needle))
 	{
 		if ((angle_radian) - (field_of_view) > 0)
@@ -42,9 +41,7 @@ int	put_line_call(t_data *map_data)
 		}
 		i +=(int)(map_data->player_data.field_of_view / 2);
 	}
-	// 	field_of_view -= ITERATIONS_FOV;
-	// 	i -= LINESTEPS;
-	// }
+	
 	return (0);
 }
 
@@ -60,20 +57,24 @@ int	put_line(t_data *map_data, double sup_angle)
 	double				angle_radian;
 	double				length;
 	t_draw_line_data	line_data;
-
+	
 	line_data.y0 = (double) SCREEN_H / 6;
 	line_data.x0 = (double)SCREEN_W / 6;
 	angle_radian = (map_data->player_data.player_degrees + sup_angle)
 		* (M_PI / 180);
-	length = map_data->player_data.speed;
+	length = 1;
 	calculate_rotated_line(angle_radian, length, &line_data);
+
 	while (!check_wall_limit_line(map_data, line_data.x1, line_data.y1))
 	{
 		calculate_rotated_line(angle_radian, length, &line_data);
 		length += 1;
-		if (length >= INT_MAX)
+		if (length >= 50)
 			break ;
 	}
+
+
+
 	draw_radar_line(map_data, &line_data, angle_radian);
 	return (0);
 }

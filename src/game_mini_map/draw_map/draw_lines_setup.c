@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_lines_setup.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:27:39 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/29 14:57:00 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:12:44 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-// int	check_pixel_chars_large_enough(t_data *map_data)
-// {
-// 	int	char_pixel_height;
-// 	int	char_pixel_width;
-
-// 	char_pixel_height = calculate_line_height(map_data)
-// 		/ map_data->minimap_scale;
-// 	char_pixel_width = calculate_col_width(map_data)
-// 		/ map_data->minimap_scale;
-// 	if (char_pixel_height <= 3 || char_pixel_width <= 3)
-// 	{
-// 		char_pixel_height  = 10;
-// 		char_pixel_width = 10;
-// 		return (0);
-// 	}
-// 	return (1);
-// }
 
 void	setup_draw_lines_values(t_data *map_data, int *char_ind_ptr,
 int *horizontal_ptr, int *vertical_ptr)
@@ -56,6 +38,6 @@ int *vertical_ptr, int *char_ind_ptr)
 
 void	reset_values_end_loop(t_data *map_data, int *offset_x, int *offset_y)
 {
-	*offset_x = map_data->minimap_offset_x;
+	*offset_x = map_data->minimap_offset_x ;
 	*offset_y += map_data->char_pixel_height;
 }

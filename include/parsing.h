@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 12:34:14 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/15 15:24:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ typedef struct s_data
 	int				fd;
 	int				minimap_scale;
 	int				minimap_show;
-	int				minimap_offset_x;
-	int				minimap_offset_y;
+	float				minimap_offset_x;
+	float				minimap_offset_y;
 	int				minimap_x_pixel;
 	int				minimap_y_pixel;
 	int				lock_zoom;

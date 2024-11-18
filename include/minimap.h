@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 13:56:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 15:27:47 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/15 12:59:02 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	reset_values_after_vertical_loop(t_data *map_data, int *offset_x, int *vert
 
 
 void	draw_lines(t_data *map_data, int *offset_x, int *offset_y, char *line);
-void	draw_map(t_data *map_data);
+
 int		put_line(t_data *map_data, double sup_angle);
 int		put_line_call(t_data *map_data);
 

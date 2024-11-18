@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/15 12:16:40 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 07:47:57 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void debug_print_minimap_info(t_data *map_data)
 
 	dprintf(STDERR_FILENO, "\nminimap_size_x '%d'\n", map_data->minimap_max_width);
 	dprintf(STDERR_FILENO, "minimap_size_y '%d'\n", map_data->minimap_max_height);
-	dprintf(STDERR_FILENO, "minimap_offset_x '%d'\n", map_data->minimap_offset_x);
-	dprintf(STDERR_FILENO, "minimap_offset_y '%d'\n", map_data->minimap_offset_y);
+	dprintf(STDERR_FILENO, "minimap_offset_x '%f'\n", map_data->minimap_offset_x);
+	dprintf(STDERR_FILENO, "minimap_offset_y '%f'\n", map_data->minimap_offset_y);
 	dprintf(STDERR_FILENO, "minimap_scale '%d'\n", map_data->minimap_scale);
 	dprintf(STDERR_FILENO, "minimap_pixel_x '%d'\n", map_data->minimap_x_pixel);
 	dprintf(STDERR_FILENO, "minimap_pixel_y '%d'\n", map_data->minimap_y_pixel);
@@ -91,13 +91,16 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 		ft_strlcpy(position, "not on minimap", 15);
 
 	
-	dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f'   GET Y DIRECTION %f GET DIRECTION RES %d \n", 
-	cub_data->current_ray.strip_index,  position, cub_data->current_ray.quadrant, cub_data->current_ray.y_val, 
-	cub_data->current_ray.x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
-	cub_data->current_ray.total_length, cub_data->current_ray.direction_step_y, 
-	cub_data->current_ray.quadrant);
+	// dprintf(STDERR_FILENO, "\n ray[%d][%s]  FACING_QUAD '%d'  GET Y VAL '%d', GET X VAL '%d', RADIAN '%f', RAD_DEGREES '%f', LENGTH TO WALL '%f'   GET Y DIRECTION %f GET DIRECTION RES %d \n", 
+	// cub_data->current_ray.strip_index,  position, cub_data->current_ray.quadrant, cub_data->current_ray.y_val, 
+	// cub_data->current_ray.x_val, cub_data->current_ray.radian, radian_to_degree(cub_data->current_ray.radian), 
+	// cub_data->current_ray.total_length, cub_data->current_ray.direction_step_x, 
+	// cub_data->current_ray.quadrant);
 	dprintf(STDERR_FILENO, "\n ray[%d]  wall heigth %f   ditance to wall %f\n",cub_data->current_ray.strip_index, cub_data->current_ray.wall_height, cub_data->current_ray.total_length); 
-
+	dprintf(STDERR_FILENO, "\n ray[%d]  direction y %f   direction x %f\n",cub_data->current_ray.strip_index, cub_data->current_ray.direction_step_y, cub_data->current_ray.direction_step_x); 
+	dprintf(STDERR_FILENO, "\n ray[%d]  offset y %f   offset x %f\n",cub_data->current_ray.strip_index, cub_data->map_data->minimap_offset_y, cub_data->map_data->minimap_offset_x); 
+	dprintf(STDERR_FILENO, "\n ray[%d]  mapos y %d   mapos x %d\n",cub_data->current_ray.strip_index, cub_data->player_cub.map_pos_y, cub_data->player_cub.map_pos_x); 
+	dprintf(STDERR_FILENO, "\n ray[%d]  mapsize y %d   mapsize x %d\n",cub_data->current_ray.strip_index, cub_data->map_data->minimap_max_height, cub_data->map_data->minimap_max_width); 
 	// end Reuben's debug increment
 
 		

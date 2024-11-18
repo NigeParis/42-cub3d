@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/09 09:26:01 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:38:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ double start[2], double x1, double y1)
 			return (1);
 	}
 	else
-		return (1);
+		return (0);
 	return (0);
 }
 
