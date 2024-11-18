@@ -79,7 +79,7 @@ int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, i
 		printf("DETECING NORTHEAST 1!!!\n");
 	
 		check_y_val = (int) ((cub_data->player_cub.pos_y_double + next_y) / CUB_TILESIZE);
-		check_x_val = (int) ((cub_data->player_cub.pos_x_double + next_x) / CUB_TILESIZE);
+		check_x_val = (int) ((cub_data->player_cub.pos_x_double - next_x) / CUB_TILESIZE);
 		
 		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
 		{
