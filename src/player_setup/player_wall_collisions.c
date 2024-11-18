@@ -2,8 +2,8 @@
 
 int detect_wall_collision_north(t_cub_data *cub_data, double get_player_radian, int player_facing)
 {
-	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian))) + 1;
-	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian))) + 1;
+	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian)));
+	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian)));
 	int check_y_val;
 	int check_x_val;
 	if (player_facing == 1)
@@ -70,16 +70,16 @@ int detect_wall_collision_north(t_cub_data *cub_data, double get_player_radian, 
 
 int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, int player_facing)
 {
-	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian))) + 1;
-	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian))) + 1;
+	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian)));
+	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian)));
 	int check_y_val;
 	int check_x_val;
 	if (player_facing == 1)
 	{
-		printf("DETECING NORTHEAST!!!\n");
+		printf("DETECING NORTHEAST 1!!!\n");
 	
 		check_y_val = (int) ((cub_data->player_cub.pos_y_double + next_y) / CUB_TILESIZE);
-		check_x_val = (int) ((cub_data->player_cub.pos_x_double - next_x) / CUB_TILESIZE);
+		check_x_val = (int) ((cub_data->player_cub.pos_x_double + next_x) / CUB_TILESIZE);
 		
 		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
 		{
@@ -139,8 +139,8 @@ int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, i
 
 int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, int player_facing)
 {
-	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian))) + 1;
-	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian))) + 1;
+	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian)));
+	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian)));
 	int check_y_val;
 	int check_x_val;
 	if (player_facing == 1)
@@ -177,7 +177,7 @@ int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, in
 	if (player_facing == 3)
 	{
 	
-		check_y_val = (int) ((cub_data->player_cub.pos_y_double + next_y) / CUB_TILESIZE);
+		check_y_val = (int) ((cub_data->player_cub.pos_y_double - next_y) / CUB_TILESIZE);
 		check_x_val = (int) ((cub_data->player_cub.pos_x_double + next_x) / CUB_TILESIZE);
 		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
 		{
@@ -208,42 +208,27 @@ int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, in
 
 int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, int player_facing)
 {
-	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian))) + 1;
-	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian))) + 1;
+	double next_x = fabs((cub_data->map_data->player_data.speed * cos(get_player_radian)));
+	double next_y = fabs((cub_data->map_data->player_data.speed * sin(get_player_radian)));
 	int check_y_val;
 	int check_x_val;
-	if (player_facing == 1)
+	if (player_facing == 1) //South   Y+ X-
 	{
 		
 	
-		check_y_val = (int) ((cub_data->player_cub.pos_y_double - next_y) / CUB_TILESIZE);
+		check_y_val = (int) ((cub_data->player_cub.pos_y_double + next_y) / CUB_TILESIZE);
 		check_x_val = (int) ((cub_data->player_cub.pos_x_double - next_x) / CUB_TILESIZE);
 		
 		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION EAST MOVING UP DETECT COLLISION EAST!\n");
+			printf("Quadrant 1 : WALL DETECTED ON COLLISION EAST MOVING UP DETECT COLLISION EAST!\n");
 			return (1);
 		}
 			
 	}
-	if (player_facing == 2)
-	{
-		
-		check_y_val = (int) ((cub_data->player_cub.pos_y_double - next_y) / CUB_TILESIZE);
-		check_x_val = (int) ((cub_data->player_cub.pos_x_double - next_x) / CUB_TILESIZE);
-		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
-		{
-			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
-			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION EAST MOVING RIGHT DETECT COLLISION EAST!\n");
-			return (1);
-		}
-			
-	}
-
-	if (player_facing == 3)
+	if (player_facing == 2) //South   X+ Y+
 	{
 		
 		check_y_val = (int) ((cub_data->player_cub.pos_y_double + next_y) / CUB_TILESIZE);
@@ -252,7 +237,22 @@ int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION EAST MOVING RIGHT!\n");
+			printf("Quadrant 2 : WALL DETECTED ON COLLISION EAST MOVING RIGHT DETECT COLLISION EAST!\n");
+			return (1);
+		}
+			
+	}
+
+	if (player_facing == 3) // North Y- X+
+	{
+		
+		check_y_val = (int) ((cub_data->player_cub.pos_y_double - next_y) / CUB_TILESIZE);
+		check_x_val = (int) ((cub_data->player_cub.pos_x_double + next_x) / CUB_TILESIZE);
+		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
+		{
+			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
+			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
+			printf("Quandrant 3 : WALL DETECTED ON COLLISION EAST MOVING RIGHT!\n");
 			return (1);
 		}
 
@@ -267,7 +267,7 @@ int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION EAST MOVING DOWN!\n");
+			printf("Quadrant 4: WALL DETECTED ON COLLISION EAST MOVING DOWN!\n");
 			return (1);
 		}
 	}
