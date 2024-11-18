@@ -154,7 +154,7 @@ int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION WEST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION WEST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION WEST MOVING STRAIGHT DETECT COLLISION WEST!\n");
+			printf("player facing 1  - south-west WALL DETECTED ON COLLISION WEST MOVING STRAIGHT DETECT COLLISION WEST!\n");
 			return (1);
 		}
 			
@@ -168,7 +168,7 @@ int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION WEST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION WEST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION WEST MOVING LEFT DETECT COLLISION WEST!\n");
+			printf("moviung  moving south-east WALL DETECTED ON COLLISION WEST MOVING LEFT DETECT COLLISION WEST!\n");
 			return (1);
 		}
 			
@@ -183,7 +183,7 @@ int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION WEST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION WEST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION WEST MOVING WEST DETECT COLLISION WEST!\n");
+			printf("moving north-east WALL DETECTED ON COLLISION WEST MOVING WEST DETECT COLLISION WEST!\n");
 			return (1);
 		}
 
@@ -198,7 +198,7 @@ int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION WEST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION WEST %d\n", check_x_val);
-			printf("WALL DETECTED ON COLLISION WEST MOVING DOWN DETECT COLLISION WEST!\n");
+			printf("moving north-west WALL DETECTED ON COLLISION WEST MOVING DOWN DETECT COLLISION WEST!\n");
 			return (1);
 		}
 	}
@@ -223,7 +223,7 @@ int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("Quadrant 1 : WALL DETECTED ON COLLISION EAST MOVING UP DETECT COLLISION EAST!\n");
+			printf("Quadrant 1 : south-west moving WALL DETECTED ON COLLISION EAST MOVING UP DETECT COLLISION EAST!\n");
 			return (1);
 		}
 			
@@ -237,7 +237,7 @@ int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("Quadrant 2 : WALL DETECTED ON COLLISION EAST MOVING RIGHT DETECT COLLISION EAST!\n");
+			printf("Quadrant 2 : moving south-east WALL DETECTED ON COLLISION EAST MOVING RIGHT DETECT COLLISION EAST!\n");
 			return (1);
 		}
 			
@@ -252,22 +252,22 @@ int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, in
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("Quandrant 3 : WALL DETECTED ON COLLISION EAST MOVING RIGHT!\n");
+			printf("Quandrant 3  moving north-east: WALL DETECTED ON COLLISION EAST MOVING RIGHT!\n");
 			return (1);
 		}
 
 	}
 
-	if (player_facing == 4)
+	if (player_facing == 4) // North -y -X
 	{
 		
 		check_y_val = (int) ((cub_data->player_cub.pos_y_double - next_y) / CUB_TILESIZE);
-		check_x_val = (int) ((cub_data->player_cub.pos_x_double + next_x) / CUB_TILESIZE);
+		check_x_val = (int) ((cub_data->player_cub.pos_x_double - next_x) / CUB_TILESIZE);
 		if (cub_data->map_data->square_map[check_y_val][check_x_val]== '1')
 		{
 			printf("GET CHECK Y VAL ON COLLISION EAST %d\n", check_y_val);
 			printf("GET CHECK X VAL ON COLLISION EAST %d\n", check_x_val);
-			printf("Quadrant 4: WALL DETECTED ON COLLISION EAST MOVING DOWN!\n");
+			printf("Quadrant 4: moving norht - west WALL DETECTED ON COLLISION EAST MOVING DOWN!\n");
 			return (1);
 		}
 	}
