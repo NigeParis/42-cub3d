@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 10:17:27 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:02:43 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_ray
 } t_ray;
 
 
+
+
 typedef struct s_player_cub
 {
 	char	facing;
@@ -81,6 +83,12 @@ typedef struct s_player_cub
 	int		outside_map;
 	double	reset_x;
 	double	reset_y;
+	double	x_movement;
+	double	y_movement;
+	double	adjusted_player_angle;
+	double	player_angle;
+	double	player_radian;
+	int	player_moving;
 	
 	
 	char	*prev_direction;
@@ -182,8 +190,12 @@ int detect_wall_collision_north(t_cub_data *cub_data, double get_player_radian, 
 int detect_wall_collision_south(t_cub_data *cub_data, float get_player_radian, int player_facing);
 int detect_wall_collision_west(t_cub_data *cub_data, float get_player_radian, int player_facing);
 int detect_wall_collision_east(t_cub_data *cub_data, float get_player_radian, int player_facing);
-
-
-
-
+void treat_quadrant_one_moving_north(t_cub_data *cub_data);
+void treat_quadrant_two_moving_north(t_cub_data *cub_data);
+void treat_quadrant_three_moving_north(t_cub_data *cub_data);
+void treat_quadrant_four_moving_north(t_cub_data *cub_data);
+void treat_quadrant_one_moving_south(t_cub_data *cub_data);
+void treat_quadrant_two_moving_south(t_cub_data *cub_data);
+void treat_quadrant_three_moving_south(t_cub_data *cub_data);
+void treat_quadrant_four_moving_south(t_cub_data *cub_data);
 #endif
