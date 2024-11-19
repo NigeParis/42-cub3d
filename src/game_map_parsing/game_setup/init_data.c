@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 17:43:37 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:20:08 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data)
 	cub_data->player_cub.facing = 0;
 	cub_data->player_cub.walls_distance = 0;
 	cub_data->player_cub.half_wall_size = 0;
+	cub_data->player_cub.outside_map = 0;
 
 	ft_bzero(&cub_data->current_ray, sizeof(cub_data->current_ray));
 	cub_data->current_ray.fov = CUB_FOV;
