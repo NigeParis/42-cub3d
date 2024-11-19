@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/19 10:53:13 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:12:35 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ double  calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from
 int 	put_all_current_ray(t_cub_data *cub_data);
 
 // move _player
+int	get_player_moving(double angle_radian);
 void move_key_north_cub_map(t_cub_data *cub_data);
 void move_key_south_cub_map(t_cub_data *cub_data);
 void move_key_west_cub_map(t_cub_data *cub_data);
@@ -202,4 +203,33 @@ int mouse_move(int x, int y, t_cub_data *cub_data);
 int	get_player_moving(double angle_radian);
 
 
+void treat_quadrant_one_moving_east(t_cub_data *cub_data);
+void treat_quadrant_two_moving_east(t_cub_data *cub_data);
+void treat_quadrant_three_moving_east(t_cub_data *cub_data);
+void treat_quadrant_four_moving_east(t_cub_data *cub_data);
+void init_move_east_key_values(t_cub_data *cub_data);
+void treat_quadrant_one_moving_west(t_cub_data *cub_data);
+void treat_quadrant_two_moving_west(t_cub_data *cub_data);
+void treat_quadrant_three_moving_west(t_cub_data *cub_data);
+void treat_quadrant_four_moving_west(t_cub_data *cub_data);
+void init_move_west_key_values(t_cub_data *cub_data);
+void adjust_map_positions_player_cub(t_cub_data *cub_data);
+
+// wall collisions
+int	treat_wall_collision_quadrant_one_north(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_two_north(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_three_north(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_four_north(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_one_south(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_two_south(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_three_south(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_four_south(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_one_west(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_two_west(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_three_west(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_four_west(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_one_east(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_two_east(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_three_east(t_cub_data *cub_data, double next_y, double next_x);
+int treat_wall_collision_quadrant_four_east(t_cub_data *cub_data, double next_y, double next_x);
 #endif
