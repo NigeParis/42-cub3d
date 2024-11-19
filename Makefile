@@ -39,6 +39,7 @@ TOOLS = game_tools/
 KEY_EVENTS = game_key_events/
 CUB_SETUP = cub_view_setup/
 CUB_CAST = cub_raycasting/
+PLAYER_MOVEMENT = player_movement/
 
 SRC= main.c  \
 	game_map_parsing/game_parsing_tools/get_next_line.c game_map_parsing/game_parsing_tools/get_next_line_utils.c \
@@ -63,9 +64,11 @@ SRC= main.c  \
 	game_window/make_rays.c \
 	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
 	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_radar.c \
-	player_setup/move_player.c player_setup/rotate_player.c player_setup/move_player_cub.c player_setup/player_wall_collisions.c\
+	player_setup/move_player.c player_setup/rotate_player.c player_movement/move_player_cub.c player_movement/player_wall_collisions.c\
 	game_tools/general_game_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
-	player_setup/treat_movement_north.c player_setup/treat_movement_south.c \
+	player_movement/treat_movement_north.c player_movement/treat_movement_south.c player_movement/treat_movement_east.c player_movement/treat_movement_west.c \
+	player_movement/get_player_moving.c player_movement/treat_wall_collision_north.c player_movement/treat_wall_collision_south.c \
+	player_movement/treat_wall_collision_west.c player_movement/treat_wall_collision_east.c \
 	cub_view_setup/cub_init.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
 	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c	
@@ -104,6 +107,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)/$(PARSING)/$(PARSE_TOOLS)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)/$(MAP)
 	@mkdir -p $(OBJ_DIR)/$(ERROR)
+	@mkdir -p $(OBJ_DIR)/$(PLAYER_MOVEMENT)
 	@mkdir -p $(OBJ_DIR)/$(PARSING)/$(MAP_PARSER)
 	@mkdir -p $(OBJ_DIR)/$(PLAYER_SETUP)
 	@mkdir -p $(OBJ_DIR)/$(CLEANUP)
