@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 17:31:03 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:59:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_
 		drawStart = 0;
 	int drawEnd = (lineheight / 2) + (screenheight / 2); 
 	if (drawEnd >= screenheight )
-		drawEnd = screenheight - 1;
+		drawEnd = screenheight;
 	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index);
 	return (drawEnd - drawStart);
 }
