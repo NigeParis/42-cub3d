@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 15:02:43 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:53:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,4 +198,8 @@ void treat_quadrant_one_moving_south(t_cub_data *cub_data);
 void treat_quadrant_two_moving_south(t_cub_data *cub_data);
 void treat_quadrant_three_moving_south(t_cub_data *cub_data);
 void treat_quadrant_four_moving_south(t_cub_data *cub_data);
+int mouse_move(int x, int y, t_cub_data *cub_data);
+int	get_player_moving(double angle_radian);
+
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/15 14:55:40 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:06:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	game_mlx_hooks_and_loop(t_cub_data *cub_data)
 	&handle_keypress, cub_data);
 	mlx_hook(cub_data->map_data->gw.mlx_window, KeyRelease, KeyReleaseMask, \
 	&handle_keyrelease, cub_data);
+	mlx_hook(cub_data->map_data->gw.mlx_window, MotionNotify, PointerMotionMask, &mouse_move, cub_data);
 	mlx_hook(cub_data->map_data->gw.mlx_window, DestroyNotify, StructureNotifyMask, \
 	&destroy, cub_data->map_data);
 	mlx_loop(cub_data->map_data->gw.mlx_ptr);
