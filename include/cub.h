@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/19 12:12:35 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:28:38 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_cub_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
-	
+	int				img_texture_ptr_1;
 }	t_cub_data;
 
 
