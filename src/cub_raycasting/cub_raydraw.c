@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raydraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 17:31:03 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:53:51 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,40 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 	line_start_pixels = start;
 	line_stop_pixels = end;
 	color_faces(cub_data);
+	
+	if (cub_data->current_ray.side == 0)
+	{
+		double get_wall_x = cub_data->current_ray.y_val + (cub_data->current_ray.total_length * sin(cub_data->current_ray.radian));
+		get_wall_x -= floor(get_wall_x);
+		int get_texture_x = (int) (get_wall_x * 64);
+		if (cos(cub_data->current_ray.radian) > 0)
+			get_texture_x = 64 - get_texture_x - 1;
+		//printf("GET TEXTURE X ON SIDE 0 %d\n", get_texture_x);	
+	}
+	
+	
+	if (cub_data->current_ray.side == 1)
+	{
+		double get_wall_x = cub_data->current_ray.x_val + (cub_data->current_ray.total_length * cos(cub_data->current_ray.radian));
+		get_wall_x -= floor(get_wall_x);
+		int get_texture_x = (int) (get_wall_x * 64);
+		if (sin(cub_data->current_ray.radian) > 0)
+			get_texture_x = 64 - get_texture_x - 1;
+		//printf("GET TEXTURE X ON SIDE 1 %d\n", get_texture_x);
+	}
+	
+	double pixel_vertical_step = (double) (64) / (end - start);
+	double tex_pos_y = 0;
+	//printf("GET PIXEL VERTICAL STEP %f\n", pixel_vertical_step);
+	//printf("GET TEXT POS Y %f\n", tex_pos_y);
+	int tex_y = 0;
 	while (line_start_pixels < line_stop_pixels)
 	{
 		if (within_cub_drawing_limits(strip_index, line_start_pixels))
 			mlx_put_pixel(cub_data, strip_index, line_start_pixels);
+		tex_pos_y += pixel_vertical_step;
+		tex_y = (int) tex_pos_y;
+		printf("GET TEX Y %d\n", tex_y);
 		line_start_pixels++;
 	}
 	return (1);
@@ -82,12 +112,16 @@ double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_
 {
 	int screenheight = SCREEN_H;
 	int lineheight = (int) (screenheight / distance_from_the_wall);
+	
+	//printf("GET LINEHEIGHT %d\n", lineheight);
 	int drawStart = (-lineheight / 2) + (screenheight / 2);
 	if (drawStart < 0)
 		drawStart = 0;
 	int drawEnd = (lineheight / 2) + (screenheight / 2); 
 	if (drawEnd >= screenheight )
 		drawEnd = screenheight - 1;
+	//printf("GET DIFFERENCE %d\n", (drawEnd - drawStart));
+	
 	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index);
 	return (drawEnd - drawStart);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_put_to_screen.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:06:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/14 17:15:55 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:12:18 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int put_all_current_ray(t_cub_data *cub_data)
 		fov_step += cub_data->current_ray.angle;
 		index++;
 	}
+	//exit(1);
 	return (0);
 }
