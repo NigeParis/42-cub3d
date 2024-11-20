@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_directional_textures.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:18 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:46:33 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:37:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
