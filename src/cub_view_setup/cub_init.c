@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:13:06 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 09:16:55 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:48:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,4 @@ void	get_start_pos_cub(t_cub_data *cub_data)
 			save_offset = 1;
 		}
 	}
-
-	
 }
