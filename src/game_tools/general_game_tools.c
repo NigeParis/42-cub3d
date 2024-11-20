@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/20 11:25:42 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:23:35 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_north.img_ptr != NULL)
 		{
-			cub_data->used_img = cub_data->img_north;
+			//cub_data->used_img = cub_data->img_north;
 			return (*img = &(cub_data)->img_north, 1);
 		}
 					
@@ -106,7 +106,7 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_south.img_ptr != NULL)
 		{
-			cub_data->used_img = cub_data->img_south;
+			//cub_data->used_img = cub_data->img_south;
 			return (*img = &(cub_data)->img_south, 1);	
 		}
 				
@@ -115,7 +115,7 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_east.img_ptr != NULL)
 		{
-			cub_data->used_img = cub_data->img_east;
+			//cub_data->used_img = cub_data->img_east;
 			return (*img = &(cub_data)->img_east, 1);	
 		}
 				
@@ -124,12 +124,12 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_west.img_ptr != NULL)
 		{
-			cub_data->used_img = cub_data->img_south;
+			//cub_data->used_img = cub_data->img_south;
 			return (*img = &(cub_data)->img_west, 1);
 		}
 					
 	}
- return (0);
+ return (put_error("error: img file\n"), 0);
 }
 
 unsigned int get_img_color(t_cub_data *cub_data, int wall_face, int x, int y)

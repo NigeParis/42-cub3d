@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 11:55:53 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:24:32 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 	if (x < 0 || y < 0)
 		return;
 	bits = 8;
+	cub_data->map_data->form.dot_col = get_img_color(cub_data, 0, cub_data->used_img.int_pixel_x, cub_data->used_img.int_pixel_y);
+	//printf("GET Y INT PIXEL %d\n", cub_data->used_img.int_pixel_y);
+	//printf("GET X INT PIXEL %d\n", cub_data->used_img.int_pixel_x);
 	color_shift = cub_data->map_data->form.pixel_bits - bits;
 	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x *(cub_data->map_data->form.pixel_bits / bits));
 	
@@ -34,6 +37,7 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 		pixel++;
 	}
 }
+
 
 static void color_faces(t_cub_data *cub_data)
 {
@@ -75,50 +79,71 @@ static void color_faces(t_cub_data *cub_data)
 }
 
 
-static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_index)
+static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_index, int lineheight)
 {
 	int line_start_pixels;
 	int line_stop_pixels;
-	
+	(void) strip_index;
 
 	line_start_pixels = start;
 	line_stop_pixels = end;
 	color_faces(cub_data);
+	cub_data->used_img.int_pixel_x = 0;
+	cub_data->used_img.float_pixel_x = 0;
+	cub_data->used_img.int_pixel_y = 0;
+	cub_data->used_img.float_pixel_y = 0;
+	cub_data->used_img.vertical_y_step = 0;
 	
 	if (cub_data->current_ray.side == 0)
 	{
 		cub_data->used_img.float_pixel_x = cub_data->current_ray.y_val + (cub_data->current_ray.total_length * sin(cub_data->current_ray.radian));
 		cub_data->used_img.float_pixel_x -= floor(cub_data->used_img.float_pixel_x);
 		cub_data->used_img.int_pixel_x = (int) (cub_data->used_img.float_pixel_x * (cub_data->used_img.img_width));
+		/*
 		if (cos(cub_data->current_ray.radian) > 0)
 			cub_data->used_img.int_pixel_x = (cub_data->used_img.img_width) - cub_data->used_img.int_pixel_x - 1;
-		//printf("GET TEXTURE X ON SIDE 0 %d\n", get_texture_x);	
+		*/
+		//printf("GET CUB DATA PIXEL X %d\n", cub_data->used_img.int_pixel_x);
+		
 	}
 	
 	
-	if (cub_data->current_ray.side == 1)
+	else if (cub_data->current_ray.side == 1)
 	{
 		cub_data->used_img.float_pixel_x = cub_data->current_ray.x_val + (cub_data->current_ray.total_length * cos(cub_data->current_ray.radian));
 		cub_data->used_img.float_pixel_x -= floor(cub_data->used_img.float_pixel_x);
 		cub_data->used_img.int_pixel_x = (int) (cub_data->used_img.float_pixel_x * (cub_data->used_img.img_width));
+		/*
 		if (sin(cub_data->current_ray.radian) > 0)
 			cub_data->used_img.int_pixel_x = (cub_data->used_img.img_width) - cub_data->used_img.int_pixel_x - 1;
-		//printf("GET TEXTURE X ON SIDE 1 %d\n", get_texture_x);
+		*/
+		//printf("GET CUB DATA PIXEL X %d\n", cub_data->used_img.int_pixel_x);
+		
 	}
 	
-	cub_data->used_img.vertical_y_step = (double) (cub_data->used_img.img_height) / (end - start);
-	cub_data->used_img.float_pixel_y = (start - SCREEN_H / 2 + (end - start) / 2) * cub_data->used_img.vertical_y_step;
-	//printf("GET PIXEL VERTICAL STEP %f\n", pixel_vertical_step);
-	//printf("GET TEXT POS Y %f\n", tex_pos_y);
+	cub_data->used_img.vertical_y_step = (double) (cub_data->used_img.img_height) / (lineheight);
+	
 	while (line_start_pixels < line_stop_pixels)
 	{
+	
+		
+		cub_data->used_img.float_pixel_y += cub_data->used_img.vertical_y_step ;
+		//printf("GET FLOAT Y VALUE IN LOOP %f\n", cub_data->used_img.float_pixel_y);
+		cub_data->used_img.int_pixel_y = (int) cub_data->used_img.float_pixel_y;
+		
+		//printf("GET CUB DATA PIXEL Y IN LOOP! %d\n", cub_data->used_img.int_pixel_x);
+		//printf("GET Y VALUE IN LOOP %d\n", cub_data->used_img.int_pixel_y);
+		//printf("GET X VALUE IN LOOP! %d\n", cub_data->used_img.int_pixel_x);
+		//printf("GET VERTICAL Y STEP IN LOOP %f\n", cub_data->used_img.vertical_y_step);
+		//printf("GET CUB DATA PIXEL Y IN LOOP! %d\n", cub_data->used_img.int_pixel_y);
+		
 		if (within_cub_drawing_limits(strip_index, line_start_pixels))
 			mlx_put_pixel(cub_data, strip_index, line_start_pixels);
-		cub_data->used_img.float_pixel_y += cub_data->used_img.vertical_y_step;
-		cub_data->used_img.int_pixel_y = (int) cub_data->used_img.float_pixel_y;
+		
 		//printf("GET TEX Y %d\n", tex_y);
 		line_start_pixels++;
 	}
+	
 	return (1);
 }
 
@@ -134,6 +159,6 @@ double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_
 	int drawEnd = (lineheight / 2) + (screenheight / 2); 
 	if (drawEnd >= screenheight )
 		drawEnd = screenheight;
-	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index);
+	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index, lineheight);
 	return (drawEnd - drawStart);
 }
