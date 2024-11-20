@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_game_tools.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/20 13:23:35 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:30:43 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ int	within_cub_drawing_limits(int x, int y)
 
 
 
+
 static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 {
 	if (wall_face == NORTH_IMG)
 	{
 		if ((cub_data)->img_north.img_ptr != NULL)
 		{
-			//cub_data->used_img = cub_data->img_north;
 			return (*img = &(cub_data)->img_north, 1);
 		}
 					
@@ -106,7 +106,6 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_south.img_ptr != NULL)
 		{
-			//cub_data->used_img = cub_data->img_south;
 			return (*img = &(cub_data)->img_south, 1);	
 		}
 				
@@ -115,7 +114,6 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_east.img_ptr != NULL)
 		{
-			//cub_data->used_img = cub_data->img_east;
 			return (*img = &(cub_data)->img_east, 1);	
 		}
 				
@@ -124,29 +122,29 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	{
 		if ((cub_data)->img_west.img_ptr != NULL)
 		{
-			//cub_data->used_img = cub_data->img_south;
 			return (*img = &(cub_data)->img_west, 1);
-		}
-					
+		}		
 	}
- return (put_error("error: img file\n"), 0);
+	 return (put_error("error: img file\n"), 0);
 }
+
+
+
 
 unsigned int get_img_color(t_cub_data *cub_data, int wall_face, int x, int y)
 {
 	t_img_data *img;
-
-	img = NULL;
 	unsigned int color = 0;
 
 	if (!set_img(cub_data, &img, wall_face))
 		return (put_error("error: setting image\n"), 0);
+
 	if (x < 0 || x > img->img_width)
 		return (put_error("error: x overflow\n"), 0);
 	if (y < 0 || y > img->img_height)
 		return (put_error("error: y overflow\n"), 0);
 	color  = (unsigned int) \
-		(img->img_data[y * (cub_data->img_north.len / 4) + x]); 	
+		(img->img_data[y * (cub_data->img_north.len / 4) + x]);
 	return (color);
 }
 
