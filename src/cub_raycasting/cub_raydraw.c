@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raydraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 13:24:32 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:40:05 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 	if (x < 0 || y < 0)
 		return;
 	bits = 8;
-	cub_data->map_data->form.dot_col = get_img_color(cub_data, 0, cub_data->used_img.int_pixel_x, cub_data->used_img.int_pixel_y);
-	//printf("GET Y INT PIXEL %d\n", cub_data->used_img.int_pixel_y);
+	cub_data->map_data->form.dot_col = get_img_color(cub_data, cub_data->current_ray.wall_face, cub_data->used_img.int_pixel_x, cub_data->used_img.int_pixel_y);
+	//printf("GET Y INT PIXEL %d\n", cub_data->used_img.int_pix1l_y);
 	//printf("GET X INT PIXEL %d\n", cub_data->used_img.int_pixel_x);
 	color_shift = cub_data->map_data->form.pixel_bits - bits;
 	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x *(cub_data->map_data->form.pixel_bits / bits));
@@ -55,6 +55,7 @@ static void color_faces(t_cub_data *cub_data)
 	|| cub_data->current_ray.quadrant == 4))
 	{
 		cub_data->used_img = cub_data->img_east;
+		cub_data->current_ray.wall_face = EAST_IMG;
 		cub_data->map_data->form.dot_col = east_face;
 	}		
 	else if ((cub_data->current_ray.side == 0) \
@@ -62,17 +63,20 @@ static void color_faces(t_cub_data *cub_data)
 	|| cub_data->current_ray.quadrant == 3))
 	{
 		cub_data->used_img = cub_data->img_west;
+		cub_data->current_ray.wall_face = WEST_IMG;
 		cub_data->map_data->form.dot_col = west_face;
 	}
 	else if ((cub_data->current_ray.quadrant == 1 \
 	|| cub_data->current_ray.quadrant == 2) )
 	{
 		cub_data->used_img = cub_data->img_north;
+		cub_data->current_ray.wall_face = NORTH_IMG;
 		cub_data->map_data->form.dot_col = north_face;
 	}
 	else
 	{
 		cub_data->used_img = cub_data->img_south;
+		cub_data->current_ray.wall_face = SOUTH_IMG;
 		cub_data->map_data->form.dot_col = south_face;
 	}
 		

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:57:25 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/20 13:26:43 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:34:25 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ int draw_to_screen(t_cub_data *cub_data)
 	// dprintf(STDERR_FILENO, "color %x\n", get_img_color(cub_data, WEST_IMG, 0, 0));
 
 	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window,
-							cub_data->map_data->form.mlx_img, 0, 0);
+		cub_data->map_data->form.mlx_img, 0, 0);
 	
-	// test to print to screen img north texture						
-	//mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window,
-	//						cub_data->img_north.img_ptr, 0, 0);
+	// mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window,
+	// 	cub_data->img_north.img_ptr, 0, 0);
+	
+	// mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window,
+	// 	cub_data->img_south.img_ptr, 200, 0);
 	
 	
 	return (0);

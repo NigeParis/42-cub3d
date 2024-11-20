@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 12:01:24 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:40:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_ray
 	double 	side_dist_x;
 	double 	side_dist_y;
 	int		side;
+	int		wall_face;
 	
 } t_ray;
 
@@ -114,8 +115,8 @@ typedef struct s_img_data
 	double 	float_pixel_x;
 	double	float_pixel_y;
 	double	vertical_y_step;
-	int	int_pixel_x;
-	int int_pixel_y;
+	int		int_pixel_x;
+	int 	int_pixel_y;
 } t_img_data;
 
 typedef struct s_cub_data
