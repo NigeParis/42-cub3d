@@ -39,6 +39,7 @@ TOOLS = game_tools/
 KEY_EVENTS = game_key_events/
 CUB_SETUP = cub_view_setup/
 CUB_CAST = cub_raycasting/
+CUB_IMG = cub_image/
 PLAYER_MOVEMENT = player_movement/
 
 SRC= main.c  \
@@ -71,7 +72,10 @@ SRC= main.c  \
 	player_movement/treat_wall_collision_west.c player_movement/treat_wall_collision_east.c \
 	cub_view_setup/cub_init.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
-	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c	
+	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c \
+	cub_image/put_north_image.c
+
+
 LIBFT= ./libft/libft.a
 FT_PRINTF=./ft_printf/libftprintf.a
 
@@ -100,6 +104,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/$(CUB_SETUP)
 	@mkdir -p $(OBJ_DIR)/$(CUB_CAST)
+	@mkdir -p $(OBJ_DIR)/$(CUB_IMG)
 	@mkdir -p $(OBJ_DIR)/$(MINI_MAP)
 	@mkdir -p $(OBJ_DIR)/$(KEY_EVENTS)
 	@mkdir -p $(OBJ_DIR)/$(TOOLS)

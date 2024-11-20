@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 10:53:51 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:04:15 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 	}
 	
 	double pixel_vertical_step = (double) (64) / (end - start);
-	double tex_pos_y = 0;
+	double tex_pos_y = (start - SCREEN_H / 2 + (end - start) / 2) * pixel_vertical_step;
 	//printf("GET PIXEL VERTICAL STEP %f\n", pixel_vertical_step);
 	//printf("GET TEXT POS Y %f\n", tex_pos_y);
 	int tex_y = 0;
@@ -119,9 +119,7 @@ double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_
 		drawStart = 0;
 	int drawEnd = (lineheight / 2) + (screenheight / 2); 
 	if (drawEnd >= screenheight )
-		drawEnd = screenheight - 1;
-	//printf("GET DIFFERENCE %d\n", (drawEnd - drawStart));
-	
+		drawEnd = screenheight;
 	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index);
 	return (drawEnd - drawStart);
 }

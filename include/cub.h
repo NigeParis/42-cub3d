@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/19 13:28:38 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:17:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@
 # define SCREEN_W 960
 # define CUB_FOV 60
 # define CUBSPEED 50
+# define NORTH_IMG 0
+# define SOUTH_IMG 1
+# define EAST_IMG 2
+# define WEST_IMG 3
+
 
 
 
@@ -95,8 +100,28 @@ typedef struct s_player_cub
 
 }	t_player_cub;
 
+
+typedef struct s_img_data
+{
+	char	*filename;
+	void	*img_ptr;
+	int		*img_data;
+	int		img_width;
+	int		img_height;
+	int		pixel_bits;
+	int		endian;
+	int		len;
+	
+} t_img_data;
+
+
+
 typedef struct s_cub_data
 {
+	t_img_data		img_north;
+	t_img_data		img_south;
+	t_img_data		img_east;
+	t_img_data		img_west;
 	t_data			*map_data;
 	t_ray			current_ray;
 	t_player_cub	player_cub;
@@ -106,7 +131,6 @@ typedef struct s_cub_data
 	int				map_height_chars;
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
-	int				img_texture_ptr_1;
 }	t_cub_data;
 
 
@@ -163,23 +187,25 @@ void	adjust_starting_point_degree(t_data *map_data);
 int		handle_keypress(int keysym, t_cub_data  *cub_data);
 void	handle_special_keypress(int *keysym, t_cub_data *cub_data);
 int		handle_keyrelease(int keysym, t_cub_data *cub_data);
-int		destroy(t_data *map_data);
+int		destroy(t_cub_data *cub_data);
 void	game_mlx_hooks_and_loop(t_cub_data *cub_data);
 void	init_cub(t_data *map_data, t_cub_data *cub_data);
 
 
 //cub#D functions
-void	get_start_pos_cub(t_cub_data *cub_data);
+void			get_start_pos_cub(t_cub_data *cub_data);
 
-double	radian_to_degree(double angle_radian);
-double	degree_to_radian(double angle_degrees);
-double	normalize_angle(double angle_radians); 
-void	make_rays(t_cub_data *cub_data, int strip_index);
-double	calibrate_angle_for_minimap(t_cub_data *cub_data);
-double	calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
-int		within_cub_drawing_limits(int x, int y);
-double  calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_the_wall, int strip_index);
-int 	put_all_current_ray(t_cub_data *cub_data);
+double			radian_to_degree(double angle_radian);
+double			degree_to_radian(double angle_degrees);
+double			normalize_angle(double angle_radians); 
+void			make_rays(t_cub_data *cub_data, int strip_index);
+double			calibrate_angle_for_minimap(t_cub_data *cub_data);
+double			calibrate_angle_for_radian(t_cub_data *cub_data, double angle_degrees);
+int				within_cub_drawing_limits(int x, int y);
+double	  		calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_the_wall, int strip_index);
+int 			put_all_current_ray(t_cub_data *cub_data);
+unsigned int	get_img_color(t_cub_data *cub_data, int wall_face, int x, int y);
+
 
 // move _player
 int	get_player_moving(double angle_radian);
