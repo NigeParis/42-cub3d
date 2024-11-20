@@ -6,11 +6,40 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 11:55:26 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:03:29 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	check_texture_file_access(t_data *map_data)
+{
+	if (access(map_data->textures.north_texture, R_OK))	
+	{
+		put_error("error: north xpm not found\n");
+		map_data->valid_map = 0;
+		return ;
+	}
+	if (access(map_data->textures.south_texture, R_OK))	
+	{
+		put_error("error: south xpm not found\n");
+		map_data->valid_map = 0;
+		return ;
+	}
+	if (access(map_data->textures.east_texture, R_OK))	
+	{
+		put_error("error: east xpm not found\n");
+		map_data->valid_map = 0;
+		return ;
+	}
+	if (access(map_data->textures.west_texture, R_OK))	
+	{
+		put_error("error: west xpm not found\n");
+		map_data->valid_map = 0;
+		return ;
+	}
+	return ;
+}
 
 //debug_print_setup_maps(&map_data); //to use //->free_setup_maps
 void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
@@ -19,6 +48,7 @@ void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
 	free_setup_maps(map_data);
 	map_data->gw.screen_height  = SCREEN_H;
 	map_data->gw.screen_width = SCREEN_W;
+	check_texture_file_access(map_data);
 	get_player_starting_pos(map_data);
 	get_player_starting_angle(map_data);
 	adjust_starting_point_degree(map_data);
