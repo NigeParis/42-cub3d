@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 10:17:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:01:24 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,12 @@ typedef struct s_img_data
 	int		pixel_bits;
 	int		endian;
 	int		len;
-	
+	double 	float_pixel_x;
+	double	float_pixel_y;
+	double	vertical_y_step;
+	int	int_pixel_x;
+	int int_pixel_y;
 } t_img_data;
-
-
 
 typedef struct s_cub_data
 {
@@ -122,6 +124,7 @@ typedef struct s_cub_data
 	t_img_data		img_south;
 	t_img_data		img_east;
 	t_img_data		img_west;
+	t_img_data		used_img;
 	t_data			*map_data;
 	t_ray			current_ray;
 	t_player_cub	player_cub;
@@ -132,10 +135,6 @@ typedef struct s_cub_data
 	int 			map_width_in_tiles;
 	int 			map_height_in_tiles;
 }	t_cub_data;
-
-
-
-
 
 
 /* FUNCTIONS WHICH WILL POTENTIALLY BE USED

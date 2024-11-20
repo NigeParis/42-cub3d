@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_game_tools.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/20 10:54:48 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:25:42 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,22 +96,38 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 	if (wall_face == NORTH_IMG)
 	{
 		if ((cub_data)->img_north.img_ptr != NULL)
-			return (*img = &(cub_data)->img_north, 1);		
+		{
+			cub_data->used_img = cub_data->img_north;
+			return (*img = &(cub_data)->img_north, 1);
+		}
+					
 	}
 	else if (wall_face == SOUTH_IMG)
 	{
 		if ((cub_data)->img_south.img_ptr != NULL)
-			return (*img = &(cub_data)->img_south, 1);		
+		{
+			cub_data->used_img = cub_data->img_south;
+			return (*img = &(cub_data)->img_south, 1);	
+		}
+				
 	}
 	else if (wall_face == EAST_IMG)
 	{
 		if ((cub_data)->img_east.img_ptr != NULL)
-			return (*img = &(cub_data)->img_east, 1);		
+		{
+			cub_data->used_img = cub_data->img_east;
+			return (*img = &(cub_data)->img_east, 1);	
+		}
+				
 	}	
 	else if (wall_face == WEST_IMG)
 	{
 		if ((cub_data)->img_west.img_ptr != NULL)
-			return (*img = &(cub_data)->img_west, 1);		
+		{
+			cub_data->used_img = cub_data->img_south;
+			return (*img = &(cub_data)->img_west, 1);
+		}
+					
 	}
  return (0);
 }
