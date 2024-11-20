@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raydraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 11:04:15 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:35:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 			mlx_put_pixel(cub_data, strip_index, line_start_pixels);
 		tex_pos_y += pixel_vertical_step;
 		tex_y = (int) tex_pos_y;
-		printf("GET TEX Y %d\n", tex_y);
+		//printf("GET TEX Y %d\n", tex_y);
 		line_start_pixels++;
 	}
 	return (1);

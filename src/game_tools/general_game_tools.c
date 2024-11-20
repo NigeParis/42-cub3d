@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/20 10:54:48 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:39:25 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static int	set_img(t_cub_data *cub_data, t_img_data **img, int wall_face)
 		if ((cub_data)->img_west.img_ptr != NULL)
 			return (*img = &(cub_data)->img_west, 1);		
 	}
- return (0);
+ return (put_error("error: img file\n"), 0);
 }
 
 unsigned int get_img_color(t_cub_data *cub_data, int wall_face, int x, int y)

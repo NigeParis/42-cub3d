@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/19 15:37:24 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:55:26 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
 	map_data->colors.ceiling_color = create_color(map_data->colors.ceiling_r, \
 		map_data->colors.ceiling_g, map_data->colors.ceiling_b);
 	cub_data->img_north.filename = cub_data->map_data->textures.north_texture;
+	cub_data->img_south.filename = cub_data->map_data->textures.south_texture;
+	cub_data->img_east.filename = cub_data->map_data->textures.east_texture;
+	cub_data->img_west.filename = cub_data->map_data->textures.west_texture;
 }
 
 void	set_map_offsets(t_data *map_data)
