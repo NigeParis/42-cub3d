@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/22 16:00:58 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:31:30 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,40 @@ static void color_faces(t_cub_data *cub_data)
 		
 }
 
-// static double get_adjusted_length(t_cub_data *cub_data, int strip_index)
-// {
-// 	if (strip_index < 480)
-// 	{
-// 		return  	
-// 	}
-// 	else 
-// 	{
+static double adjust(t_cub_data *cub_data, int strip_index)
+{
+	double i;
+	double y;
+	(void)cub_data;
+	(void) strip_index;
+
+	i = 0.00001;
+	y = 0;
+	
+	if ((strip_index < 480) && cub_data->current_ray.side == 1)
+	{
+		return ((strip_index * i));
 		
-// 	}
-// }
+	}
+	else if (cub_data->current_ray.side == 1)
+	{
+		y = abs(strip_index - 959);
+		return ((y * i));
+	}
+	
+	if ((strip_index < 480) && cub_data->current_ray.side == 0)
+	{
+		return ((strip_index * i));
+		
+	}
+	else if (cub_data->current_ray.side == 1)
+	{
+		y = abs(strip_index - 959);
+		return ((y * i));
+	}
+	return (0);
+}
+
 
 
 static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_index)
@@ -116,7 +139,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 	if (cub_data->current_ray.side == 0)
 	{
 		
-		cub_data->used_img.float_pixel_x = (cub_data->player_cub.pos_y_double / cub_data->map_height_chars) - cub_data->current_ray.total_length_fisheye * sin(cub_data->current_ray.radian);
+		cub_data->used_img.float_pixel_x = (cub_data->player_cub.pos_y_double / cub_data->map_height_chars) - (cub_data->current_ray.total_length_fisheye + adjust(cub_data, strip_index)) * sin(cub_data->current_ray.radian);
 		
 		//printf("GET CURRENT Y VAL %f\n", cub_data->used_img.float_pixel_x);
 		if (strip_index == 959)
@@ -131,12 +154,9 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 			cub_data->used_img.int_pixel_x = (cub_data->used_img.img_width) - cub_data->used_img.int_pixel_x - 1;
 		
 	}
-	
-	
 	else if (cub_data->current_ray.side == 1)
 	{
-		
-		cub_data->used_img.float_pixel_x = (cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.total_length_fisheye * cos(cub_data->current_ray.radian);
+		cub_data->used_img.float_pixel_x = (cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + (cub_data->current_ray.total_length_fisheye + adjust(cub_data, strip_index)) * cos(cub_data->current_ray.radian);
 		
 		if (strip_index == 959)
 		{

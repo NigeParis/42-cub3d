@@ -131,9 +131,8 @@ void loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 void calculate_final_length_for_ray(t_cub_data *cub_data, int strip_index)
 {
 	(void)strip_index;
-	float angle_difference = cub_data->current_ray.radian - degree_to_radian(calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees) 
+	double angle_difference = cub_data->current_ray.radian - degree_to_radian(calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees) 
 	- cub_data->map_data->player_data.field_of_view / 2);
-	
 	
 	if (cub_data->current_ray.side == 0 )
 		
