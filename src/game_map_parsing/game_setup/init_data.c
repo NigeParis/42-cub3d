@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:37:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/21 16:37:05 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:23:27 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void	init_cub(t_data *map_data, t_cub_data *cub_data)
 
 	ft_bzero(&cub_data->current_ray, sizeof(cub_data->current_ray));
 	cub_data->current_ray.fov = CUB_FOV;
+
 }
 
 

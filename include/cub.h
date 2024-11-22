@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/22 13:07:01 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:24:12 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@
 # include <stdint.h>
 # include <fcntl.h>
 
-# define WALL_HEIGHT 250
-# define WALL_SMALL_LIMIT 5
+# define WALL_ADJUST 1.8
 # define CUB_TILESIZE 5
 # define RAY_LIMIT 2147483647
 # define SCREEN_H 500

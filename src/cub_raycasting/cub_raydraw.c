@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/22 13:16:38 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:25:08 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 	cub_data->used_img.int_pixel_y = 0;
 	cub_data->used_img.float_pixel_x = 0;
 	cub_data->used_img.float_pixel_y = 0;
+	cub_data->used_img.float_pixel_x = 0;
+
 	cub_data->used_img.vertical_y_step = 0;
 	
 	
@@ -195,7 +197,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_the_wall, int strip_index)
 {
 	int screenheight = SCREEN_H;
-	int lineheight = (int) (screenheight / distance_from_the_wall);
+	int lineheight = (int) (screenheight / distance_from_the_wall * WALL_ADJUST);
 	
 	//printf("GET LINEHEIGHT %d\n", lineheight);
 	int drawStart = (-lineheight / 2) + (screenheight / 2);
