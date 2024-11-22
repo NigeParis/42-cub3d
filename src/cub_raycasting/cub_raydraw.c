@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raydraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 14:40:05 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:16:38 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 		return;
 	bits = 8;
 	cub_data->map_data->form.dot_col = get_img_color(cub_data, cub_data->current_ray.wall_face, cub_data->used_img.int_pixel_x, cub_data->used_img.int_pixel_y);
-	//printf("GET Y INT PIXEL %d\n", cub_data->used_img.int_pix1l_y);
-	//printf("GET X INT PIXEL %d\n", cub_data->used_img.int_pixel_x);
+	//printf("GET Y INT PIXEL %d\n", cub_data->used_img.int_pixel_y);
+	
 	color_shift = cub_data->map_data->form.pixel_bits - bits;
 	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x *(cub_data->map_data->form.pixel_bits / bits));
 	
@@ -83,7 +83,7 @@ static void color_faces(t_cub_data *cub_data)
 }
 
 
-static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_index, int lineheight)
+static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_index)
 {
 	int line_start_pixels;
 	int line_stop_pixels;
@@ -93,39 +93,79 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 	line_stop_pixels = end;
 	color_faces(cub_data);
 	cub_data->used_img.int_pixel_x = 0;
-	cub_data->used_img.float_pixel_x = 0;
 	cub_data->used_img.int_pixel_y = 0;
+	cub_data->used_img.float_pixel_x = 0;
 	cub_data->used_img.float_pixel_y = 0;
 	cub_data->used_img.vertical_y_step = 0;
 	
+	
 	if (cub_data->current_ray.side == 0)
 	{
-		cub_data->used_img.float_pixel_x = cub_data->current_ray.y_val + (cub_data->current_ray.total_length * sin(cub_data->current_ray.radian));
-		cub_data->used_img.float_pixel_x -= floor(cub_data->used_img.float_pixel_x);
+		
+		cub_data->used_img.float_pixel_x = cub_data->current_ray.y_val_float - cub_data->current_ray.total_length_fisheye * sin(cub_data->current_ray.radian);
+		if (strip_index == 0)
+		{
+			printf("GET FLOAT PIXEL X STRIP INDEX 0 %f\n", cub_data->used_img.float_pixel_x);
+		}
+		if (strip_index == 959)
+		{
+			printf("GET FLOAT PIXEL X STRIP INDEX LAST %f\n", cub_data->used_img.float_pixel_x);
+		}
+		if (cub_data->used_img.float_pixel_x < 0)
+		{
+			//printf("GET RAY NUMBER %d\n", strip_index);
+			//printf("FLOAT PIXEL IS LESS THAN ZERO\n");
+		}
+		else 
+		{
+			//cub_data->used_img.float_pixel_x = 1;
+			//printf("FLOAT PIXEL IS GREATER OR EQUAL TO ZERO\n!\n");
+		}
+		
+		//printf("GET CURRENT Y VAL %f\n", cub_data->used_img.float_pixel_x);
+		if (strip_index == 959)
+		{
+			//printf("GET TOTAL OFFSET X SIDE 0 %f\n", cub_data->player_cub.total_offset_x);
+			//printf("GET CURRENT X VAL FLOAT SIDE 0 %f\n", cub_data->used_img.float_pixel_x);
+		}
+		if (cub_data->used_img.float_pixel_x >= 0)
+			cub_data->used_img.float_pixel_x -= floor(cub_data->used_img.float_pixel_x);	
+		
 		cub_data->used_img.int_pixel_x = (int) (cub_data->used_img.float_pixel_x * (cub_data->used_img.img_width));
 		/*
 		if (cos(cub_data->current_ray.radian) > 0)
 			cub_data->used_img.int_pixel_x = (cub_data->used_img.img_width) - cub_data->used_img.int_pixel_x - 1;
 		*/
-		//printf("GET CUB DATA PIXEL X %d\n", cub_data->used_img.int_pixel_x);
-		
 	}
 	
 	
 	else if (cub_data->current_ray.side == 1)
 	{
-		cub_data->used_img.float_pixel_x = cub_data->current_ray.x_val + (cub_data->current_ray.total_length * cos(cub_data->current_ray.radian));
+		
+		cub_data->used_img.float_pixel_x = cub_data->current_ray.x_val_float + cub_data->current_ray.total_length_fisheye * cos(cub_data->current_ray.radian);
+		
+		if (strip_index == 959)
+		{
+			//printf("GET TOTAL OFFSET X %f\n", cub_data->player_cub.total_offset_x);
+			//printf("GET CURRENT X VAL FLOAT SIDE 1 %f\n", cub_data->used_img.float_pixel_x);
+		}
+		//printf("GET CURRENT X VAL %f\n", cub_data->used_img.float_pixel_x);
 		cub_data->used_img.float_pixel_x -= floor(cub_data->used_img.float_pixel_x);
+		
 		cub_data->used_img.int_pixel_x = (int) (cub_data->used_img.float_pixel_x * (cub_data->used_img.img_width));
 		/*
 		if (sin(cub_data->current_ray.radian) > 0)
 			cub_data->used_img.int_pixel_x = (cub_data->used_img.img_width) - cub_data->used_img.int_pixel_x - 1;
 		*/
-		//printf("GET CUB DATA PIXEL X %d\n", cub_data->used_img.int_pixel_x);
-		
+		if (strip_index == 959)
+		{
+			
+			//printf("GET CURRENT X VAL SIDE 1 AND GET COS RADIAN  %d %f\n", cub_data->used_img.int_pixel_x, cos(cub_data->current_ray.radian));
+		}
+			
 	}
 	
-	cub_data->used_img.vertical_y_step = (double) (cub_data->used_img.img_height) / (lineheight);
+	cub_data->used_img.vertical_y_step = (double) (cub_data->used_img.img_height) / (end - start);
 	
 	while (line_start_pixels < line_stop_pixels)
 	{
@@ -133,7 +173,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 		
 		cub_data->used_img.float_pixel_y += cub_data->used_img.vertical_y_step ;
 		//printf("GET FLOAT Y VALUE IN LOOP %f\n", cub_data->used_img.float_pixel_y);
-		cub_data->used_img.int_pixel_y = (int) cub_data->used_img.float_pixel_y;
+		cub_data->used_img.int_pixel_y = (int) cub_data->used_img.float_pixel_y & (cub_data->used_img.img_height - 1);
 		
 		//printf("GET CUB DATA PIXEL Y IN LOOP! %d\n", cub_data->used_img.int_pixel_x);
 		//printf("GET Y VALUE IN LOOP %d\n", cub_data->used_img.int_pixel_y);
@@ -147,6 +187,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 		//printf("GET TEX Y %d\n", tex_y);
 		line_start_pixels++;
 	}
+	//printf("GET X VAL AFTER LOOP %d\n", cub_data->used_img.int_pixel_x);
 	
 	return (1);
 }
@@ -158,11 +199,18 @@ double calculate_wall_height_fisheye(t_cub_data *cub_data, double distance_from_
 	
 	//printf("GET LINEHEIGHT %d\n", lineheight);
 	int drawStart = (-lineheight / 2) + (screenheight / 2);
+	
+	/*
 	if (drawStart < 0)
 		drawStart = 0;
+	*/
+	
 	int drawEnd = (lineheight / 2) + (screenheight / 2); 
+	/*
 	if (drawEnd >= screenheight )
 		drawEnd = screenheight;
-	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index, lineheight);
+	*/
+	
+	draw_cub_wall(cub_data, drawStart, drawEnd, strip_index);
 	return (drawEnd - drawStart);
 }

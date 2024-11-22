@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 14:40:19 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/22 13:07:01 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@
 # define WEST_IMG 3
 
 
-
-
 typedef struct s_ray
 {
-	
 	int		strip_index;
 	double	fov;
 	double	angle;	
@@ -64,16 +61,16 @@ typedef struct s_ray
 	int		quadrant;
 	int		x_val;
 	int		y_val;
+	double x_val_float;
+	double y_val_float;
 	double 	delta_x;
 	double 	delta_y;
 	double 	side_dist_x;
 	double 	side_dist_y;
 	int		side;
 	int		wall_face;
-	
+	double total_length_fisheye;
 } t_ray;
-
-
 
 
 typedef struct s_player_cub
@@ -94,11 +91,11 @@ typedef struct s_player_cub
 	double	adjusted_player_angle;
 	double	player_angle;
 	double	player_radian;
+	double	total_offset_x;
+	double	total_offset_y;
 	int	player_moving;
-	
-	
-	char	*prev_direction;
-
+	int movement_x;
+	int movement_y;
 }	t_player_cub;
 
 

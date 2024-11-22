@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:04:40 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/20 13:23:35 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:47:31 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,14 @@ unsigned int get_img_color(t_cub_data *cub_data, int wall_face, int x, int y)
 
 	if (!set_img(cub_data, &img, wall_face))
 		return (put_error("error: setting image\n"), 0);
+	/*
 	if (x < 0 || x > img->img_width)
 		return (put_error("error: x overflow\n"), 0);
 	if (y < 0 || y > img->img_height)
 		return (put_error("error: y overflow\n"), 0);
+	*/
 	color  = (unsigned int) \
-		(img->img_data[y * (cub_data->img_north.len / 4) + x]); 	
+		(img->img_data[y * (cub_data->used_img.len / 4) + x]); 	
 	return (color);
 }
 

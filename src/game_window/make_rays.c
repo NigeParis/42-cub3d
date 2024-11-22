@@ -29,6 +29,8 @@ static int	is_wall_found(t_cub_data *cub_data, int strip_index)
 	(void)strip_index;
 	cub_data->current_ray.y_val = floor((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y);
 	cub_data->current_ray.x_val = floor((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x);
+	cub_data->current_ray.x_val_float = (cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x;
+	cub_data->current_ray.y_val_float = (cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y;
 
 	if (is_outside_map(cub_data))
 		return (-1);
@@ -134,9 +136,17 @@ void calculate_final_length_for_ray(t_cub_data *cub_data, int strip_index)
 	
 	
 	if (cub_data->current_ray.side == 0 )
+		
+	{
 		cub_data->current_ray.total_length = ((cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x) * cos(angle_difference));
+		cub_data->current_ray.total_length_fisheye = (cub_data->current_ray.side_dist_x - cub_data->current_ray.delta_x);
+	}
 	else 
+	{
 		cub_data->current_ray.total_length = ((cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y) * cos(angle_difference));
+		cub_data->current_ray.total_length_fisheye = (cub_data->current_ray.side_dist_y - cub_data->current_ray.delta_y);
+	}
+		
 
 }
 

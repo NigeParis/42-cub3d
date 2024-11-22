@@ -1,7 +1,7 @@
-        NO              textures/grey_stone.xpm   
-SO textures/purple_stone.xpm                 
-WE              textures/red_brick.xpm
- EA  textures/black_brick.xpm 
+        NO              textures/wall_1.xpm   
+SO textures/wall_2.xpm                
+WE              textures/wall_3.xpm
+ EA  textures/wall_4.xpm
 
       
 
@@ -17,13 +17,8 @@ C 153,     204,    255
 
 
 
-111111111
-101111111
-101100011
-10110N011
-101100011
-101111111
-101111111
-100000011
-100000001
-111111111
+111111111111111111
+111000000000011111
+1110000N0000011111
+111000000000011111
+111111111111111111

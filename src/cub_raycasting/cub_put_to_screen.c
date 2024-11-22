@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:06:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 10:12:18 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/22 09:26:59 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ static int cast_ray(t_cub_data *cub_data, double ray_angle, int strip_index)
 
 int put_all_current_ray(t_cub_data *cub_data)
 {
-	double fov_step = 0;
+	double fov_step = 0.0001;
 	int index = 0;
+
 	cub_data->current_ray.fov = cub_data->map_data->player_data.field_of_view;
 	cub_data->current_ray.angle = cub_data->current_ray.fov / SCREEN_W;
-
+	index = 0;
 	while (fov_step < cub_data->current_ray.fov)
 	{
 		cast_ray(cub_data, calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees + fov_step), index);
