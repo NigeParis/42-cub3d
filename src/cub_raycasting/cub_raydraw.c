@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_raydraw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/22 14:24:21 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:00:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 	if (x < 0 || y < 0)
 		return;
 	bits = 8;
-	cub_data->map_data->form.dot_col = get_img_color(cub_data, cub_data->current_ray.wall_face, cub_data->used_img.int_pixel_x, cub_data->used_img.int_pixel_y);
+	cub_data->current_ray.color_pix = get_img_color(cub_data, cub_data->current_ray.wall_face, cub_data->used_img.int_pixel_x, cub_data->used_img.int_pixel_y);
 	//printf("GET Y INT PIXEL %d\n", cub_data->used_img.int_pixel_y);
 	
 	color_shift = cub_data->map_data->form.pixel_bits - bits;
@@ -30,7 +30,7 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 	
 	while (color_shift >= 0)
 	{
-		*pixel = (cub_data->map_data->form.dot_col >>
+		*pixel = (cub_data->current_ray.color_pix >>
 				  (cub_data->map_data->form.pixel_bits - bits - color_shift)) &
 				 0xFF;
 		color_shift -= bits;
