@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/22 17:31:30 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/22 18:46:20 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static double adjust(t_cub_data *cub_data, int strip_index)
 	(void)cub_data;
 	(void) strip_index;
 
-	i = 0.00001;
+	i = 0.00002;
 	y = 0;
 	
 	if ((strip_index < 480) && cub_data->current_ray.side == 1)
@@ -156,7 +156,7 @@ static int draw_cub_wall(t_cub_data *cub_data, int start, int end, int strip_ind
 	}
 	else if (cub_data->current_ray.side == 1)
 	{
-		cub_data->used_img.float_pixel_x = (cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + (cub_data->current_ray.total_length_fisheye + adjust(cub_data, strip_index)) * cos(cub_data->current_ray.radian);
+		cub_data->used_img.float_pixel_x = (cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + (cub_data->current_ray.total_length_fisheye - adjust(cub_data, strip_index)) * cos(cub_data->current_ray.radian);
 		
 		if (strip_index == 959)
 		{
