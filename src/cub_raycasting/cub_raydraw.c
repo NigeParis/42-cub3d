@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/23 08:33:11 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/23 16:53:38 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,22 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 
 static void color_faces(t_cub_data *cub_data)
 {
-	int north_face;
-	int south_face;
-	int east_face;
-	int west_face;
+	// int north_face;
+	// int south_face;
+	// int east_face;
+	// int west_face;
 
-	north_face = 999222; 
-	south_face = 63456;
-	east_face = 25;
-	west_face = 222;
+	// north_face = 999222; 
+	// south_face = 63456;
+	// east_face = 25;
+	// west_face = 222;
 	if ((cub_data->current_ray.side == 0) \
 	&& (cub_data->current_ray.quadrant == 1 \
 	|| cub_data->current_ray.quadrant == 4))
 	{
 		cub_data->used_img = cub_data->img_east;
 		cub_data->current_ray.wall_face = EAST_IMG;
-		cub_data->map_data->form.dot_col = east_face;
+		//cub_data->map_data->form.dot_col = east_face;
 	}		
 	else if ((cub_data->current_ray.side == 0) \
 	&& (cub_data->current_ray.quadrant == 2 \
@@ -64,20 +64,20 @@ static void color_faces(t_cub_data *cub_data)
 	{
 		cub_data->used_img = cub_data->img_west;
 		cub_data->current_ray.wall_face = WEST_IMG;
-		cub_data->map_data->form.dot_col = west_face;
+		//cub_data->map_data->form.dot_col = west_face;
 	}
 	else if ((cub_data->current_ray.quadrant == 1 \
 	|| cub_data->current_ray.quadrant == 2) )
 	{
 		cub_data->used_img = cub_data->img_north;
 		cub_data->current_ray.wall_face = NORTH_IMG;
-		cub_data->map_data->form.dot_col = north_face;
+		//cub_data->map_data->form.dot_col = north_face;
 	}
 	else
 	{
 		cub_data->used_img = cub_data->img_south;
 		cub_data->current_ray.wall_face = SOUTH_IMG;
-		cub_data->map_data->form.dot_col = south_face;
+		//cub_data->map_data->form.dot_col = south_face;
 	}
 		
 }
