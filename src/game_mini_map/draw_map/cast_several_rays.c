@@ -21,17 +21,19 @@ int	put_line_call(t_data *map_data)
 	double	offset;
 	double	field_of_view;
 	double	angle_radian;
-	double  calibrate_needle;
+	const int	calibrate_needle = -10;
+	const int	calibrate_right_ray = 25;
 
 	
-	calibrate_needle = -10;
 	i = -(map_data->player_data.field_of_view / 3) + calibrate_needle;
-	field_of_view = (map_data->player_data.field_of_view  * (M_PI / 180));
+	field_of_view = ((map_data->player_data.field_of_view)  * (M_PI / 180));
 	angle_radian =  (map_data->player_data.player_degrees * (M_PI / 180));
 	
 	
 	while ( i < (map_data->player_data.field_of_view + calibrate_needle))
 	{
+		if (i > 0)
+			i = calibrate_right_ray;
 		if ((angle_radian) - (field_of_view) > 0)
 			put_line(map_data, (i));
 		else
