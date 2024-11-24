@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:50:35 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/23 16:53:38 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/23 19:45:39 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void mlx_put_pixel(t_cub_data *cub_data, int x, int y)
 	
 	color_shift = cub_data->map_data->form.pixel_bits - bits;
 	pixel = cub_data->map_data->form.addr + (y * cub_data->map_data->form.len + x *(cub_data->map_data->form.pixel_bits / bits));
+	if (cub_data->current_ray.color_pix == 0)
+		return ;
 	
 	while (color_shift >= 0)
 	{
