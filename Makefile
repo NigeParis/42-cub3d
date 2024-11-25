@@ -134,10 +134,12 @@ libfclean:
 
 clean: libclean
 	@echo "CLEAN all .o files .......\n"
+	@make -C ./libft/ clean > /dev/null
 	@rm -rf $(OBJ_DIR)
 
 fclean:clean libfclean	
 	@echo "FCLEAN all .o et .a files .......\n"
+	@make -C ./libft/ fclean > /dev/null
 	@rm -f $(NAME) > /dev/null
 
 re: fclean all

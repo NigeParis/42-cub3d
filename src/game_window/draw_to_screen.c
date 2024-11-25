@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_to_screen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:41:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 15:28:12 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:59:08 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	put_minimap_to_screen(t_cub_data *cub_data)
 
 int	draw_to_screen(t_cub_data *cub_data)
 {
+	static int i;
+
 	get_start_pos_cub(cub_data);
 	cub_data->map_data->lock_zoom = 1;
 	if (!(cub_data)->map_data->minimap_show)
@@ -35,6 +37,12 @@ int	draw_to_screen(t_cub_data *cub_data)
 	draw_background(cub_data->map_data);
 	put_all_current_ray(cub_data);
 	put_minimap_to_screen(cub_data);
+	i++;
+	if (i == 25)
+	{
+		cub_data->player_cub.frame = i;
+		i = 0;	
+	}
 	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, \
 	cub_data->map_data->gw.mlx_window,
 		cub_data->map_data->form.mlx_img, 0, 0);
