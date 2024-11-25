@@ -6,17 +6,32 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 17:57:35 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:03:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+
+// int check_env(char *env[])
+// {
+// 	if (ft_strncmp(*env))
+// 		return (0);
+// 	return (1);
+// }
+
+
 
 int	main(int argc, char *argv[])
 {
 	t_data			map_data;
 	t_cub_data		cub_data;
 
+	// dprintf(STDERR_FILENO, "env %s\n", *env);
+
+	// if (!check_env(env))
+	// 	return (put_error("exit: missing env vartiables"),EXIT_FAILURE);
+	
 	setup_game(argc, argv, &map_data, &cub_data);
 	if (!map_data.valid_map)
 	{

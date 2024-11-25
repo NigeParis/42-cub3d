@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_put_to_screen.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:06:19 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/23 19:40:13 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/25 10:25:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	calculate_angle_by_ray(t_cub_data *cub_data)
 		half_rays[i] = 0;
 		angle_steps = atan(ray_step * i);
 		last_steps = atan(ray_step * (i - 1));	
-		
+		 
 		angle_steps = radian_to_degree(angle_steps);
 		last_steps = radian_to_degree(last_steps);
 
