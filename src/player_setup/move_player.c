@@ -6,7 +6,7 @@
 /*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 22:01:34 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/25 22:16:53 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ int	mouse_move(int x, int y, t_cub_data *cub_data)
 	degree_to_radian(cub_data->player_cub.player_angle);
 	cub_data->player_cub.player_moving = \
 	get_player_moving(cub_data->player_cub.player_radian);
-	cub_data->map_data->gw.fr_keypressed_flag = 0;
-	cub_data->map_data->gw.fl_keypressed_flag = 0;
+	//cub_data->map_data->gw.fr_keypressed_flag = 0;
+	//cub_data->map_data->gw.fl_keypressed_flag = 0;
 	cub_data->map_data->player_data.rotation_speed = 0.6;
 	if (cub_data->player_cub.frame == 25)
 	{
 		mlx_mouse_move(cub_data->map_data->gw.mlx_ptr, \
 		cub_data->map_data->gw.mlx_window, SCREEN_W / 2, y);
-		cub_data->map_data->player_data.rotation_speed = (double)x * 0.0012;
+		cub_data->map_data->player_data.rotation_speed = (double)x * 0.00012;
 		cub_data->map_data->gw.fr_keypressed_flag = 0;	
 		cub_data->map_data->gw.fl_keypressed_flag = 0;
 		cub_data->player_cub.frame = 0;
 	}
-	if (x > ((SCREEN_W / 2) + 2))
+	if (x > ((SCREEN_W / 2) + 5))
 		cub_data->map_data->gw.fr_keypressed_flag = 1;
-	if (x < ((SCREEN_W / 2) - 2))
+	if (x < ((SCREEN_W / 2) - 5))
 		cub_data->map_data->gw.fl_keypressed_flag = 1;
 	return (0);
 }
