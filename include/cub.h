@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 14:11:24 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:50:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,12 @@ void	game_mlx_hooks_and_loop(t_cub_data *cub_data);
 void	init_cub(t_data *map_data, t_cub_data *cub_data);
 int		put_minimap_to_screen(t_cub_data *cub_data);
 int		draw_to_screen(t_cub_data *cub_data);
+void	calculate_final_length_for_ray(t_cub_data *cub_data);
+void	setup_build_rays_side_dist_x(t_cub_data *cub_data, int strip_index);
+void	setup_build_rays_side_dist_y(t_cub_data *cub_data, int strip_index);
+void	setup_build_rays_delta(t_cub_data *cub_data);
+void	init_build_rays_data(t_cub_data *cub_data, int strip_index);
+
 
 
 

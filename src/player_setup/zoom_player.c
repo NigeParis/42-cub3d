@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:50:48 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/04 09:38:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:28:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	key_zoom_in(t_data *map_data)
 		map_data->lock_zoom = 0;
 		map_data->gw.l_keypressed_flag = 0;
 	}
-	
 }
 
 void	key_zoom_out(t_data *map_data)

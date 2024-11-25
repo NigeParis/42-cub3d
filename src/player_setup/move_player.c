@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 14:09:20 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:31:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-
-
-
-
 int mouse_move(int x, int y, t_cub_data *cub_data)
 {
 	(void) y;
 
-	cub_data->player_cub.player_angle = calibrate_angle_for_radian(cub_data, cub_data->map_data->player_data.player_degrees) - (cub_data->map_data->player_data.field_of_view / 2);
-	cub_data->player_cub.player_radian = degree_to_radian(cub_data->player_cub.player_angle);
-	cub_data->player_cub.player_moving = get_player_moving(cub_data->player_cub.player_radian);
-
+	cub_data->player_cub.player_angle = calibrate_angle_for_radian(cub_data, \
+	cub_data->map_data->player_data.player_degrees) - \
+	(cub_data->map_data->player_data.field_of_view / 2);
+	cub_data->player_cub.player_radian = \
+	degree_to_radian(cub_data->player_cub.player_angle);
+	cub_data->player_cub.player_moving = \
+	get_player_moving(cub_data->player_cub.player_radian);
 	cub_data->map_data->gw.fr_keypressed_flag = 0;
 	cub_data->map_data->gw.fl_keypressed_flag = 0;
 	cub_data->map_data->player_data.rotation_speed = 0.6;
