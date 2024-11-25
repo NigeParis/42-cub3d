@@ -6,19 +6,16 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:21:44 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:34:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-#include "libft.h"
-#include "ft_printf.h"
 
-
-static int check_file_name(char *map_name, int map_name_len)
+static int	check_file_name(char *map_name, int map_name_len)
 {
 	int		dot_index;
-	
+
 	dot_index = map_name_len;
 	while (dot_index > 0)
 	{
@@ -28,7 +25,6 @@ static int check_file_name(char *map_name, int map_name_len)
 	}
 	if (dot_index > 0)
 		dot_index++;
-	
 	if (map_name[dot_index] == '.')
 	{
 		put_error("Error: invalid map name\n");
@@ -36,7 +32,6 @@ static int check_file_name(char *map_name, int map_name_len)
 	}
 	return (1);
 }
-
 
 int	check_map_has_valid_extension(char *map_name)
 {
