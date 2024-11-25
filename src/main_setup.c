@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 13:03:29 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:00:04 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ int	destroy(t_cub_data *cub_data)
 {	
 	if (cub_data->img_north.img_ptr)
 		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_north.img_ptr);
+	if (cub_data->img_south.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_south.img_ptr);
+	if (cub_data->img_east.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_east.img_ptr);
+	if (cub_data->img_west.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_west.img_ptr);
 	if (cub_data->map_data->form.mlx_img)
 		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->form.mlx_img);
 	if (cub_data->map_data->gw.mlx_window)

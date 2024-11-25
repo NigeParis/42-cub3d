@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 10:03:58 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 10:56:56 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@
 
 
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[], char *envp[])
 {
 	t_data			map_data;
 	t_cub_data		cub_data;
 
-	// dprintf(STDERR_FILENO, "env %s\n", *env);
-
-	// if (!check_env(env))
-	// 	return (put_error("exit: missing env vartiables"),EXIT_FAILURE);
+	if (!envp[0])
+		return (put_error("exit: missing env variables"),EXIT_FAILURE);
 	
 	setup_game(argc, argv, &map_data, &cub_data);
 	if (!map_data.valid_map)
@@ -46,6 +44,7 @@ int	main(int argc, char *argv[])
 	}
 	game_mlx_hooks_and_loop(&cub_data);
 	free_map_at_end(&map_data);
+	destroy(&cub_data);
 	return (EXIT_SUCCESS);
 }
 
