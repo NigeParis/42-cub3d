@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 13:51:59 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:09:20 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	move_player(t_cub_data *cub_data)
 	move_key_south_cub_map(cub_data);
 	move_key_west_cub_map(cub_data);
 	move_key_east_cub_map(cub_data);
-	key_zoom_in(cub_data->map_data);
-	key_zoom_out(cub_data->map_data);
 }
 
 void	get_player_speed(t_data *map_data)
