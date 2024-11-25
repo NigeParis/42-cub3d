@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/19 12:09:06 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:51:59 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,18 @@ void	move_player(t_cub_data *cub_data)
 	move_key_east_cub_map(cub_data);
 	key_zoom_in(cub_data->map_data);
 	key_zoom_out(cub_data->map_data);
+}
+
+void	get_player_speed(t_data *map_data)
+{
+
+	double	percentage;
+	double		speed;
+
+	speed = 1;
+	percentage = 0.65;
+	speed = (double)map_data->char_pixel_height * percentage;
+	
+
+	map_data->player_data.speed = speed;
 }

@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 11:00:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:01:46 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	check_texture_file_access(t_data *map_data)
 {
-	if (access(map_data->textures.north_texture, R_OK))	
+	if (access(map_data->textures.north_texture, R_OK))
 	{
 		put_error("error: north xpm not found\n");
 		map_data->valid_map = 0;
 		return ;
 	}
-	if (access(map_data->textures.south_texture, R_OK))	
+	if (access(map_data->textures.south_texture, R_OK))
 	{
 		put_error("error: south xpm not found\n");
 		map_data->valid_map = 0;
 		return ;
 	}
-	if (access(map_data->textures.east_texture, R_OK))	
+	if (access(map_data->textures.east_texture, R_OK))
 	{
 		put_error("error: east xpm not found\n");
 		map_data->valid_map = 0;
 		return ;
 	}
-	if (access(map_data->textures.west_texture, R_OK))	
+	if (access(map_data->textures.west_texture, R_OK))
 	{
 		put_error("error: west xpm not found\n");
 		map_data->valid_map = 0;
@@ -41,12 +41,12 @@ void	check_texture_file_access(t_data *map_data)
 	return ;
 }
 
-//debug_print_setup_maps(&map_data); //to use //->free_setup_maps
-void	setup_game(int argc, char *argv[], t_data *map_data, t_cub_data *cub_data)
+void	setup_game(int argc, char *argv[], t_data *map_data, \
+t_cub_data *cub_data)
 {
 	get_map_check_and_setup(argc, argv, map_data, cub_data);
 	free_setup_maps(map_data);
-	map_data->gw.screen_height  = SCREEN_H;
+	map_data->gw.screen_height = SCREEN_H;
 	map_data->gw.screen_width = SCREEN_W;
 	check_texture_file_access(map_data);
 	get_player_starting_pos(map_data);
@@ -68,50 +68,35 @@ void	set_map_offsets(t_data *map_data)
 {
 	map_data->minimap_offset_x = ((SCREEN_W / 6) \
 	- map_data->player_data.x_pos) - (map_data->char_pixel_width / 2);
-	map_data->minimap_offset_y = (( SCREEN_H / 6) \
+	map_data->minimap_offset_y = ((SCREEN_H / 6) \
 	- map_data->player_data.y_pos) - (map_data->char_pixel_height / 2);
 }
 
-void	get_player_speed(t_data *map_data)
+void	destroy_texture_images(t_cub_data *cub_data)
 {
-
-	double	percentage;
-	double		speed;
-
-	speed = 1;
-	percentage = 0.65;
-	speed = (double)map_data->char_pixel_height * percentage;
-	
-
-	map_data->player_data.speed = speed;
-}
-
-void	adjust_starting_point_degree(t_data *map_data)
-{
-	if (map_data->player_data.player_direction == 'N')
-			map_data->player_data.player_degrees = 270;
-	if (map_data->player_data.player_direction == 'S')
-			map_data->player_data.player_degrees = 90;
-	if (map_data->player_data.player_direction == 'E')
-			map_data->player_data.player_degrees = 0;
-	if (map_data->player_data.player_direction == 'W')
-		map_data->player_data.player_degrees = 180;
+	if (cub_data->img_north.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, \
+		cub_data->img_north.img_ptr);
+	if (cub_data->img_south.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, \
+		cub_data->img_south.img_ptr);
+	if (cub_data->img_east.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, \
+		cub_data->img_east.img_ptr);
+	if (cub_data->img_west.img_ptr)
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, \
+		cub_data->img_west.img_ptr);
 }
 
 int	destroy(t_cub_data *cub_data)
 {	
-	if (cub_data->img_north.img_ptr)
-		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_north.img_ptr);
-	if (cub_data->img_south.img_ptr)
-		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_south.img_ptr);
-	if (cub_data->img_east.img_ptr)
-		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_east.img_ptr);
-	if (cub_data->img_west.img_ptr)
-		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->img_west.img_ptr);
+	destroy_texture_images(cub_data);
 	if (cub_data->map_data->form.mlx_img)
-		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->form.mlx_img);
+		mlx_destroy_image(cub_data->map_data->gw.mlx_ptr, \
+		cub_data->map_data->form.mlx_img);
 	if (cub_data->map_data->gw.mlx_window)
-		mlx_destroy_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window);
+		mlx_destroy_window(cub_data->map_data->gw.mlx_ptr, \
+		cub_data->map_data->gw.mlx_window);
 	if (cub_data->map_data->gw.mlx_ptr)
 		mlx_destroy_display(cub_data->map_data->gw.mlx_ptr);
 	free_map_at_end(cub_data->map_data);

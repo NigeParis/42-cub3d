@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 12:56:26 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/29 16:25:30 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:01:57 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,16 @@ void	get_player_starting_pos(t_data *map_data)
 		i[COL] = 0;
 		i[ROW]++;
 	}
+}
+
+void	adjust_starting_point_degree(t_data *map_data)
+{
+	if (map_data->player_data.player_direction == 'N')
+			map_data->player_data.player_degrees = 270;
+	if (map_data->player_data.player_direction == 'S')
+			map_data->player_data.player_degrees = 90;
+	if (map_data->player_data.player_direction == 'E')
+			map_data->player_data.player_degrees = 0;
+	if (map_data->player_data.player_direction == 'W')
+		map_data->player_data.player_degrees = 180;
 }
