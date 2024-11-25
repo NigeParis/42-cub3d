@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 17:43:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:44:33 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ typedef struct s_cell_data
 
 }	t_cell_data;
 
-
-
 typedef struct s_draw_forms
 {
 	void	*mlx_img;
 	char	*addr;
-	int 	pixel_bits;
+	int		pixel_bits;
 	int		endian;
 	int		start_ht;
 	int		start_wt;
@@ -46,10 +44,8 @@ typedef struct s_draw_forms
 	int		len;
 	int		col;
 	int		dot_col;
-		
+
 }	t_draw_forms;
-
-
 
 typedef struct s_game_window
 {
@@ -67,10 +63,8 @@ typedef struct s_game_window
 	int		l_keypressed_flag;
 	int		k_keypressed_flag;
 	int		esc_keypressed_flag;
-	
+
 }	t_game_window;
-
-
 
 typedef struct s_colors
 {
@@ -80,9 +74,9 @@ typedef struct s_colors
 	int	ceiling_r;
 	int	ceiling_b;
 	int	ceiling_g;
-	int map_rays;
-	int floor_color;
-	int ceiling_color;
+	int	map_rays;
+	int	floor_color;
+	int	ceiling_color;
 
 }	t_colors;
 
@@ -96,7 +90,6 @@ typedef struct s_texture_data
 	char	*ceiling_texture;
 
 }	t_texture_data;
-
 
 typedef struct s_player_data
 {
@@ -130,8 +123,8 @@ typedef struct s_data
 	int				fd;
 	int				minimap_scale;
 	int				minimap_show;
-	float				minimap_offset_x;
-	float				minimap_offset_y;
+	float			minimap_offset_x;
+	float			minimap_offset_y;
 	int				minimap_x_pixel;
 	int				minimap_y_pixel;
 	int				lock_zoom;
@@ -143,13 +136,11 @@ typedef struct s_data
 	t_cell_data		cell_data;
 	t_game_window	gw;
 	t_draw_forms	form;
-    
+
 }	t_data;
 
 // debug
 void	printraw_map(t_data *map_data);
-
-
 int		init_data(t_data *map_data, char *argv[]);
 int		checkfile_exists(char *file, char *type);
 int		check_map_has_valid_extension(char *map_name);
@@ -173,7 +164,6 @@ int		find_zeros_for_floodfill(t_data *map_data);
 int		count_dots(t_data *map_data);
 int		count_zeros(t_data *map_data);
 int		resize_map(t_data *map_data);
-
 void	is_another_line(t_data *map_data, int *i, int *end);
 int		check_all_textures_data_properly_filled(t_data *map_data);
 int		check_if_map_texture(char *line, t_data *map_data);
@@ -219,10 +209,5 @@ void	free_setup_maps(t_data *map_data);
 int		create_color(int color_1, int color_2, int color_3);
 int		calculate_line_height(t_data *map_data);
 int		calculate_col_width(t_data *map_data);
-
-
-
-
-
 
 #endif
