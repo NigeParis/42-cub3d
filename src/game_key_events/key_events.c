@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:44:37 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/19 15:33:48 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:51:48 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	handle_special_keypress(int *keysym, t_cub_data *cub_data)
 {
 	if (*keysym == XK_Escape)
 	{
-		mlx_destroy_window(cub_data->map_data->gw.mlx_ptr, cub_data->map_data->gw.mlx_window);
+		mlx_destroy_window(cub_data->map_data->gw.mlx_ptr,
+			cub_data->map_data->gw.mlx_window);
 		cub_data->map_data->gw.mlx_window = NULL;
 		destroy(cub_data);
 	}

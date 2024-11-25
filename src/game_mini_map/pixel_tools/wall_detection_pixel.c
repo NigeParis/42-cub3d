@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_detection_pixel.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 22:51:15 by nige42            #+#    #+#             */
-/*   Updated: 2024/11/18 09:38:53 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:33:01 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
 	if (x > (int)(SCREEN_W / map_data->minimap_scale) \
-	|| y > (int)( SCREEN_H / map_data->minimap_scale))
+	|| y > (int)(SCREEN_H / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);

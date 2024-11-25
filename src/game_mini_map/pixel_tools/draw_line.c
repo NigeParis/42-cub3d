@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 10:56:40 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 17:47:37 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:33:25 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	draw_rectangle(t_data *map_data)
 	return (1);
 }
 
-
 int	draw_background(t_data *map_data)
 {
 	int	height_position;
@@ -76,7 +75,6 @@ int	draw_background(t_data *map_data)
 	{	
 		if (height_position > (SCREEN_H / 2))
 			map_data->form.col = map_data->colors.floor_color;
-
 		width_position = 0;
 		while (width_position < SCREEN_W)
 		{

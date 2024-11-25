@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 13:19:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/09 09:25:35 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:50:15 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+/*
 void	print_square_map(t_data *map_data)
 {
 	int	index;
@@ -74,3 +75,4 @@ void	print_info(t_data *map_data)
 	dprintf(STDERR_FILENO, "map max_screen width = '%d'\n", SCREEN_W);
 	dprintf(STDERR_FILENO, "map max_screen_height = '%d'\n", SCREEN_H);
 }
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map_setup.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:30:35 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/18 09:51:44 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:14:27 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	within_drawing_limits(t_data *map_data, int x, int y)
 {
 	if (x > (int)(SCREEN_W / map_data->minimap_scale)
-	|| y > (int)( SCREEN_H / map_data->minimap_scale))
+	|| y > (int)(SCREEN_H / map_data->minimap_scale))
 		return (0);
 	if (x < 0 || y < 0)
 		return (0);
@@ -93,9 +93,8 @@ void	draw_map(t_cub_data *cub_data)
 	offset_y = cub_data->map_data->minimap_offset_y;
 	while (cub_data->map_data->square_map[i])
 	{
-		draw_lines((t_data*)cub_data->map_data, &offset_x, \
+		draw_lines((t_data *)cub_data->map_data, &offset_x, \
 		&offset_y, cub_data->map_data->square_map[i]);
 		i++;
 	}
 }
-  

@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:04:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 07:47:57 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:50:25 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-
-
-
-
-
+/*
 void debug_print_minimap_info(t_data *map_data)
 {
 
@@ -105,3 +101,4 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data)
 
 		
 }
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:18:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/20 12:44:07 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:31:12 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_data *map_data, t_cub_data *cub_data)
 	count_dots(map_data);
 	add_zeros_from_dots(map_data);
 	init_cub(map_data, cub_data);
-	
 }
 
 int	map_start_index(char *raw_map)
