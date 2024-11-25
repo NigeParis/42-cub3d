@@ -135,7 +135,6 @@ void	loop_on_steps_until_wall_found(t_cub_data *cub_data, int strip_index)
 	while (!is_wall_found(cub_data))
 	{
 
-		
 		if (cub_data->current_ray.side_dist_x < cub_data->current_ray.side_dist_y)
 		{
 			cub_data->current_ray.side_dist_x += cub_data->current_ray.delta_x;

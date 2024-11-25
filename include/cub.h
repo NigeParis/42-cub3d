@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 13:47:26 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:11:24 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,17 +226,19 @@ int mouse_move(int x, int y, t_cub_data *cub_data);
 int	get_player_moving(double angle_radian);
 
 
-void treat_quadrant_one_moving_east(t_cub_data *cub_data);
-void treat_quadrant_two_moving_east(t_cub_data *cub_data);
-void treat_quadrant_three_moving_east(t_cub_data *cub_data);
-void treat_quadrant_four_moving_east(t_cub_data *cub_data);
-void init_move_east_key_values(t_cub_data *cub_data);
-void treat_quadrant_one_moving_west(t_cub_data *cub_data);
-void treat_quadrant_two_moving_west(t_cub_data *cub_data);
-void treat_quadrant_three_moving_west(t_cub_data *cub_data);
-void treat_quadrant_four_moving_west(t_cub_data *cub_data);
-void init_move_west_key_values(t_cub_data *cub_data);
-void adjust_map_positions_player_cub(t_cub_data *cub_data);
+void	treat_quadrant_one_moving_east(t_cub_data *cub_data);
+void	treat_quadrant_two_moving_east(t_cub_data *cub_data);
+void	treat_quadrant_three_moving_east(t_cub_data *cub_data);
+void	treat_quadrant_four_moving_east(t_cub_data *cub_data);
+void	init_move_east_key_values(t_cub_data *cub_data);
+void	treat_quadrant_one_moving_west(t_cub_data *cub_data);
+void	treat_quadrant_two_moving_west(t_cub_data *cub_data);
+void	treat_quadrant_three_moving_west(t_cub_data *cub_data);
+void	treat_quadrant_four_moving_west(t_cub_data *cub_data);
+void	init_move_west_key_values(t_cub_data *cub_data);
+void	adjust_map_positions_player_cub(t_cub_data *cub_data);
+void	init_move_north_values(t_cub_data *cub_data);
+void	init_move_south_values(t_cub_data *cub_data);
 
 // wall collisions
 int	treat_wall_collision_quadrant_one_north(t_cub_data *cub_data, double next_y, double next_x);
