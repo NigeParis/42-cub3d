@@ -73,7 +73,7 @@ SRC= main.c  \
 	cub_view_setup/cub_init.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
 	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c cub_raycasting/cub_draw_textures_utils.c \
-	cub_image/put_north_image.c
+	cub_image/put_north_image.c game_window/draw_to_screen.c
 
 
 LIBFT= ./libft/libft.a

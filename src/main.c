@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 10:56:56 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:35:31 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (!envp[0])
 		return (put_error("exit: missing env variables"),EXIT_FAILURE);
-	
 	setup_game(argc, argv, &map_data, &cub_data);
 	if (!map_data.valid_map)
 	{
