@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:09:03 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:25:52 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,19 +141,6 @@ typedef struct s_cub_data
 	int 			map_height_in_tiles;
 }	t_cub_data;
 
-
-/* FUNCTIONS WHICH WILL POTENTIALLY BE USED
-void	create_north_texture(t_data *map_data, char *line);
-void	create_south_texture(t_data *map_data, char *line);
-void	create_west_texture(t_data *map_data, char *line);
-void	create_east_texture(t_data *map_data, char *line);
-void	create_ceiling_texture(t_data *map_data, char *line);
-void	create_floor_texture(t_data *map_data, char *line);
-void	build_map_textures(char *line, t_data *map_data, int i);
-int		line_indicates_map_start(char *line, t_data *map_data);
-char	**ft_realloc_map(char *line, char **tmp, int *ptri);
-void	build_map(char *file, t_data *map_data);
-*/
 
 //DEDUG - functions
 void	printmap(t_data *map_data);

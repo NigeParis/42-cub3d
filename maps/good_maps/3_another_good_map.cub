@@ -1,8 +1,8 @@
-NO textures/grey_stone.xpm
-SO textures/purple_stone.xpm
+NO textures/jail_1.xpm
+SO textures/maif_1.xpm
          
-WE textures/red_brick.xpm
-EA textures/black_brick.xpm
+WE textures/wall_3.xpm
+EA textures/wall_4.xpm
 
              
 
