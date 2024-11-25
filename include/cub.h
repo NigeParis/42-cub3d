@@ -6,7 +6,7 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 13:41:50 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:47:26 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,9 @@ int		handle_keyrelease(int keysym, t_cub_data *cub_data);
 int		destroy(t_cub_data *cub_data);
 void	game_mlx_hooks_and_loop(t_cub_data *cub_data);
 void	init_cub(t_data *map_data, t_cub_data *cub_data);
+int		put_minimap_to_screen(t_cub_data *cub_data);
+int		draw_to_screen(t_cub_data *cub_data);
+
 
 
 //cub#D functions

@@ -6,13 +6,11 @@
 /*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 13:07:41 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:47:57 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-#include "libft.h"
-#include "ft_printf.h"
 
 static int	check_file_name(char *map_name, int map_name_len)
 {
