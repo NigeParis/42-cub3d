@@ -29,8 +29,6 @@ static int	is_wall_found(t_cub_data *cub_data, int strip_index)
 	(void)strip_index;
 	cub_data->current_ray.y_val = floor((cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y);
 	cub_data->current_ray.x_val = floor((cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x);
-	cub_data->current_ray.x_val_float = (cub_data->player_cub.pos_x_double / cub_data->map_width_chars) + cub_data->current_ray.direction_step_x;
-	cub_data->current_ray.y_val_float = (cub_data->player_cub.pos_y_double / cub_data->map_height_chars) + cub_data->current_ray.direction_step_y;
 
 	if (is_outside_map(cub_data))
 		return (-1);

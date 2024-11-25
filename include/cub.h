@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/23 15:30:44 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/25 12:09:03 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ typedef struct s_ray
 	int		quadrant;
 	int		x_val;
 	int		y_val;
-	double x_val_float;
-	double y_val_float;
 	double 	delta_x;
 	double 	delta_y;
 	double 	side_dist_x;
@@ -71,8 +69,15 @@ typedef struct s_ray
 	double total_length_fisheye;
 	int		color_pix;
 	double ray_angle[960];
-
 } t_ray;
+
+typedef struct s_build_ray 
+{
+	
+	
+} t_build_ray;
+
+
 
 
 typedef struct s_player_cub
@@ -159,7 +164,10 @@ void 	debug_print_data_for_3D_view(t_cub_data *cub_data);
 void	debug_first_mid_last_rays(t_cub_data *cub_data, int strip_index);
 
 
-
+// textures
+void	calculate_x_pixels_x_side_hit(t_cub_data *cub_data);
+void	calculate_x_pixels_y_side_hit(t_cub_data *cub_data);
+void	put_img_textures_vertical(t_cub_data *cub_data, int *line_start_pixels_ptr, int line_stop_pixels, int strip_index);
 
 
 //player setup
