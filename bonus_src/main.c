@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/26 10:00:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:48:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_cub_data		cub_data;
 
 	if (!envp[0])
-		return (put_error("exit: missing env variables"), EXIT_FAILURE);
+		return (put_error("exit: missing env variables\n"), EXIT_FAILURE);
 	ft_bzero(&map_data, sizeof(map_data));
 	ft_bzero(&cub_data, sizeof(cub_data));
 	setup_game(argc, argv, &map_data, &cub_data);
