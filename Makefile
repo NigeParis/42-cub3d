@@ -22,15 +22,12 @@ BONUS_SRCS=$(addprefix $(BONUS_DIR), $(BONUS))
 BONUS_OBJ=$(BONUS:.c=.o)
 BONUS_OBJS=$(addprefix $(BONUS_OBJ_DIR), $(BONUS_OBJ))
 
-
-
-
 CC=cc
 ###############################################################################
 ## SOURCES 
 
 SRC_DIR = src/
-BONUS_DIR = bonus/
+BONUS_DIR = bonus_src/
 OBJ_DIR = build/
 BONUS_OBJ_DIR = bonus_build/
 MINI_MAP = game_mini_map/
@@ -115,10 +112,6 @@ BONUS = main.c  \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
 	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c cub_raycasting/cub_draw_textures_utils.c \
 	game_window/draw_to_screen.c game_window/build_rays.c
-
-
-
-
 
 
 LIBFT= ./libft/libft.a
