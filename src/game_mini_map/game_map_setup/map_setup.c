@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_setup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:18:57 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 13:31:12 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:44:10 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_data *map_data, t_cub_data *cub_data)
 	check_map_properly_configured(map_data);
 	is_valid_map(map_data);
 	trim_texture_data(map_data);
-	resize_map(map_data);
+	if (!resize_map(map_data))
+		exit(1);
 	count_zeros(map_data);
 	find_zeros_for_floodfill(map_data);
 	count_dots(map_data);

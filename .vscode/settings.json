@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"cub.h": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"libft.h": "c"
 	}
 }

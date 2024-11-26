@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:29:01 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/02/07 15:08:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:33:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*get_line_trim(char *buffer)
 	while (buffer[len] && buffer[len] != '\n')
 		len++;
 	trimmed_read = malloc(ft_strlen(buffer) + 2 * sizeof(char));
+	if (!trimmed_read)
+		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 	{
 		trimmed_read[i] = buffer[i];

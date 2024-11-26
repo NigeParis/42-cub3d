@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 08:28:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/30 10:14:54 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:43:19 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,11 @@ void	in_map_line_error(t_data *map_data)
 
 	end = ft_strlen(map_data->raw_map);
 	map_raw = ft_strdup(map_data->raw_map);
+	if (!map_raw)
+	{
+		map_data->valid_map = 0;
+		return ;
+	}
 	index = map_start_index(map_raw);
 	if (map_data->raw_map[end -1] != '1')
 	{

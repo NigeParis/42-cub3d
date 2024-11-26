@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:07:12 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:15:22 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:11:32 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	check_map_properly_configured(t_data *map_data)
 	int	i;
 
 	i = 0;
+	if (!map_data->map) {
+		map_data->valid_map = 0;
+		return (0);
+	}
 	if (!check_map_has_sufficient_lines(map_data))
 		map_data->valid_map = 0;
 	if (!map_has_only_valid_chars(map_data))

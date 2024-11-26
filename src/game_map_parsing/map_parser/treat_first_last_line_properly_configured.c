@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_first_last_line_properly_configured.c        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:09:45 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:19:41 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:09:50 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	check_first_last_line_only_walls_spaces(t_data *map_data)
 
 	i = 0;
 	j = 0;
+	if (!map_data->map)
+		return (0);
 	while (map_data->map[i])
 	{
 		if (i == 0)

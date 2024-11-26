@@ -5,99 +5,137 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 13:55:07 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/15 17:37:19 by nrobinso         ###   ########.fr       */
+/*   Created: 2023/11/13 09:38:53 by rchourak          #+#    #+#             */
+/*   Updated: 2024/11/25 16:48:13 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
+#include <unistd.h>
 
-static size_t	ft_nb_words(char const *str, char sep);
-static size_t	ft_nb_chars(const char *s, char sep);
-static char		*ft_alloc_free(char **str, size_t nb, size_t next);
-static char		**ft_spliter(char const *s, char c, size_t next, size_t i);
-
-char	**ft_split(char const *s, char c)
+static void	ft_custom_strcpy(char *dest, char *src, char c)
 {
-	char	**str;
-	size_t	i;
-	size_t	next;
+	int	i;
+	int	j;
 
-	next = 0;
 	i = 0;
-	if (!s)
-		return (NULL);
-	str = ft_spliter(s, c, next, i);
-	return (str);
+	j = 0;
+	while (src[i] != '\0')
+	{
+		if (src[i] != c)
+		{
+			dest[j] = src[i];
+			j++;
+		}
+		i++;
+	}
+	dest[j] = '\0';
 }
 
-char	**ft_spliter(char const *s, char c, size_t next, size_t i)
+static char	*clean_str(char *str, char c)
 {
-	char	**str;
+	int		i;
+	char	*new_str;
+	int		new_str_malloc_slots;
 
-	str = (char **) ft_calloc((ft_nb_words(s, c) + 1), sizeof(char **));
+	i = 0;
+	new_str_malloc_slots = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != c)
+			new_str_malloc_slots++;
+		i++;
+	}	
+	new_str = (char *) malloc(new_str_malloc_slots + 1 * sizeof(char));
+	if (!new_str)
+		return (NULL);
+	ft_custom_strcpy(new_str, str, c);
+	free(str);
+	return (new_str);
+}
+
+static int	tcaz(char const *str, int *ptri, int *ptrj, char c)
+{	
+	int		i;
+	size_t	count_char;
+
+	if (*ptri == 0 && str[(*ptri)])
+	{
+		while (str[(*ptri)] == c)
+		{
+			(*ptri)++;
+			(*ptrj)++;
+		}
+	}	
+	if (*ptri != 0 && *ptri - *ptrj <= 0)
+		return (0);
+	i = 0;
+	count_char = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			count_char++;
+		i++;
+	}
+	if (count_char == ft_strlen(str))
+		return (0);
+	return (1);
+}
+
+static void	build_split_arr(char const *str, char c, char **split_arr)
+{
+	int	i;
+	int	j;
+	int	split_arr_pos;
+
+	i = 0;
+	j = 0;
+	split_arr_pos = 0;
+	tcaz(str, &i, &j, c);
+	while (str[i] != '\0')
+	{	
+		if (str[i] == c && str[i + 1] != c && tcaz(str, &i, &j, c))
+		{	
+			split_arr[split_arr_pos] = clean_str(ft_substr(str, j, i - j), c);
+			split_arr_pos++;
+			j = i + 1;
+		}
+		i++;
+	}
+	if (ft_strlen(str) > 0 && str[i - 1] != c)
+	{	
+		split_arr[split_arr_pos] = clean_str(ft_substr(str, j, i - j), c);
+		split_arr_pos++;
+	}
+	split_arr[split_arr_pos] = NULL;
+}
+
+char	**ft_split(char const *str, char c)
+{
+	char	**split_arr;
+	int		split_arr_malloc_slots;
+	int		i;
+	int		j;
+
 	if (!str)
 		return (NULL);
-	while (s[i] != '\0')
-	{
-		while (s[i] == c)
-			i++;
-		if ((ft_nb_chars(&s[i], c)) > 0)
-		{
-			str[next] = ft_alloc_free(str, ((ft_nb_chars(&s[i], c))), next);
-			if (!str[next])
-				return (ft_free_double_tab(str), NULL);
-			ft_memcpy(str[next], &s[i], (ft_nb_chars(&s[i], c)));
-			i = i + (ft_nb_chars(&s[i], c));
-			next++;
-		}
-	}
-	str[next] = NULL;
-	return (str);
-}
-
-static size_t	ft_nb_words(char const *str, char sep)
-{
-	size_t	i;
-	size_t	count;
-
 	i = 0;
-	count = 0;
-	while (str && str[i] != '\0')
+	j = 0;
+	split_arr_malloc_slots = 0;
+	tcaz(str, &i, &j, c);
+	while (str[i] != '\0')
 	{
-		if ((str[i] != sep) && ((str[i + 1] == sep) || str[i + 1] == '\0'))
-			count++;
+		if (str[i] == c && str [i + 1] != c)
+			split_arr_malloc_slots++;
 		i++;
 	}
-	return (count);
-}
-
-static size_t	ft_nb_chars( const char *s, char sep)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] && s[i] != sep)
-		i++;
-	return (i);
-}
-
-static char	*ft_alloc_free(char **str, size_t nb, size_t next)
-{
-	char		**word;
-	size_t		i;
-
-	i = 0;
-	word = str;
-	word[next] = ft_calloc((nb + 1), sizeof(char));
-	if (!word[next])
-	{
-		while (i < next + 1)
-		{
-			free(word[i]);
-			i++;
-		}
+	if (ft_strlen(str) > 0 && str[i - 1] != c)
+		split_arr_malloc_slots++;
+	split_arr = (char **) malloc((split_arr_malloc_slots + 1) * sizeof(char *));
+	if (!split_arr)
 		return (NULL);
-	}
-	return (word[next]);
+	build_split_arr(str, c, split_arr);
+	return (split_arr);
 }

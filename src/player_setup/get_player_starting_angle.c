@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:00:53 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/18 16:07:45 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:27:53 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	get_player_starting_angle(t_data *map_data)
 	int	i;
 
 	i = 0;
+	if (!map_data->square_map)
+		return ;
 	while (map_data->square_map[i])
 	{
 		if (player_degree_found(map_data, map_data->square_map[i]))

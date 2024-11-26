@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:40:03 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/28 09:02:25 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:44:52 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static int	resize_memory_for_map(t_data *map_data)
 	int	i;
 
 	i = 0;
-	size_map(map_data);
+	if (!size_map(map_data))
+		return (0);
 	map_data->square_map = (char **)malloc (sizeof(char *) * \
 		(map_data->minimap_max_height + 1));
 	if (!map_data->square_map)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_map_values_from_raw.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 12:43:28 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:01:16 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int *ptrj, int *start_point_ptr)
 	*start_point_ptr = -1;
 }
 
-void	build_final_map_data(char **split_raw_data, t_data *map_data)
+void		build_final_map_data(char **split_raw_data, t_data *map_data)
 {
 	int	i;
 	int	j;
@@ -88,6 +88,8 @@ void	build_final_map_data(char **split_raw_data, t_data *map_data)
 		i++;
 	}
 	map_data->map = malloc((i + 1) * sizeof(char *));
+	if (!map_data->map)
+		return ;
 	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
 	if (!map_data->map || !check_all_textures_data_properly_filled(map_data))
 		return ;

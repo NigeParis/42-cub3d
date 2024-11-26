@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:25:39 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 14:57:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:00:36 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char *argv[], char *envp[])
 		return (put_error("exit: invalid texture"), EXIT_FAILURE);
 	}
 	map_data.gw.mlx_ptr = mlx_init();
+	if (!map_data.gw.mlx_ptr)
+		return (put_error("exit mlx init"), EXIT_FAILURE);
 	if (!open_game_window(&cub_data, &map_data))
 	{
 		destroy(&cub_data);

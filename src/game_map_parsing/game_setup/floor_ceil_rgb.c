@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:50 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/17 14:53:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:07:34 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	split_ceiling_colors(t_data *map_data)
 	char	**split_ceiling_rgb;
 
 	if (ft_strlen(map_data->textures.ceiling_texture) > 4)
-		split_ceiling_rgb = \
-		ft_split((map_data->textures.ceiling_texture + 2), ',');
+		if (!map_data->textures.ceiling_texture)
+			split_ceiling_rgb = NULL;
+		else
+			split_ceiling_rgb = ft_split((map_data->textures.ceiling_texture + 2), ',');
 	else
 		split_ceiling_rgb = NULL;
 	if (!check_rgb_data_properly_configured(split_ceiling_rgb))
@@ -59,14 +61,16 @@ void	split_floor_colors(t_data *map_data)
 {
 	char	**split_floor_rgb;
 
-	if (ft_strlen(map_data->textures.ceiling_texture) > 4)
-		split_floor_rgb = ft_split((map_data->textures.floor_texture + 2), ',');
-	else
+	if (ft_strlen(map_data->textures.ceiling_texture) > 4) {
+		if (!map_data->textures.floor_texture)
+			split_floor_rgb = NULL;
+		else
+			split_floor_rgb = ft_split((map_data->textures.floor_texture + 2), ',');
+	} else 
 		split_floor_rgb = NULL;
 	if (!check_rgb_data_properly_configured(split_floor_rgb))
 	{
 		map_data->valid_map = 0;
-		ft_free_double_tab(split_floor_rgb);
 		return ;
 	}
 	map_data->colors.floor_r = ft_atoi(split_floor_rgb[0]);

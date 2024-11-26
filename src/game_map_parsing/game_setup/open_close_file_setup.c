@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:20:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/10/18 15:21:04 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:28:47 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	open_map_config(t_data *map_data)
 	if (!map_data->fd || map_data->fd == -1)
 	{
 		put_error("Error : file ");
-		put_error(*map_data->map);
 		put_error("\n");
 		close(map_data->fd);
 		map_data->fd = -1;

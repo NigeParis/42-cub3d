@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_to_screen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:41:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 21:59:08 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:46:49 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	put_minimap_to_screen(t_cub_data *cub_data)
 
 int	draw_to_screen(t_cub_data *cub_data)
 {
-	static int i;
+	static int	i;
 
 	get_start_pos_cub(cub_data);
 	cub_data->map_data->lock_zoom = 1;
@@ -41,7 +41,7 @@ int	draw_to_screen(t_cub_data *cub_data)
 	if (i == 25)
 	{
 		cub_data->player_cub.frame = i;
-		i = 0;	
+		i = 0;
 	}
 	mlx_put_image_to_window(cub_data->map_data->gw.mlx_ptr, \
 	cub_data->map_data->gw.mlx_window,

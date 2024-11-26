@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_has_valid_extension.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:05 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 13:47:57 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 09:56:12 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	check_map_has_valid_extension(char *map_name)
 	if (!check_file_name(map_name, strlen_map))
 		exit (0);
 	map_extension = ft_substr(map_name, (strlen_map -4), strlen_map);
+	if (!map_extension)
+		return (0);
 	if (ft_strncmp(map_extension, ".cub", 4))
 	{
 		put_error("Error: invalid map extension\n");

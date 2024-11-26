@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_spaces_closed_off_by_walls.c             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:50:20 by rchourak          #+#    #+#             */
-/*   Updated: 2024/10/17 12:00:49 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:10:37 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	check_map_spaces_closed_off(t_data *map_data)
 	int	j;
 
 	i = 0;
+	if (!map_data->map)
+		return (0);
 	while (map_data->map[i])
 	{
 		if (!check_space_closed_top(map_data, map_data->map[i], i)
