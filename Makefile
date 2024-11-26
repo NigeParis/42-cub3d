@@ -130,7 +130,6 @@ libclean:
 libfclean:
 	@make -C ./ft_printf/ fclean > /dev/null
 	@make -C ./libft/ fclean > /dev/null
-	@make -C ./mlx/ clean 2> /dev/null > /dev/null
 
 clean: libclean
 	@echo "CLEAN all .o files .......\n"
