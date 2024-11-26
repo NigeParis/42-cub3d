@@ -49,69 +49,141 @@ CUB_CAST = cub_raycasting/
 PLAYER_MOVEMENT = player_movement/
 
 SRC = main.c  \
-	game_map_parsing/game_parsing_tools/get_next_line.c game_map_parsing/game_parsing_tools/get_next_line_utils.c \
+	main_setup.c \
+	game_window/open_window.c \
+	game_window/make_rays.c \
+	game_window/draw_to_screen.c \
+	game_window/build_rays.c \
 	game_errors/display_error.c \
 	game_cleanup/free_exit.c \
-	game_map_parsing/game_setup/init_data.c game_map_parsing/game_setup/check_map_has_valid_extension.c \
-	game_map_parsing/game_setup/get_line.c game_map_parsing/game_setup/build_map_values_from_raw.c \
-	game_map_parsing/game_setup/create_directional_textures.c game_map_parsing/game_setup/build_map_textures.c \
-	game_map_parsing/game_setup/build_final_map_data.c game_map_parsing/game_setup/create_floor_ceiling_textures.c \
-	game_map_parsing/game_setup/floor_ceil_rgb.c game_map_parsing/game_setup/open_close_file_setup.c \
-	game_map_parsing/game_setup/trim_textures_data.c game_mini_map/game_map_setup/map_setup.c \
-	game_mini_map/game_map_setup/floodfill_map_check.c game_mini_map/game_map_setup/map_rezise_tool.c \
+	game_map_parsing/game_parsing_tools/get_next_line.c \
+	game_map_parsing/game_parsing_tools/get_next_line_utils.c \
+	game_map_parsing/game_setup/init_data.c \
+	game_map_parsing/game_setup/check_map_has_valid_extension.c \
+	game_map_parsing/game_setup/get_line.c \
+	game_map_parsing/game_setup/build_map_values_from_raw.c \
+	game_map_parsing/game_setup/create_directional_textures.c \
+	game_map_parsing/game_setup/build_map_textures.c \
+	game_map_parsing/game_setup/build_final_map_data.c \
+	game_map_parsing/game_setup/create_floor_ceiling_textures.c \
+	game_map_parsing/game_setup/floor_ceil_rgb.c \
+	game_map_parsing/game_setup/open_close_file_setup.c \
+	game_map_parsing/game_setup/trim_textures_data.c \
+	game_mini_map/game_map_setup/map_setup.c \
+	game_mini_map/game_map_setup/floodfill_map_check.c \
+	game_mini_map/game_map_setup/map_rezise_tool.c \
 	game_mini_map/game_map_setup/map_tools.c \
-	player_setup/player_starting_pos.c player_setup/get_player_starting_angle.c \
-	game_map_parsing/map_parser/parse_map.c game_map_parsing/map_parser/treat_first_last_line_properly_configured.c \
-	game_map_parsing/map_parser/check_map_char_validity.c game_map_parsing/map_parser/check_map_lines.c \
-	game_map_parsing/map_parser/check_zero_char_properly_closed.c game_map_parsing/map_parser/check_map_spaces_closed_off_by_walls.c \
+	game_mini_map/pixel_tools/draw_line.c \
+	game_mini_map/pixel_tools/draw_circle.c \
+	game_mini_map/pixel_tools/check_pixel.c\
+	game_map_parsing/map_parser/parse_map.c \
+	game_map_parsing/map_parser/treat_first_last_line_properly_configured.c \
+	game_map_parsing/map_parser/check_map_char_validity.c \
+	game_map_parsing/map_parser/check_map_lines.c \
+	game_map_parsing/map_parser/check_zero_char_properly_closed.c \
+	game_map_parsing/map_parser/check_map_spaces_closed_off_by_walls.c \
 	game_map_parsing/map_parser/horizontal_map_check.c \
-	game_mini_map/pixel_tools/draw_line.c game_mini_map/pixel_tools/draw_circle.c game_mini_map/pixel_tools/check_pixel.c\
-	game_window/open_window.c game_mini_map/draw_map/draw_2d_map.c game_mini_map/draw_map/draw_map_setup.c \
-	game_window/make_rays.c \
-	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
-	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_radar.c \
-	player_setup/move_player.c player_setup/rotate_player.c player_movement/move_player_cub.c player_movement/player_wall_collisions.c \
-	game_tools/general_game_tools.c game_tools/convert_angle_radian.c game_tools/calibrate_angle_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
-	player_movement/treat_movement_north.c player_movement/treat_movement_south.c player_movement/treat_movement_east.c player_movement/treat_movement_west.c \
-	player_movement/get_player_moving.c player_movement/treat_wall_collision_north.c player_movement/treat_wall_collision_south.c \
-	player_movement/treat_wall_collision_west.c player_movement/treat_wall_collision_east.c \
-	cub_view_setup/cub_init.c \
+	game_tools/general_game_tools.c \
+	game_tools/convert_angle_radian.c \
+	game_tools/calibrate_angle_tools.c \
+	game_mini_map/draw_map/draw_2d_map.c \
+	game_mini_map/draw_map/draw_map_setup.c \
+	game_mini_map/draw_map/draw_lines_setup.c  \
+	game_mini_map/pixel_tools/wall_detection_pixel.c \
+	game_mini_map/draw_map/cast_several_rays.c \
+	game_mini_map/pixel_tools/draw_radar.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
-	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c cub_raycasting/cub_draw_textures_utils.c \
-	game_window/draw_to_screen.c game_window/build_rays.c
+	game_mini_map/pixel_tools/calculate_distance.c \
+	game_key_events/key_events.c \
+	player_setup/move_player.c \
+	player_setup/get_player_starting_angle.c \
+	player_setup/player_starting_pos.c \
+	player_setup/rotate_player.c \
+	player_setup/zoom_player.c \
+	player_movement/move_player_cub.c \
+	player_movement/player_wall_collisions.c \
+	player_movement/treat_movement_north.c \
+	player_movement/treat_movement_south.c \
+	player_movement/treat_movement_east.c \
+	player_movement/treat_movement_west.c \
+	player_movement/get_player_moving.c \
+	player_movement/treat_wall_collision_north.c \
+	player_movement/treat_wall_collision_south.c \
+	player_movement/treat_wall_collision_west.c \
+	player_movement/treat_wall_collision_east.c \
+	cub_view_setup/cub_init.c \
+	cub_raycasting/cub_raydraw.c \
+	cub_raycasting/cub_put_to_screen.c \
+	cub_raycasting/cub_draw_textures_utils.c
 
 
 BONUS = main.c  \
-	game_map_parsing/game_parsing_tools/get_next_line.c game_map_parsing/game_parsing_tools/get_next_line_utils.c \
+	main_setup.c \
+	game_window/open_window.c \
+	game_window/make_rays.c \
+	game_window/draw_to_screen.c \
+	game_window/build_rays.c \
 	game_errors/display_error.c \
 	game_cleanup/free_exit.c \
-	game_map_parsing/game_setup/init_data.c game_map_parsing/game_setup/check_map_has_valid_extension.c \
-	game_map_parsing/game_setup/get_line.c game_map_parsing/game_setup/build_map_values_from_raw.c \
-	game_map_parsing/game_setup/create_directional_textures.c game_map_parsing/game_setup/build_map_textures.c \
-	game_map_parsing/game_setup/build_final_map_data.c game_map_parsing/game_setup/create_floor_ceiling_textures.c \
-	game_map_parsing/game_setup/floor_ceil_rgb.c game_map_parsing/game_setup/open_close_file_setup.c \
-	game_map_parsing/game_setup/trim_textures_data.c game_mini_map/game_map_setup/map_setup.c \
-	game_mini_map/game_map_setup/floodfill_map_check.c game_mini_map/game_map_setup/map_rezise_tool.c \
+	game_map_parsing/game_parsing_tools/get_next_line.c \
+	game_map_parsing/game_parsing_tools/get_next_line_utils.c \
+	game_map_parsing/game_setup/init_data.c \
+	game_map_parsing/game_setup/check_map_has_valid_extension.c \
+	game_map_parsing/game_setup/get_line.c \
+	game_map_parsing/game_setup/build_map_values_from_raw.c \
+	game_map_parsing/game_setup/create_directional_textures.c \
+	game_map_parsing/game_setup/build_map_textures.c \
+	game_map_parsing/game_setup/build_final_map_data.c \
+	game_map_parsing/game_setup/create_floor_ceiling_textures.c \
+	game_map_parsing/game_setup/floor_ceil_rgb.c \
+	game_map_parsing/game_setup/open_close_file_setup.c \
+	game_map_parsing/game_setup/trim_textures_data.c \
+	game_mini_map/game_map_setup/map_setup.c \
+	game_mini_map/game_map_setup/floodfill_map_check.c \
+	game_mini_map/game_map_setup/map_rezise_tool.c \
 	game_mini_map/game_map_setup/map_tools.c \
-	player_setup/player_starting_pos.c player_setup/get_player_starting_angle.c \
-	game_map_parsing/map_parser/parse_map.c game_map_parsing/map_parser/treat_first_last_line_properly_configured.c \
-	game_map_parsing/map_parser/check_map_char_validity.c game_map_parsing/map_parser/check_map_lines.c \
-	game_map_parsing/map_parser/check_zero_char_properly_closed.c game_map_parsing/map_parser/check_map_spaces_closed_off_by_walls.c \
+	game_mini_map/pixel_tools/draw_line.c \
+	game_mini_map/pixel_tools/draw_circle.c \
+	game_mini_map/pixel_tools/check_pixel.c\
+	game_map_parsing/map_parser/parse_map.c \
+	game_map_parsing/map_parser/treat_first_last_line_properly_configured.c \
+	game_map_parsing/map_parser/check_map_char_validity.c \
+	game_map_parsing/map_parser/check_map_lines.c \
+	game_map_parsing/map_parser/check_zero_char_properly_closed.c \
+	game_map_parsing/map_parser/check_map_spaces_closed_off_by_walls.c \
 	game_map_parsing/map_parser/horizontal_map_check.c \
-	game_mini_map/pixel_tools/draw_line.c game_mini_map/pixel_tools/draw_circle.c game_mini_map/pixel_tools/check_pixel.c\
-	game_window/open_window.c game_mini_map/draw_map/draw_2d_map.c game_mini_map/draw_map/draw_map_setup.c \
-	game_window/make_rays.c \
-	game_mini_map/draw_map/draw_lines_setup.c  game_mini_map/pixel_tools/wall_detection_pixel.c \
-	game_mini_map/draw_map/cast_several_rays.c game_mini_map/pixel_tools/draw_radar.c \
-	player_setup/move_player.c player_setup/rotate_player.c player_movement/move_player_cub.c player_movement/player_wall_collisions.c \
-	game_tools/general_game_tools.c game_tools/convert_angle_radian.c game_tools/calibrate_angle_tools.c main_setup.c game_key_events/key_events.c player_setup/zoom_player.c \
-	player_movement/treat_movement_north.c player_movement/treat_movement_south.c player_movement/treat_movement_east.c player_movement/treat_movement_west.c \
-	player_movement/get_player_moving.c player_movement/treat_wall_collision_north.c player_movement/treat_wall_collision_south.c \
-	player_movement/treat_wall_collision_west.c player_movement/treat_wall_collision_east.c \
-	cub_view_setup/cub_init.c \
+	game_tools/general_game_tools.c \
+	game_tools/convert_angle_radian.c \
+	game_tools/calibrate_angle_tools.c \
+	game_mini_map/draw_map/draw_2d_map.c \
+	game_mini_map/draw_map/draw_map_setup.c \
+	game_mini_map/draw_map/draw_lines_setup.c  \
+	game_mini_map/pixel_tools/wall_detection_pixel.c \
+	game_mini_map/draw_map/cast_several_rays.c \
+	game_mini_map/pixel_tools/draw_radar.c \
 	game_mini_map/pixel_tools/draw_radar_setup.c \
-	game_mini_map/pixel_tools/calculate_distance.c cub_raycasting/cub_raydraw.c cub_raycasting/cub_put_to_screen.c cub_raycasting/cub_draw_textures_utils.c \
-	game_window/draw_to_screen.c game_window/build_rays.c
+	game_mini_map/pixel_tools/calculate_distance.c \
+	game_key_events/key_events.c \
+	player_setup/move_player.c \
+	player_setup/get_player_starting_angle.c \
+	player_setup/player_starting_pos.c \
+	player_setup/rotate_player.c \
+	player_setup/zoom_player.c \
+	player_movement/move_player_cub.c \
+	player_movement/player_wall_collisions.c \
+	player_movement/treat_movement_north.c \
+	player_movement/treat_movement_south.c \
+	player_movement/treat_movement_east.c \
+	player_movement/treat_movement_west.c \
+	player_movement/get_player_moving.c \
+	player_movement/treat_wall_collision_north.c \
+	player_movement/treat_wall_collision_south.c \
+	player_movement/treat_wall_collision_west.c \
+	player_movement/treat_wall_collision_east.c \
+	cub_view_setup/cub_init.c \
+	cub_raycasting/cub_raydraw.c \
+	cub_raycasting/cub_put_to_screen.c \
+	cub_raycasting/cub_draw_textures_utils.c
 
 
 LIBFT= ./libft/libft.a
