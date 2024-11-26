@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:32:36 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 14:01:46 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:45:07 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	check_texture_file_access(t_data *map_data)
 {
-	if (access(map_data->textures.north_texture, R_OK))
+	if (checkfile_exists(map_data->textures.north_texture, "texture"))
 	{
 		put_error("error: north xpm not found\n");
 		map_data->valid_map = 0;
 		return ;
 	}
-	if (access(map_data->textures.south_texture, R_OK))
+	if (checkfile_exists(map_data->textures.south_texture, "texture"))
 	{
 		put_error("error: south xpm not found\n");
 		map_data->valid_map = 0;
 		return ;
 	}
-	if (access(map_data->textures.east_texture, R_OK))
+	if (checkfile_exists(map_data->textures.east_texture, "texture"))
 	{
 		put_error("error: east xpm not found\n");
 		map_data->valid_map = 0;
 		return ;
 	}
-	if (access(map_data->textures.west_texture, R_OK))
+	if (checkfile_exists(map_data->textures.west_texture, "texture"))
 	{
 		put_error("error: west xpm not found\n");
 		map_data->valid_map = 0;
