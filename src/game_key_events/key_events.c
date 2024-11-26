@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:44:37 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 12:51:48 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:20:45 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ int	handle_keypress(int keysym, t_cub_data *cub_data)
 		cub_data->map_data->gw.l_keypressed_flag = 1;
 	if (keysym == XK_k)
 		cub_data->map_data->gw.k_keypressed_flag = 1;
-	if (keysym == XK_m)
-	{
-		if (cub_data->map_data->minimap_show == 1)
-			cub_data->map_data->minimap_show = 0;
-		else
-			cub_data->map_data->minimap_show = 1;
-	}
 	handle_special_keypress(&keysym, cub_data);
 	return (0);
 }

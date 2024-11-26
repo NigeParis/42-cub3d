@@ -1,7 +1,7 @@
-        NO              textures/grey_stone.xpm   
-SO textures/purple_stone.xpm                 
-WE              textures/red_brick.xpm
- EA  textures/black_brick.xpm 
+        NO              textures/wall_0.xpm   
+SO textures/wall_4.xpm                 
+WE              textures/wall_2.xpm
+ EA  textures/wall_3.xpm 
 
       
 

@@ -99,7 +99,6 @@ SRC = main.c  \
 	player_setup/get_player_starting_angle.c \
 	player_setup/player_starting_pos.c \
 	player_setup/rotate_player.c \
-	player_setup/zoom_player.c \
 	player_movement/move_player_cub.c \
 	player_movement/player_wall_collisions.c \
 	player_movement/treat_movement_north.c \
@@ -168,7 +167,6 @@ BONUS = main.c  \
 	player_setup/get_player_starting_angle.c \
 	player_setup/player_starting_pos.c \
 	player_setup/rotate_player.c \
-	player_setup/zoom_player.c \
 	player_movement/move_player_cub.c \
 	player_movement/player_wall_collisions.c \
 	player_movement/treat_movement_north.c \
