@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_floor_ceiling_textures.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:59:31 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/26 10:50:49 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:26:31 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	create_floor_texture(t_data *map_data, char *line)
 	if (!floor_texture_str)
 	{
 		map_data->valid_map = 0;
-	
 		return ;
 	}
 	if (map_data->textures.floor_texture == NULL)

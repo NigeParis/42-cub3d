@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   build_map_values_from_raw.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/26 11:01:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:26:11 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-void	free_dbl_ptr(char **dbl_ptr)
-{
-	int		i;
-
-	i = 0;
-	while (dbl_ptr[i])
-	{
-		free(dbl_ptr[i]);
-		i++;
-	}
-	free(dbl_ptr);
-}
 
 int	check_if_map_texture(char *line, t_data *map_data)
 {
@@ -66,7 +53,16 @@ int *ptrj, int *start_point_ptr)
 	*start_point_ptr = -1;
 }
 
-void		build_final_map_data(char **split_raw_data, t_data *map_data)
+static int	build_map_data_map(t_data *map_data, int i)
+{
+	map_data->map = malloc((i + 1) * sizeof(char *));
+	if (!map_data->map)
+		return (0);
+	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
+	return (1);
+}
+
+void	build_final_map_data(char **split_raw_data, t_data *map_data)
 {
 	int	i;
 	int	j;
@@ -88,9 +84,8 @@ void		build_final_map_data(char **split_raw_data, t_data *map_data)
 		i++;
 	}
 	map_data->map = malloc((i + 1) * sizeof(char *));
-	if (!map_data->map)
+	if (!build_map_data_map(map_data, i))
 		return ;
-	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
 	if (!map_data->map || !check_all_textures_data_properly_filled(map_data))
 		return ;
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_spaces_closed_off_by_walls.c             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:50:20 by rchourak          #+#    #+#             */
-/*   Updated: 2024/11/26 11:10:37 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:35:24 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ int i, int *ptrj)
 	return (1);
 }
 
+void	reset_ptrs(int *ptri, int *ptrj)
+{
+	*ptri = 0;
+	*ptrj = 0;
+}
+
 int	check_map_spaces_closed_off(t_data *map_data)
 {
 	int	i;
@@ -100,8 +106,7 @@ int	check_map_spaces_closed_off(t_data *map_data)
 			return (0);
 		i++;
 	}
-	i = 0;
-	j = 0;
+	reset_ptrs(&i, &j);
 	while (map_data->map[i])
 	{
 		while (map_data->map[i][j])

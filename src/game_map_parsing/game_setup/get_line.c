@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 12:48:38 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/26 10:39:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:30:53 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	get_map_one_line(t_data *map_data)
 
 	line_table = NULL;
 	line = get_next_line(map_data->fd);
-
 	while (line)
 	{
 		if (!line)
@@ -65,18 +64,9 @@ void	get_map_one_line(t_data *map_data)
 		else
 		{
 			tmp_line = ft_strjoin(line_table, line);
-			// if (!tmp_line) {
-			// 		ft_free_tableau(line);
-			// 		return ;
-			// }
-			
 			line_table = tmp_line;
 			ft_free_tableau(line);
 			line = get_next_line(map_data->fd);
-			// if (!line) {
-			// 	free(tmp_line);
-			// 	return ;
-			// }
 		}
 	}
 	map_data->raw_map = ft_strdup(line_table);
