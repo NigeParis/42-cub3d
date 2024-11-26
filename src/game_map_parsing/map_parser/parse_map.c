@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 19:07:12 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/26 11:11:32 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:27:54 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	check_map_properly_configured(t_data *map_data)
 	int	i;
 
 	i = 0;
-	if (!map_data->map) {
+	if (!map_data->map)
+	{
 		map_data->valid_map = 0;
 		return (0);
 	}

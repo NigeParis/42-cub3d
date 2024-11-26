@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:14:34 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 16:44:33 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:26:22 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ int		check_zero_char_properly_closed_floor_ceiling(int *current_pos_ptr, \
 		t_data *map_data, int j, int i);
 int		check_space_closed_top(t_data *map_data, char *line, int i);
 int		check_space_closed_bottom(t_data *map_data, char *line, int i);
-int		check_spaces_properly_closed_horizontally(t_data *map_data, int i, \
+int		check_spaces_are_closed_horizontally(t_data *map_data, int i, \
 		int *ptrj);
 int		check_map_spaces_closed_off(t_data *map_data);
 void	get_player_starting_pos(t_data *map_data);
