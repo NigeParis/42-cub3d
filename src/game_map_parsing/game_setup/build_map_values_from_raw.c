@@ -6,24 +6,11 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 18:58:49 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/26 11:01:16 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:13:17 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-void	free_dbl_ptr(char **dbl_ptr)
-{
-	int		i;
-
-	i = 0;
-	while (dbl_ptr[i])
-	{
-		free(dbl_ptr[i]);
-		i++;
-	}
-	free(dbl_ptr);
-}
 
 int	check_if_map_texture(char *line, t_data *map_data)
 {
@@ -66,31 +53,30 @@ int *ptrj, int *start_point_ptr)
 	*start_point_ptr = -1;
 }
 
-void		build_final_map_data(char **split_raw_data, t_data *map_data)
+void	build_final_map_data(char **split_raw_data, t_data *map_data)
 {
-	int	i;
-	int	j;
+	int	i[2];
 	int	start_point;
 
-	init_values_build_final_map_data(&i, &j, &start_point);
-	if (!split_raw_data[i])
+	init_values_build_final_map_data(&i[0], &i[1], &start_point);
+	if (!split_raw_data[i[0]])
 		return ;
-	while (split_raw_data[i])
+	while (split_raw_data[i[0]])
 	{
-		while ((check_if_map_texture(split_raw_data[i], map_data)
-				&& split_raw_data[i]))
-			i++;
+		while ((check_if_map_texture(split_raw_data[i[0]], map_data)
+				&& split_raw_data[i[0]]))
+			i[0]++;
 		if (start_point == -1)
-			start_point = i;
-		if (split_raw_data[i] == NULL)
+			start_point = i[0];
+		if (split_raw_data[i[0]] == NULL)
 			break ;
-		j++;
-		i++;
+		i[1]++;
+		i[0]++;
 	}
-	map_data->map = malloc((i + 1) * sizeof(char *));
+	map_data->map = malloc((i[0] + 1) * sizeof(char *));
 	if (!map_data->map)
 		return ;
-	ft_memset(map_data->map, 0, (i + 1) * sizeof(char *));
+	ft_memset(map_data->map, 0, (i[0] + 1) * sizeof(char *));
 	if (!map_data->map || !check_all_textures_data_properly_filled(map_data))
 		return ;
 	build_map_portion_of_map_data(split_raw_data, start_point, map_data);
