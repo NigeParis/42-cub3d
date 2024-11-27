@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_wall_collision_north.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:43:56 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 15:47:51 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/27 17:18:11 by nige42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ double next_y, double next_x)
 	/ CUB_TILESIZE);
 	check_vals[X] = (int)((cub_data->player_cub.pos_x_double + next_x) \
 	/ CUB_TILESIZE);
-	if (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1')
-		return (1);
+	if ((cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1') \
+		|| (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
+			return (1);
 	return (0);
 }
 
@@ -37,8 +38,9 @@ double next_y, double next_x)
 	/ CUB_TILESIZE);
 	check_vals[X] = (int)((cub_data->player_cub.pos_x_double - next_x) \
 	/ CUB_TILESIZE);
-	if (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1')
-		return (1);
+	if ((cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1') \
+		|| (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
+			return (1);
 	return (0);
 }
 
@@ -51,8 +53,9 @@ double next_y, double next_x)
 	/ CUB_TILESIZE);
 	check_vals[X] = (int)((cub_data->player_cub.pos_x_double - next_x) \
 	/ CUB_TILESIZE);
-	if (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1')
-		return (1);
+	if ((cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1') \
+		|| (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
+			return (1);
 	return (0);
 }
 
@@ -65,7 +68,8 @@ double next_y, double next_x)
 	/ CUB_TILESIZE);
 	check_vals[X] = (int)((cub_data->player_cub.pos_x_double + next_x) \
 	/ CUB_TILESIZE);
-	if (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1')
-		return (1);
+	if ((cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == '1') \
+		|| (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
+			return (1);
 	return (0);
 }

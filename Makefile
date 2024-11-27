@@ -201,7 +201,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "Creating FILE .......\n"
 	@make -C ./mlx/ all 2> /dev/null > /dev/null
+	@make -C ./libft/ fclean > /dev/null
 	@make -C ./libft/ all > /dev/null
+	@make -C ./ft_printf/ fclean > /dev/null
 	@make -C ./ft_printf/ all > /dev/null
 	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) > /dev/null
 
@@ -229,8 +231,12 @@ bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(BONUS_OBJS)
 	@echo "Creating BONUS FILE .......\n"
+	@rm -f $(NAME) > /dev/null
+	@rm -rf $(OBJ_DIR)
 	@make -C ./mlx/ all 2> /dev/null > /dev/null
+	@make -C ./libft/ fclean > /dev/null
 	@make -C ./libft/ all > /dev/null
+	@make -C ./ft_printf/ fclean > /dev/null
 	@make -C ./ft_printf/ all > /dev/null
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) -o $@ $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) > /dev/null
 
@@ -274,13 +280,14 @@ clean: libclean
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(BONUS_OBJ_DIR)
 
-fclean:clean libfclean	
+fclean: clean libfclean	
 	@echo "FCLEAN all .o et .a files .......\n"
-	@make -C ./libft/ fclean > /dev/null
 	@rm -f $(NAME) > /dev/null
 	@rm -f $(BONUS_NAME) > /dev/null
-
+	@make -C ./libft/ fclean > /dev/null
+	@make -C ./ft_printf/ fclean > /dev/null
+	
 re: fclean all
-	@echo "All erased and re-compiled .......\n"
+	@echo "All erased and re-compiled .......\n"		
 
 .PHONY: all lib bonus libclean clean fclean re
