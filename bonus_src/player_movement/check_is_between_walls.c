@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_is_between_walls.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:35:25 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/28 10:57:41 by rchourak         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:04:55 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ double next_y, double next_x)
 	if (cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] \
 	== '1')
 	{
-		check_vals[Y] = (int)((cub_data->player_cub.pos_y_double - next_y) \
+		check_vals[Y] = (int)((cub_data->player_cub.pos_y_double + next_y) \
 		/ CUB_TILESIZE);
 		check_vals[X] = (int)((cub_data->player_cub.pos_x_double)
 				/ CUB_TILESIZE);
