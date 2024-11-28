@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nige42 <nige42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:50:54 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/25 21:29:21 by nige42           ###   ########.fr       */
+/*   Updated: 2024/11/28 10:11:15 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,4 +269,12 @@ double			calibrate_angle_for_minimap(t_cub_data *cub_data);
 double			degree_to_radian(double angle_degrees);
 double			radian_to_degree(double angle_radian);
 
+int				is_between_walls_plus_plus(t_cub_data *cub_data, \
+				double next_y, double next_x);
+int				is_between_walls_plus_neg(t_cub_data *cub_data, \
+				double next_y, double next_x);
+int				is_between_walls_neg_plus(t_cub_data *cub_data, \
+				double next_y, double next_x);
+int				is_between_walls_neg_neg(t_cub_data *cub_data, \
+				double next_y, double next_x);
 #endif

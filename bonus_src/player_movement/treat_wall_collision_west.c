@@ -6,7 +6,7 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:51:11 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/28 09:01:52 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:09:48 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_plus_neg(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
 
@@ -43,6 +47,10 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_plus_plus(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
 
@@ -59,6 +67,10 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_neg_plus(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
 
@@ -75,5 +87,9 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_neg_neg(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
