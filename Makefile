@@ -110,6 +110,7 @@ SRC = main.c  \
 	player_movement/treat_wall_collision_south.c \
 	player_movement/treat_wall_collision_west.c \
 	player_movement/treat_wall_collision_east.c \
+	player_movement/check_is_between_walls.c \
 	cub_view_setup/cub_init.c \
 	cub_raycasting/cub_raydraw.c \
 	cub_raycasting/cub_put_to_screen.c \

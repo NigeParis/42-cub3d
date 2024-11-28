@@ -6,13 +6,15 @@
 /*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:38:27 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/28 08:56:42 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:36:58 by nrobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #define Y 0
 #define X 1
+
+
 
 int	treat_wall_collision_quadrant_one_east(t_cub_data *cub_data, \
 double next_y, double next_x)
@@ -27,6 +29,10 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_neg_plus(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
 
@@ -43,6 +49,10 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_plus_plus(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
 
@@ -59,6 +69,10 @@ double next_y, double next_x)
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_neg_plus(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
 
@@ -71,9 +85,13 @@ double next_y, double next_x)
 	/ CUB_TILESIZE);
 	check_vals[X] = (int)((cub_data->player_cub.pos_x_double - next_x) \
 	/ CUB_TILESIZE);
-	if ((cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] \
+		if ((cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] \
 	== '1') || \
 	(cub_data->map_data->square_map[check_vals[Y]][check_vals[X]] == ' '))
 		return (1);
+	if (is_between_walls_neg_neg(cub_data, next_y, next_x))
+	{
+		return (1);
+	}	
 	return (0);
 }
