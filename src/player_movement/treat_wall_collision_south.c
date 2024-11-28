@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   treat_wall_collision_south.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nrobinso <nrobinso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rchourak <rchourak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:48:07 by nrobinso          #+#    #+#             */
-/*   Updated: 2024/11/28 10:37:36 by nrobinso         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:54:10 by rchourak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ double next_y, double next_x)
 		return (1);
 	if (is_between_walls_neg_neg(cub_data, next_y, next_x))
 	{
-		
 		return (1);
 	}	
 	return (0);
