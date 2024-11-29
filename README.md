@@ -21,7 +21,7 @@ You can check it out
 
 https://lodev.org/cgtutor/raycasting.html
 
-sCREEN SHOTS
+SCREEN SHOTS
 
 ![cub3](https://github.com/user-attachments/assets/cbe0e3a8-d6bc-4c9f-8f0a-49f644f1206f)
 ![FOREST](https://github.com/user-attachments/assets/3bad853a-47a1-4c51-99b0-6dae17dff0f6)
