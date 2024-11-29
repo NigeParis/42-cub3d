@@ -14,6 +14,9 @@ Raycasting One of the most crucial aspects of this project is raycasting. This t
 
     Screen Projection: Based on the distance, the height of the walls is projected on the screen to create the illusion of depth.
 
-Challenges and Solutions One of the main challenges was optimizing the code to ensure the game runs smoothly with MinilibX's limitations. We also worked hard to ensure accurate calculations for the raycasting so that walls and objects are correctly displayed, and to handle player commands efficiently.
+Challenges and Solutions One of the main challenges was optimizing the code to ensure the game runs smoothly with MinilibX's limitations. We also worked hard to ensure accurate calculations for the raycasting so that walls are correctly displayed, and to handle player commands efficiently.
 
-Useful Resources We found Lode Vandevenne's tutorial on raycasting extremely useful for this project. You can check it out 
+Useful Resources We found Lode Vandevenne's tutorial on raycasting extremely useful for this project. 
+You can check it out 
+
+https://lodev.org/cgtutor/raycasting.html
