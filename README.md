@@ -23,7 +23,13 @@ https://lodev.org/cgtutor/raycasting.html
 
 SCREEN SHOTS
 
+As you can see below there is a problem of fisheye that we corrected.
+
 ![cub3](https://github.com/user-attachments/assets/cbe0e3a8-d6bc-4c9f-8f0a-49f644f1206f)
+
+
+We made textures that then replaced the red walls (north wall, east wall etc ....)
+
 ![FOREST](https://github.com/user-attachments/assets/3bad853a-47a1-4c51-99b0-6dae17dff0f6)
 ![JAIL](https://github.com/user-attachments/assets/d340195e-be17-4946-8526-fb7ebed54a27)
 ![MAIF](https://github.com/user-attachments/assets/4266a2d6-9e31-4f4b-b2a4-fd90f085de4f)
